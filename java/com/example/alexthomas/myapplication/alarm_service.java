@@ -20,8 +20,7 @@ public class alarm_service extends Service {
     public static Boolean isRunning = false;
     private MediaPlayer mediasong;
     String quote;
-
-    public static String genre = "null";
+    public static String genre;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {

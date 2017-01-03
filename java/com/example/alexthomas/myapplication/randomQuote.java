@@ -107,6 +107,7 @@ public class randomQuote {
             return Author_quotes[rnd2][0];
         }
         else {
+            MainActivity.motivational_quote.setText("No genre found!");
             return "No genre found!";
         }
     }
