@@ -45,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
         alarm_confirmation = (TextView) findViewById(R.id.alarm_confirmation);
         alarm_confirmation.setText(getInput());
 
-        Button the_button = (Button) findViewById(R.id.set_alarm);
-        the_button.setOnClickListener(new View.OnClickListener() {
+        Button set_alarm = (Button) findViewById(R.id.set_alarm);
+        set_alarm.setOnClickListener(new View.OnClickListener() {
 
                                           public void onClick(View view) {
                                               launchSet_Alarm();

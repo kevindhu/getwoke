@@ -39,7 +39,8 @@ public class alarm_service extends Service {
             //displays new quote
             randomQuote newQuote = new randomQuote();
             genre = MainActivity.genre;
-            quote = newQuote.quote_generator(genre); //the value of the current genre
+            Log.e("alright","Generating new quote with genre set to "+genre);
+            quote = newQuote.quote_generator(genre);
 
 
             mediasong = MediaPlayer.create(alarm_service.this, R.raw.getup);

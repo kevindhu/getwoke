@@ -76,8 +76,6 @@ public class settings_spinners extends AppCompatActivity {
 
         List<String> new_item = new ArrayList<String>();
 
-
-
         new_item.add(message);
         for (int i = 0; i<args.length;i++){
             new_item.add(args[i]);
