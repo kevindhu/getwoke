@@ -6,6 +6,7 @@ import android.app.Activity;
 import java.util.ArrayList;
 import java.util.List;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -195,9 +196,10 @@ public class settings_spinners extends AppCompatActivity {
             case R.id.action_home:
                 finish();
                 return true;
-            case R.id.action_settings:
-                Toast.makeText(getApplicationContext(), "You're already at 'Settings'!",
-                        Toast.LENGTH_LONG).show();
+            case R.id.about_us:
+                Intent about_us = new Intent(settings_spinners.this, MainActivity_aboutus.class);
+                startActivity(about_us);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity_set_alarm"></activity>
+        <activity android:name=".MainActivity_aboutus"></activity>
         <activity android:name=".settings_spinners"></activity>
         <receiver android:name=".alarm_receiver" android:process=":remote"></receiver>
         <service android:name=".alarm_service" android:enabled="true"></service>
