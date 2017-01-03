@@ -67,7 +67,14 @@
         android:textAlignment="center"
         />
 
-
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/getwoke_header"
+        android:id="@+id/imageView"
+        android:layout_below="@+id/alarm_confirmation"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
