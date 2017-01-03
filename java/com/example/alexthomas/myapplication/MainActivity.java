@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Button snooze_alarm = (Button) findViewById(R.id.snooze);
+        Button snooze_alarm = (Button) findViewById(R.id.alarm_off);
 
 
         //Makes text_view static

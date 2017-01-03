@@ -15,13 +15,14 @@
     tools:showIn="@layout/activity_main">
 
 
-    <TextClock
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textClock"
-        android:textSize="50dp"
-        android:layout_marginTop="13dp"
-        android:layout_centerHorizontal="true" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="140sp"
+        app:srcCompat="@drawable/getwoke_header"
+        android:id="@+id/getWoke"
+        android:layout_marginTop="-40dp"
+
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -29,7 +30,6 @@
         android:text="@string/quote"
         android:id="@+id/motivationalQuote"
         android:textSize="30dp"
-        android:layout_marginTop="19dp"
         android:layout_below="@+id/textClock"
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
@@ -42,44 +42,39 @@
         android:text="Set Alarm"
         android:id="@+id/set_alarm"
         android:layout_below="@id/motivationalQuote"
-        android:layout_marginLeft="30sp"
+        android:layout_marginLeft="20sp"
         android:layout_marginTop="125sp"/>
 
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Snooze"
-        android:id="@+id/snooze"
+        android:text="Alarm Off"
+        android:id="@+id/alarm_off"
         android:layout_below="@id/motivationalQuote"
-        android:layout_marginLeft="200sp"
-        android:layout_marginTop="125dp"/>
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="125dp"
+        android:layout_alignEnd="@id/motivationalQuote"/>
 
     <TextView
         android:text="Alarm Unset"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15sp"
-        android:layout_below="@+id/snooze"
+        android:layout_below="@+id/alarm_off"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="25dp"
         android:id="@+id/alarm_confirmation"
         android:textAlignment="center"
         />
 
-    <ImageView
+    <TextClock
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/getwoke_header"
-        android:id="@+id/imageView"
-        android:layout_below="@+id/alarm_confirmation"
-        android:layout_alignRight="@+id/motivationalQuote"
-        android:layout_alignEnd="@+id/motivationalQuote"
-        android:layout_marginRight="26dp"
-        android:layout_marginEnd="26dp"
-        android:layout_marginTop="10dp"
-        />
-
+        android:id="@+id/textClock"
+        android:textSize="50dp"
+        android:layout_below="@+id/getWoke"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
