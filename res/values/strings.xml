@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Get Woke!!</string>
+    <string name="app_name">Get Woke</string>
     <string name="action_settings">Settings</string>
-    <string name="quote"> Motivational Quote Here!</string>
+    <string name="quote"> Choose your Quote Genre! </string>
 
 
 
