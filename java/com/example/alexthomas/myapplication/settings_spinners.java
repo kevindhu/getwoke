@@ -38,7 +38,7 @@ public class settings_spinners extends AppCompatActivity {
     private Button btnSubmit;
 
     private String[] fonts = {"Formal", "Roboto", "Weird"};
-    private String[] genres ={"Entrepreneur", "Celebrity", "Author"};
+    private String[] genres ={"Entrepreneur", "Celebrity", "Author", "All Genres"};
     private String[] quote_length = {"Medium", "Short", "Long"};
 
     @Override

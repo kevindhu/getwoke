@@ -53,6 +53,7 @@ import android.widget.Spinner;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.content.SharedPreferences;
+import java.util.Arrays;
 
 public class randomQuote {
 
@@ -78,6 +79,17 @@ public class randomQuote {
 
 
     public String quote_generator (String genre) {
+        if (genre.equals("All Genres")) {
+            int rnd4 = new Random().nextInt(Entrepreneur_quotes.length+Celebrity_quotes.length+Author_quotes.length);
+
+
+            //create new String[][] for all quotes
+            String[][] all_quotes = append(Entrepreneur_quotes, Celebrity_quotes);
+            MainActivity.motivational_quote.setText(all_quotes[rnd4][0]);
+            alarm_service.genre = "All Quotes";
+            return all_quotes[rnd4][0];
+        }
+
 
         if (genre.equals("Entrepreneur")) {
             int rnd = new Random().nextInt(Entrepreneur_quotes.length);
@@ -103,4 +115,12 @@ public class randomQuote {
             return "No genre found!";
         }
     }
+    public static String[][] append(String[][] a, String[][] b) {
+        String[][] result = new String[a.length + b.length][];
+        System.arraycopy(a, 0, result, 0, a.length);
+        System.arraycopy(b, 0, result, a.length, b.length);
+        return result;
+    }
+
 }
+
