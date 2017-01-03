@@ -59,7 +59,7 @@ public class randomQuote {
 
 
     String[][] Entrepreneur_quotes = {
-            {"lol","Bill Gates"},
+            {"lol I'm rich","Bill Gates"},
             {"wow I'm an entrepreneur","Mark Zuckerberg"},
             {"fuck this country lol","Donald Trump"},
             {"do you jerk off???", "Elon Musk"}
