@@ -38,6 +38,7 @@ public class alarm_service extends Service {
         else {
             //displays new quote
             randomQuote newQuote = new randomQuote();
+            genre = MainActivity.genre;
             quote = newQuote.quote_generator(genre); //the value of the current genre
 
 

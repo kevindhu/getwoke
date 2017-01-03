@@ -72,9 +72,14 @@
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/getwoke_header"
         android:id="@+id/imageView"
-        android:layout_above="@+id/set_alarm"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_below="@+id/alarm_confirmation"
+        android:layout_alignRight="@+id/motivationalQuote"
+        android:layout_alignEnd="@+id/motivationalQuote"
+        android:layout_marginRight="26dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginTop="10dp"
+        />
+
 
 
 </RelativeLayout>
