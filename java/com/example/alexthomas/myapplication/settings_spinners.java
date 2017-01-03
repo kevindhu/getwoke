@@ -169,19 +169,6 @@ public class settings_spinners extends AppCompatActivity {
                 if (MainActivity.genre != String.valueOf(spinner_genre.getSelectedItem())) {
                     Log.e("Whoa!", "New Genre Detected Called " +String.valueOf(spinner_genre.getSelectedItem()));
                     MainActivity.genre = String.valueOf(spinner_genre.getSelectedItem());
-                    switch (String.valueOf(spinner_genre.getSelectedItem())) {
-                        case "Entrepreneur":
-                            Quote.quote_generator("Entrepreneur");
-                            break;
-                        case "Celebrity":
-                            Quote.quote_generator("Celebrity");
-                            break;
-                        case "Author":
-                            Quote.quote_generator("Author");
-                            break;
-                        default:
-                            break;
-                    }
                 }
             }
         });
