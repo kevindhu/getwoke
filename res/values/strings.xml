@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Get Woke!!</string>
+    <string name="action_settings">Settings</string>
+    <string name="quote"> Motivational Quote Here!</string>
+
+
+
+    <!-- spinners -->
+    <string-array name="genre_arrays">
+        <item>Entrepreneur</item>
+        <item>Celebrity</item>
+        <item>Author</item>
+    </string-array>
+
+    <string-array name="clock_font_arrays">
+        <item>Formal</item>
+        <item>Roboto</item>
+        <item>Weird</item>
+    </string-array>
+
+    <string-array name="quote_types_arrays">
+        <item>Medium</item>
+        <item>Short</item>
+        <item>Long</item>
+    </string-array>
+</resources>
+
+
+
+
