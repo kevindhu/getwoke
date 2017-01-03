@@ -8,6 +8,6 @@
         android:orderInCategory="1"
         android:title="Home"
         app:showAsAction="always"
-        android:icon="@drawable/ic_home"/>
+        android:icon="@drawable/gw_logo"/>
 
 </menu>

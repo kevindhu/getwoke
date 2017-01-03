@@ -56,7 +56,7 @@ public class alarm_service extends Service {
             //Notification
             NotificationCompat.Builder mBuilder =
                     new NotificationCompat.Builder(this)
-                            .setSmallIcon(R.drawable.ic_home)
+                            .setSmallIcon(R.drawable.gw_logo)
                             .setVisibility(0)
                             .setContentTitle("Get Woke!")
                             .setContentText(quote);
