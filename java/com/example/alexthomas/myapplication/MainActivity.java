@@ -22,6 +22,7 @@ import org.w3c.dom.Text;
 
 
 public class MainActivity extends AppCompatActivity {
+    public static String genre = "null";
     MainActivity_set_alarm instance = new MainActivity_set_alarm();
     public static TextView motivational_quote;
     public  PendingIntent pendingIntent;

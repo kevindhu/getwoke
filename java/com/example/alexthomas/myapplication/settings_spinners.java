@@ -39,7 +39,6 @@ public class settings_spinners extends AppCompatActivity {
     private String[] fonts = {"Formal", "Roboto", "Weird"};
     private String[] genres ={"Entrepreneur", "Celebrity", "Author"};
     private String[] quote_length = {"Medium", "Short", "Long"};
-    private String last_genre = "null";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -165,9 +164,10 @@ public class settings_spinners extends AppCompatActivity {
 
                 //Chooses genre
                 storeValue("Genres",spinner_genre);
-                if (last_genre != String.valueOf(spinner_genre.getSelectedItem())) {
-                    Log.e("Whoa!", "New Genre Detected!");
-                    last_genre = String.valueOf(spinner_genre.getSelectedItem());
+                Log.e("Whoa!", "Genre right now is " +MainActivity.genre);
+                if (MainActivity.genre != String.valueOf(spinner_genre.getSelectedItem())) {
+                    Log.e("Whoa!", "New Genre Detected Called " +String.valueOf(spinner_genre.getSelectedItem()));
+                    MainActivity.genre = String.valueOf(spinner_genre.getSelectedItem());
                     switch (String.valueOf(spinner_genre.getSelectedItem())) {
                         case "Entrepreneur":
                             Quote.quote_generator("Entrepreneur");
