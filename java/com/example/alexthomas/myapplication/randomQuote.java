@@ -77,25 +77,30 @@ public class randomQuote {
 
 
 
-    public void quote_generator (String genre) {
+    public String quote_generator (String genre) {
 
         if (genre.equals("Entrepreneur")) {
             int rnd = new Random().nextInt(Entrepreneur_quotes.length);
             MainActivity.motivational_quote.setText(Entrepreneur_quotes[rnd][0]);
             alarm_service.genre = "Entrepreneur";
+            return Entrepreneur_quotes[rnd][0];
         }
 
-        if (genre.equals("Celebrity")) {
+        else if (genre.equals("Celebrity")) {
             int rnd1 = new Random().nextInt(Celebrity_quotes.length);
             MainActivity.motivational_quote.setText(Celebrity_quotes[rnd1][0]);
             alarm_service.genre = "Celebrity";
+            return Celebrity_quotes[rnd1][0];
         }
 
-
-        if (genre.equals("Author")) {
+        else if (genre.equals("Author")) {
             int rnd2 = new Random().nextInt(Author_quotes.length);
             MainActivity.motivational_quote.setText(Author_quotes[rnd2][0]);
             alarm_service.genre = "Author";
+            return Author_quotes[rnd2][0];
+        }
+        else {
+            return "No genre found!";
         }
     }
 }

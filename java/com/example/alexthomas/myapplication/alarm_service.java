@@ -19,6 +19,7 @@ public class alarm_service extends Service {
 
     public static Boolean isRunning = false;
     private MediaPlayer mediasong;
+    String quote;
 
     public static String genre = "null";
 
@@ -37,7 +38,7 @@ public class alarm_service extends Service {
         else {
             //displays new quote
             randomQuote newQuote = new randomQuote();
-            newQuote.quote_generator(genre); //the value of the current genre
+            quote = newQuote.quote_generator(genre); //the value of the current genre
 
 
             mediasong = MediaPlayer.create(alarm_service.this, R.raw.getup);
@@ -58,7 +59,7 @@ public class alarm_service extends Service {
                             .setSmallIcon(R.drawable.ic_home)
                             .setVisibility(0)
                             .setContentTitle("Get Woke!")
-                            .setContentText("Quote");
+                            .setContentText(quote);
 
             notificationManager.notify(0, mBuilder.build());
             }
