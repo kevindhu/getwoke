@@ -55,8 +55,6 @@ import android.widget.ArrayAdapter;
 import android.content.SharedPreferences;
 
 public class randomQuote {
-    private Map<String, String[]> quotes = new HashMap<String, String[]>();
-
 
     String[][] Entrepreneur_quotes = {
             {"lol I'm rich","Bill Gates"},
