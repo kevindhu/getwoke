@@ -62,10 +62,8 @@ public class MainActivity_set_alarm extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 //Cancels alarm if alarm is currently running.
-                if (alarm_service.isRunning)
-                {
+                if (alarm_service.isRunning) {
                     alarm_intent = new Intent(MainActivity_set_alarm.this, alarm_receiver.class);
-                    alarm_intent.putExtra("Alarm_off", true);
                     pendingIntent = PendingIntent.getBroadcast(MainActivity_set_alarm.this, 1, alarm_intent,
                             PendingIntent.FLAG_UPDATE_CURRENT);
                     sendBroadcast(alarm_intent);

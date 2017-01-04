@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -52,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         content_main = (RelativeLayout) findViewById(R.id.content_main);
 
 
-        //content_main.setBackgroundResource(R.drawable.stars_clouds);
 
 
         //Captures font from previous session
@@ -260,6 +260,10 @@ public class MainActivity extends AppCompatActivity {
     private String getAlarmButtonText(){
         SharedPreferences sharedPref = getSharedPreferences("Alarm Unset", MODE_PRIVATE);
         String message = sharedPref.getString("Alarm Button Text", "Alarm Off");
+        if (!alarm_service.isRunning) {
+            message = "Alarm Off";
+        }
+
         return message;
     }
 
@@ -269,5 +273,13 @@ public class MainActivity extends AppCompatActivity {
         return message;
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (alarm_service.isRunning == false) {
+
+            snooze_alarm.setText("Alarm Off");
+        }
+    }
 
 }

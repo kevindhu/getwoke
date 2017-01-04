@@ -89,7 +89,7 @@ public class alarm_service extends Service {
             }
 
 
-            mediasong = MediaPlayer.create(alarm_service.this, R.raw.getup);
+            mediasong = MediaPlayer.create(alarm_service.this, R.raw.motivationalmusic);
             //Plays song , for testing
             mediasong.start();
 
@@ -121,7 +121,18 @@ public class alarm_service extends Service {
                             .setContentText(quote[0] + " - " + quote[1]);
 
             notificationManager.notify(0, mBuilder.build());
+
+            mediasong.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    Log.e("Hi", "hi");
+                }
+
+            });
+
             }
+
 
             return START_NOT_STICKY;
 
