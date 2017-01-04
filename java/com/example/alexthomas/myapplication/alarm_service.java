@@ -13,6 +13,8 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 /* Created by alexthomas on 12/31/16. */
@@ -62,10 +64,43 @@ public class alarm_service extends Service {
             editor_quote.apply();
             editor_quoter.apply();
 
-            //Catches whether MainActivity is closed when changing quote/quoter text
+
+
+
+            //Sets the text to the new quote generated and Catches whether MainActivity is closed when changing quote/quoter text
             try {
+                //sets text
                 MainActivity.motivational_quote.setText(quote[0]);
                 MainActivity.quoter.setText(quote[1]);
+
+
+
+
+
+
+                //ghetto version
+
+                final Animation quoteRise1 = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+                final Animation quoteRise2 = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+
+                MainActivity.motivational_quote.startAnimation(quoteRise1);
+                MainActivity.quoter.startAnimation(quoteRise2);
+
+
+
+                //better version that DOESN'T WORK
+
+                //initialize instance of Mainactivity
+                MainActivity activity = new MainActivity();
+
+                //animates
+                activity.Animate_Text(MainActivity.motivational_quote,R.anim.fade_in,1000);
+                activity.Animate_Text(MainActivity.quoter,R.anim.fade_in,1200);
+
+
+
+
+
             }
             catch(NullPointerException e) {
                     Log.e("MainActivity is closed", "Stored in sharedPref");
