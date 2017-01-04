@@ -119,8 +119,11 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
+
+
+    TextView text = (TextView) findViewById(R.id.text);
+    text.setTextColor(Color.parseColor("#FFFFFF"));
 
     //launch the settings
     private void launchActivity() {

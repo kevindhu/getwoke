@@ -91,7 +91,8 @@ public class randomQuote {
             int rnd4 = new Random().nextInt(Entrepreneur_quotes.length+Celebrity_quotes.length+Author_quotes.length);
             Log.e("All Genres playing!", "Fetching All Quotes");
             //create new String[][] for all quotes
-            String[][] all_quotes = append(Entrepreneur_quotes, Celebrity_quotes);
+            String[][] all_quotes1 = append(Entrepreneur_quotes, Celebrity_quotes);
+            String[][] all_quotes = append(Author_quotes, all_quotes1);
             MainActivity.motivational_quote.setText(all_quotes[rnd4][0]);
             MainActivity.quoter.setText(all_quotes[rnd4][1]);
             quote_AuthorPair[0] = all_quotes[rnd4][0];
