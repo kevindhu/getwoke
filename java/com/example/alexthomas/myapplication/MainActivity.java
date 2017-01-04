@@ -46,22 +46,23 @@ public class MainActivity extends AppCompatActivity {
 
         snooze_alarm = (Button) findViewById(R.id.alarm_off);
 
-        SharedPreferences sharedPref1 = getSharedPreferences("Genres", MODE_PRIVATE);
-        String message = sharedPref1.getString("Message", "Default Genre");
+        SharedPreferences sharedPref_genres = getSharedPreferences("Genres", MODE_PRIVATE);
+        String message = sharedPref_genres.getString("Message", "Default Genre");
+
+        //sets font from previous session
+        SharedPreferences sharedPref_font = getSharedPreferences("Font", MODE_PRIVATE);
+        String message2 = sharedPref_font.getString("Message", "Default Font");
+        font_changer(message2); //invokes this class's font_changer
+        Log.e("Font","Font is set to " + message2);
+
         genre = message;
 
-
-        TextView clock = (TextView) findViewById(R.id.textClock);
-        clock.setTextColor(Color.parseColor("#FFFFFF"));
-        motivational_quote = (TextView) findViewById(R.id.motivationalQuote);
-        motivational_quote.setTextColor(Color.parseColor("#FFFFFF"));
-
-
-
         quoter = (TextView) findViewById(R.id.quoter);
+        quoter.setText("");
+
+
         alarm_confirmation = (TextView) findViewById(R.id.alarm_confirmation);
         alarm_confirmation.setText(getInput());
-        quoter.setText("");
 
         //sets genre from previous session
         if (message != "Default Genre") {
@@ -69,8 +70,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //sets font from previous session
-        SharedPreferences sharedPref2 = getSharedPreferences("Font", MODE_PRIVATE);
-        String message2 = sharedPref2.getString("Message", "Default Font");
         font_changer(message2); //invokes this class's font_changer
         Log.e("Font","Font is set to " + message2);
 
@@ -105,6 +104,10 @@ public class MainActivity extends AppCompatActivity {
                             PendingIntent.FLAG_UPDATE_CURRENT);
                     sendBroadcast(alarm_intent);
                     pendingIntent.cancel();
+                    SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putString("Message", "Your alarm is unset.");
+                    editor.apply();
                     alarm_confirmation.setText("Your alarm is unset.");
                     Log.e("Cancelled for real", "Cancelled");
                 }
@@ -115,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
                     pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
                             PendingIntent.FLAG_UPDATE_CURRENT);
                     sendBroadcast(alarm_intent);
-                    //pendingIntent.cancel();
                     Log.e("Cancel service", "Cancelled");
                     snooze_alarm.setText("Alarm Off");
                 }
