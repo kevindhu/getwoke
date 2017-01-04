@@ -41,11 +41,22 @@ public class alarm_service extends Service {
         else {
             alarm_service.isRunning = true;
             MainActivity.snooze_alarm.setText("Silence Alarm");
+
             //displays new quote
             randomQuote newQuote = new randomQuote();
             genre = MainActivity.genre;
             Log.e("alright","Generating new quote with genre set to "+genre);
             quote = newQuote.quote_generator(genre);
+
+            //Instantiates sharedPrefs and saves quote/quoter
+            SharedPreferences sharedPref_quote = getSharedPreferences("Quote", MODE_PRIVATE);
+            SharedPreferences sharedPref_quoter = getSharedPreferences("Quoter", MODE_PRIVATE);
+            SharedPreferences.Editor editor_quote = sharedPref_quote.edit();
+            SharedPreferences.Editor editor_quoter = sharedPref_quoter.edit();
+            editor_quote.putString("Quote", quote[0]);
+            editor_quoter.putString("Quoter", quote[1]);
+            editor_quote.apply();
+            editor_quoter.apply();
 
 
             mediasong = MediaPlayer.create(alarm_service.this, R.raw.getup);

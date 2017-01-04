@@ -57,6 +57,8 @@ import java.util.Arrays;
 
 public class randomQuote {
 
+
+
     String[][] Entrepreneur_quotes = {
             {"lol I'm rich","Bill Gates"},
             {"wow I'm an entrepreneur","Mark Zuckerberg"},
@@ -84,6 +86,7 @@ public class randomQuote {
 
 
     public String[] quote_generator (String genre) {
+
 
         String[] quote_AuthorPair = new String[2];
 

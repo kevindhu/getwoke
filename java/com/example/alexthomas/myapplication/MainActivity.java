@@ -26,7 +26,6 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
     public static String genre = "null";
-    MainActivity_set_alarm instance = new MainActivity_set_alarm();
     public static TextView motivational_quote;
     public static TextView quoter;
     public  PendingIntent pendingIntent;
@@ -51,27 +50,25 @@ public class MainActivity extends AppCompatActivity {
 
         //sets font from previous session
         SharedPreferences sharedPref_font = getSharedPreferences("Font", MODE_PRIVATE);
-        String message2 = sharedPref_font.getString("Message", "Default Font");
-        font_changer(message2); //invokes this class's font_changer
-        Log.e("Font","Font is set to " + message2);
+        String last_font = sharedPref_font.getString("Message", "Default Font");
+        Log.e("Font","Font is set to " + last_font);
 
         genre = message;
 
         quoter = (TextView) findViewById(R.id.quoter);
-        quoter.setText("");
-
+        quoter.setText(getQuoter());
 
         alarm_confirmation = (TextView) findViewById(R.id.alarm_confirmation);
         alarm_confirmation.setText(getInput());
 
         //sets genre from previous session
-        if (message != "Default Genre") {
-            motivational_quote.setText("");
-        }
+        motivational_quote = (TextView) findViewById(R.id.motivationalQuote);
+        motivational_quote.setText(getQuote());
+
 
         //sets font from previous session
-        font_changer(message2); //invokes this class's font_changer
-        Log.e("Font","Font is set to " + message2);
+        font_changer(last_font); //invokes this class's font_changer
+        Log.e("Font","Font is set to " + last_font);
 
 
 
@@ -192,5 +189,21 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+
+    private String getQuote(){
+        SharedPreferences sharedPref = getSharedPreferences("Quote", MODE_PRIVATE);
+        String message = sharedPref.getString("Quote", "");
+        Log.e("GetQuote()", message);
+        return message;
+
+    }
+
+    private String getQuoter(){
+        SharedPreferences sharedPref = getSharedPreferences("Quoter", MODE_PRIVATE);
+        String message = sharedPref.getString("Quoter", "");
+        return message;
+
+    }
+
 
 }
