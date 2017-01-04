@@ -84,10 +84,16 @@
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:layout_marginBottom="20dp"
-        android:layout_weight="0.11">
+        android:layout_weight="0.05">
     </Spinner>
 
     <!-- Genres -->
+
+
+    <!-- Submit Button -->
+
+
+    <!-- Icon -->
     <TextView
         android:layout_width="181dp"
         android:layout_height="wrap_content"
@@ -107,12 +113,9 @@
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:layout_marginBottom="20dp"
-        android:layout_weight="0.11">
+        android:layout_weight="0.04">
     </Spinner>
 
-
-
-    <!-- Submit Button -->
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="wrap_content"
@@ -122,8 +125,6 @@
         android:text="Submit"
         />
 
-
-    <!-- Icon -->
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="100dp"

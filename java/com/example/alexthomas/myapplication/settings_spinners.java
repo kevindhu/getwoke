@@ -158,6 +158,18 @@ public class settings_spinners extends AppCompatActivity {
                     Log.e("Whoa!", "New Genre Detected Called " +String.valueOf(spinner_genre.getSelectedItem()));
                     MainActivity.genre = String.valueOf(spinner_genre.getSelectedItem());
                 }
+
+
+                storeValue("Backgrounds",spinner_backgrounds);
+                switch (String.valueOf(spinner_backgrounds.getSelectedItem())) {
+                    case "Starry Clouds":
+                        
+                        break;
+                    case "Starry Sky":
+                        break;
+                    default:
+                        break;
+                }
             }
         });
     }
