@@ -87,19 +87,36 @@ public class MainActivity extends AppCompatActivity {
         snooze_alarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                if (alarm_service.isRunning == false)
-                {
-                    alarm_confirmation.setText("Your alarm is unset.");
+
+                boolean alarmUp = (PendingIntent.getBroadcast(MainActivity.this, 1,
+                        new Intent(MainActivity.this, alarm_receiver.class),
+                        PendingIntent.FLAG_NO_CREATE) != null);
+                Log.e("alarmUP", String.valueOf(alarmUp));
+                Log.e("isRunning", String.valueOf(alarm_service.isRunning));
+
+                if (!alarmUp && !alarm_service.isRunning ){
+                    Toast.makeText(MainActivity.this, "The alarm is already off!",Toast.LENGTH_SHORT).show();
                 }
-                else
+                else if (alarmUp && !alarm_service.isRunning)
                 {
+                    alarm_service.isRunning = true;
                     alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
-                    alarm_intent.putExtra("Alarm_off", true);
                     pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
                             PendingIntent.FLAG_UPDATE_CURRENT);
                     sendBroadcast(alarm_intent);
-                    Log.e("Cancel service", "Cancelled");
                     pendingIntent.cancel();
+                    alarm_confirmation.setText("Your alarm is unset.");
+                    Log.e("Cancelled for real", "Cancelled");
+                }
+                else
+                {
+                    alarm_service.isRunning = true;
+                    alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
+                    pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
+                            PendingIntent.FLAG_UPDATE_CURRENT);
+                    sendBroadcast(alarm_intent);
+                    //pendingIntent.cancel();
+                    Log.e("Cancel service", "Cancelled");
                     snooze_alarm.setText("Alarm Off");
                 }
             }

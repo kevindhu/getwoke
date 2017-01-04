@@ -28,8 +28,13 @@ public class alarm_service extends Service {
         Log.e("onStartCommand", "Initated");
 
         if (isRunning){
-            mediasong.stop();
-            mediasong.reset();
+            try {
+                mediasong.stop();
+                mediasong.reset();
+            }
+            catch (NullPointerException e){
+                Log.e("NullpointException", "e");
+            }
             Log.e("cancel", "cancelled");
             isRunning = false;
         }
