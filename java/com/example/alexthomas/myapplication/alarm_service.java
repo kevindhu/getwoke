@@ -53,17 +53,28 @@ public class alarm_service extends Service {
             //Notification manager
             NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
             //Intent to MainActivity
-            Intent intent_mainactivity = new Intent(this, MainActivity.class);
 
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0
-                    , intent_mainactivity, 0);
 
             //Notification
+            Intent intent_mainactivity = new Intent(this, MainActivity.class);
+
+            intent_mainactivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+            PendingIntent pendingIntent_mainactivity = PendingIntent.getActivity(
+                    getApplicationContext(),
+                    2,
+                    intent_mainactivity,
+                    PendingIntent.FLAG_UPDATE_CURRENT);
+
+
             NotificationCompat.Builder mBuilder =
                     new NotificationCompat.Builder(this)
                             .setSmallIcon(R.drawable.gw_logo)
                             .setVisibility(0)
-                            .setContentTitle("Get Woke!")
+                            .setAutoCancel(true)
+                            .setContentIntent(pendingIntent_mainactivity)
+                            .setContentTitle("Get Woke")
                             .setContentText(quote[0] + " - " + quote[1]);
 
             notificationManager.notify(0, mBuilder.build());
