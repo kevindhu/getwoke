@@ -45,29 +45,9 @@
         android:textSize="50dp"
         android:layout_below="@+id/getWoke"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="-20dp"
         android:textAlignment="center"/>
 
-    <TextView
-        android:text="Quoter"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/quoter"
-        android:layout_centerVertical="true"
-        android:textAlignment="center"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
-        />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Alarm Off"
-        android:id="@+id/alarm_off"
-
-        android:layout_alignBaseline="@+id/set_alarm"
-        android:layout_alignBottom="@+id/set_alarm"
-        android:layout_toRightOf="@+id/set_alarm"
-        android:layout_toEndOf="@+id/set_alarm" />
 
     <TextView
         android:layout_width="match_parent"
@@ -78,6 +58,29 @@
         android:textAlignment="center"
         android:typeface="sans"
         android:layout_below="@+id/textClock" />
+
+    <TextView
+        android:text="Quoter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/quoter"
+        android:layout_centerVertical="true"
+        android:layout_below="@id/motivationalQuote"
+        android:textAlignment="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alarm Off"
+        android:id="@+id/alarm_off"
+        android:layout_alignBaseline="@+id/set_alarm"
+        android:layout_alignBottom="@+id/set_alarm"
+        android:layout_toRightOf="@+id/set_alarm"
+        android:layout_toEndOf="@+id/set_alarm" />
+
 
     <Button
         android:layout_width="wrap_content"
