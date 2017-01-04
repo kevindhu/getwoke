@@ -24,37 +24,16 @@
 
         />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/quote"
-        android:id="@+id/motivationalQuote"
-        android:textSize="30dp"
-        android:layout_below="@+id/textClock"
-        android:layout_centerHorizontal="true"
-        android:textAlignment="center"
-        android:typeface="sans"
-        />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Set Alarm"
         android:id="@+id/set_alarm"
         android:layout_below="@id/motivationalQuote"
-        android:layout_marginLeft="20sp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="65dp"
         android:layout_marginTop="125sp"/>
 
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Alarm Off"
-        android:id="@+id/alarm_off"
-        android:layout_below="@id/motivationalQuote"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="125dp"
-        android:layout_alignEnd="@id/motivationalQuote"/>
 
     <TextView
         android:text="Alarm Unset"
@@ -78,10 +57,33 @@
 
     <TextView
         android:text="Quoter"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/quoter"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/textClock"
-        android:layout_toEndOf="@+id/textClock" />
+        android:textAlignment="center"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alarm Off"
+        android:id="@+id/alarm_off"
+
+        android:layout_alignBaseline="@+id/set_alarm"
+        android:layout_alignBottom="@+id/set_alarm"
+        android:layout_toRightOf="@+id/set_alarm"
+        android:layout_toEndOf="@+id/set_alarm" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/quote"
+        android:id="@+id/motivationalQuote"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:typeface="sans"
+        android:layout_below="@+id/textClock"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
