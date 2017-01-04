@@ -17,6 +17,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.graphics.Typeface;
@@ -164,9 +166,13 @@ public class settings_spinners extends AppCompatActivity {
                 switch (String.valueOf(spinner_backgrounds.getSelectedItem())) {
                     case "Starry Clouds":
                         //set background as starry clouds
+                        RelativeLayout layout = (RelativeLayout) findViewById(R.id.content_main);
+                        layout.setBackgroundResource(R.drawable.stars_clouds);
                         break;
                     case "Starry Sky":
                         //set background as starry sky
+                        RelativeLayout layout2 = (RelativeLayout) findViewById(R.id.content_main);
+                        layout2.setBackgroundResource(R.drawable.stars_wallpaper);
                         break;
                     default:
                         break;
