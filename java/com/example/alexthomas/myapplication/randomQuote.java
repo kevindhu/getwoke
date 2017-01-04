@@ -61,19 +61,24 @@ public class randomQuote {
             {"lol I'm rich","Bill Gates"},
             {"wow I'm an entrepreneur","Mark Zuckerberg"},
             {"fuck this country lol","Donald Trump"},
-            {"do you jerk off???", "Elon Musk"}
+            {"do you jerk off???", "Elon Musk"},
+            {"Fuck me", "Albert Einsten"},
+            {"Mi papi.", "Pablo Picasso"}
     };
 
     String[][] Celebrity_quotes = {
             {"lolol fvck normal people I'm a celebrity","Kanye West"},
             {"wow I'm an celebrity","Jackie Chan"},
-            {"do you jerk off 2 times a day?","Matthew McCoughenhay"}
+            {"do you jerk off 2 times a day?","Matthew McCoughenhay"},
+            {"How is the weather up your asshole?", "Steven Carrell"}
     };
 
 
     String[][] Author_quotes = {
             {"lol writing is stupid","J.K. Rowling"},
-            {"wow I'm an author","J.R.R Tolkien"}
+            {"wow I'm an author","J.R.R Tolkien"},
+            {"Anime is trash", "Hayao Miyazaki"},
+            {"This is an insult to life itself...", "Hayao Miyazaki"}
     };
 
 
