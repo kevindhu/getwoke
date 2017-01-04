@@ -5,7 +5,6 @@
     android:interpolator="@android:anim/bounce_interpolator" >
 
 
-
     <scale
         android:fromXScale="0.5"
         android:toXScale="1.0"
@@ -15,15 +14,10 @@
         android:pivotY="50%"
         />
 
-
-
-
     <translate
         android:fromYDelta="80%p"
         android:toYDelta="0%p"
         />
-
-
 
 
     <alpha

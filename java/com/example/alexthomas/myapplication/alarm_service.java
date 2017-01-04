@@ -1,5 +1,6 @@
 package com.example.alexthomas.myapplication;
 
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -121,6 +122,12 @@ public class alarm_service extends Service {
                             .setContentText(quote[0] + " - " + quote[1]);
 
             notificationManager.notify(0, mBuilder.build());
+
+            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+            Intent alarm_intent = new Intent(alarm_service.this, alarm_receiver.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(alarm_service.this, 1, alarm_intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT);
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ 60000 ,pendingIntent);
 
             mediasong.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 
