@@ -76,13 +76,10 @@ public class MainActivity extends AppCompatActivity {
 
         Button set_alarm = (Button) findViewById(R.id.set_alarm);
         set_alarm.setOnClickListener(new View.OnClickListener() {
-
-                                          public void onClick(View view) {
-                                              launchSet_Alarm();
-                                          }
-                                      }
-
-        );
+            public void onClick(View view) {
+                launchSet_Alarm();
+            }
+        });
         //make a listener on the snooze_alarm on user click
         snooze_alarm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,10 +100,7 @@ public class MainActivity extends AppCompatActivity {
                     snooze_alarm.setText("Alarm Off");
                 }
             }
-
         });
-
-
     }
 
     @Override

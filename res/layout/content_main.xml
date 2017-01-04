@@ -71,16 +71,6 @@
         android:layout_marginBottom="10dp"
         />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Alarm Off"
-        android:id="@+id/alarm_off"
-        android:layout_alignBaseline="@+id/set_alarm"
-        android:layout_alignBottom="@+id/set_alarm"
-        android:layout_toRightOf="@+id/set_alarm"
-        android:layout_toEndOf="@+id/set_alarm" />
-
 
     <Button
         android:layout_width="wrap_content"
@@ -90,6 +80,22 @@
         android:layout_below="@id/motivationalQuote"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="65dp"
+        android:minWidth="140dp"
+        android:minHeight="60dp"
         android:layout_marginTop="125sp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alarm Off"
+        android:id="@+id/alarm_off"
+        android:minWidth="140dp"
+        android:minHeight="60dp"
+        android:layout_alignBaseline="@+id/set_alarm"
+        android:layout_alignBottom="@+id/set_alarm"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="18dp"
+        android:layout_marginEnd="18dp" />
 
 </RelativeLayout>
