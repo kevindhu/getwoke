@@ -36,6 +36,7 @@ public class settings_spinners extends AppCompatActivity {
     private Spinner spinner_quote_length;
     private Spinner spinner_genre;
     private Spinner spinner_backgrounds;
+
     private Button btnSubmit;
 
     private String[] fonts = {"Formal", "Roboto", "Weird"};
@@ -74,7 +75,6 @@ public class settings_spinners extends AppCompatActivity {
         //shared preferences
         SharedPreferences sharedPref = getSharedPreferences(item, MODE_PRIVATE);
         String message = sharedPref.getString("Message", "Default " + item);
-
         spinner = (Spinner) findViewById(XMLSpinner);
 
         List<String> new_item = new ArrayList<String>();
@@ -88,7 +88,6 @@ public class settings_spinners extends AppCompatActivity {
                 new_item.remove(i);
             }
         }
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, new_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
@@ -117,6 +116,7 @@ public class settings_spinners extends AppCompatActivity {
         spinner_fonts = (Spinner) findViewById(R.id.fonts_spinner);
         spinner_quote_length = (Spinner) findViewById(R.id.quote_length_spinner);
         spinner_genre = (Spinner) findViewById(R.id.genre_spinner);
+        spinner_backgrounds = (Spinner) findViewById(R.id.spinner_backgrounds);
 
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
         btnSubmit.setOnClickListener(new OnClickListener() {
@@ -159,13 +159,14 @@ public class settings_spinners extends AppCompatActivity {
                     MainActivity.genre = String.valueOf(spinner_genre.getSelectedItem());
                 }
 
-
+                Log.e("wow","the selected background is " + String.valueOf(spinner_backgrounds.getSelectedItem()));
                 storeValue("Backgrounds",spinner_backgrounds);
                 switch (String.valueOf(spinner_backgrounds.getSelectedItem())) {
                     case "Starry Clouds":
-                        
+                        //set background as starry clouds
                         break;
                     case "Starry Sky":
+                        //set background as starry sky
                         break;
                     default:
                         break;
