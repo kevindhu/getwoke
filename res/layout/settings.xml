@@ -57,7 +57,7 @@
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:layout_marginBottom="20dp"
-        android:layout_weight="0.05">
+        >
     </Spinner>
 
 
@@ -84,7 +84,7 @@
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:layout_marginBottom="20dp"
-        android:layout_weight="0.11">
+        >
     </Spinner>
 
     <!-- Genres -->
@@ -106,8 +106,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:layout_marginBottom="20dp"
-        android:layout_weight="0.11">
+        android:layout_marginBottom="20dp">
     </Spinner>
 
 
@@ -118,7 +117,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="140dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:text="Submit"
         />
 
@@ -128,7 +127,6 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:textAlignment="center"
-        android:layout_marginTop="50dp"
         app:srcCompat="@drawable/getwoke_header"
         android:id="@+id/imageView"
         android:layout_above="@+id/set_alarm"

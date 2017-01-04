@@ -183,9 +183,6 @@ public class settings_spinners extends AppCompatActivity {
     }
 
 
-
-
-
     public boolean onOptionsItemSelected(MenuItem item)
     {
         // Handle action bar item clicks here. The action bar will
