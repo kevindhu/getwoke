@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.util.Log;
 import android.view.Window;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Context;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     public static Intent alarm_intent;
     public static TextView alarm_confirmation;
     public static Button snooze_alarm;
+    public static RelativeLayout content_main;
 
 
 
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         snooze_alarm = (Button) findViewById(R.id.alarm_off);
+        content_main = (RelativeLayout) findViewById(R.id.content_main);
 
 
         //Captures font from previous session
