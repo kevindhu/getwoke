@@ -26,9 +26,6 @@ public class alarm_service extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.e("onStartCommand", "Initated");
-        Boolean if_alarm = intent.getExtras().getBoolean("AlarmOff");
-        Bundle extras = intent.getExtras();
-        Log.e("Boolean", String.valueOf(if_alarm));
 
         if (isRunning){
             mediasong.stop();
