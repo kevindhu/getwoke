@@ -35,11 +35,13 @@ public class settings_spinners extends AppCompatActivity {
     private Spinner spinner_fonts;
     private Spinner spinner_quote_length;
     private Spinner spinner_genre;
+    private Spinner spinner_backgrounds;
     private Button btnSubmit;
 
     private String[] fonts = {"Formal", "Roboto", "Weird"};
     private String[] genres ={"Entrepreneur", "Celebrity", "Author", "All Genres"};
     private String[] quote_length = {"Medium", "Short", "Long"};
+    private String[] backgrounds = {"Starry Clouds", "Starry Sky"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class settings_spinners extends AppCompatActivity {
         getSpinnerEntries("Font",spinner_fonts, fonts,R.id.fonts_spinner);
         getSpinnerEntries("Genres",spinner_genre, genres,R.id.genre_spinner);
         getSpinnerEntries("Quote Length",spinner_quote_length, quote_length,R.id.quote_length_spinner);
+        getSpinnerEntries("Backgrounds",spinner_backgrounds, backgrounds,R.id.spinner_backgrounds);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         Log.e("Hi", "Opened Settings Page!");

@@ -73,8 +73,7 @@ public class MainActivity_set_alarm extends AppCompatActivity{
                     pendingIntent.cancel();
 
                 }
-                
-                else {
+
                     String hour;
                     int theHour = timePicker.getHour();
                     int theMinute = timePicker.getMinute();
@@ -116,7 +115,7 @@ public class MainActivity_set_alarm extends AppCompatActivity{
                     Toast.makeText(getApplicationContext(), "Your alarm is set!", Toast.LENGTH_SHORT).show();
 
                     alarmManager.set(AlarmManager.RTC_WAKEUP, time, pendingIntent);
-                }
+
             }
         });
 

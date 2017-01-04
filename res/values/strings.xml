@@ -23,6 +23,12 @@
         <item>Short</item>
         <item>Long</item>
     </string-array>
+
+    <string-array name="background_arrays">
+        <item>Starry Clouds</item>
+        <item>Starry Sky</item>
+    </string-array>
+
 </resources>
 
 
