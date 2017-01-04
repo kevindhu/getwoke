@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         motivational_quote.setTextColor(Color.parseColor("#FFFFFF"));
 
 
+
         quoter = (TextView) findViewById(R.id.quoter);
         alarm_confirmation = (TextView) findViewById(R.id.alarm_confirmation);
         alarm_confirmation.setText(getInput());
