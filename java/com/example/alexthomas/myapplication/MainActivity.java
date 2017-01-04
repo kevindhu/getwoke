@@ -18,8 +18,9 @@ import android.widget.Toast;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Button;
-
+import android.graphics.Color;
 import org.w3c.dom.Text;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -45,8 +46,14 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref1 = getSharedPreferences("Genres", MODE_PRIVATE);
         String message = sharedPref1.getString("Message", "Default Genre");
         genre = message;
-        //Makes text_view static
+
+
+        TextView clock = (TextView) findViewById(R.id.textClock);
+        clock.setTextColor(Color.parseColor("#FFFFFF"));
         motivational_quote = (TextView) findViewById(R.id.motivationalQuote);
+        motivational_quote.setTextColor(Color.parseColor("#FFFFFF"));
+
+
         quoter = (TextView) findViewById(R.id.quoter);
         alarm_confirmation = (TextView) findViewById(R.id.alarm_confirmation);
         alarm_confirmation.setText(getInput());
@@ -128,9 +135,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-    TextView text = (TextView) findViewById(R.id.text);
-    text.setTextColor(Color.parseColor("#FFFFFF"));
 
     //launch the settings
     private void launchActivity() {
