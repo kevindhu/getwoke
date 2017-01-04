@@ -40,7 +40,6 @@ public class alarm_service extends Service {
         }
         else {
             alarm_service.isRunning = true;
-            MainActivity.snooze_alarm.setText("Silence Alarm");
 
             //Last Genre
             SharedPreferences sharedPref_genres = getSharedPreferences("Genres", MODE_PRIVATE);
@@ -51,6 +50,7 @@ public class alarm_service extends Service {
             Log.e("alright","Generating new quote with genre set to "+genre);
             quote = newQuote.quote_generator(genre);
 
+
             //Instantiates sharedPrefs and saves quote/quoter
             SharedPreferences sharedPref_quote = getSharedPreferences("Quote", MODE_PRIVATE);
             SharedPreferences sharedPref_quoter = getSharedPreferences("Quoter", MODE_PRIVATE);
@@ -60,6 +60,33 @@ public class alarm_service extends Service {
             editor_quoter.putString("Quoter", quote[1]);
             editor_quote.apply();
             editor_quoter.apply();
+
+            //Catches whether MainActivity is closed when changing quote/quoter text
+            try {
+                MainActivity.motivational_quote.setText(quote[0]);
+                MainActivity.motivational_quote.setText(quote[1]);
+            }
+            catch(NullPointerException e) {
+                    Log.e("MainActivity is closed", "Stored in sharedPref");
+
+            }
+
+
+            //Catches whether MainActivity is closed when changing text to 'silence alarm', if so, stores in sharedpref
+            try {
+                MainActivity.snooze_alarm.setText("Silence Alarm");
+                SharedPreferences sharedPref_alarm_unset = getSharedPreferences("Alarm Unset", MODE_PRIVATE);
+                SharedPreferences.Editor editor_alarm_unset = sharedPref_alarm_unset.edit();
+                editor_alarm_unset.putString("Alarm Button Text", "Silence Alarm");
+                editor_alarm_unset.apply();
+            }
+            catch(NullPointerException e) {
+                SharedPreferences sharedPref_alarm_unset = getSharedPreferences("Alarm Unset", MODE_PRIVATE);
+                SharedPreferences.Editor editor_alarm_unset = sharedPref_alarm_unset.edit();
+                editor_alarm_unset.putString("Alarm Button Text", "Silence Alarm");
+                editor_alarm_unset.apply();
+
+            }
 
 
             mediasong = MediaPlayer.create(alarm_service.this, R.raw.getup);

@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         //Sets last configured time
         alarm_confirmation = (TextView) findViewById(R.id.alarm_confirmation);
         alarm_confirmation.setText(getInput());
+        snooze_alarm.setText(getAlarmButtonText());
 
         //sets quote/quoter from previous session
         motivational_quote = (TextView) findViewById(R.id.motivationalQuote);
@@ -194,6 +195,12 @@ public class MainActivity extends AppCompatActivity {
         String message = sharedPref.getString("Quoter", "");
         return message;
 
+    }
+
+    private String getAlarmButtonText(){
+        SharedPreferences sharedPref = getSharedPreferences("Alarm Unset", MODE_PRIVATE);
+        String message = sharedPref.getString("Alarm Button Text", "Alarm Off");
+        return message;
     }
 
 
