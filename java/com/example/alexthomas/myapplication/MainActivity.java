@@ -56,6 +56,11 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref_font = getSharedPreferences("Font", MODE_PRIVATE);
         String last_font = sharedPref_font.getString("Message", "Default Font");
 
+
+        //Captures background from previous session
+        SharedPreferences sharedPref_background = getSharedPreferences("Backgrounds", MODE_PRIVATE);
+        String last_background = sharedPref_font.getString("Message", "Default Background");
+
         //Sets last configured time
         alarm_confirmation = (TextView) findViewById(R.id.alarm_confirmation);
         alarm_confirmation.setText(getInput());
@@ -69,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
 
         //Updates font
         font_changer(last_font); //invokes this class's font_changer
+
+        //Updates background
+        background_changer(last_background);
 
         Button set_alarm = (Button) findViewById(R.id.set_alarm);
         set_alarm.setOnClickListener(new View.OnClickListener() {
@@ -166,6 +174,29 @@ public class MainActivity extends AppCompatActivity {
         return message;
 
     }
+
+
+
+    public void background_changer (String background) {
+        switch (background) {
+            case "Starry Clouds":
+                //set background as starry clouds
+                content_main.setBackgroundResource(R.drawable.stars_clouds);
+                break;
+            case "Starry Sky":
+                //set background as starry sky
+                content_main.setBackgroundResource(R.drawable.stars_wallpaper);
+                break;
+            case "Vanilla":
+                content_main.setBackgroundResource(R.drawable.vanilla);
+                break;
+            default:
+                break;
+        }
+    }
+
+
+
 
 
     public void font_changer(String font) {
