@@ -150,7 +150,7 @@ public class settings_spinners extends AppCompatActivity {
                 //Chooses genre
                 storeValue("Genres",spinner_genre);
                 Log.e("Whoa!", "Genre right now is " +MainActivity.genre);
-                MainActivity.motivational_quote.setText("");
+                //MainActivity.motivational_quote.setText(""); //makes quote blank
                 if (MainActivity.genre != String.valueOf(spinner_genre.getSelectedItem())) {
                     Log.e("Whoa!", "New Genre Detected Called " +String.valueOf(spinner_genre.getSelectedItem()));
                     MainActivity.genre = String.valueOf(spinner_genre.getSelectedItem());
