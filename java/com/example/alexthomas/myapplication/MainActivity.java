@@ -39,11 +39,17 @@ public class MainActivity extends AppCompatActivity {
 
         Button snooze_alarm = (Button) findViewById(R.id.alarm_off);
 
+        SharedPreferences sharedPref1 = getSharedPreferences("Genres", MODE_PRIVATE);
+        String message = sharedPref1.getString("Message", "Default Font");
 
         //Makes text_view static
         motivational_quote = (TextView) findViewById(R.id.motivationalQuote);
         alarm_confirmation = (TextView) findViewById(R.id.alarm_confirmation);
         alarm_confirmation.setText(getInput());
+
+        if (message != "Default Font") {
+            motivational_quote.setText("");
+        }
 
         Button set_alarm = (Button) findViewById(R.id.set_alarm);
         set_alarm.setOnClickListener(new View.OnClickListener() {
