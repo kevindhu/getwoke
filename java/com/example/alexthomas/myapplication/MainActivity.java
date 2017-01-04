@@ -25,6 +25,11 @@ import org.w3c.dom.Text;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.os.Handler;
+import android.content.Context;
+import android.util.AttributeSet;
+import android.widget.TextView;
+
 
 
 
@@ -133,15 +138,36 @@ public class MainActivity extends AppCompatActivity {
 
 
         //animation
+        final ImageView logo = (ImageView) findViewById(R.id.getWoke);
+        final Animation sunRise = AnimationUtils.loadAnimation(this, R.anim.logo_rise);
+        final Animation quoteRise1 = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+        final Animation quoteRise2 = AnimationUtils.loadAnimation(this, R.anim.fade_in);
 
-        //get the sun View
-        ImageView logo = (ImageView) findViewById(R.id.getWoke);
-        Animation sunRise = AnimationUtils.loadAnimation(this, R.anim.logo_rise);
 
-
+        motivational_quote.setTextColor(Color.argb(0, 255, 0, 0));
+        quoter.setTextColor(Color.argb(0, 255, 0, 0));
         //apply the animation to the View
         logo.startAnimation(sunRise);
 
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                motivational_quote.setTextColor(Color.argb(500, 255, 0, 0));
+                motivational_quote.startAnimation(quoteRise1);
+            }
+        }, 1000);
+
+
+        Handler handler2 = new Handler();
+        handler2.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                quoter.setTextColor(Color.argb(500, 255, 0, 0));
+                quoter.startAnimation(quoteRise2);
+            }
+        }, 1250);
 
 
 

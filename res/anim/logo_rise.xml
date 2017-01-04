@@ -1,8 +1,7 @@
 <set xmlns:android="http://schemas.android.com/apk/res/android"
     android:shareInterpolator="false"
-    android:duration="5000"
-    android:fillAfter="true"
-    android:interpolator="@android:anim/bounce_interpolator" >
+    android:duration="1000"
+    android:fillAfter="true">
 
 
 
@@ -13,21 +12,21 @@
         android:toYScale="1.0"
         android:pivotX="50%"
         android:pivotY="50%"
+        android:interpolator="@android:anim/linear_interpolator"
         />
-
-
 
 
     <translate
         android:fromYDelta="80%p"
         android:toYDelta="0%p"
+        android:interpolator="@android:anim/overshoot_interpolator"
         />
 
 
 
 
     <alpha
-        android:fromAlpha="0.3"
+        android:fromAlpha="0"
         android:toAlpha="1.0"
         />
 

@@ -36,7 +36,9 @@
         android:textAlignment="center"
         android:typeface="sans"
         android:layout_below="@+id/textClock"
-        android:textColor="#FFFFFF"/>
+        android:textColor="#FFFFFF"
+        android:alpha="1"
+        />
 
     <TextView
         android:text="Quoter"
@@ -49,6 +51,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
         android:textColor="#FFFFFF"
+        android:alpha="1"
         />
 
 
