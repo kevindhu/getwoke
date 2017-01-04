@@ -14,10 +14,7 @@
         android:interpolator="@android:anim/linear_interpolator"
         />
 
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
     <translate
         android:fromYDelta="80%p"
         android:toYDelta="0%p"
