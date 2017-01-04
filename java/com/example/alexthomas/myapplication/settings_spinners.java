@@ -44,7 +44,7 @@ public class settings_spinners extends AppCompatActivity {
     private String[] fonts = {"Formal", "Roboto", "Weird"};
     private String[] genres ={"Entrepreneur", "Celebrity", "Author", "All Genres"};
     private String[] quote_length = {"Medium", "Short", "Long"};
-    private String[] backgrounds = {"Starry Clouds", "Starry Sky"};
+    private String[] backgrounds = {"Starry Clouds", "Starry Sky", "Vanilla"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -171,6 +171,9 @@ public class settings_spinners extends AppCompatActivity {
                     case "Starry Sky":
                         //set background as starry sky
                         MainActivity.content_main.setBackgroundResource(R.drawable.stars_wallpaper);
+                        break;
+                    case "Vanilla":
+                        MainActivity.content_main.setBackgroundResource(R.drawable.vanilla);
                         break;
                     default:
                         break;
