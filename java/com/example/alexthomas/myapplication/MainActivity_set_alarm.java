@@ -61,6 +61,8 @@ public class MainActivity_set_alarm extends AppCompatActivity{
 
             @Override
             public void onClick(View v) {
+                
+
                 String hour;
                 int theHour = timePicker.getHour();
                 int theMinute = timePicker.getMinute();
@@ -156,6 +158,7 @@ public class MainActivity_set_alarm extends AppCompatActivity{
 
     private void storeTime(int hour, int minute)
     {
+
         String str_minute = String.valueOf(minute);
         String str_hour;
         SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);

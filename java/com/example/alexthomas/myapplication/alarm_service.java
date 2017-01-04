@@ -61,7 +61,7 @@ public class alarm_service extends Service {
                             .setSmallIcon(R.drawable.gw_logo)
                             .setVisibility(0)
                             .setContentTitle("Get Woke!")
-                            .setContentText(quote);
+                            .setContentText(quote + " - ");
 
             notificationManager.notify(0, mBuilder.build());
             }

@@ -39,12 +39,13 @@
         />
 
     <TextClock
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textClock"
         android:textSize="50dp"
         android:layout_below="@+id/getWoke"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"/>
 
     <TextView
         android:text="Quoter"
@@ -85,4 +86,5 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="65dp"
         android:layout_marginTop="125sp"/>
+
 </RelativeLayout>
