@@ -96,7 +96,8 @@ public class MainActivity extends AppCompatActivity {
                     editor.putString("Message", "Your alarm is unset.");
                     editor.apply();
                     alarm_confirmation.setText("Your alarm is unset.");
-                    Log.e("Cancelled for real", "Cancelled");
+                    Toast.makeText(MainActivity.this, "Alarm unset.",Toast.LENGTH_SHORT).show();
+                    Log.e("Cancelled for real", "Cancelled Intent");
                 }
                 else
                 {
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                     pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
                             PendingIntent.FLAG_UPDATE_CURRENT);
                     sendBroadcast(alarm_intent);
-                    Log.e("Cancel service", "Cancelled");
+                    Log.e("Cancel service", "Silenced");
                     snooze_alarm.setText("Alarm Off");
                 }
             }
