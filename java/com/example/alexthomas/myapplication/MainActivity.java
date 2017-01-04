@@ -49,9 +49,22 @@ public class MainActivity extends AppCompatActivity {
         alarm_confirmation = (TextView) findViewById(R.id.alarm_confirmation);
         alarm_confirmation.setText(getInput());
         quoter.setText("");
+
+        //sets genre from previous session
         if (message != "Default Genre") {
             motivational_quote.setText("");
         }
+
+        //sets font from previous session
+        SharedPreferences sharedPref2 = getSharedPreferences("Font", MODE_PRIVATE);
+        String message2 = sharedPref2.getString("Message", "Default Font");
+
+        settings_spinners font_changer = new settings_spinners();
+        //font_changer.font_changer(message2);  //can't call this for some reason
+        Log.e("Font","Font is set to " + message2);
+
+
+
 
         Button set_alarm = (Button) findViewById(R.id.set_alarm);
         set_alarm.setOnClickListener(new View.OnClickListener() {

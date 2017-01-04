@@ -121,29 +121,15 @@ public class settings_spinners extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Initialized different font-family
-                Typeface font_roboto = Typeface.createFromAsset(getAssets(),"fonts/roboto-medium.ttf");
-                Typeface font_cursive = Typeface.createFromAsset(getAssets(),"fonts/Otto.ttf");
-                Typeface font_weird = Typeface.createFromAsset(getAssets(),"fonts/weird.otf");
 
-
-
-                //Stores Value and Chooses font-family from spinner_fonts
+                //Stores Values
                 storeValue("Font",spinner_fonts);
                 Toast.makeText(getApplicationContext(), "Settings Updated!",
                         Toast.LENGTH_LONG).show();
-                switch (String.valueOf(spinner_fonts.getSelectedItem())) {
-                    case "Formal":
-                        MainActivity.motivational_quote.setTypeface(font_cursive);
-                        break;
-                    case "Roboto":
-                        MainActivity.motivational_quote.setTypeface(font_roboto);
-                        break;
-                    case "Weird":
-                        MainActivity.motivational_quote.setTypeface(font_weird);
-                        break;
-                    default:
-                        break;
-                }
+
+                //Changes Fonts
+                font_changer(String.valueOf(spinner_fonts.getSelectedItem()));
+
 
                 randomQuote Quote = new randomQuote();
                 //Chooses size of quotes from quotes_length_spinner
@@ -172,6 +158,30 @@ public class settings_spinners extends AppCompatActivity {
             }
         });
     }
+
+    public void font_changer(String font) {
+        Typeface font_roboto = Typeface.createFromAsset(getAssets(),"fonts/roboto-medium.ttf");
+        Typeface font_cursive = Typeface.createFromAsset(getAssets(),"fonts/Otto.ttf");
+        Typeface font_weird = Typeface.createFromAsset(getAssets(),"fonts/weird.otf");
+        Log.e("yes","font changing to " + font);
+        switch (font) {
+            case "Formal":
+                MainActivity.motivational_quote.setTypeface(font_cursive);
+                break;
+            case "Roboto":
+                MainActivity.motivational_quote.setTypeface(font_roboto);
+                break;
+            case "Weird":
+                MainActivity.motivational_quote.setTypeface(font_weird);
+                break;
+            default:
+                break;
+        }
+    }
+
+
+
+
 
     public boolean onOptionsItemSelected(MenuItem item)
     {
