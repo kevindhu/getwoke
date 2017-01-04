@@ -74,12 +74,7 @@ public class alarm_service extends Service {
                 MainActivity.quoter.setText(quote[1]);
 
 
-
-
-
-
-                //ghetto version
-
+                //Animation ghetto version
                 final Animation quoteRise1 = AnimationUtils.loadAnimation(this, R.anim.fade_in);
                 final Animation quoteRise2 = AnimationUtils.loadAnimation(this, R.anim.fade_in);
 
@@ -88,14 +83,10 @@ public class alarm_service extends Service {
 
 
 
-                //better version that DOESN'T WORK
-
-                //initialize instance of Mainactivity
-                MainActivity activity = new MainActivity();
-
-                //animates
-                activity.Animate_Text(MainActivity.motivational_quote,R.anim.fade_in,1000);
-                activity.Animate_Text(MainActivity.quoter,R.anim.fade_in,1200);
+                //Animation better version that DOESN'T WORK
+                //MainActivity activity = new MainActivity();
+                //activity.Animate_Text(MainActivity.motivational_quote,R.anim.fade_in,1000);
+                //activity.Animate_Text(MainActivity.quoter,R.anim.fade_in,1200);
 
 
 

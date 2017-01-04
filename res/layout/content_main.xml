@@ -103,5 +103,15 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_settings"
+        android:id="@+id/settings_button"
+        android:layout_above="@+id/textClock"
+        android:layout_marginBottom="109dp"
+        android:layout_alignRight="@+id/alarm_off"
+        android:layout_alignEnd="@+id/alarm_off" />
+
 
 </RelativeLayout>
