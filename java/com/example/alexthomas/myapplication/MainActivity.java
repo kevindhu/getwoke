@@ -136,12 +136,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-<<<<<<< Updated upstream
-=======
-    TextView text = (TextView) findViewById(R.id.text);
-    //text.setTextColor(Color.parseColor("#FFFFFF"));
-
->>>>>>> Stashed changes
     //launch the settings
     private void launchActivity() {
         Intent intent = new Intent(MainActivity.this, settings_spinners.class);
