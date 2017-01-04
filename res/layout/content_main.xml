@@ -76,5 +76,14 @@
         android:layout_below="@+id/getWoke"
         android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:text="Quoter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/quoter"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/textClock"
+        android:layout_toEndOf="@+id/textClock" />
+
 
 </RelativeLayout>
