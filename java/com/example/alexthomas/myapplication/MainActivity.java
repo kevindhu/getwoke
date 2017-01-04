@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     public static String genre = "null";
     public static TextView motivational_quote;
     public static TextView quoter;
+    public static ImageView logo;
     public  PendingIntent pendingIntent;
     public static Intent alarm_intent;
     public static TextView alarm_confirmation;
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Captures background from previous session
         SharedPreferences sharedPref_background = getSharedPreferences("Backgrounds", MODE_PRIVATE);
-        String last_background = sharedPref_font.getString("Message", "Default Background");
+        String last_background = sharedPref_background.getString("Message", "Default Background");
 
         //Sets last configured time
         alarm_confirmation = (TextView) findViewById(R.id.alarm_confirmation);
@@ -136,46 +137,46 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        logo = (ImageView) findViewById(R.id.getWoke);
 
-        //animation
-        final ImageView logo = (ImageView) findViewById(R.id.getWoke);
-        final Animation sunRise = AnimationUtils.loadAnimation(this, R.anim.logo_rise);
-        final Animation quoteRise1 = AnimationUtils.loadAnimation(this, R.anim.fade_in);
-        final Animation quoteRise2 = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+        //Animations!
+        Animate_Text(motivational_quote,R.anim.fade_in,1000);
+        Animate_Text(quoter,R.anim.fade_in,1250);
+        Animate_Image(logo,R.anim.logo_rise);
+    }
 
 
-        motivational_quote.setTextColor(Color.argb(0, 255, 0, 0));
-        quoter.setTextColor(Color.argb(0, 255, 0, 0));
+
+    //animation
+    public void Animate_Text(final TextView text,int animation, int delay) {
+        final Animation quoteRise = AnimationUtils.loadAnimation(this, animation);
+        //zero alpha in the beginning
+        text.setTextColor(Color.argb(0, 255, 0, 0));
+
         //apply the animation to the View
-        logo.startAnimation(sunRise);
-
-
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                motivational_quote.setTextColor(Color.argb(500, 255, 0, 0));
-                motivational_quote.startAnimation(quoteRise1);
+                text.setTextColor(Color.argb(500, 255, 0, 0));
+                text.startAnimation(quoteRise);
             }
-        }, 1000);
-
-
-        Handler handler2 = new Handler();
-        handler2.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                quoter.setTextColor(Color.argb(500, 255, 0, 0));
-                quoter.startAnimation(quoteRise2);
-            }
-        }, 1250);
-
-
-
-
-
-
-
+        }, delay);
     }
+
+
+
+    public void Animate_Image(final ImageView image,int animation) {
+        final Animation imageRise = AnimationUtils.loadAnimation(this, animation);
+        //apply the animation to the View
+        image.startAnimation(imageRise);
+    }
+
+
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
