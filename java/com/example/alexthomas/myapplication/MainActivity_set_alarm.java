@@ -84,7 +84,6 @@ public class MainActivity_set_alarm extends AppCompatActivity{
 
                     //Triggers Alarm
                     alarm_intent = new Intent(MainActivity_set_alarm.this, alarm_receiver.class);
-                    alarm_intent.putExtra("Alarm_Off", true);
                     pendingIntent = PendingIntent.getBroadcast(MainActivity_set_alarm.this, 1, alarm_intent,
                             PendingIntent.FLAG_UPDATE_CURRENT);
 
@@ -156,7 +155,6 @@ public class MainActivity_set_alarm extends AppCompatActivity{
     public void turn_off_alarm()
     {
         alarmManager.cancel(pendingIntent);
-        alarm_intent.putExtra("Alarm_Off", true);
         sendBroadcast(alarm_intent);
     }
 
