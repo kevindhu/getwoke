@@ -85,6 +85,7 @@ public class randomQuote {
             //create new String[][] for all quotes
             String[][] all_quotes = append(Entrepreneur_quotes, Celebrity_quotes);
             MainActivity.motivational_quote.setText(all_quotes[rnd4][0]);
+            MainActivity.quoter.setText(all_quotes[rnd4][1]);
             return all_quotes[rnd4][0];
         }
 
@@ -92,18 +93,21 @@ public class randomQuote {
         if (genre.equals("Entrepreneur")) {
             int rnd = new Random().nextInt(Entrepreneur_quotes.length);
             MainActivity.motivational_quote.setText(Entrepreneur_quotes[rnd][0]);
+            MainActivity.quoter.setText(Entrepreneur_quotes[rnd][1]);
             return Entrepreneur_quotes[rnd][0];
         }
 
         else if (genre.equals("Celebrity")) {
             int rnd1 = new Random().nextInt(Celebrity_quotes.length);
             MainActivity.motivational_quote.setText(Celebrity_quotes[rnd1][0]);
+            MainActivity.quoter.setText(Celebrity_quotes[rnd1][1]);
             return Celebrity_quotes[rnd1][0];
         }
 
         else if (genre.equals("Author")) {
             int rnd2 = new Random().nextInt(Author_quotes.length);
             MainActivity.motivational_quote.setText(Author_quotes[rnd2][0]);
+            MainActivity.quoter.setText(Author_quotes[rnd2][1]);
             return Author_quotes[rnd2][0];
         }
         else {

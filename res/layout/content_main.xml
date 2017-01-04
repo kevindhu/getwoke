@@ -84,6 +84,4 @@
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/textClock"
         android:layout_toEndOf="@+id/textClock" />
-
-
 </RelativeLayout>

@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     public static String genre = "null";
     MainActivity_set_alarm instance = new MainActivity_set_alarm();
     public static TextView motivational_quote;
+    public static TextView quoter;
     public  PendingIntent pendingIntent;
     public static Intent alarm_intent;
     public static TextView alarm_confirmation;
@@ -44,9 +45,10 @@ public class MainActivity extends AppCompatActivity {
 
         //Makes text_view static
         motivational_quote = (TextView) findViewById(R.id.motivationalQuote);
+        quoter = (TextView) findViewById(R.id.quoter);
         alarm_confirmation = (TextView) findViewById(R.id.alarm_confirmation);
         alarm_confirmation.setText(getInput());
-
+        quoter.setText("");
         if (message != "Default Font") {
             motivational_quote.setText("");
         }
