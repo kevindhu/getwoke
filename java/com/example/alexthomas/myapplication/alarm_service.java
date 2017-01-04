@@ -64,7 +64,7 @@ public class alarm_service extends Service {
             //Catches whether MainActivity is closed when changing quote/quoter text
             try {
                 MainActivity.motivational_quote.setText(quote[0]);
-                MainActivity.motivational_quote.setText(quote[1]);
+                MainActivity.quoter.setText(quote[1]);
             }
             catch(NullPointerException e) {
                     Log.e("MainActivity is closed", "Stored in sharedPref");

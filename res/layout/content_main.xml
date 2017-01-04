@@ -15,18 +15,6 @@
     tools:showIn="@layout/activity_main">
 
 
-    <TextView
-        android:text="Alarm Unset"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:layout_below="@+id/alarm_off"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:id="@+id/alarm_confirmation"
-        android:textAlignment="center"
-
-        />
 
     <TextClock
         android:layout_width="match_parent"
@@ -70,12 +58,11 @@
         android:layout_height="wrap_content"
         android:text="Set Alarm"
         android:id="@+id/set_alarm"
-        android:layout_below="@id/motivationalQuote"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="65dp"
         android:minWidth="140dp"
         android:minHeight="60dp"
-        android:layout_marginTop="125sp"/>
+        android:layout_marginTop="440dp"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -91,12 +78,24 @@
         android:layout_marginRight="18dp"
         android:layout_marginEnd="18dp" />
 
+    <TextView
+        android:text="Alarm Unset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_below="@+id/alarm_off"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:id="@+id/alarm_confirmation"
+        android:textAlignment="center"
+
+        />
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="140sp"
         app:srcCompat="@drawable/getwoke_header_new"
         android:id="@+id/getWoke"
-
         android:layout_marginTop="46dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
