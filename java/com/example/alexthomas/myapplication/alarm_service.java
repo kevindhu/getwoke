@@ -42,9 +42,12 @@ public class alarm_service extends Service {
             alarm_service.isRunning = true;
             MainActivity.snooze_alarm.setText("Silence Alarm");
 
+            //Last Genre
+            SharedPreferences sharedPref_genres = getSharedPreferences("Genres", MODE_PRIVATE);
+            String genre = sharedPref_genres.getString("Message", "All Genres");
+
             //displays new quote
             randomQuote newQuote = new randomQuote();
-            genre = MainActivity.genre;
             Log.e("alright","Generating new quote with genre set to "+genre);
             quote = newQuote.quote_generator(genre);
 

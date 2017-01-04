@@ -45,33 +45,23 @@ public class MainActivity extends AppCompatActivity {
 
         snooze_alarm = (Button) findViewById(R.id.alarm_off);
 
-        SharedPreferences sharedPref_genres = getSharedPreferences("Genres", MODE_PRIVATE);
-        String message = sharedPref_genres.getString("Message", "Default Genre");
 
-        //sets font from previous session
+        //Captures font from previous session
         SharedPreferences sharedPref_font = getSharedPreferences("Font", MODE_PRIVATE);
         String last_font = sharedPref_font.getString("Message", "Default Font");
-        Log.e("Font","Font is set to " + last_font);
 
-        genre = message;
-
-        quoter = (TextView) findViewById(R.id.quoter);
-        quoter.setText(getQuoter());
-
+        //Sets last configured time
         alarm_confirmation = (TextView) findViewById(R.id.alarm_confirmation);
         alarm_confirmation.setText(getInput());
 
-        //sets genre from previous session
+        //sets quote/quoter from previous session
         motivational_quote = (TextView) findViewById(R.id.motivationalQuote);
         motivational_quote.setText(getQuote());
+        quoter = (TextView) findViewById(R.id.quoter);
+        quoter.setText(getQuoter());
 
-
-        //sets font from previous session
+        //Updates font
         font_changer(last_font); //invokes this class's font_changer
-        Log.e("Font","Font is set to " + last_font);
-
-
-
 
         Button set_alarm = (Button) findViewById(R.id.set_alarm);
         set_alarm.setOnClickListener(new View.OnClickListener() {
