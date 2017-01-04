@@ -65,9 +65,9 @@ public class randomQuote {
     };
 
     String[][] Celebrity_quotes = {
-            {"lolol fvck normal people I'm a celebrity","sdfs"},
-            {"wow I'm an celebrity","sdfssdf"},
-            {"do you jerk off 2 times a day?","sdfsdfdsfni"}
+            {"lolol fvck normal people I'm a celebrity","Kanye West"},
+            {"wow I'm an celebrity","Jackie Chan"},
+            {"do you jerk off 2 times a day?","Matthew McCoughenhay"}
     };
 
 
