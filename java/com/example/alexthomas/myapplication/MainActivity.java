@@ -2,6 +2,7 @@ package com.example.alexthomas.myapplication;
 
 import android.app.PendingIntent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Debug;
 import android.support.design.widget.FloatingActionButton;
@@ -58,9 +59,7 @@ public class MainActivity extends AppCompatActivity {
         //sets font from previous session
         SharedPreferences sharedPref2 = getSharedPreferences("Font", MODE_PRIVATE);
         String message2 = sharedPref2.getString("Message", "Default Font");
-
-        settings_spinners font_changer = new settings_spinners();
-        //font_changer.font_changer(message2);  //can't call this for some reason
+        font_changer(message2); //invokes this class's font_changer
         Log.e("Font","Font is set to " + message2);
 
 
@@ -138,6 +137,33 @@ public class MainActivity extends AppCompatActivity {
         Log.e("message", message);
         return message;
 
+    }
+
+
+
+
+
+
+
+
+    public void font_changer(String font) {
+        Typeface font_roboto = Typeface.createFromAsset(getAssets(),"fonts/roboto-medium.ttf");
+        Typeface font_cursive = Typeface.createFromAsset(getAssets(),"fonts/Otto.ttf");
+        Typeface font_weird = Typeface.createFromAsset(getAssets(),"fonts/weird.otf");
+        Log.e("yes","font changing to " + font);
+        switch (font) {
+            case "Formal":
+                motivational_quote.setTypeface(font_cursive);
+                break;
+            case "Roboto":
+                motivational_quote.setTypeface(font_roboto);
+                break;
+            case "Weird":
+                motivational_quote.setTypeface(font_weird);
+                break;
+            default:
+                break;
+        }
     }
 
 }
