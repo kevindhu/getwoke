@@ -102,7 +102,6 @@ public class MainActivity_set_alarm extends AppCompatActivity{
                 MainActivity.alarm_confirmation.setText(getInput());
 
                 Log.e("Time", String.valueOf(calendar.getTimeInMillis()));
-                alarm_service.isRunning = false;
 
                 Toast.makeText(getApplicationContext(), "Your alarm is set!",Toast.LENGTH_SHORT).show();
 

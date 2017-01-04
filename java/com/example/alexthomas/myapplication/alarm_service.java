@@ -30,13 +30,14 @@ public class alarm_service extends Service {
         Bundle extras = intent.getExtras();
         Log.e("Boolean", String.valueOf(if_alarm));
 
-        if (isRunning ){
+        if (isRunning){
             mediasong.stop();
             mediasong.reset();
             Log.e("cancel", "cancelled");
+            isRunning = false;
         }
         else {
-
+            alarm_service.isRunning = true;
             MainActivity.snooze_alarm.setText("Silence Alarm");
             //displays new quote
             randomQuote newQuote = new randomQuote();

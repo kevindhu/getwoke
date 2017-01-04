@@ -79,15 +79,22 @@ public class MainActivity extends AppCompatActivity {
         snooze_alarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                alarm_service.isRunning = true;
-                alarm_intent = new Intent(MainActivity.this, alarm_receiver.class );
-                alarm_intent.putExtra("Alarm_off", true);
-                pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
-                        PendingIntent.FLAG_UPDATE_CURRENT);
-                sendBroadcast(alarm_intent);
-                Log.e("Cancel service", "Cancelled");
-                pendingIntent.cancel();
-                snooze_alarm.setText("Alarm Off");
+                if (alarm_service.isRunning == false)
+                {
+                    alarm_confirmation.setText("Your alarm is unset.");
+                }
+                else
+                {
+                    alarm_service.isRunning = true;
+                    alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
+                    alarm_intent.putExtra("Alarm_off", true);
+                    pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
+                            PendingIntent.FLAG_UPDATE_CURRENT);
+                    sendBroadcast(alarm_intent);
+                    Log.e("Cancel service", "Cancelled");
+                    pendingIntent.cancel();
+                    snooze_alarm.setText("Alarm Off");
+                }
             }
 
         });
