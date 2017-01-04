@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     public  PendingIntent pendingIntent;
     public static Intent alarm_intent;
     public static TextView alarm_confirmation;
+    public static Button snooze_alarm;
 
 
     @Override
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Button snooze_alarm = (Button) findViewById(R.id.alarm_off);
+        snooze_alarm = (Button) findViewById(R.id.alarm_off);
 
         SharedPreferences sharedPref1 = getSharedPreferences("Genres", MODE_PRIVATE);
         String message = sharedPref1.getString("Message", "Default Genre");
@@ -86,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 sendBroadcast(alarm_intent);
                 Log.e("Cancel service", "Cancelled");
                 pendingIntent.cancel();
+                snooze_alarm.setText("Alarm Off");
             }
 
         });
@@ -120,17 +122,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //launch the alarm
+    //launch the settings
     private void launchActivity() {
         Intent intent = new Intent(MainActivity.this, settings_spinners.class);
         startActivity(intent);
     }
-
+    //launch the 'set alarm' page
     private void launchSet_Alarm() {
         Intent intent = new Intent(MainActivity.this, MainActivity_set_alarm.class);
         startActivity(intent);
     }
 
+    //Gets previous time
     private String getInput(){
         SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
         String message = sharedPref.getString("Message", "Your alarm is unset");
@@ -138,12 +141,6 @@ public class MainActivity extends AppCompatActivity {
         return message;
 
     }
-
-
-
-
-
-
 
 
     public void font_changer(String font) {

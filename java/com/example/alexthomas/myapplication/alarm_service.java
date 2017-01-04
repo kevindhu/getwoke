@@ -36,6 +36,8 @@ public class alarm_service extends Service {
             Log.e("cancel", "cancelled");
         }
         else {
+
+            MainActivity.snooze_alarm.setText("Silence Alarm");
             //displays new quote
             randomQuote newQuote = new randomQuote();
             genre = MainActivity.genre;
