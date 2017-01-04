@@ -9,12 +9,22 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background= "@drawable/stars_clouds"
+    android:background= "@drawable/vanilla"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.alexthomas.myapplication.MainActivity"
     tools:showIn="@layout/activity_main">
 
 
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="140sp"
+        app:srcCompat="@drawable/getwoke_header_new"
+        android:id="@+id/getWoke"
+        android:layout_marginTop="-30dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextClock
         android:layout_width="match_parent"
@@ -62,7 +72,8 @@
         android:layout_marginRight="65dp"
         android:minWidth="140dp"
         android:minHeight="60dp"
-        android:layout_marginTop="440dp"/>
+        android:layout_marginTop="440dp"
+        />
 
     <Button
         android:layout_width="wrap_content"
@@ -91,14 +102,5 @@
 
         />
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="140sp"
-        app:srcCompat="@drawable/getwoke_header_new"
-        android:id="@+id/getWoke"
-        android:layout_marginTop="46dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
