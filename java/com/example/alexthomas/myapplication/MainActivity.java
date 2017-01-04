@@ -49,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
         content_main = (RelativeLayout) findViewById(R.id.content_main);
 
 
+        //content_main.setBackgroundResource(R.drawable.stars_clouds);
+
+
         //Captures font from previous session
         SharedPreferences sharedPref_font = getSharedPreferences("Font", MODE_PRIVATE);
         String last_font = sharedPref_font.getString("Message", "Default Font");
@@ -203,6 +206,12 @@ public class MainActivity extends AppCompatActivity {
     private String getAlarmButtonText(){
         SharedPreferences sharedPref = getSharedPreferences("Alarm Unset", MODE_PRIVATE);
         String message = sharedPref.getString("Alarm Button Text", "Alarm Off");
+        return message;
+    }
+
+    private String getBackground(){
+        SharedPreferences sharedPref = getSharedPreferences("Backgrounds", MODE_PRIVATE);
+        String message = sharedPref.getString("Message", "Default");
         return message;
     }
 

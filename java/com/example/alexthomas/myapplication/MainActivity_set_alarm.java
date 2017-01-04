@@ -196,8 +196,4 @@ public class MainActivity_set_alarm extends AppCompatActivity{
         editor.apply();
     }
 
-    public void onRestoreInstanceState(Bundle savedInstanceState)
-    {
-
-    }
 }
