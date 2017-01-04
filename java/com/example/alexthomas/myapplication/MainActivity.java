@@ -22,6 +22,9 @@ import android.content.Intent;
 import android.widget.Button;
 import android.graphics.Color;
 import org.w3c.dom.Text;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 
 
@@ -126,6 +129,26 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+
+        //animation
+
+        //get the sun View
+        ImageView logo = (ImageView) findViewById(R.id.getWoke);
+        Animation sunRise = AnimationUtils.loadAnimation(this, R.anim.logo_rise);
+
+
+        //apply the animation to the View
+        logo.startAnimation(sunRise);
+
+
+
+
+
+
+
+
     }
 
     @Override
