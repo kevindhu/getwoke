@@ -93,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    alarm_service.isRunning = true;
                     alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
                     alarm_intent.putExtra("Alarm_off", true);
                     pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
@@ -137,6 +136,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+<<<<<<< Updated upstream
+=======
+    TextView text = (TextView) findViewById(R.id.text);
+    //text.setTextColor(Color.parseColor("#FFFFFF"));
+
+>>>>>>> Stashed changes
     //launch the settings
     private void launchActivity() {
         Intent intent = new Intent(MainActivity.this, settings_spinners.class);

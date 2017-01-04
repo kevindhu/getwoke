@@ -61,51 +61,62 @@ public class MainActivity_set_alarm extends AppCompatActivity{
 
             @Override
             public void onClick(View v) {
+                //Cancels alarm if alarm is currently running.
+                if (alarm_service.isRunning)
+                {
+                    alarm_intent = new Intent(MainActivity_set_alarm.this, alarm_receiver.class);
+                    alarm_intent.putExtra("Alarm_off", true);
+                    pendingIntent = PendingIntent.getBroadcast(MainActivity_set_alarm.this, 1, alarm_intent,
+                            PendingIntent.FLAG_UPDATE_CURRENT);
+                    sendBroadcast(alarm_intent);
+                    Log.e("Cancel service", "Cancelled");
+                    pendingIntent.cancel();
+
+                }
                 
-
-                String hour;
-                int theHour = timePicker.getHour();
-                int theMinute = timePicker.getMinute();
-
-                String minute = String.valueOf(timePicker.getMinute());
-                calendar.set(Calendar.HOUR_OF_DAY, theHour);
-                calendar.set(Calendar.MINUTE, theMinute);
-
-                //Triggers Alarm
-                alarm_intent = new Intent(MainActivity_set_alarm.this, alarm_receiver.class );
-                alarm_intent.putExtra("Alarm_Off", true);
-                pendingIntent = PendingIntent.getBroadcast(MainActivity_set_alarm.this, 1, alarm_intent,
-                        PendingIntent.FLAG_UPDATE_CURRENT);
-
-                Log.e("System time", String.valueOf(System.currentTimeMillis()));
-                Log.e("Calendar time", String.valueOf(calendar.getTimeInMillis()));
-
-                //Checks whether time is before system's time
-
-                if ((abs(System.currentTimeMillis() - calendar.getTimeInMillis()) < 60000)
-                && (System.currentTimeMillis() > calendar.getTimeInMillis() )) {
-                        time = calendar.getTimeInMillis();
-                }
-                else if (System.currentTimeMillis() > calendar.getTimeInMillis()) {
-
-                    time = 86400000 + System.currentTimeMillis();
-                }
                 else {
+                    String hour;
+                    int theHour = timePicker.getHour();
+                    int theMinute = timePicker.getMinute();
+
+                    String minute = String.valueOf(timePicker.getMinute());
+                    calendar.set(Calendar.HOUR_OF_DAY, theHour);
+                    calendar.set(Calendar.MINUTE, theMinute);
+
+                    //Triggers Alarm
+                    alarm_intent = new Intent(MainActivity_set_alarm.this, alarm_receiver.class);
+                    alarm_intent.putExtra("Alarm_Off", true);
+                    pendingIntent = PendingIntent.getBroadcast(MainActivity_set_alarm.this, 1, alarm_intent,
+                            PendingIntent.FLAG_UPDATE_CURRENT);
+
+                    Log.e("System time", String.valueOf(System.currentTimeMillis()));
+                    Log.e("Calendar time", String.valueOf(calendar.getTimeInMillis()));
+
+                    //Checks whether time is before system's time
+
+                    if ((abs(System.currentTimeMillis() - calendar.getTimeInMillis()) < 60000)
+                            && (System.currentTimeMillis() > calendar.getTimeInMillis())) {
+                        time = calendar.getTimeInMillis();
+                    } else if (System.currentTimeMillis() > calendar.getTimeInMillis()) {
+
+                        time = 86400000 + System.currentTimeMillis();
+                    } else {
 
                         time = calendar.getTimeInMillis();
+                    }
+
+                    //Stores time in sharedpref
+                    storeTime(theHour, theMinute);
+
+                    set_alarm_text(getInput());
+                    MainActivity.alarm_confirmation.setText(getInput());
+
+                    Log.e("Time", String.valueOf(calendar.getTimeInMillis()));
+
+                    Toast.makeText(getApplicationContext(), "Your alarm is set!", Toast.LENGTH_SHORT).show();
+
+                    alarmManager.set(AlarmManager.RTC_WAKEUP, time, pendingIntent);
                 }
-
-                //Stores time in sharedpref
-                storeTime(theHour, theMinute);
-
-                set_alarm_text(getInput());
-                MainActivity.alarm_confirmation.setText(getInput());
-
-                Log.e("Time", String.valueOf(calendar.getTimeInMillis()));
-
-                Toast.makeText(getApplicationContext(), "Your alarm is set!",Toast.LENGTH_SHORT).show();
-
-                alarmManager.set(AlarmManager.RTC_WAKEUP,time,pendingIntent);
             }
         });
 
