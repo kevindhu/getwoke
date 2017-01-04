@@ -13,20 +13,7 @@ public class alarm_receiver extends BroadcastReceiver
     public void onReceive(Context context, Intent intent)
     {
         Log.e("Hi", "hi");
-
-        Boolean if_alarm = intent.getExtras().getBoolean("Alarm_off");
-
         Intent service_intent = new Intent(context, alarm_service.class);
-
-        if (if_alarm) {
-            Log.e("If/else", "sucess");
-            service_intent.putExtra("Alarm_off", true);
-        }
-        else {
-            service_intent.putExtra("Alarm_off", false);
-        }
-
-
         context.startService(service_intent);
         Log.e("Hi", "bye");
     }

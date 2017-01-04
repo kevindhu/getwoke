@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.util.Log;
+import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Context;
@@ -34,8 +35,10 @@ public class MainActivity extends AppCompatActivity {
     public static Button snooze_alarm;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -43,22 +46,23 @@ public class MainActivity extends AppCompatActivity {
 
         snooze_alarm = (Button) findViewById(R.id.alarm_off);
 
-        SharedPreferences sharedPref1 = getSharedPreferences("Genres", MODE_PRIVATE);
-        String message = sharedPref1.getString("Message", "Default Genre");
+        SharedPreferences sharedPref_genres = getSharedPreferences("Genres", MODE_PRIVATE);
+        String message = sharedPref_genres.getString("Message", "Default Genre");
+
+        //sets font from previous session
+        SharedPreferences sharedPref_font = getSharedPreferences("Font", MODE_PRIVATE);
+        String message2 = sharedPref_font.getString("Message", "Default Font");
+        font_changer(message2); //invokes this class's font_changer
+        Log.e("Font","Font is set to " + message2);
+
         genre = message;
 
-
-        TextView clock = (TextView) findViewById(R.id.textClock);
-        clock.setTextColor(Color.parseColor("#FFFFFF"));
-        motivational_quote = (TextView) findViewById(R.id.motivationalQuote);
-        motivational_quote.setTextColor(Color.parseColor("#FFFFFF"));
-
-
-
         quoter = (TextView) findViewById(R.id.quoter);
+        quoter.setText("");
+
+
         alarm_confirmation = (TextView) findViewById(R.id.alarm_confirmation);
         alarm_confirmation.setText(getInput());
-        quoter.setText("");
 
         //sets genre from previous session
         if (message != "Default Genre") {
@@ -66,8 +70,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //sets font from previous session
-        SharedPreferences sharedPref2 = getSharedPreferences("Font", MODE_PRIVATE);
-        String message2 = sharedPref2.getString("Message", "Default Font");
         font_changer(message2); //invokes this class's font_changer
         Log.e("Font","Font is set to " + message2);
 
@@ -84,19 +86,39 @@ public class MainActivity extends AppCompatActivity {
         snooze_alarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                if (alarm_service.isRunning == false)
+
+                boolean alarmUp = (PendingIntent.getBroadcast(MainActivity.this, 1,
+                        new Intent(MainActivity.this, alarm_receiver.class),
+                        PendingIntent.FLAG_NO_CREATE) != null);
+                Log.e("alarmUP", String.valueOf(alarmUp));
+                Log.e("isRunning", String.valueOf(alarm_service.isRunning));
+
+                if (!alarmUp && !alarm_service.isRunning ){
+                    Toast.makeText(MainActivity.this, "The alarm is already off!",Toast.LENGTH_SHORT).show();
+                }
+                else if (alarmUp && !alarm_service.isRunning)
                 {
+                    alarm_service.isRunning = true;
+                    alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
+                    pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
+                            PendingIntent.FLAG_UPDATE_CURRENT);
+                    sendBroadcast(alarm_intent);
+                    pendingIntent.cancel();
+                    SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putString("Message", "Your alarm is unset.");
+                    editor.apply();
                     alarm_confirmation.setText("Your alarm is unset.");
+                    Log.e("Cancelled for real", "Cancelled");
                 }
                 else
                 {
+                    alarm_service.isRunning = true;
                     alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
-                    alarm_intent.putExtra("Alarm_off", true);
                     pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
                             PendingIntent.FLAG_UPDATE_CURRENT);
                     sendBroadcast(alarm_intent);
                     Log.e("Cancel service", "Cancelled");
-                    pendingIntent.cancel();
                     snooze_alarm.setText("Alarm Off");
                 }
             }

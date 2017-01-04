@@ -114,7 +114,7 @@ public class MainActivity_set_alarm extends AppCompatActivity{
 
                     Toast.makeText(getApplicationContext(), "Your alarm is set!", Toast.LENGTH_SHORT).show();
 
-                    alarmManager.set(AlarmManager.RTC_WAKEUP, time, pendingIntent);
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, time, 60000, pendingIntent);
 
             }
         });

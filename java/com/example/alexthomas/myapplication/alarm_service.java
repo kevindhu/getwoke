@@ -26,13 +26,15 @@ public class alarm_service extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.e("onStartCommand", "Initated");
-        Boolean if_alarm = intent.getExtras().getBoolean("AlarmOff");
-        Bundle extras = intent.getExtras();
-        Log.e("Boolean", String.valueOf(if_alarm));
 
         if (isRunning){
-            mediasong.stop();
-            mediasong.reset();
+            try {
+                mediasong.stop();
+                mediasong.reset();
+            }
+            catch (NullPointerException e){
+                Log.e("NullpointException", "e");
+            }
             Log.e("cancel", "cancelled");
             isRunning = false;
         }
@@ -53,17 +55,28 @@ public class alarm_service extends Service {
             //Notification manager
             NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
             //Intent to MainActivity
-            Intent intent_mainactivity = new Intent(this, MainActivity.class);
 
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0
-                    , intent_mainactivity, 0);
 
             //Notification
+            Intent intent_mainactivity = new Intent(this, MainActivity.class);
+
+            intent_mainactivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+            PendingIntent pendingIntent_mainactivity = PendingIntent.getActivity(
+                    getApplicationContext(),
+                    2,
+                    intent_mainactivity,
+                    PendingIntent.FLAG_UPDATE_CURRENT);
+
+
             NotificationCompat.Builder mBuilder =
                     new NotificationCompat.Builder(this)
                             .setSmallIcon(R.drawable.gw_logo)
                             .setVisibility(0)
-                            .setContentTitle("Get Woke!")
+                            .setAutoCancel(true)
+                            .setContentIntent(pendingIntent_mainactivity)
+                            .setContentTitle("Get Woke")
                             .setContentText(quote[0] + " - " + quote[1]);
 
             notificationManager.notify(0, mBuilder.build());
