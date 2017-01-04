@@ -83,7 +83,10 @@ public class randomQuote {
 
 
 
-    public String quote_generator (String genre) {
+    public String[] quote_generator (String genre) {
+
+        String[] quote_AuthorPair = new String[2];
+
         if (genre.equals("All Genres")) {
             int rnd4 = new Random().nextInt(Entrepreneur_quotes.length+Celebrity_quotes.length+Author_quotes.length);
             Log.e("All Genres playing!", "Fetching All Quotes");
@@ -91,7 +94,9 @@ public class randomQuote {
             String[][] all_quotes = append(Entrepreneur_quotes, Celebrity_quotes);
             MainActivity.motivational_quote.setText(all_quotes[rnd4][0]);
             MainActivity.quoter.setText(all_quotes[rnd4][1]);
-            return all_quotes[rnd4][0];
+            quote_AuthorPair[0] = all_quotes[rnd4][0];
+            quote_AuthorPair[1] = all_quotes[rnd4][1];
+            return quote_AuthorPair;
         }
 
 
@@ -99,25 +104,33 @@ public class randomQuote {
             int rnd = new Random().nextInt(Entrepreneur_quotes.length);
             MainActivity.motivational_quote.setText(Entrepreneur_quotes[rnd][0]);
             MainActivity.quoter.setText(Entrepreneur_quotes[rnd][1]);
-            return Entrepreneur_quotes[rnd][0];
+            quote_AuthorPair[0] = Entrepreneur_quotes[rnd][0];
+            quote_AuthorPair[1] = Entrepreneur_quotes[rnd][1];
+            return quote_AuthorPair;
         }
 
         else if (genre.equals("Celebrity")) {
             int rnd1 = new Random().nextInt(Celebrity_quotes.length);
             MainActivity.motivational_quote.setText(Celebrity_quotes[rnd1][0]);
             MainActivity.quoter.setText(Celebrity_quotes[rnd1][1]);
-            return Celebrity_quotes[rnd1][0];
+            quote_AuthorPair[0] = Celebrity_quotes[rnd1][0];
+            quote_AuthorPair[1] = Celebrity_quotes[rnd1][1];
+            return quote_AuthorPair;
         }
 
         else if (genre.equals("Author")) {
             int rnd2 = new Random().nextInt(Author_quotes.length);
             MainActivity.motivational_quote.setText(Author_quotes[rnd2][0]);
             MainActivity.quoter.setText(Author_quotes[rnd2][1]);
-            return Author_quotes[rnd2][0];
+            quote_AuthorPair[0] = Author_quotes[rnd2][0];
+            quote_AuthorPair[1] = Author_quotes[rnd2][1];
+            return quote_AuthorPair;
         }
         else {
             MainActivity.motivational_quote.setText("No genre found!");
-            return "No genre found!";
+            quote_AuthorPair[0] = "No genre found!";
+            quote_AuthorPair[1] = "No author found!";
+            return quote_AuthorPair;
         }
     }
     public static String[][] append(String[][] a, String[][] b) {

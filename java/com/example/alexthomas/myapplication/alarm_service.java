@@ -20,7 +20,7 @@ public class alarm_service extends Service {
 
     public static Boolean isRunning = false;
     private MediaPlayer mediasong;
-    String quote;
+    String[] quote;
     public static String genre;
 
     @Override
@@ -63,7 +63,7 @@ public class alarm_service extends Service {
                             .setSmallIcon(R.drawable.gw_logo)
                             .setVisibility(0)
                             .setContentTitle("Get Woke!")
-                            .setContentText(quote + " - ");
+                            .setContentText(quote[0] + " - " + quote[1]);
 
             notificationManager.notify(0, mBuilder.build());
             }
