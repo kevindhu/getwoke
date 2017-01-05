@@ -155,7 +155,8 @@
         android:layout_alignLeft="@+id/settings_button"
         android:layout_alignRight="@+id/settings_button"
         android:background="@drawable/settings_icon"
-        android:id="@+id/settings_feedback" />
+        android:id="@+id/settings_feedback"
+        />
 
 
 </RelativeLayout>

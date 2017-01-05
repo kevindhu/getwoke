@@ -41,7 +41,7 @@ public class MainActivity_set_alarm extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        Log.e("started","set_alarm page");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.set_alarm);
         //Intialize layout material
