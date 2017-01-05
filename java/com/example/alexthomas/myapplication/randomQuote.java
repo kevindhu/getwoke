@@ -92,6 +92,15 @@ public class randomQuote {
             {"You must expect great things of yourself before you can do them.", "Michael Jordan"}
     };
 
+    String[][] Anime_quotes = {
+            {"The difference between the novice and the master is that the master has failed more times than the novice has tried." , "Korosensei (Assassination Classroom)"},
+            {"The world's not perfect, but it's there for us trying the best it can. That's what it makes it so damn beautiful.", "Roy Mustang (Full Metal Alchemist)"},
+            {"A lesson without pain is meaningless. That's because no one can gain without sacrificing something. But by enduring that pain and overcoming it, he shall obtain a powerful, unmatched heart. A heart full-metal.", "Edward Elric (Full Metal Alchemist)"},
+            {"Those who forgive themselves, and are able to accept their true nature...They are the strong ones!", "Itachi Uchiha (Naruto)"},
+            {"You can't change the world without getting your hands dirty.", "Lelouch Lamperouge (Code Geass)"},
+            {" We wondered what happiness would look like if we could give it a physical form. If I'm not mistaken, I think it was Suzaku that said that the shape of happiness might resemble glass. His reasoning made sense. He said that even though you don't usually notice it, it's still definitely there. You merely have to change your point of view slightly, and then that glass will sparkle when it reflects the light.", "Lelouch Lamperouge (Code Geass)"}
+    };
+
 
 
     public String[] quote_generator (String genre) {
