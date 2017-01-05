@@ -331,14 +331,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        if (alarm_service.isRunning == false) {
-
-            snooze_alarm.setText("Alarm Off");
-        }
-    }
 
     public void setRandInt() {
         SharedPreferences sharedPref_alarm_unset = getSharedPreferences("Random Int", MODE_PRIVATE);
