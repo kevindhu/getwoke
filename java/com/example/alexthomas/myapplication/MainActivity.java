@@ -83,10 +83,10 @@ public class MainActivity extends AppCompatActivity {
         quoter.setText(getQuoter());
 
         //Updates font
-        font_changer(last_font); //invokes this class's font_changer
+        //font_changer(last_font); //invokes this class's font_changer
 
         //Updates background
-        background_changer(last_background);
+        //background_changer(last_background);
 
 
         //Adds Button Functionality
@@ -164,9 +164,9 @@ public class MainActivity extends AppCompatActivity {
         logo = (ImageView) findViewById(R.id.getWoke);
 
         //Animations!
-        //Animate_Text(motivational_quote,R.anim.fade_in,1000);
-        //Animate_Text(quoter,R.anim.fade_in,1250);
-        //Animate_Image(logo,R.anim.logo_rise);
+        Animate_Text(motivational_quote,R.anim.fade_in,1000);
+        Animate_Text(quoter,R.anim.fade_in,1250);
+        Animate_Image(logo,R.anim.logo_rise);
     }
 
 
