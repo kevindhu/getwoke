@@ -5,6 +5,7 @@ import android.app.Activity;
 import java.util.ArrayList;
 import java.util.List;
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -54,8 +55,7 @@ import android.widget.ArrayAdapter;
 
 public class randomQuote extends AppCompatActivity{
 
-    private int last_rand;
-
+    public static int last_rand = -1;
 
 
     String[][] Entrepreneur_quotes = {
@@ -229,20 +229,16 @@ public class randomQuote extends AppCompatActivity{
 
 
     public String[] solver(String[][] quote_array){
-        SharedPreferences quote_id1 = PreferenceManager.getDefaultSharedPreferences(MainActivity.context);
-        String message1 = quote_id1.getString("Message", "999999");
-        Log.e("Message1", message1);
+
+        Log.e("Message1", String.valueOf(last_rand));
 
 
         int rnd = new Random().nextInt(quote_array.length);
-        if (rnd != Integer.parseInt(message1)) {
-            SharedPreferences.Editor editor = quote_id1.edit();
-            editor.putString("Message",String.valueOf(rnd));
-            Log.e("new quote is index ", String.valueOf(rnd));
-            editor.apply();
+        if (rnd != last_rand) {
             String[] quote_AuthorPair = new String[2];
             quote_AuthorPair[0] = quote_array[rnd][0];
             quote_AuthorPair[1] = quote_array[rnd][1];
+            randomQuote.last_rand = rnd;
             return quote_AuthorPair;
         }
         else {
