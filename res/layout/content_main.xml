@@ -107,9 +107,11 @@
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/share_button"
         android:id="@+id/share_button"
+        android:background="@null"
+        android:layout_marginRight="11dp"
+        android:layout_marginEnd="11dp"
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/settings_button"
-        android:background="@null"
         android:layout_toStartOf="@+id/settings_button" />
 
     <ImageButton
@@ -117,8 +119,8 @@
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/settings_icon"
         android:id="@+id/settings_button"
-        android:layout_alignParentTop="true"
         android:background="@null"
+        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
