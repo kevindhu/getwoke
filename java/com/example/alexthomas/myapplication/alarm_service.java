@@ -52,7 +52,7 @@ public class alarm_service extends Service {
             randomQuote newQuote = new randomQuote();
             Log.e("alright","Generating new quote with genre set to "+genre);
             quote = newQuote.quote_generator(genre);
-
+            saverandInt();
 
             //Instantiates sharedPrefs and saves quote/quoter
             SharedPreferences sharedPref_quote = getSharedPreferences("Quote", MODE_PRIVATE);
@@ -178,4 +178,12 @@ public class alarm_service extends Service {
     public void onDestroy() {
         Toast.makeText(this, "On destroy called",Toast.LENGTH_SHORT).show();
     }
+
+    public void saverandInt() {
+        SharedPreferences sharedPref_alarm_unset = getSharedPreferences("Random Int", MODE_PRIVATE);
+        SharedPreferences.Editor editor_alarm_unset = sharedPref_alarm_unset.edit();
+        editor_alarm_unset.putInt("Int", randomQuote.last_rand);
+        editor_alarm_unset.apply();
+    }
+
 }

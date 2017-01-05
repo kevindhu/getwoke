@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         motivational_quote.setText(getQuote());
         quoter = (TextView) findViewById(R.id.quoter);
         quoter.setText(getQuoter());
+        setRandInt();
 
         //Updates font
         font_changer(last_font); //invokes this class's font_changer
@@ -334,6 +335,12 @@ public class MainActivity extends AppCompatActivity {
 
             snooze_alarm.setText("Alarm Off");
         }
+    }
+
+    public void setRandInt() {
+        SharedPreferences sharedPref_alarm_unset = getSharedPreferences("Random Int", MODE_PRIVATE);
+        int new_int = sharedPref_alarm_unset.getInt("Int", -1);
+        randomQuote.last_rand = new_int;
     }
 
 }
