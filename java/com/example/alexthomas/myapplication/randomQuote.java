@@ -60,27 +60,36 @@ public class randomQuote {
 
 
     String[][] Entrepreneur_quotes = {
-            {"lol I'm rich","Bill Gates"},
-            {"wow I'm an entrepreneur","Mark Zuckerberg"},
-            {"fuck this country lol","Donald Trump"},
-            {"do you jerk off???", "Elon Musk"},
-            {"Fuck me", "Albert Einsten"},
-            {"Mi papi.", "Pablo Picasso"}
+            {"Success is a lousy teacher. It seduces smart people into thinking they can't lose.", "Bill Gates"},
+            {"The biggest risk is not taking any risk... In a world that changing really quickly, the only strategy that is guaranteed to fail is not taking risks.", "Mark Zuckerberg"},
+            {"Patience is a virtue, and I'm learning patience. It's a tough lesson.", "Elon Musk"},
+            {"The most beautiful thing we can experience is the mysterious. It is the source of all true art and science.", "Albert Einsten"},
+            {"My mother said to me, 'If you are a soldier, you will become a general. If you are a monk, you will become the Pope.' Instead, I was a painter, and became Picasso.", "Pablo Picasso"},
+            {"Your time is limited, so don’t waste it living someone else’s life.", "Steve Jobs"}
     };
 
     String[][] Celebrity_quotes = {
             {"lolol fvck normal people I'm a celebrity","Kanye West"},
-            {"wow I'm an celebrity","Jackie Chan"},
-            {"do you jerk off 2 times a day?","Matthew McCoughenhay"},
-            {"How is the weather up your asshole?", "Steven Carrell"}
+            {"Cinema reflects culture and there is no harm in adapting technology, but not at the cost of losing your originality.","Jackie Chan"},
+            {"The best revenge is massive success","Frank Sinatra"},
+            {"Nothing to me feels as good as laughing incredibly hard.", "Steven Carrell"},
+            {"Whether you think you can or you think you can’t, you’re right.", "Harrison Ford"}
     };
 
 
     String[][] Author_quotes = {
-            {"lol writing is stupid","J.K. Rowling"},
-            {"wow I'm an author","J.R.R Tolkien"},
-            {"Anime is trash", "Hayao Miyazaki"},
-            {"This is an insult to life itself...", "Hayao Miyazaki"}
+            {"We do not need magic to transform our world. We carry all of the power we need inside ourselves already.","J.K. Rowling"},
+            {"Not all those who wander are lost.","J.R.R Tolkien"},
+            {"Anime is a mistake, it's nothing but trash.", "Hayao Miyazaki"},
+            {"This is an insult to life itself...", "Hayao Miyazaki"},
+            {"Twenty years from now you will be more disappointed by the things that you didn’t do than by the ones you did do, so throw off the bowlines, sail away from safe harbor, catch the trade winds in your sails.  Explore, Dream, Discover.", "Mark Twain"},
+
+    };
+
+    String[][] Athlete_quotes = {
+            {"I've missed more than 9000 shots in my career. I've lost almost 300 games. 26 times I've been trusted to take the game winning shot and missed. I've failed over and over and over again in my life. And that is why I succeed.", "Michael Jordan"},
+            {"Every strike brings me closer to the next home run.", "Babe Ruth"},
+            {"You must expect great things of yourself before you can do them.", "Michael Jordan"}
     };
 
 
@@ -100,7 +109,6 @@ public class randomQuote {
             quote_AuthorPair[1] = all_quotes[rnd4][1];
             return quote_AuthorPair;
         }
-
 
         if (genre.equals("Entrepreneur")) {
             int rnd = new Random().nextInt(Entrepreneur_quotes.length);
