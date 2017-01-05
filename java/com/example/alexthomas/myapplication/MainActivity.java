@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.util.Log;
 import android.view.Window;
+import android.widget.DigitalClock;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextClock;
@@ -137,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         Typeface blockFonts = Typeface.createFromAsset(getAssets(),"fonts/Lato-Black.ttf");
-        TextClock clock = (TextClock) findViewById(R.id.textClock);
+        DigitalClock clock = (DigitalClock) findViewById(R.id.textClock);
         clock.setTypeface(blockFonts);
 
 
