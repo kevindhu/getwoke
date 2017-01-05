@@ -5,135 +5,149 @@
     android:id="@+id/content_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/vanilla"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background= "@drawable/vanilla"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.alexthomas.myapplication.MainActivity"
     tools:showIn="@layout/activity_main">
 
 
     <TextClock
+        android:id="@+id/textClock"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textClock"
-        android:textSize="50dp"
         android:layout_below="@+id/getWoke"
         android:layout_centerHorizontal="true"
-        android:textColor="#FFFFFF"
         android:layout_marginTop="-20dp"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="50dp" />
 
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Set Alarm"
-        android:background="@drawable/custom_buttonsetalarm"
-        android:id="@+id/set_alarm"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="65dp"
-        android:minWidth="140dp"
-        android:minHeight="60dp"
-        android:layout_marginTop="440dp"
-        />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Alarm Off"
-        android:id="@+id/alarm_off"
-        android:minWidth="140dp"
-        android:minHeight="60dp"
-        android:layout_alignBaseline="@+id/set_alarm"
-        android:layout_alignBottom="@+id/set_alarm"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="18dp"
-        android:layout_marginEnd="18dp" />
 
     <TextView
-        android:text="Alarm Unset"
+        android:id="@+id/alarm_confirmation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
         android:layout_below="@+id/alarm_off"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:id="@+id/alarm_confirmation"
+        android:text="Alarm Unset"
         android:textAlignment="center"
-        />
+        android:textSize="15sp" />
 
     <ImageView
+        android:id="@+id/getWoke"
         android:layout_width="match_parent"
         android:layout_height="140sp"
-        app:srcCompat="@drawable/getwoke_header_new"
-        android:id="@+id/getWoke"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/share_button"
-        android:id="@+id/share_button"
-        android:background="@null"
-        android:layout_marginRight="11dp"
-        android:layout_marginEnd="11dp"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/settings_button"
-        android:layout_toStartOf="@+id/settings_button" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/settings_icon"
-        android:id="@+id/settings_button"
-        android:background="@null"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_below="@+id/getWoke"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="40dp">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/quote"
-            android:id="@+id/motivationalQuote"
-            android:textSize="30dp"
-            android:textAlignment="center"
-            android:typeface="sans"
-            android:textColor="#FFFFFF"
-            android:alpha="1"
-            />
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/getwoke_header_new" />
 
-        <TextView
-            android:text="Quoter"
+    <ImageButton
+        android:id="@+id/share_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="11dp"
+        android:layout_marginRight="11dp"
+        android:layout_toLeftOf="@+id/settings_button"
+        android:layout_toStartOf="@+id/settings_button"
+        android:background="@null"
+        app:srcCompat="@drawable/share_button" />
+
+    <ImageButton
+        android:id="@+id/settings_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@null"
+        app:srcCompat="@drawable/settings_icon" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/getWoke"
+        android:layout_marginTop="40dp">
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/quoter"
-            android:layout_centerVertical="true"
-            android:layout_below="@id/motivationalQuote"
-            android:textAlignment="center"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
-            android:textColor="#FFFFFF"
-            android:alpha="1"
-            />
-    </RelativeLayout>
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/motivationalQuote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:alpha="1"
+                android:text="@string/quote"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="30dp"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/quoter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/motivationalQuote"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:alpha="1"
+                android:text="Quoter"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF" />
+
+
+        </RelativeLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/alarm_off"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/set_alarm"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="18dp"
+        android:background="@drawable/custom_buttondefault"
+        android:minHeight="60dp"
+        android:minWidth="140dp"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:text="Alarm Off" />
+
+    <Button
+        android:id="@+id/set_alarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scrollView2"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toLeftOf="@+id/alarm_off"
+        android:layout_toStartOf="@+id/alarm_off"
+        android:background="@drawable/custom_buttonpressed"
+        android:minHeight="60dp"
+        android:minWidth="140dp"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:text="Set Alarm" />
 
 
 </RelativeLayout>
