@@ -162,7 +162,10 @@ public class randomQuote extends AppCompatActivity{
 
 
         String[] answer = {};
-        String[][][] original = {Entrepreneur_quotes, Celebrity_quotes, Author_quotes, Athlete_quotes, Anime_quotes};
+        String[][][] original = {
+                Entrepreneur_quotes, Celebrity_quotes, Author_quotes, Athlete_quotes,
+                Anime_quotes,GreatMinds_quotes,Book_quotes};
+
         String[][] sum = two_d_summer(original);
 
         switch (genre) {
@@ -185,10 +188,10 @@ public class randomQuote extends AppCompatActivity{
                 answer = solver(Anime_quotes);
                 return answer;
             case "Great Minds":
-                answer = solver(Anime_quotes);
+                answer = solver(GreatMinds_quotes);
                 return answer;
             case "Book Quotes":
-                answer = solver(Anime_quotes);
+                answer = solver(Book_quotes);
                 return answer;
             default:
                 break;
