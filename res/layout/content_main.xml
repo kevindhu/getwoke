@@ -105,10 +105,12 @@
         android:background="@drawable/custom_button"
         android:minHeight="60dp"
         android:minWidth="140dp"
+        android:alpha="0.8"
         android:text="Alarm Off" />
 
     <Button
         android:id="@+id/set_alarm"
+        android:alpha="0.8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/scrollView2"
