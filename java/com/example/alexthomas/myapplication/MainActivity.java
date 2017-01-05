@@ -83,10 +83,10 @@ public class MainActivity extends AppCompatActivity {
         quoter.setText(getQuoter());
 
         //Updates font
-        //font_changer(last_font); //invokes this class's font_changer
+        font_changer(last_font); //invokes this class's font_changer
 
         //Updates background
-        //background_changer(last_background);
+        background_changer(last_background);
 
 
         //Adds Button Functionality
@@ -225,6 +225,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+
+    ////DEFINITELY CHANGE THIS FOR OPTIMIZATION
 
     public void background_changer (String background) {
         switch (background) {

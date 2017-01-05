@@ -105,7 +105,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_share"
+        app:srcCompat="@drawable/share_button"
         android:id="@+id/share_button"
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/settings_button"
@@ -115,7 +115,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_settings"
+        app:srcCompat="@drawable/settings_icon"
         android:id="@+id/settings_button"
         android:layout_alignParentTop="true"
         android:background="@null"

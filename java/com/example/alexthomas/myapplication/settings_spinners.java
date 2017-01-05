@@ -161,26 +161,35 @@ public class settings_spinners extends AppCompatActivity {
                     MainActivity.genre = String.valueOf(spinner_genre.getSelectedItem());
                 }
 
+                //Chooses background
                 Log.e("wow","the selected background is " + String.valueOf(spinner_backgrounds.getSelectedItem()));
                 storeValue("Backgrounds",spinner_backgrounds);
-                switch (String.valueOf(spinner_backgrounds.getSelectedItem())) {
-                    case "Starry Clouds":
-                        //set background as starry clouds
-                        MainActivity.content_main.setBackgroundResource(R.drawable.stars_clouds);
-                        break;
-                    case "Starry Sky":
-                        //set background as starry sky
-                        MainActivity.content_main.setBackgroundResource(R.drawable.stars_wallpaper);
-                        break;
-                    case "Vanilla":
-                        MainActivity.content_main.setBackgroundResource(R.drawable.vanilla);
-                        break;
-                    default:
-                        break;
-                }
+                background_changer(String.valueOf(spinner_backgrounds.getSelectedItem()));
             }
         });
     }
+
+
+    public void background_changer (String background) {
+        switch (background) {
+            case "Starry Clouds":
+                //set background as starry clouds
+                MainActivity.content_main.setBackgroundResource(R.drawable.stars_clouds);
+                break;
+            case "Starry Sky":
+                //set background as starry sky
+                MainActivity.content_main.setBackgroundResource(R.drawable.stars_wallpaper);
+                break;
+            case "Vanilla":
+                MainActivity.content_main.setBackgroundResource(R.drawable.vanilla);
+                break;
+            default:
+                break;
+        }
+    }
+
+
+
 
     public void font_changer(String font) {
         Typeface font_roboto = Typeface.createFromAsset(getAssets(),"fonts/roboto-medium.ttf");
