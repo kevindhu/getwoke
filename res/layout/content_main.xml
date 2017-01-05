@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:facebook="http://schemas.android.com/apk/res-auto"
     android:id="@+id/content_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,7 +15,16 @@
     tools:showIn="@layout/activity_main">
 
 
-
+    <TextClock
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textClock"
+        android:textSize="50dp"
+        android:layout_below="@+id/getWoke"
+        android:layout_centerHorizontal="true"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="-20dp"
+        android:textAlignment="center"/>
 
 
     <Button
@@ -88,45 +96,43 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <TextClock
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textClock"
-
-        android:textSize="75dp"
-        android:textColor="#FFFFFF"
-        android:textAlignment="center"
+        android:layout_height="250dp"
         android:layout_below="@+id/getWoke"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/quote"
-        android:id="@+id/motivationalQuote"
-        android:textSize="30dp"
-        android:textAlignment="center"
-        android:typeface="sans"
-        android:textColor="#FFFFFF"
-        android:alpha="1"
-        android:layout_below="@+id/textClock"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="46dp" />
-
-    <TextView
-        android:text="Quoter"
+        android:layout_marginTop="40dp">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/quoter"
-        android:textAlignment="center"
-        android:layout_marginTop="45dp"
-        android:textColor="#FFFFFF"
-        android:alpha="1"
-        android:layout_below="@+id/motivationalQuote"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/quote"
+            android:id="@+id/motivationalQuote"
+            android:textSize="30dp"
+            android:textAlignment="center"
+            android:typeface="sans"
+            android:textColor="#FFFFFF"
+            android:alpha="1"
+            />
+
+        <TextView
+            android:text="Quoter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/quoter"
+            android:layout_centerVertical="true"
+            android:layout_below="@id/motivationalQuote"
+            android:textAlignment="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="#FFFFFF"
+            android:alpha="1"
+            />
+    </RelativeLayout>
+    </ScrollView>
 
 
 </RelativeLayout>
