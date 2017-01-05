@@ -38,15 +38,6 @@
         android:textAlignment="center"
         android:textSize="15sp" />
 
-    <ImageView
-        android:id="@+id/getWoke"
-        android:layout_width="match_parent"
-        android:layout_height="140sp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        app:srcCompat="@drawable/getwoke_header_new" />
-
     <ImageButton
         android:id="@+id/share_button"
         android:layout_width="wrap_content"
@@ -141,6 +132,15 @@
         android:layout_alignParentEnd="true"
         android:layout_marginRight="0dp"
         android:layout_marginBottom="110dp" />
+
+    <ImageView
+        android:id="@+id/getWoke"
+        android:layout_width="match_parent"
+        android:layout_height="140sp"
+        app:srcCompat="@drawable/getwoke_header_new"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
