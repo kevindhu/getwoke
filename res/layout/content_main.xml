@@ -62,6 +62,19 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/motivationalQuote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:alpha="1"
+                android:text="@string/quote"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="30dp"
+                android:typeface="sans"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
             <TextView
                 android:id="@+id/quoter"
@@ -76,19 +89,6 @@
                 android:textAlignment="center"
                 android:textColor="#FFFFFF" />
 
-            <TextView
-                android:id="@+id/motivationalQuote"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:alpha="1"
-                android:text="@string/quote"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="30dp"
-                android:typeface="sans"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
 
 
         </RelativeLayout>
