@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.util.Log;
 import android.view.Window;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -87,12 +88,35 @@ public class MainActivity extends AppCompatActivity {
         //Updates background
         background_changer(last_background);
 
+
+        //Adds Button Functionality
         Button set_alarm = (Button) findViewById(R.id.set_alarm);
         set_alarm.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 launchSet_Alarm();
             }
         });
+
+
+        ImageButton true_settings = (ImageButton) findViewById(R.id.settings_button);
+        true_settings.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                launchActivity();
+            }
+        });
+
+        ImageButton share_facebook = (ImageButton) findViewById(R.id.share_button);
+        share_facebook.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                //launch share to facebook page
+
+
+            }
+        });
+
+
+
+
         //make a listener on the snooze_alarm on user click
         snooze_alarm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,31 +202,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        switch (item.getItemId()) {
-
-            case R.id.action_settings:
-                launchActivity();
-                return true;
-            case R.id.action_home:
-                Toast.makeText(getApplicationContext(), "You're already at 'Home'!",
-                        Toast.LENGTH_LONG).show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
 
     //launch the settings
