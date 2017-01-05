@@ -150,6 +150,7 @@ public class randomQuote {
 
     public String[][] two_d_summer(String[][][] args) {
         String[][] sum = {};
+        for(int i=0; i<args.length; i++) {
             sum = append(sum,args[i]);
         }
         return sum;
@@ -161,6 +162,8 @@ public class randomQuote {
         int rnd = new Random().nextInt(quote_array.length);
         String[] quote_AuthorPair = new String[2];
 
+        quote_AuthorPair[0] = quote_array[rnd][0];
+        quote_AuthorPair[1] = quote_array[rnd][1];
         return quote_AuthorPair;
     }
 
