@@ -183,12 +183,14 @@ public class MainActivity extends AppCompatActivity {
     public void Animate_Text(final TextView text,int animation, int delay) {
         final Animation quoteRise = AnimationUtils.loadAnimation(this, animation);
         //zero alpha in the beginning
+        text.setTextColor(Color.argb(0, 255, 255, 255));
 
         //apply the animation to the View
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                text.setTextColor(Color.argb(1000, 255, 255, 255));
                 text.startAnimation(quoteRise);
             }
         }, delay);
