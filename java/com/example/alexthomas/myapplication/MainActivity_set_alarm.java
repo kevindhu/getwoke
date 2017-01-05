@@ -75,9 +75,14 @@ public class MainActivity_set_alarm extends AppCompatActivity{
                     String hour;
                     int theHour = timePicker.getHour();
                     int theMinute = timePicker.getMinute();
-
+                    TextView zero_hour = (TextView) findViewById(R.id.zero_hour);
                     String minute = String.valueOf(timePicker.getMinute());
-                    calendar.set(Calendar.HOUR_OF_DAY, theHour);
+                    zero_hour.setAlpha(0f);
+                    if (theHour<12) {
+                        zero_hour.setAlpha(1f);
+
+                }
+                    calendar.set(Calendar.HOUR_OF_DAY, theHour); //need to make this 01
                     calendar.set(Calendar.MINUTE, theMinute);
 
                     //Triggers Alarm
