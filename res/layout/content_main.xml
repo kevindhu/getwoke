@@ -148,11 +148,12 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/settings_iconcopy"
+        app:srcCompat="@drawable/settings_icon"
         android:layout_alignTop="@+id/settings_button"
         android:layout_alignBottom="@+id/settings_button"
         android:layout_alignLeft="@+id/settings_button"
         android:layout_alignRight="@+id/settings_button"
+        android:background="@drawable/settings_icon"
         android:id="@+id/settings_feedback" />
 
 

@@ -62,8 +62,6 @@ public class randomQuote extends AppCompatActivity{
             {"Success is a lousy teacher. It seduces smart people into thinking they can't lose.", "Bill Gates"},
             {"The biggest risk is not taking any risk... In a world that changing really quickly, the only strategy that is guaranteed to fail is not taking risks.", "Mark Zuckerberg"},
             {"Patience is a virtue, and I'm learning patience. It's a tough lesson.", "Elon Musk"},
-            {"The most beautiful thing we can experience is the mysterious. It is the source of all true art and science.", "Albert Einsten"},
-            {"My mother said to me, 'If you are a soldier, you will become a general. If you are a monk, you will become the Pope.' Instead, I was a painter, and became Picasso.", "Pablo Picasso"},
             {"Your time is limited, so don’t waste it living someone else’s life.", "Steve Jobs"}
     };
 
@@ -88,7 +86,20 @@ public class randomQuote extends AppCompatActivity{
     String[][] Athlete_quotes = {
             {"I've missed more than 9000 shots in my career. I've lost almost 300 games. 26 times I've been trusted to take the game winning shot and missed. I've failed over and over and over again in my life. And that is why I succeed.", "Michael Jordan"},
             {"Every strike brings me closer to the next home run.", "Babe Ruth"},
-            {"You must expect great things of yourself before you can do them.", "Michael Jordan"}
+            {"You must expect great things of yourself before you can do them.", "Michael Jordan"},
+            {"It's not whether you get knocked down; it's whether you get up.", "Vince Lombardi"},
+            {"An athlete cannot run with money in his pockets. He must run with hope in his heart and dreams in his head.", "Emil Zatopek"},
+            {"Most people never run far enough on their first wind to find out they’ve got a second.", "William James"},
+            {"Do you know what my favorite part of the game is? The opportunity to play.", "Mike Singletary"},
+            {"Just keep going. Everybody gets better if they keep at it.", "Ted Williams"},
+            {"Push yourself again and again. Don’t give an inch until the final buzzer sounds.", "Larry Bird"},
+            {"You can’t put a limit on anything. The more you dream, the farther you get.", "Michael Phelps"},
+            {"I hated every minute of training, but I said, ‘Don’t quit. Suffer now and live the rest of your life as a champion."," Muhammad Ali"},
+            {"There are only two options regarding commitment. You’re either IN or you’re OUT. There is no such thing as life in-between.", "Pat Riley"},
+            {"Gold medals aren’t really made of gold. They’re made of sweat, determination, and a hard-to-find alloy called guts.", "Dan Gable"}
+
+
+
     };
 
     String[][] Anime_quotes = {
@@ -100,6 +111,40 @@ public class randomQuote extends AppCompatActivity{
             {" We wondered what happiness would look like if we could give it a physical form. If I'm not mistaken, I think it was Suzaku that said that the shape of happiness might resemble glass. His reasoning made sense. He said that even though you don't usually notice it, it's still definitely there. You merely have to change your point of view slightly, and then that glass will sparkle when it reflects the light.", "Lelouch Lamperouge (Code Geass)"},
             {"To win, but not destroy; to conquer, but not humiliate: That is what true conquest is!", "Rider (Fate Zero)"},
             {"A prison, you say? You think you'll be free if you go to the world above? A girl like you can never be free no matter where you go. After all, we humans are apes put in a cage called Earth. There is no difference between the world above and the world below. The only difference is which is bigger or smaller. People who pout about how confining the cage is can never be happy. They live their lives only seeing the iron bars. A true lack of freedom is when you cage your soul.", "Gintama (Gintama)"}
+    };
+
+    String[][] GreatMinds_quotes = {
+            {"My mother said to me, 'If you are a soldier, you will become a general. If you are a monk, you will become the Pope.' Instead, I was a painter, and became Picasso.", "Pablo Picasso"},
+            {"The most beautiful thing we can experience is the mysterious. It is the source of all true art and science.", "Albert Einsten"},
+            {"An unexamined life is not worth living.", "Socrates"},
+            {"To find yourself, think for yourself.", "Socrates"},
+            {"I love those who can smile in trouble, who can gather strength from distress, and grow brave by reflection. 'Tis the business of little minds to shrink, but they whose heart is firm, and whose conscience approves their conduct, will pursue their principles unto death."}
+
+
+
+    };
+
+    String[][] Book_quotes = {
+            {"Twenty years from now you will be more disappointed by the things that you didn’t do than by the ones you did do.", "H. Jackson Brown, P.S. I Love You"},
+            {"Every human life is worth the same, and worth saving.", "J.K. Rowling, Harry Potter: The Deathly Hallows"},
+            {"Get busy living, or get busy dying.", "Stephen Kings, Different Seasons"},
+            {"There is some good in this world, and it’s worth fighting for.", "J.R.R. Tolkien, The Two Towers"},
+            {"It is our choices that show what we truly are, far more than our abilities.", "J.K. Rowling, Harry Potter and the Chamber of Secrets"},
+            {"I don’t want to die without any scars.", "Chuck Palahniuk, Fight Club"},
+            {"The worst enemy to creativity is self-doubt.", "Sylvia Plath, The Unabridged Journals of Sylvia Plath"},
+            {"Some infinities are bigger than other infinities.", "John Green, The Fault in Our Stars"},
+            {"Appear weak when you are strong, and strong when you are weak.", "Sun Tzu, The Art of War"},
+            {"All we have to decide is what to do with the time that is given to us.", "J.R.R. Tolkien, The Fellowship of the Ring"},
+            {"There’s only one rule you need to remember: laugh at everything and forget everybody else! It sound egotistical, but it’s actually the only cure for those suffering from self-pity.", "Anne Frank, The Diary of Anne Frank"},
+            {"The saddest people I’ve ever met in life are the ones who don’t care deeply about anything at all. Passion and satisfaction go hand in hand, and without them, any happiness is only temporary, because there’s nothing to make it last.", "Nicholas Sparks, Dear"},
+            {"You can’t stay in your corner of the Forest waiting for others to come to you. You have to go to them sometimes.", "A.A. Milne, Winnie-the-Pooh"},
+            {"The point is not to pay back kindness but to pass it on.", "Julia Alvarez"},
+            {"We can never give up longing and wishing while we are thoroughly alive. There are certain things we feel to be beautiful and good, and we must hunger after them.","George Eliot, The Mill on the Floss"},
+            {"We must have ideals and try to live up to them, even if we never quite succeed. Life would be a sorry business without them. With them it's grand and great.","Lucy Maude Montgomery, Ann of Avonlea"},
+            {"[I]f you are interested in something, no matter what it is, go at it at full speed ahead. Embrace it with both arms, hug it, love it and above all become passionate about it. Lukewarm is no good. Hot is no good either. White hot and passionate is the only thing to be.", "Roald Dahl, My Uncle Oswald"},
+            {"It does not do to dwell on dreams and forget to live, remember that.", "J.K. Rowling, Harry Potter and the Sorcerer's Stone"},
+            {"Cherish your friends, stay true to your principles, live passionately and fully and well. Experience new things. Love and be loved, if you ever get the chance.", "David Nicholls, One Day"}
+
     };
 
     String[] error = {"No genre found!","No author found!"};
@@ -138,6 +183,12 @@ public class randomQuote extends AppCompatActivity{
             case "Anime":
                 answer = solver(Anime_quotes);
                 return answer;
+            case "Great Minds":
+                answer = solver(Anime_quotes);
+                return answer;
+            case "Book Quotes":
+                answer = solver(Anime_quotes);
+                return answer;
             default:
                 break;
             } return answer;
@@ -174,7 +225,6 @@ public class randomQuote extends AppCompatActivity{
 
 
     public String[] solver(String[][] quote_array){
-        Log.e("Flag", "1");
         SharedPreferences quote_id1 = PreferenceManager.getDefaultSharedPreferences(MainActivity.context);
         String message1 = quote_id1.getString("Message", "999999");
         Log.e("Message1", message1);
@@ -186,7 +236,6 @@ public class randomQuote extends AppCompatActivity{
             editor.putString("Message",String.valueOf(rnd));
             Log.e("new quote is index ", String.valueOf(rnd));
             editor.apply();
-
             String[] quote_AuthorPair = new String[2];
             quote_AuthorPair[0] = quote_array[rnd][0];
             quote_AuthorPair[1] = quote_array[rnd][1];

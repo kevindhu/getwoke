@@ -42,7 +42,7 @@ public class settings_spinners extends AppCompatActivity {
     private Button btnSubmit;
 
     private String[] fonts = {"Formal", "Roboto", "Weird"};
-    private String[] genres ={"Entrepreneur", "Celebrity", "Author", "Athlete", "Anime", "All Genres"};
+    private String[] genres ={"Entrepreneur", "Celebrity", "Author", "Athlete", "Anime", "Great Minds", "Book Quotes","All Genres"};
     private String[] quote_length = {"Medium", "Short", "Long"};
     private String[] backgrounds = {"Starry Clouds", "Starry Sky", "Vanilla"};
 
