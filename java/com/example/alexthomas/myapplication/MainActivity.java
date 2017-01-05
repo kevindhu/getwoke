@@ -64,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
         content_main = (RelativeLayout) findViewById(R.id.content_main);
 
 
+        final ImageView settings_feedback = (ImageView) findViewById(R.id.settings_feedback);
+        settings_feedback.setAlpha(0f);
+
+
 
 
         //Captures font from previous session
@@ -105,8 +109,19 @@ public class MainActivity extends AppCompatActivity {
         ImageButton true_settings = (ImageButton) findViewById(R.id.settings_button);
         true_settings.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                settings_feedback.setAlpha(1f);
                 launchActivity();
+
+
+                Handler handler1 = new Handler();
+                handler1.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                    settings_feedback.setAlpha(0f);
+                    }
+                }, 1000);
             }
+
         });
 
         ImageButton share_facebook = (ImageButton) findViewById(R.id.share_button);
