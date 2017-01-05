@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import android.app.Activity;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -103,6 +104,11 @@ public class randomQuote extends AppCompatActivity{
 
 
 
+
+    public void onCreate(Bundle savedInstanceState) {
+
+    }
+
     public String[] quote_generator (String genre) {
 
 
@@ -165,7 +171,7 @@ public class randomQuote extends AppCompatActivity{
 
 
     public String[] solver(String[][] quote_array){
-        SharedPreferences quote_id1 = getSharedPreferences("same", MODE_PRIVATE);
+        SharedPreferences quote_id1 = PreferenceManager.getDefaultSharedPreferences(this);
         String message1 = quote_id1.getString("Message", "999999");
 
 
