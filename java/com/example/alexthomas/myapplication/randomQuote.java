@@ -109,25 +109,31 @@ public class randomQuote {
 
         String[] answer = {};
         String[][][] original = {Entrepreneur_quotes, Celebrity_quotes, Author_quotes, Athlete_quotes, Anime_quotes};
+        String[][] sum = two_d_summer(original);
 
         switch (genre) {
             case "All Genres":
-                String[][] sum = two_d_summer(original);
                 answer = solver(sum);
+                return answer;
             case "Entrepreneur":
                 answer = solver(Entrepreneur_quotes);
+                return answer;
             case "Celebrity":
                 answer = solver(Celebrity_quotes);
+                return answer;
             case "Author":
                 answer = solver(Author_quotes);
+                return answer;
             case "Athlete":
                 answer = solver(Athlete_quotes);
+                return answer;
             case "Anime":
                 answer = solver(Anime_quotes);
+                return answer;
             default:
                 break;
-            }
-        return answer;
+            } return answer;
+
         }
 
 
