@@ -101,59 +101,44 @@ public class randomQuote {
             {" We wondered what happiness would look like if we could give it a physical form. If I'm not mistaken, I think it was Suzaku that said that the shape of happiness might resemble glass. His reasoning made sense. He said that even though you don't usually notice it, it's still definitely there. You merely have to change your point of view slightly, and then that glass will sparkle when it reflects the light.", "Lelouch Lamperouge (Code Geass)"}
     };
 
+    String[] error = {"No genre found!","No author found!"};
+
 
 
     public String[] quote_generator (String genre) {
 
+        String[] answer = {};
+        String[][][] original = {Entrepreneur_quotes, Celebrity_quotes, Author_quotes, Athlete_quotes, Anime_quotes};
 
-        String[] quote_AuthorPair = new String[2];
-
-        if (genre.equals("All Genres")) {
-            int rnd4 = new Random().nextInt(Entrepreneur_quotes.length+Celebrity_quotes.length+Author_quotes.length);
-            Log.e("All Genres playing!", "Fetching All Quotes");
-            //create new String[][] for all quotes
-            String[][] all_quotes1 = append(Entrepreneur_quotes, Celebrity_quotes);
-            String[][] all_quotes = append(Author_quotes, all_quotes1);
-            quote_AuthorPair[0] = all_quotes[rnd4][0];
-            quote_AuthorPair[1] = all_quotes[rnd4][1];
-            return quote_AuthorPair;
+        switch (genre) {
+            case "All Genres":
+                String[][] sum = two_d_summer(original);
+                answer = solver(sum);
+            case "Entrepreneur":
+                answer = solver(Entrepreneur_quotes);
+            case "Celebrity":
+                answer = solver(Celebrity_quotes);
+            case "Author":
+                answer = solver(Author_quotes);
+            case "Athlete":
+                answer = solver(Athlete_quotes);
+            case "Anime":
+                answer = solver(Anime_quotes);
+            default:
+                break;
+            }
+        return answer;
         }
 
-        if (genre.equals("Entrepreneur")) {
-            int rnd = new Random().nextInt(Entrepreneur_quotes.length);
-            quote_AuthorPair[0] = Entrepreneur_quotes[rnd][0];
-            quote_AuthorPair[1] = Entrepreneur_quotes[rnd][1];
-            return quote_AuthorPair;
-        }
 
-        else if (genre.equals("Celebrity")) {
-            int rnd1 = new Random().nextInt(Celebrity_quotes.length);
-            quote_AuthorPair[0] = Celebrity_quotes[rnd1][0];
-            quote_AuthorPair[1] = Celebrity_quotes[rnd1][1];
-            return quote_AuthorPair;
-        }
 
-        else if (genre.equals("Author")) {
-            int rnd2 = new Random().nextInt(Author_quotes.length);
-            quote_AuthorPair[0] = Author_quotes[rnd2][0];
-            quote_AuthorPair[1] = Author_quotes[rnd2][1];
-            return quote_AuthorPair;
-        }
 
-        else if (genre.equals("Athlete")) {
-            int rnd2 = new Random().nextInt(Athlete_quotes.length);
-            quote_AuthorPair[0] = Athlete_quotes[rnd2][0];
-            quote_AuthorPair[1] = Athlete_quotes[rnd2][1];
-            return quote_AuthorPair;
-        }
 
-        else {
-            MainActivity.motivational_quote.setText("No genre found!");
-            quote_AuthorPair[0] = "No genre found!";
-            quote_AuthorPair[1] = "No author found!";
-            return quote_AuthorPair;
-        }
-    }
+
+
+
+
+
     public static String[][] append(String[][] a, String[][] b) {
         String[][] result = new String[a.length + b.length][];
         System.arraycopy(a, 0, result, 0, a.length);
@@ -161,5 +146,26 @@ public class randomQuote {
         return result;
     }
 
+
+
+    public String[][] two_d_summer(String[][][] args) {
+        String[][] sum = {};
+            sum = append(sum,args[i]);
+        }
+        return sum;
+    }
+
+
+
+    public String[] solver(String[][] quote_array){
+        int rnd = new Random().nextInt(quote_array.length);
+        String[] quote_AuthorPair = new String[2];
+
+        return quote_AuthorPair;
+    }
+
 }
+
+
+
 
