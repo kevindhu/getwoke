@@ -82,13 +82,10 @@ public class alarm_service extends Service {
                 MainActivity.quoter.startAnimation(quoteRise2);
 
 
-
                 //Animation better version that DOESN'T WORK
                 //MainActivity activity = new MainActivity();
                 //activity.Animate_Text(MainActivity.motivational_quote,R.anim.fade_in,1000);
                 //activity.Animate_Text(MainActivity.quoter,R.anim.fade_in,1200);
-
-
 
 
 

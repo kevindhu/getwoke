@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     public static TextView alarm_confirmation;
     public static Button snooze_alarm;
     public static RelativeLayout content_main;
-
+    public static Context context;
 
 
     @Override
@@ -56,9 +56,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
-
+        context = getApplicationContext();
 
 
 
@@ -309,6 +307,8 @@ public class MainActivity extends AppCompatActivity {
         String message = sharedPref.getString("Message", "Default");
         return message;
     }
+
+
 
     @Override
     public void onPause() {

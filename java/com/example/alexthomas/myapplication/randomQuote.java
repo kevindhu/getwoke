@@ -54,6 +54,8 @@ import android.widget.ArrayAdapter;
 
 public class randomQuote extends AppCompatActivity{
 
+    private int last_rand;
+
 
 
     String[][] Entrepreneur_quotes = {
@@ -106,6 +108,7 @@ public class randomQuote extends AppCompatActivity{
 
 
     public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
     }
 
@@ -171,8 +174,10 @@ public class randomQuote extends AppCompatActivity{
 
 
     public String[] solver(String[][] quote_array){
-        SharedPreferences quote_id1 = PreferenceManager.getDefaultSharedPreferences(this);
+        Log.e("Flag", "1");
+        SharedPreferences quote_id1 = PreferenceManager.getDefaultSharedPreferences(MainActivity.context);
         String message1 = quote_id1.getString("Message", "999999");
+        Log.e("Message1", message1);
 
 
         int rnd = new Random().nextInt(quote_array.length);
@@ -190,6 +195,8 @@ public class randomQuote extends AppCompatActivity{
         else {
             return solver(quote_array);
         }
+
+
     }
 
 }
