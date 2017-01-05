@@ -139,6 +139,14 @@ public class randomQuote {
             quote_AuthorPair[1] = Author_quotes[rnd2][1];
             return quote_AuthorPair;
         }
+
+        else if (genre.equals("Athlete")) {
+            int rnd2 = new Random().nextInt(Athlete_quotes.length);
+            quote_AuthorPair[0] = Athlete_quotes[rnd2][0];
+            quote_AuthorPair[1] = Athlete_quotes[rnd2][1];
+            return quote_AuthorPair;
+        }
+
         else {
             MainActivity.motivational_quote.setText("No genre found!");
             quote_AuthorPair[0] = "No genre found!";
