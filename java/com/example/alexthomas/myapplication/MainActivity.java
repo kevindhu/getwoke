@@ -158,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if (alarmUp && !alarm_service.isRunning)
                 {
+                    //turns off Alarm
                     alarm_service.isRunning = true;
                     alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
                     pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
@@ -174,6 +175,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else
                 {
+                    //Snoozes Alarm
                     alarm_service.isRunning = true;
                     alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
                     pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,

@@ -28,7 +28,7 @@ public class alarm_service extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.e("onStartCommand", "Initated");
+        Log.e("onStartCommand", "Initiated alarm service (for starting and stopping music and generating new quotes");
 
         if (isRunning){
             try {
@@ -41,7 +41,13 @@ public class alarm_service extends Service {
             Log.e("cancel", "cancelled");
             isRunning = false;
         }
+
+
+
+
+
         else {
+            //makes new quote, plays music
             alarm_service.isRunning = true;
 
             //Last Genre
@@ -117,6 +123,16 @@ public class alarm_service extends Service {
             //Plays song , for testing
             mediasong.start();
 
+
+
+
+
+
+
+
+
+
+
             //Notification manager
             NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
             //Intent to MainActivity
@@ -146,17 +162,27 @@ public class alarm_service extends Service {
 
             notificationManager.notify(0, mBuilder.build());
 
+
+
+
+
+            //starts alarm again periodically
             AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
             Intent alarm_intent = new Intent(alarm_service.this, alarm_receiver.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(alarm_service.this, 1, alarm_intent,
                     PendingIntent.FLAG_UPDATE_CURRENT);
             alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ 60000 ,pendingIntent);
 
-            mediasong.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 
+
+
+            //alarm snoozes automatically after song stops
+            mediasong.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
-                    Log.e("Hi", "hi");
+                    Log.e("Setting", "Text Automatically to Alarm Off");
+                    MainActivity.snooze_alarm.setText("Alarm Off");
+                    alarm_service.isRunning = false;
                 }
 
             });
