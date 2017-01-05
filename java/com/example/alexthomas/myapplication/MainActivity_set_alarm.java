@@ -52,9 +52,17 @@ public class MainActivity_set_alarm extends AppCompatActivity{
         Button set_alarm = (Button) findViewById(R.id.alarm_set);
         //Calendar
         final Calendar calendar = Calendar.getInstance();
-
-
         set_alarm_text(getInput());
+
+
+        TextView zero_hour = (TextView) findViewById(R.id.zero_hour);
+        zero_hour.setAlpha(0f);
+        int theHour1 = timePicker.getHour();
+        if (theHour1<10 || theHour1>12 && theHour1<22) {
+            Log.e("The hour is currently", String.valueOf(theHour1));
+            zero_hour.setAlpha(1f);
+        }
+
 
         //Triggers onClick for 'Alarm Set' button
         set_alarm.setOnClickListener(new View.OnClickListener() {
@@ -75,13 +83,10 @@ public class MainActivity_set_alarm extends AppCompatActivity{
                     String hour;
                     int theHour = timePicker.getHour();
                     int theMinute = timePicker.getMinute();
-                    TextView zero_hour = (TextView) findViewById(R.id.zero_hour);
                     String minute = String.valueOf(timePicker.getMinute());
-                    zero_hour.setAlpha(0f);
-                    if (theHour<12) {
-                        zero_hour.setAlpha(1f);
 
-                }
+
+
                     calendar.set(Calendar.HOUR_OF_DAY, theHour); //need to make this 01
                     calendar.set(Calendar.MINUTE, theMinute);
 
