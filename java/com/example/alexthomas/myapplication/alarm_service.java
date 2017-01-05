@@ -75,11 +75,11 @@ public class alarm_service extends Service {
 
 
                 //Animation ghetto version
-                final Animation quoteRise1 = AnimationUtils.loadAnimation(this, R.anim.fade_in);
-                final Animation quoteRise2 = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+                //final Animation quoteRise1 = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+                //final Animation quoteRise2 = AnimationUtils.loadAnimation(this, R.anim.fade_in);
 
-                MainActivity.motivational_quote.startAnimation(quoteRise1);
-                MainActivity.quoter.startAnimation(quoteRise2);
+                //MainActivity.motivational_quote.startAnimation(quoteRise1);
+                //MainActivity.quoter.startAnimation(quoteRise2);
 
 
 
