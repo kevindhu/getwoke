@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Context;
@@ -55,6 +56,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+
+
+
 
         snooze_alarm = (Button) findViewById(R.id.alarm_off);
         content_main = (RelativeLayout) findViewById(R.id.content_main);
@@ -115,6 +121,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+        Typeface blockFonts = Typeface.createFromAsset(getAssets(),"fonts/Lato-Black.ttf");
+        TextClock clock = (TextClock) findViewById(R.id.textClock);
+        clock.setTypeface(blockFonts);
 
 
         //make a listener on the snooze_alarm on user click
