@@ -153,7 +153,7 @@ public class alarm_service extends Service {
             Intent alarm_intent = new Intent(alarm_service.this, alarm_receiver.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(alarm_service.this, 1, alarm_intent,
                     PendingIntent.FLAG_UPDATE_CURRENT);
-            alarmManager.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ 60000 ,pendingIntent);
+            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ 60000 ,pendingIntent);
 
             mediasong.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 

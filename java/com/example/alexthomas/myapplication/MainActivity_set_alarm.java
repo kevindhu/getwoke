@@ -111,7 +111,8 @@ public class MainActivity_set_alarm extends AppCompatActivity{
 
                     Toast.makeText(getApplicationContext(), "Your alarm is set!", Toast.LENGTH_SHORT).show();
 
-                    alarmManager.setExact(AlarmManager.RTC_WAKEUP, time ,pendingIntent);
+                    alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, time ,pendingIntent);
+
 
             }
         });
