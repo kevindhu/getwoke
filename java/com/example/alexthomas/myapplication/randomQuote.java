@@ -25,16 +25,11 @@ import android.widget.ArrayAdapter;
 import android.content.SharedPreferences;
 import java.util.*;
 import java.util.Random;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import android.util.Log;
 import android.app.Activity;
 import java.util.ArrayList;
 import java.util.List;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -45,6 +40,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.graphics.Typeface;
@@ -52,10 +49,9 @@ import android.widget.TextView;
 import android.widget.Spinner;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.content.SharedPreferences;
-import java.util.Arrays;
 
-public class randomQuote {
+
+public class randomQuote extends AppCompatActivity{
 
 
 
@@ -69,7 +65,7 @@ public class randomQuote {
     };
 
     String[][] Celebrity_quotes = {
-            {"lolol fvck normal people I'm a celebrity","Kanye West"},
+            {"George Bush doesn't care about black people","Kanye West"},
             {"Cinema reflects culture and there is no harm in adapting technology, but not at the cost of losing your originality.","Jackie Chan"},
             {"The best revenge is massive success","Frank Sinatra"},
             {"Nothing to me feels as good as laughing incredibly hard.", "Steven Carrell"},
@@ -108,6 +104,7 @@ public class randomQuote {
 
 
     public String[] quote_generator (String genre) {
+
 
         String[] answer = {};
         String[][][] original = {Entrepreneur_quotes, Celebrity_quotes, Author_quotes, Athlete_quotes, Anime_quotes};
@@ -157,6 +154,7 @@ public class randomQuote {
 
 
     public String[][] two_d_summer(String[][][] args) {
+
         String[][] sum = {};
         for(int i=0; i<args.length; i++) {
             sum = append(sum,args[i]);
@@ -167,12 +165,25 @@ public class randomQuote {
 
 
     public String[] solver(String[][] quote_array){
-        int rnd = new Random().nextInt(quote_array.length);
-        String[] quote_AuthorPair = new String[2];
+        SharedPreferences quote_id1 = getSharedPreferences("same", MODE_PRIVATE);
+        String message1 = quote_id1.getString("Message", "999999");
 
-        quote_AuthorPair[0] = quote_array[rnd][0];
-        quote_AuthorPair[1] = quote_array[rnd][1];
-        return quote_AuthorPair;
+
+        int rnd = new Random().nextInt(quote_array.length);
+        if (rnd != Integer.parseInt(message1)) {
+            SharedPreferences.Editor editor = quote_id1.edit();
+            editor.putString("Message",String.valueOf(rnd));
+            Log.e("new quote is index ", String.valueOf(rnd));
+            editor.apply();
+
+            String[] quote_AuthorPair = new String[2];
+            quote_AuthorPair[0] = quote_array[rnd][0];
+            quote_AuthorPair[1] = quote_array[rnd][1];
+            return quote_AuthorPair;
+        }
+        else {
+            return solver(quote_array);
+        }
     }
 
 }
