@@ -28,6 +28,10 @@ public class alarm_service extends Service {
     public static boolean control_RepeatingAlarm = true;
     private static boolean if_RepeatingAlarm = true;
     public static boolean already_Pressed = false;
+    public static boolean fromMainAlarm = false;
+    public static long interval = 0;
+    public static long alarm_schedule = 0;
+    public static boolean if_AlarmSchedule = false;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -37,21 +41,21 @@ public class alarm_service extends Service {
             try {
                 mediasong.stop();
                 mediasong.reset();
+                //alarm_service.fromMainAlarm = false;
+
             }
             catch (NullPointerException e){
                 Log.e("NullpointException", "e");
             }
             Log.e("cancel", "cancelled");
             isRunning = false;
-
             //if "alarm has not been reset" and "alarm has not been shut off automatically by music stopping"
                 //return OnStartCommand(intent,flag,startId)
         }
-
         else {
             //makes new quote, plays music
             alarm_service.isRunning = true;
-
+            //alarm_service.fromMainAlarm = false;
             //Sets whether alarm is repeating
             control_RepeatingAlarm = if_RepeatingAlarm;
             //Last Genre
@@ -100,8 +104,6 @@ public class alarm_service extends Service {
                 //activity.Animate_Text(MainActivity.motivational_quote,R.anim.fade_in,1000);
                 //activity.Animate_Text(MainActivity.quoter,R.anim.fade_in,1200);
 
-
-
             }
             catch(NullPointerException e) {
                     Log.e("MainActivity is closed", "Stored in sharedPref");
@@ -125,7 +127,7 @@ public class alarm_service extends Service {
 
             }
 
-            mediasong = MediaPlayer.create(alarm_service.this, R.raw.believeit);
+            mediasong = MediaPlayer.create(alarm_service.this, R.raw.motivationalmusic);
             //Plays song , for testing
             mediasong.start();
 
@@ -159,7 +161,7 @@ public class alarm_service extends Service {
             notificationManager.notify(0, mBuilder.build());
 
             //Starts REAL alarm.
-            start_Alarm(60000);
+            start_Alarm();
 
 
             //alarm snoozes automatically after song stops
@@ -221,7 +223,7 @@ public class alarm_service extends Service {
 
     public void alarm_restart(int timer) {
         //starts alarm again periodically
-        Log.e("alarm","auto restart");
+        Log.e("alarm","Start new repeating alarm");
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
@@ -229,17 +231,21 @@ public class alarm_service extends Service {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(alarm_service.this, 2, alarm_intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
-        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ timer ,pendingIntent);
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ this.interval ,pendingIntent);
     }
 
-    public void start_Alarm(int timer) {
+    public void start_Alarm() {
         //starts alarm again periodically
-        Log.e("alarm","auto restart");
+        if(this.if_AlarmSchedule){
+        Log.e("alarm","Start new alarm");
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         Intent alarm_intent = new Intent(alarm_service.this, alarm_receiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(alarm_service.this, 1, alarm_intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
-        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ timer,pendingIntent);
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ alarm_schedule,pendingIntent);
+        }
+        Log.e("Alarm Schedule", "Off");
+
     }
 
 }

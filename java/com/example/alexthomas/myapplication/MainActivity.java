@@ -11,28 +11,21 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.util.Log;
-import android.view.Window;
 import android.widget.DigitalClock;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
-import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Button;
 import android.graphics.Color;
-import org.w3c.dom.Text;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.os.Handler;
-import android.content.Context;
-import android.util.AttributeSet;
-import android.widget.TextView;
+
 
 
 
@@ -68,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
 
         final ImageView settings_feedback = (ImageView) findViewById(R.id.settings_feedback);
         settings_feedback.setAlpha(0f);
-
 
 
 
@@ -162,11 +154,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("isRunning", String.valueOf(alarm_service.isRunning));
                 Log.e("repeating_alarm", String.valueOf(repeating_alarm));
 
-
-
                 alarm_service.already_Pressed = true;
-
-
 
                 if(repeating_alarm){
                     Log.e("repeating_alarm", "True");
@@ -183,8 +171,7 @@ public class MainActivity extends AppCompatActivity {
                     if (!alarmUp && !alarm_service.isRunning ){
                     Toast.makeText(MainActivity.this, "The alarm is already off!",Toast.LENGTH_SHORT).show();
                 }
-                else if (alarmUp && !alarm_service.isRunning)
-                {
+                else if (alarmUp && !alarm_service.isRunning) {
                     //turns off Alarm
                     alarm_service.isRunning = true;
                     alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
@@ -200,8 +187,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Alarm unset.",Toast.LENGTH_SHORT).show();
                     Log.e("Cancelled for real", "Cancelled Intent");
                 }
-                else
-                {
+                else {
                     //Silences Alarm
                     alarm_service.isRunning = true;
 
