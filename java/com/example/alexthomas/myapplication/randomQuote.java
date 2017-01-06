@@ -54,7 +54,8 @@ import android.widget.ArrayAdapter;
 
 
 public class randomQuote extends AppCompatActivity{
-
+    public static int minlength = -1;
+    public static int maxlength = -1;
     public static int last_rand = -1;
 
 
@@ -230,11 +231,18 @@ public class randomQuote extends AppCompatActivity{
 
     public String[] solver(String[][] quote_array){
 
-        Log.e("Last_rand right now is ", String.valueOf(last_rand));
-
 
         int rnd = new Random().nextInt(quote_array.length);
-        if (rnd != last_rand) {
+
+        Log.e("Last_rand right now is ", String.valueOf(last_rand));
+        Log.e("quote","max length is "+maxlength);
+        Log.e("quote","min length is "+minlength);
+        Log.e("quote","length of rnd is " + quote_array[rnd][0].length());
+
+
+
+        if (rnd != last_rand && quote_array[rnd][0].length()<maxlength && quote_array[rnd][0].length()>minlength) {
+
             String[] quote_AuthorPair = new String[2];
             quote_AuthorPair[0] = quote_array[rnd][0];
             Log.e("first","value is set to "+String.valueOf(quote_array[rnd][0]));

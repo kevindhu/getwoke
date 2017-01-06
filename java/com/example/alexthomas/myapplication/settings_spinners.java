@@ -139,12 +139,19 @@ public class settings_spinners extends AppCompatActivity {
                 randomQuote Quote = new randomQuote();
                 //Chooses size of quotes from quotes_length_spinner
                 storeValue("Quote Length",spinner_quote_length);
+                Log.e("new","min and max length set");
                 switch (String.valueOf(spinner_quote_length.getSelectedItem())) {
                     case "Medium":
+                        randomQuote.minlength = 101;
+                        randomQuote.maxlength = 200;
                         break;
                     case "Long":
+                        randomQuote.minlength = 201;
+                        randomQuote.maxlength = 1000;
                         break;
                     case "Short":
+                        randomQuote.minlength = 0;
+                        randomQuote.maxlength = 100;
                         break;
                     default:
                         break;

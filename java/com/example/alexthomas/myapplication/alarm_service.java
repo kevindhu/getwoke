@@ -62,6 +62,7 @@ public class alarm_service extends Service {
             Log.e("alright","Generating new quote with genre set to "+genre);
             quote = newQuote.quote_generator(genre);
             saverandInt();
+            saveMaxMin();
 
             //Instantiates sharedPrefs and saves quote/quoter
             SharedPreferences sharedPref_quote = getSharedPreferences("Quote", MODE_PRIVATE);
@@ -209,6 +210,18 @@ public class alarm_service extends Service {
         editor_alarm_unset.putInt("Int", randomQuote.last_rand);
         editor_alarm_unset.apply();
     }
+
+    public void saveMaxMin() {
+        SharedPreferences sharedPref_max = getSharedPreferences("Max", MODE_PRIVATE);
+        SharedPreferences sharedPref_min = getSharedPreferences("Min", MODE_PRIVATE);
+        SharedPreferences.Editor editor_max = sharedPref_max.edit();
+        SharedPreferences.Editor editor_min = sharedPref_min.edit();
+        editor_max.putInt("Max", randomQuote.maxlength);
+        editor_min.putInt("Min", randomQuote.minlength);
+        editor_max.apply();
+        editor_min.apply();
+    }
+
 
     public void alarm_restart() {
         //starts alarm again periodically

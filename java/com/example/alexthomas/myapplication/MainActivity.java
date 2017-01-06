@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         quoter = (TextView) findViewById(R.id.quoter);
         quoter.setText(getQuoter());
         setRandInt();
+        setMaxMin();
 
         //Updates font
         font_changer(last_font); //invokes this class's font_changer
@@ -345,6 +346,15 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref_alarm_unset = getSharedPreferences("Random Int", MODE_PRIVATE);
         int new_int = sharedPref_alarm_unset.getInt("Int", -1);
         randomQuote.last_rand = new_int;
+    }
+
+    public void setMaxMin() {
+        SharedPreferences sharedPref_max = getSharedPreferences("Max", MODE_PRIVATE);
+        SharedPreferences sharedPref_min = getSharedPreferences("Min", MODE_PRIVATE);
+        int new_min = sharedPref_min.getInt("Max", -1);
+        int new_max = sharedPref_max.getInt("Min", -1);
+        randomQuote.maxlength = new_max;
+        randomQuote.minlength = new_min;
     }
 
 }
