@@ -121,6 +121,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginRight="0dp"
         android:background="@null"
+        android:alpha="0.7"
         android:layout_marginBottom="110dp" />
 
     <ImageView

@@ -122,7 +122,7 @@ public class alarm_service extends Service {
             }
 
 
-            mediasong = MediaPlayer.create(alarm_service.this, R.raw.believeit);
+            mediasong = MediaPlayer.create(alarm_service.this, R.raw.motivationalmusic);
             //Plays song , for testing
             mediasong.start();
 
