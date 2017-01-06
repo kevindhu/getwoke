@@ -67,6 +67,20 @@ public class MainActivity extends AppCompatActivity {
         settings_feedback.setAlpha(0f);
 
 
+        //Sets font on Clock
+        Typeface blockFonts = Typeface.createFromAsset(getAssets(), "fonts/Lato-Black.ttf");
+        DigitalClock clock = (DigitalClock) findViewById(R.id.textClock);
+        clock.setTypeface(blockFonts);
+
+
+
+
+
+
+
+
+        /////SHAREDPREF GETTERS/////
+
         //Captures font from previous session
         SharedPreferences sharedPref_font = getSharedPreferences("Font", MODE_PRIVATE);
         String last_font = sharedPref_font.getString("Message", "--Choose your Font--");
@@ -96,7 +110,13 @@ public class MainActivity extends AppCompatActivity {
         background_changer(last_background);
 
 
-        //Adds Button Functionality
+
+
+
+
+        /////LISTENERS/////
+
+        //Sets Listener on Set Alarm Button
         Button set_alarm = (Button) findViewById(R.id.set_alarm);
         set_alarm.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -105,13 +125,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
+        //Sets Listener on Settings Button
         ImageButton true_settings = (ImageButton) findViewById(R.id.settings_button);
         true_settings.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 settings_feedback.setAlpha(1f);
                 launchActivity();
-
-
                 Handler handler1 = new Handler();
                 handler1.postDelayed(new Runnable() {
                     @Override
@@ -123,6 +144,8 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+
+        //Sets Listener on Share Button
         ImageButton share_facebook = (ImageButton) findViewById(R.id.share_button);
         share_facebook.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -133,9 +156,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        Typeface blockFonts = Typeface.createFromAsset(getAssets(), "fonts/Lato-Black.ttf");
-        DigitalClock clock = (DigitalClock) findViewById(R.id.textClock);
-        clock.setTypeface(blockFonts);
+
+
+
+
 
         powerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,6 +225,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
+
+
+
         //make a listener on the snooze_alarm on user click
         snooze_alarm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -248,16 +277,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
+        /////START ANIMATION/////
         logo = (ImageView) findViewById(R.id.getWoke);
 
-        //Animations!
+        //Animate the Quote/Quoter and Logo
         Animate_Text(motivational_quote, R.anim.fade_in, 1000);
         Animate_Text(quoter, R.anim.fade_in, 1250);
         Animate_Image(logo, R.anim.logo_rise);
     }
 
 
-    //animation
+
+
+
+    /////ANIMATION METHODS/////
     public void Animate_Text(final TextView text, int animation, int delay) {
         final Animation quoteRise = AnimationUtils.loadAnimation(this, animation);
         //zero alpha in the beginning
@@ -281,6 +316,8 @@ public class MainActivity extends AppCompatActivity {
         image.startAnimation(imageRise);
     }
 
+    ////LAUNCHERS/////
+
 
     //launch the settings
     private void launchActivity() {
@@ -294,21 +331,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //Gets previous time
-    private String getInput() {
-        if (lastTimerisNull) {
-            SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
-            String message = sharedPref.getString("Message", "Your alarm is unset");
-            Log.e("message", message);
-            return message;
-        } else {
-            return "Your alarm is unset.";
-        }
-
-    }
 
 
-    ////DEFINITELY CHANGE THIS FOR OPTIMIZATION
+
+
+
+
+    /////Feature Changers/////
 
     public void background_changer(String background) {
         switch (background) {
@@ -348,6 +377,27 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+
+
+
+
+
+
+
+    /////GETTERS/////
+
+    //Gets previous time
+    private String getInput() {
+        if (lastTimerisNull) {
+            SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
+            String message = sharedPref.getString("Message", "Your alarm is unset");
+            Log.e("message", message);
+            return message;
+        } else {
+            return "Your alarm is unset.";
+        }
+    }
+
 
     private String getQuote() {
         SharedPreferences sharedPref = getSharedPreferences("Quote", MODE_PRIVATE);
