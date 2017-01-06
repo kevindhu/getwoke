@@ -63,7 +63,9 @@ public class randomQuote extends AppCompatActivity{
             {"Success is a lousy teacher. It seduces smart people into thinking they can't lose.", "Bill Gates"},
             {"The biggest risk is not taking any risk... In a world that changing really quickly, the only strategy that is guaranteed to fail is not taking risks.", "Mark Zuckerberg"},
             {"Patience is a virtue, and I'm learning patience. It's a tough lesson.", "Elon Musk"},
-            {"Your time is limited, so don’t waste it living someone else’s life.", "Steve Jobs"}
+            {"Your time is limited, so don’t waste it living someone else’s life.", "Steve Jobs"},
+            {"Failure is the opportunity to begin more intelligently","Henry Ford"}
+
     };
 
     String[][] Celebrity_quotes = {
@@ -120,6 +122,8 @@ public class randomQuote extends AppCompatActivity{
             {"The most beautiful thing we can experience is the mysterious. It is the source of all true art and science.", "Albert Einsten"},
             {"An unexamined life is not worth living.", "Socrates"},
             {"To find yourself, think for yourself.", "Socrates"},
+            {"Live as if you were to die tomorrow","Learn as if you were to live forever","Mahatma Gandhi"},
+            {"And those who were seen dancing were thought to be insane by those who could not hear the music", "Friedrich Nietzche"},
             {"I love those who can smile in trouble, who can gather strength from distress, and grow brave by reflection. 'Tis the business of little minds to shrink, but they whose heart is firm, and whose conscience approves their conduct, will pursue their principles unto death.","Leonardo DaVinci"}
 
 
@@ -143,7 +147,7 @@ public class randomQuote extends AppCompatActivity{
             {"The point is not to pay back kindness but to pass it on.", "Julia Alvarez"},
             {"We can never give up longing and wishing while we are thoroughly alive. There are certain things we feel to be beautiful and good, and we must hunger after them.","George Eliot, The Mill on the Floss"},
             {"We must have ideals and try to live up to them, even if we never quite succeed. Life would be a sorry business without them. With them it's grand and great.","Lucy Maude Montgomery, Ann of Avonlea"},
-            {"[I]f you are interested in something, no matter what it is, go at it at full speed ahead. Embrace it with both arms, hug it, love it and above all become passionate about it. Lukewarm is no good. Hot is no good either. White hot and passionate is the only thing to be.", "Roald Dahl, My Uncle Oswald"},
+            {"If you are interested in something, no matter what it is, go at it at full speed ahead. Embrace it with both arms, hug it, love it and above all become passionate about it. Lukewarm is no good. Hot is no good either. White hot and passionate is the only thing to be.", "Roald Dahl, My Uncle Oswald"},
             {"It does not do to dwell on dreams and forget to live, remember that.", "J.K. Rowling, Harry Potter and the Sorcerer's Stone"},
             {"Cherish your friends, stay true to your principles, live passionately and fully and well. Experience new things. Love and be loved, if you ever get the chance.", "David Nicholls, One Day"}
 
@@ -152,10 +156,11 @@ public class randomQuote extends AppCompatActivity{
     String[][] meme_quotes = {
             {"I have never seen a thin person drinking  Diet Coke.","Donald Trump"},
             {"You know, it really doesn’t matter what the media write as long as you’ve got a young, and beautiful, piece of ass.","Donald Trump"},
-            {"The beauty of me is that I’m very rich.","Donald Trump"}
-
-
-
+            {"The beauty of me is that I’m very rich.","Donald Trump"},
+            {"I can't belive my grand mothers making me take Out the garbage I'm rich fuck this I'm going home I don't need this shit","50 Cent"},
+            {"I always lick my lips when I see a child look at me because they need to realize there are bad people in this world","Jordan the Twitter guy"},
+            {"I STRAIGHT UP HAVE NO IDEA HOW PORCUPINES FUCK EACH OTHER","Bill Nye Tho"},
+            {"Don't let what other people think of you stop you from doing what you love","Adolf Hitler"}
     };
 
 
