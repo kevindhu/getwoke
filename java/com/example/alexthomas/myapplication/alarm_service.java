@@ -169,18 +169,18 @@ public class alarm_service extends Service {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
                     Log.e("already_Pressed", String.valueOf(already_Pressed));
-                    if(control_RepeatingAlarm  && !already_Pressed){
-                    //Log.e("Setting", "Text Automatically to Alarm Off");
-                    //MainActivity.snooze_alarm.setText("Alarm Off");
+                    //if(control_RepeatingAlarm  && !already_Pressed){
+                    Log.e("Setting", "Text Automatically to Alarm Off");
+                    MainActivity.snooze_alarm.setText("Alarm Off");
                     alarm_service.isRunning = false;
                     alarm_restart(6000);
                     }
-                    else {
+                    /*else {
                         MainActivity.snooze_alarm.setText("Alarm Off");
                         Log.e("Not repeating", "This alarm does not repeat");
                         control_RepeatingAlarm = if_RepeatingAlarm;
                         already_Pressed = false;
-                    }
+                    }*/
                 }
 
             });

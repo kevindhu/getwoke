@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Checks whether MAIN alarm is pending
                 Log.e("Test", "Test1");
-                this.powerButton_on = !this.powerButton_on;
+                //powerButton_on = !powerButton_on;
 
                 boolean alarmUp = (PendingIntent.getBroadcast(MainActivity.this, 1,
                         new Intent(MainActivity.this, alarm_receiver.class),
