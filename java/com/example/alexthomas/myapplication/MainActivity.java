@@ -28,6 +28,8 @@ import android.os.Handler;
 
 import java.util.Calendar;
 
+import static java.lang.StrictMath.abs;
+
 
 public class MainActivity extends AppCompatActivity {
     public static String genre = "null";
@@ -178,8 +180,9 @@ public class MainActivity extends AppCompatActivity {
                     long time = calendar.getTimeInMillis();
                     alarm_confirmation.setText(getInput());
                     AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-                    alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, time, pendingIntent);
+                    alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, adjustTime(time), pendingIntent);
                     lastTimerisNull = false;
+
                 }
                 //When alarm has a pending alarm and user turns it off
                 else if (alarmUp && !powerButton_on) {
@@ -391,6 +394,19 @@ public class MainActivity extends AppCompatActivity {
         int new_max = sharedPref_max.getInt("Min", 10000);
         randomQuote.maxlength = new_max;
         randomQuote.minlength = new_min;
+    }
+
+    private long adjustTime(long time){
+        if ((abs(System.currentTimeMillis() - time) < 60000)
+                && (System.currentTimeMillis() > time)) {
+            return time;
+        } else if (System.currentTimeMillis() > time) {
+
+            return 86400000 + System.currentTimeMillis();
+        } else {
+
+            return time;
+        }
     }
 
 
