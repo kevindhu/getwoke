@@ -41,21 +41,16 @@ public class alarm_service extends Service {
             try {
                 mediasong.stop();
                 mediasong.reset();
-                //alarm_service.fromMainAlarm = false;
-
             }
             catch (NullPointerException e){
                 Log.e("NullpointException", "e");
             }
             Log.e("cancel", "cancelled");
             isRunning = false;
-            //if "alarm has not been reset" and "alarm has not been shut off automatically by music stopping"
-                //return OnStartCommand(intent,flag,startId)
         }
+
+
         else {
-            //makes new quote, plays music
-
-
             alarm_service.isRunning = true;
             //Sets whether alarm is repeating
             control_RepeatingAlarm = if_RepeatingAlarm;
@@ -80,34 +75,33 @@ public class alarm_service extends Service {
             editor_quote.apply();
             editor_quoter.apply();
 
-
-
-
             //Sets the text to the new quote generated and Catches whether MainActivity is closed when changing quote/quoter text
             try {
                 //sets text
                 MainActivity.motivational_quote.setText(quote[0]);
                 MainActivity.quoter.setText(quote[1]);
-
-
                 //Animation ghetto version
                 final Animation quoteRise1 = AnimationUtils.loadAnimation(this, R.anim.fade_in);
                 final Animation quoteRise2 = AnimationUtils.loadAnimation(this, R.anim.fade_in);
-
                 MainActivity.motivational_quote.startAnimation(quoteRise1);
                 MainActivity.quoter.startAnimation(quoteRise2);
-
-
-                //Animation better version that DOESN'T WORK
-                //MainActivity activity = new MainActivity();
-                //activity.Animate_Text(MainActivity.motivational_quote,R.anim.fade_in,1000);
-                //activity.Animate_Text(MainActivity.quoter,R.anim.fade_in,1200);
-
             }
             catch(NullPointerException e) {
                     Log.e("MainActivity is closed", "Stored in sharedPref");
-
             }
+
+
+
+            //Starts Playing Music
+            mediasong = MediaPlayer.create(alarm_service.this, R.raw.believeit);
+            mediasong.start();
+
+            //Starts Main Alarm
+            start_Alarm();
+
+
+
+
 
 
             //Catches whether MainActivity is closed when changing text to 'silence alarm', if so, stores in sharedpref
@@ -126,44 +120,11 @@ public class alarm_service extends Service {
 
             }
 
-            mediasong = MediaPlayer.create(alarm_service.this, R.raw.believeit);
-            //Plays song , for testing
-            mediasong.start();
 
 
-            //Notification manager
-            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-            //Intent to MainActivity
-
-            //Notification
-            Intent intent_mainactivity = new Intent(this, MainActivity.class);
-
-            intent_mainactivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-                    | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-
-            PendingIntent pendingIntent_mainactivity = PendingIntent.getActivity(
-                    getApplicationContext(),
-                    2,
-                    intent_mainactivity,
-                    PendingIntent.FLAG_UPDATE_CURRENT);
 
 
-            NotificationCompat.Builder mBuilder =
-                    new NotificationCompat.Builder(this)
-                            .setSmallIcon(R.drawable.gw_logo)
-                            .setVisibility(0)
-                            .setAutoCancel(true)
-                            .setContentIntent(pendingIntent_mainactivity)
-                            .setContentTitle("Get Woke")
-                            .setContentText(quote[0] + " - " + quote[1]);
-
-            notificationManager.notify(0, mBuilder.build());
-
-            //Starts REAL alarm.
-            start_Alarm();
-
-
-            //alarm snoozes automatically after song stops
+            //Alarm snoozes automatically after song stops if snooze feature is on
             mediasong.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
@@ -171,7 +132,7 @@ public class alarm_service extends Service {
                     //Log.e("Setting", "Text Automatically to Alarm Off");
                     MainActivity.snooze_alarm.setText("I'm Woke!");
                     alarm_service.isRunning = false;
-                    alarm_restart();
+                    snooze_restart();
                     }
                     else {
                         MainActivity.snooze_alarm.setText("Alarm Off");
@@ -183,11 +144,45 @@ public class alarm_service extends Service {
 
             });
 
+
+
+
+            //Notification manager
+            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            Intent intent_mainactivity = new Intent(this, MainActivity.class);
+            intent_mainactivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+            PendingIntent pendingIntent_mainactivity = PendingIntent.getActivity(
+                    getApplicationContext(), 2, intent_mainactivity, PendingIntent.FLAG_UPDATE_CURRENT);
+
+            NotificationCompat.Builder mBuilder =
+                    new NotificationCompat.Builder(this)
+                            .setSmallIcon(R.drawable.gw_logo)
+                            .setVisibility(0)
+                            .setAutoCancel(true)
+                            .setContentIntent(pendingIntent_mainactivity)
+                            .setContentTitle("Get Woke")
+                            .setContentText(quote[0] + " - " + quote[1]);
+
+            notificationManager.notify(0, mBuilder.build());
             }
-
             return START_NOT_STICKY;
-
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @Nullable
     @Override
@@ -219,8 +214,8 @@ public class alarm_service extends Service {
     }
 
 
-    public void alarm_restart() {
-        //starts alarm again periodically
+    public void snooze_restart() {
+        //snooze restart
         Log.e("alarm","Start new repeating alarm");
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -231,6 +226,8 @@ public class alarm_service extends Service {
 
         alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ this.interval ,pendingIntent);
     }
+
+
 
     public void start_Alarm() {
         //starts alarm again periodically

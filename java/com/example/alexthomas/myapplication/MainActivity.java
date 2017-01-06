@@ -150,8 +150,6 @@ public class MainActivity extends AppCompatActivity {
         share_facebook.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 //launch share to facebook page
-
-
             }
         });
 
@@ -161,6 +159,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
+
+        //make a listener on the Power Button
         powerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -206,8 +208,9 @@ public class MainActivity extends AppCompatActivity {
                     AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
                     alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, adjustTime(time), pendingIntent);
                     lastTimerisNull = false;
-
                 }
+
+
                 //When alarm has a pending alarm and user turns it off
                 else if (alarmUp && !powerButton_on) {
                     Log.e("Conditional", "4");
@@ -230,7 +233,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //make a listener on the snooze_alarm on user click
+
+
+        //make a listener on the Snooze Button
         snooze_alarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -279,6 +284,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         /////START ANIMATION/////
         logo = (ImageView) findViewById(R.id.getWoke);
 
@@ -317,7 +323,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     ////LAUNCHERS/////
-
 
     //launch the settings
     private void launchActivity() {
