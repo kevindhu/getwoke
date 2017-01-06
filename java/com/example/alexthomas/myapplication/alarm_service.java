@@ -65,6 +65,8 @@ public class alarm_service extends Service {
             SharedPreferences sharedPref_quoter = getSharedPreferences("Quoter", MODE_PRIVATE);
             SharedPreferences.Editor editor_quote = sharedPref_quote.edit();
             SharedPreferences.Editor editor_quoter = sharedPref_quoter.edit();
+
+            //catch this
             editor_quote.putString("Quote", quote[0]);
             editor_quoter.putString("Quoter", quote[1]);
             editor_quote.apply();
