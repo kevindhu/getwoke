@@ -128,6 +128,7 @@ public class settings_spinners extends AppCompatActivity {
         spinner_genre = (Spinner) findViewById(R.id.genre_spinner);
         spinner_backgrounds = (Spinner) findViewById(R.id.spinner_backgrounds);
         spinner_repeating_intervals = (Spinner) findViewById(R.id.spinner_intervals);
+        spinner_alarm_schedule = (Spinner) findViewById(R.id.spinner_alarm_schedule);
 
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
         btnSubmit.setOnClickListener(new OnClickListener() {
