@@ -149,6 +149,18 @@ public class randomQuote extends AppCompatActivity{
 
     };
 
+    String[][] meme_quotes = {
+            {"I have never seen a thin person drinking  Diet Coke.","Donald Trump"},
+            {"You know, it really doesn’t matter what the media write as long as you’ve got a young, and beautiful, piece of ass.","Donald Trump"},
+            {"The beauty of me is that I’m very rich.","Donald Trump"}
+
+
+
+    };
+
+
+
+
     String[] error = {"No genre found!","No author found!"};
 
 
@@ -205,6 +217,8 @@ public class randomQuote extends AppCompatActivity{
             case "Book Quotes":
                 answer = solver(Book_quotes);
                 return answer;
+            case "Meme Quotes":
+                answer = solver(meme_quotes);
             default:
                 break;
             } return answer;

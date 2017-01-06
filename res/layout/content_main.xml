@@ -24,7 +24,7 @@
         android:layout_marginTop="-20dp"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="50dp" />
+        android:textSize="65dp" />
 
 
     <TextView
@@ -64,6 +64,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/motivationalQuote"
                 android:layout_width="match_parent"
@@ -74,9 +75,11 @@
                 android:textColor="#FFFFFF"
                 android:textSize="30dp"
                 android:typeface="sans"
+                android:layout_marginTop="13dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
+
 
             <TextView
                 android:id="@+id/quoter"
