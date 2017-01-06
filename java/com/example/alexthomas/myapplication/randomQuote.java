@@ -169,6 +169,17 @@ public class randomQuote extends AppCompatActivity{
 
         String[][] sum = two_d_summer(original);
 
+
+
+
+        if (genre.equals("--Choose your Genres--")) {
+            genre = "All Genres";
+            Log.e("Default","changed to All genres");
+        }
+
+
+
+
         switch (genre) {
             case "--Choose your Genres--":
                 answer = solver(sum);
