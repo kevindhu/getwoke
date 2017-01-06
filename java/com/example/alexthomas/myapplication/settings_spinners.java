@@ -201,18 +201,6 @@ public class settings_spinners extends AppCompatActivity {
                         alarm_service.alarm_schedule = 0;
                         alarm_service.if_AlarmSchedule = false;
                         break;
-                    case "15 Minutes":
-                        alarm_service.alarm_schedule = AlarmManager.INTERVAL_FIFTEEN_MINUTES;
-                        alarm_service.if_AlarmSchedule = true;
-                        break;
-                    case "30 Minutes":
-                        alarm_service.alarm_schedule = AlarmManager.INTERVAL_FIFTEEN_MINUTES + AlarmManager.INTERVAL_FIFTEEN_MINUTES;
-                        alarm_service.if_AlarmSchedule = true;
-                        break;
-                    case "1 Hour":
-                        alarm_service.alarm_schedule = AlarmManager.INTERVAL_HOUR;
-                        alarm_service.if_AlarmSchedule = true;
-                        break;
                     case "12 Hours":
                         alarm_service.alarm_schedule = AlarmManager.INTERVAL_HALF_DAY;
                         alarm_service.if_AlarmSchedule = true;
@@ -225,8 +213,6 @@ public class settings_spinners extends AppCompatActivity {
                         break;
 
                 }
-
-
 
                 //Chooses genre
                 storeValue("Genres",spinner_genre);

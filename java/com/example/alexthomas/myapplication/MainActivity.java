@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     public static Button snooze_alarm;
     public static RelativeLayout content_main;
     public static Context context;
+    public Button powerButton;
+    public static Boolean powerButton_on;
 
 
     @Override
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         snooze_alarm = (Button) findViewById(R.id.alarm_off);
+        powerButton = (Button) findViewById(R.id.powerbutton);
         content_main = (RelativeLayout) findViewById(R.id.content_main);
 
 
@@ -135,22 +138,50 @@ public class MainActivity extends AppCompatActivity {
         DigitalClock clock = (DigitalClock) findViewById(R.id.textClock);
         clock.setTypeface(blockFonts);
 
+        powerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Checks whether MAIN alarm is pending
+                Log.e("Test", "Test1");
+                this.powerButton_on = !this.powerButton_on;
+
+                boolean alarmUp = (PendingIntent.getBroadcast(MainActivity.this, 1,
+                        new Intent(MainActivity.this, alarm_receiver.class),
+                        PendingIntent.FLAG_NO_CREATE) != null);
+
+                if (!alarmUp && !powerButton_on && !alarm_service.isRunning){
+                    Toast.makeText(MainActivity.this, "The alarm is already off!",Toast.LENGTH_SHORT).show();
+                }
+                else if (alarmUp && !powerButton_on){
+
+                    alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
+                    pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
+                            PendingIntent.FLAG_UPDATE_CURRENT);
+                    sendBroadcast(alarm_intent);
+                    pendingIntent.cancel();
+                    SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putString("Message", "Your alarm is unset.");
+                    editor.apply();
+                    alarm_confirmation.setText("Your alarm is unset.");
+                    Toast.makeText(MainActivity.this, "Alarm unset.",Toast.LENGTH_SHORT).show();
+                    Log.e("Cancelled for real", "Cancelled Intent");
+                }
+
+            }
+        });
+
 
         //make a listener on the snooze_alarm on user click
         snooze_alarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
 
-                //Checks whether MAIN alarm is pending
-                boolean alarmUp = (PendingIntent.getBroadcast(MainActivity.this, 1,
-                        new Intent(MainActivity.this, alarm_receiver.class),
-                        PendingIntent.FLAG_NO_CREATE) != null);
                 //Checks whether REPEATING alarm is on
                 boolean repeating_alarm = (PendingIntent.getBroadcast(MainActivity.this, 2,
                         new Intent(MainActivity.this, alarm_receiver.class),
                         PendingIntent.FLAG_NO_CREATE) != null);
 
-                Log.e("alarmUP", String.valueOf(alarmUp));
                 Log.e("isRunning", String.valueOf(alarm_service.isRunning));
                 Log.e("repeating_alarm", String.valueOf(repeating_alarm));
 
@@ -168,24 +199,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{
                     alarm_service.already_Pressed = false;
-                    if (!alarmUp && !alarm_service.isRunning ){
-                    Toast.makeText(MainActivity.this, "The alarm is already off!",Toast.LENGTH_SHORT).show();
-                }
-                else if (alarmUp && !alarm_service.isRunning) {
-                    //turns off Alarm
-                    alarm_service.isRunning = true;
-                    alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
-                    pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
-                            PendingIntent.FLAG_UPDATE_CURRENT);
-                    sendBroadcast(alarm_intent);
-                    pendingIntent.cancel();
-                    SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putString("Message", "Your alarm is unset.");
-                    editor.apply();
-                    alarm_confirmation.setText("Your alarm is unset.");
-                    Toast.makeText(MainActivity.this, "Alarm unset.",Toast.LENGTH_SHORT).show();
-                    Log.e("Cancelled for real", "Cancelled Intent");
+                    if (!alarm_service.isRunning ){
+                    Toast.makeText(MainActivity.this, "The alarm is already silenced!",Toast.LENGTH_SHORT).show();
                 }
                 else {
                     //Silences Alarm
@@ -247,12 +262,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
     //launch the settings
     private void launchActivity() {
         Intent intent = new Intent(MainActivity.this, settings_spinners.class);
@@ -295,7 +304,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-
 
 
 
