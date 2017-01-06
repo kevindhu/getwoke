@@ -45,10 +45,6 @@ public class alarm_service extends Service {
                 //return OnStartCommand(intent,flag,startId)
         }
 
-
-
-
-
         else {
             //makes new quote, plays music
             alarm_service.isRunning = true;
@@ -122,25 +118,14 @@ public class alarm_service extends Service {
 
             }
 
-
-            mediasong = MediaPlayer.create(alarm_service.this, R.raw.motivationalmusic);
+            mediasong = MediaPlayer.create(alarm_service.this, R.raw.believeit);
             //Plays song , for testing
             mediasong.start();
-
-
-
-
-
-
-
-
-
 
 
             //Notification manager
             NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
             //Intent to MainActivity
-
 
             //Notification
             Intent intent_mainactivity = new Intent(this, MainActivity.class);
@@ -169,11 +154,6 @@ public class alarm_service extends Service {
 
 
 
-
-
-
-
-
             //alarm snoozes automatically after song stops
             mediasong.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -181,13 +161,12 @@ public class alarm_service extends Service {
                     Log.e("Setting", "Text Automatically to Alarm Off");
                     MainActivity.snooze_alarm.setText("Alarm Off");
                     alarm_service.isRunning = false;
-                    alarm_restart();
+                    alarm_restart(6000);
                 }
 
             });
 
             }
-
 
             return START_NOT_STICKY;
 
@@ -223,7 +202,7 @@ public class alarm_service extends Service {
     }
 
 
-    public void alarm_restart() {
+    public void alarm_restart(int timer) {
         //starts alarm again periodically
         Log.e("alarm","auto restart");
 
@@ -235,7 +214,7 @@ public class alarm_service extends Service {
 
 
 
-        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ 6000 ,pendingIntent);
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ timer ,pendingIntent);
     }
 
 }
