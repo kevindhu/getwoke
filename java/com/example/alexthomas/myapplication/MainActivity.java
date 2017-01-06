@@ -149,13 +149,38 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
 
+                //Checks whether MAIN alarm is pending
                 boolean alarmUp = (PendingIntent.getBroadcast(MainActivity.this, 1,
                         new Intent(MainActivity.this, alarm_receiver.class),
                         PendingIntent.FLAG_NO_CREATE) != null);
+                //Checks whether REPEATING alarm is on
+                boolean repeating_alarm = (PendingIntent.getBroadcast(MainActivity.this, 2,
+                        new Intent(MainActivity.this, alarm_receiver.class),
+                        PendingIntent.FLAG_NO_CREATE) != null);
+
                 Log.e("alarmUP", String.valueOf(alarmUp));
                 Log.e("isRunning", String.valueOf(alarm_service.isRunning));
+                Log.e("repeating_alarm", String.valueOf(repeating_alarm));
 
-                if (!alarmUp && !alarm_service.isRunning ){
+
+
+                alarm_service.already_Pressed = true;
+
+
+
+                if(repeating_alarm){
+                    Log.e("repeating_alarm", "True");
+                    Intent repeating_alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
+                    PendingIntent repeating_pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 2, repeating_alarm_intent,
+                            PendingIntent.FLAG_UPDATE_CURRENT);
+                    alarm_service.control_RepeatingAlarm = false;
+                    alarm_service.already_Pressed = false;
+                    repeating_pendingIntent.cancel();
+                    snooze_alarm.setText("Alarm Off");
+                }
+                else{
+                    alarm_service.already_Pressed = false;
+                    if (!alarmUp && !alarm_service.isRunning ){
                     Toast.makeText(MainActivity.this, "The alarm is already off!",Toast.LENGTH_SHORT).show();
                 }
                 else if (alarmUp && !alarm_service.isRunning)
@@ -177,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    //Snoozes Alarm
+                    //Silences Alarm
                     alarm_service.isRunning = true;
 
                     //starts periodic
@@ -187,15 +212,16 @@ public class MainActivity extends AppCompatActivity {
                     sendBroadcast(alarm_intent);
                     Log.e("Cancel service", "Silenced");
                     snooze_alarm.setText("Alarm Off");
-                    AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-                    alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ 6000 ,pendingIntent);
-
-
+                    //AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+                    //alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ 6000 ,pendingIntent);
 
 
                 }
-            }
+            }}
+
         });
+
+
 
 
         logo = (ImageView) findViewById(R.id.getWoke);

@@ -25,6 +25,9 @@ public class alarm_service extends Service {
     private MediaPlayer mediasong;
     String[] quote;
     public static String genre;
+    public static boolean control_RepeatingAlarm = true;
+    private static boolean if_RepeatingAlarm = true;
+    public static boolean already_Pressed = false;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -49,6 +52,8 @@ public class alarm_service extends Service {
             //makes new quote, plays music
             alarm_service.isRunning = true;
 
+            //Sets whether alarm is repeating
+            control_RepeatingAlarm = if_RepeatingAlarm;
             //Last Genre
             SharedPreferences sharedPref_genres = getSharedPreferences("Genres", MODE_PRIVATE);
             String genre = sharedPref_genres.getString("Message", "All Genres");
@@ -153,17 +158,27 @@ public class alarm_service extends Service {
 
             notificationManager.notify(0, mBuilder.build());
 
-
+            //Starts REAL alarm.
+            start_Alarm(60000);
 
 
             //alarm snoozes automatically after song stops
             mediasong.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
-                    Log.e("Setting", "Text Automatically to Alarm Off");
-                    MainActivity.snooze_alarm.setText("Alarm Off");
+                    Log.e("already_Pressed", String.valueOf(already_Pressed));
+                    if(control_RepeatingAlarm  && !already_Pressed){
+                    //Log.e("Setting", "Text Automatically to Alarm Off");
+                    //MainActivity.snooze_alarm.setText("Alarm Off");
                     alarm_service.isRunning = false;
                     alarm_restart(6000);
+                    }
+                    else {
+                        MainActivity.snooze_alarm.setText("Alarm Off");
+                        Log.e("Not repeating", "This alarm does not repeat");
+                        control_RepeatingAlarm = if_RepeatingAlarm;
+                        already_Pressed = false;
+                    }
                 }
 
             });
@@ -211,12 +226,20 @@ public class alarm_service extends Service {
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
         Intent alarm_intent = new Intent(alarm_service.this, alarm_receiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(alarm_service.this, 1, alarm_intent,
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(alarm_service.this, 2, alarm_intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
-
-
         alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ timer ,pendingIntent);
+    }
+
+    public void start_Alarm(int timer) {
+        //starts alarm again periodically
+        Log.e("alarm","auto restart");
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        Intent alarm_intent = new Intent(alarm_service.this, alarm_receiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(alarm_service.this, 1, alarm_intent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ timer,pendingIntent);
     }
 
 }
