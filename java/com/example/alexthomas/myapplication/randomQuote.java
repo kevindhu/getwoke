@@ -181,7 +181,7 @@ public class randomQuote extends AppCompatActivity{
 
 
         switch (genre) {
-            case "--Choose your Genres--":
+            case "All Genres":
                 answer = solver(sum);
                 return answer;
             case "Entrepreneur":
