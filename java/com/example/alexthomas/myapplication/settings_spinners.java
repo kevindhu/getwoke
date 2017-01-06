@@ -76,7 +76,7 @@ public class settings_spinners extends AppCompatActivity {
     public void getSpinnerEntries(String item, Spinner spinner, String[] args, int XMLSpinner) {
         //shared preferences
         SharedPreferences sharedPref = getSharedPreferences(item, MODE_PRIVATE);
-        String message = sharedPref.getString("Message", "Default " + item);
+        String message = sharedPref.getString("Message", "Choose your " + item);
         spinner = (Spinner) findViewById(XMLSpinner);
 
         List<String> new_item = new ArrayList<String>();

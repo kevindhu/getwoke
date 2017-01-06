@@ -74,12 +74,12 @@ public class MainActivity extends AppCompatActivity {
 
         //Captures font from previous session
         SharedPreferences sharedPref_font = getSharedPreferences("Font", MODE_PRIVATE);
-        String last_font = sharedPref_font.getString("Message", "Default Font");
+        String last_font = sharedPref_font.getString("Message", "Choose your Font");
 
 
         //Captures background from previous session
         SharedPreferences sharedPref_background = getSharedPreferences("Backgrounds", MODE_PRIVATE);
-        String last_background = sharedPref_background.getString("Message", "Default Background");
+        String last_background = sharedPref_background.getString("Message", "Choose your Background");
 
         //Sets last configured time
         alarm_confirmation = (TextView) findViewById(R.id.alarm_confirmation);
@@ -335,7 +335,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String getBackground(){
         SharedPreferences sharedPref = getSharedPreferences("Backgrounds", MODE_PRIVATE);
-        String message = sharedPref.getString("Message", "Default");
+        String message = sharedPref.getString("Message", "Choose your Background");
         return message;
     }
 

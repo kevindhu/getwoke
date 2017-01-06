@@ -39,6 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/zero_hour"
+        android:visibility="gone"
         android:textSize="60sp"
         android:layout_marginTop="8sp"
         android:layout_alignParentTop="true"
