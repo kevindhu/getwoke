@@ -43,7 +43,7 @@ public class settings_spinners extends AppCompatActivity {
 
     private String[] fonts = {"Formal", "Roboto", "Weird"};
     private String[] genres ={"Entrepreneur", "Celebrity", "Author", "Athlete", "Anime", "Great Minds", "Book Quotes","All Genres"};
-    private String[] quote_length = {"Medium", "Short", "Long"};
+    private String[] quote_length = {"Medium", "Short", "Long","All Lengths"};
     private String[] backgrounds = {"Starry Clouds", "Starry Sky", "Vanilla"};
 
     @Override
@@ -152,6 +152,10 @@ public class settings_spinners extends AppCompatActivity {
                     case "Short":
                         randomQuote.minlength = 0;
                         randomQuote.maxlength = 100;
+                        break;
+                    case "All Lengths":
+                        randomQuote.minlength = 0;
+                        randomQuote.maxlength = 10000;
                         break;
                     default:
                         break;

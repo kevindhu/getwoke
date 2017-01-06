@@ -351,8 +351,8 @@ public class MainActivity extends AppCompatActivity {
     public void setMaxMin() {
         SharedPreferences sharedPref_max = getSharedPreferences("Max", MODE_PRIVATE);
         SharedPreferences sharedPref_min = getSharedPreferences("Min", MODE_PRIVATE);
-        int new_min = sharedPref_min.getInt("Max", -1);
-        int new_max = sharedPref_max.getInt("Min", -1);
+        int new_min = sharedPref_min.getInt("Max", 0);
+        int new_max = sharedPref_max.getInt("Min", 10000);
         randomQuote.maxlength = new_max;
         randomQuote.minlength = new_min;
     }

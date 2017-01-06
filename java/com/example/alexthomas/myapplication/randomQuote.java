@@ -54,8 +54,8 @@ import android.widget.ArrayAdapter;
 
 
 public class randomQuote extends AppCompatActivity{
-    public static int minlength = -1;
-    public static int maxlength = -1;
+    public static int minlength = 0;
+    public static int maxlength = 10000;
     public static int last_rand = -1;
 
 
