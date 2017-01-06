@@ -1,5 +1,6 @@
 package com.example.alexthomas.myapplication;
 
+import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -177,12 +178,20 @@ public class MainActivity extends AppCompatActivity {
                 {
                     //Snoozes Alarm
                     alarm_service.isRunning = true;
+
+                    //starts periodic
                     alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
                     pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
                             PendingIntent.FLAG_UPDATE_CURRENT);
                     sendBroadcast(alarm_intent);
                     Log.e("Cancel service", "Silenced");
                     snooze_alarm.setText("Alarm Off");
+                    AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+                    alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ 6000 ,pendingIntent);
+
+
+
+
                 }
             }
         });

@@ -77,7 +77,6 @@ public class MainActivity_set_alarm extends AppCompatActivity{
                     sendBroadcast(alarm_intent);
                     Log.e("Cancel service", "Cancelled");
                     pendingIntent.cancel();
-
                 }
 
                     String hour;
@@ -87,7 +86,7 @@ public class MainActivity_set_alarm extends AppCompatActivity{
 
 
 
-                    calendar.set(Calendar.HOUR_OF_DAY, theHour); //need to make this 01
+                    calendar.set(Calendar.HOUR_OF_DAY, theHour);
                     calendar.set(Calendar.MINUTE, theMinute);
 
                     //Triggers Alarm
@@ -145,7 +144,6 @@ public class MainActivity_set_alarm extends AppCompatActivity{
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         switch(item.getItemId()){
-
             case R.id.action_home:
                 finish();
                 return true;

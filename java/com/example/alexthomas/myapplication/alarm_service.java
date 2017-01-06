@@ -40,6 +40,9 @@ public class alarm_service extends Service {
             }
             Log.e("cancel", "cancelled");
             isRunning = false;
+
+            //if "alarm has not been reset" and "alarm has not been shut off automatically by music stopping"
+                //return OnStartCommand(intent,flag,startId)
         }
 
 
@@ -119,7 +122,7 @@ public class alarm_service extends Service {
             }
 
 
-            mediasong = MediaPlayer.create(alarm_service.this, R.raw.motivationalmusic);
+            mediasong = MediaPlayer.create(alarm_service.this, R.raw.believeit);
             //Plays song , for testing
             mediasong.start();
 
@@ -166,12 +169,6 @@ public class alarm_service extends Service {
 
 
 
-            //starts alarm again periodically
-            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-            Intent alarm_intent = new Intent(alarm_service.this, alarm_receiver.class);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(alarm_service.this, 1, alarm_intent,
-                    PendingIntent.FLAG_UPDATE_CURRENT);
-            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ 60000 ,pendingIntent);
 
 
 
@@ -183,6 +180,7 @@ public class alarm_service extends Service {
                     Log.e("Setting", "Text Automatically to Alarm Off");
                     MainActivity.snooze_alarm.setText("Alarm Off");
                     alarm_service.isRunning = false;
+                    alarm_restart();
                 }
 
             });
@@ -210,6 +208,21 @@ public class alarm_service extends Service {
         SharedPreferences.Editor editor_alarm_unset = sharedPref_alarm_unset.edit();
         editor_alarm_unset.putInt("Int", randomQuote.last_rand);
         editor_alarm_unset.apply();
+    }
+
+    public void alarm_restart() {
+        //starts alarm again periodically
+        Log.e("alarm","auto restart");
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+        Intent alarm_intent = new Intent(alarm_service.this, alarm_receiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(alarm_service.this, 1, alarm_intent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+
+
+
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ 6000 ,pendingIntent);
     }
 
 }
