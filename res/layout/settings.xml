@@ -25,16 +25,16 @@
         android:layout_marginBottom="5sp"
         />
 
-    <Spinner
-        android:id="@+id/quote_length_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="20dp">
-    </Spinner>
+        <Spinner
+            android:id="@+id/quote_length_spinner"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="20dp">
+        </Spinner>
 
-    <!-- Clock Font -->
+        <!-- Clock Font -->
     <TextView
         android:layout_width="146dp"
         android:layout_height="wrap_content"
@@ -49,9 +49,9 @@
 
     <Spinner
         android:id="@+id/fonts_spinner"
-        android:layout_width="match_parent"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginRight="50dp"
         android:layout_marginBottom="20dp"
         android:layout_weight="0.05">
@@ -76,9 +76,9 @@
 
     <Spinner
         android:id="@+id/genre_spinner"
-        android:layout_width="match_parent"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginRight="50dp"
         android:layout_marginBottom="20dp"
         android:layout_weight="0.05">
@@ -105,9 +105,9 @@
 
     <Spinner
         android:id="@+id/spinner_backgrounds"
-        android:layout_width="match_parent"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginRight="50dp"
         android:layout_marginBottom="20dp"
         android:layout_weight="0.04">
