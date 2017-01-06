@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:weightSum="1">
 
 
@@ -11,107 +11,113 @@
         android:layout_width="match_parent"
         android:layout_height="370dp"
         android:orientation="vertical">
-    <!-- Quote Length -->
-    <TextView
-        android:layout_width="210dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/types_of_quotes"
-        android:layout_marginLeft="10dp"
-        android:text="Quote Length"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:paddingBottom="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="5sp"
-        />
+        <!-- Quote Length -->
+        <TextView
+            android:id="@+id/types_of_quotes"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:paddingBottom="10dp"
+            android:text="Quote Length"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/quote_length_spinner"
             android:layout_width="360dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginBottom="20dp">
-        </Spinner>
+            android:layout_marginRight="50dp"></Spinner>
 
         <!-- Clock Font -->
-    <TextView
-        android:layout_width="146dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/types_of_fonts"
-        android:text="Clock Font"
-        android:layout_marginLeft="10dp"
-        android:paddingBottom="10dp"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:layout_marginBottom="5sp"
-        />
+        <TextView
+            android:id="@+id/types_of_fonts"
+            android:layout_width="146dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5sp"
+            android:layout_marginLeft="10dp"
+            android:paddingBottom="10dp"
+            android:text="Clock Font"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
-    <Spinner
-        android:id="@+id/fonts_spinner"
-        android:layout_width="360dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="20dp"
-        android:layout_weight="0.05">
-    </Spinner>
+        <Spinner
+            android:id="@+id/fonts_spinner"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="50dp"
+            android:layout_weight="0.05"></Spinner>
 
 
-
-    <!-- Genres -->
-    <TextView
-        android:layout_width="181dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/types_of_genres"
-        android:text="Genres"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:layout_marginLeft="10dp"
-        android:paddingBottom="10dp"
-        android:layout_marginBottom="5sp"
-        />
+        <!-- Genres -->
+        <TextView
+            android:id="@+id/types_of_genres"
+            android:layout_width="181dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5sp"
+            android:layout_marginLeft="10dp"
+            android:paddingBottom="10dp"
+            android:text="Genres"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
 
+        <Spinner
+            android:id="@+id/genre_spinner"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="50dp"
+            android:layout_weight="0.05"></Spinner>
 
-    <Spinner
-        android:id="@+id/genre_spinner"
-        android:layout_width="360dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="20dp"
-        android:layout_weight="0.05">
-    </Spinner>
-
-    <!-- Genres -->
+        <!-- Genres -->
 
 
-    <!-- Submit Button -->
+        <!-- Submit Button -->
 
 
-    <!-- Icon -->
-    <TextView
-        android:layout_width="181dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/types_of_backgrounds"
-        android:text="Background"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:layout_marginLeft="10dp"
-        android:paddingBottom="10dp"
-        android:layout_marginBottom="5sp"
-        />
+        <!-- Icon -->
+        <TextView
+            android:id="@+id/types_of_backgrounds"
+            android:layout_width="181dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5sp"
+            android:layout_marginLeft="10dp"
+            android:paddingBottom="10dp"
+            android:text="Background"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
-    <Spinner
-        android:id="@+id/spinner_backgrounds"
-        android:layout_width="360dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="20dp"
-        android:layout_weight="0.04">
-    </Spinner>
+        <Spinner
+            android:id="@+id/spinner_backgrounds"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="50dp"
+            android:layout_weight="0.04"></Spinner>
+
+        <TextView
+            android:id="@+id/ifRepeating"
+            android:layout_width="181dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5sp"
+            android:layout_marginLeft="10dp"
+            android:text="Repeating Alarm?"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="330dp" />
+
     </LinearLayout>
 
     <Button
@@ -121,17 +127,15 @@
         android:layout_marginLeft="140dp"
         android:layout_marginRight="140dp"
         android:layout_marginTop="20dp"
-        android:text="Submit"
-        />
+        android:text="Submit" />
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:textAlignment="center"
-        app:srcCompat="@drawable/getwoke_header"
-        android:id="@+id/imageView"
         android:layout_above="@+id/set_alarm"
-        />
+        android:textAlignment="center"
+        app:srcCompat="@drawable/getwoke_header" />
 
 </LinearLayout>
 
