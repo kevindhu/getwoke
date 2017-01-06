@@ -121,7 +121,7 @@
         android:minHeight="60dp"
         android:minWidth="140dp"
         android:alpha="0.8"
-        android:text="Alarm Off" />
+        android:text="Snooze" />
 
     <ImageButton
         android:id="@+id/settings_button"

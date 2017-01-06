@@ -26,8 +26,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.os.Handler;
 
-
-
+import java.util.Calendar;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -35,14 +34,15 @@ public class MainActivity extends AppCompatActivity {
     public static TextView motivational_quote;
     public static TextView quoter;
     public static ImageView logo;
-    public  PendingIntent pendingIntent;
+    public PendingIntent pendingIntent;
     public static Intent alarm_intent;
     public static TextView alarm_confirmation;
     public static Button snooze_alarm;
     public static RelativeLayout content_main;
     public static Context context;
-    public Button powerButton;
-    public static Boolean powerButton_on;
+    public static Button powerButton;
+    public static Boolean powerButton_on = false;
+    private static Boolean lastTimerisNull = false;
 
 
     @Override
@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         context = getApplicationContext();
 
 
-
         snooze_alarm = (Button) findViewById(R.id.alarm_off);
         powerButton = (Button) findViewById(R.id.powerbutton);
         content_main = (RelativeLayout) findViewById(R.id.content_main);
@@ -64,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
 
         final ImageView settings_feedback = (ImageView) findViewById(R.id.settings_feedback);
         settings_feedback.setAlpha(0f);
-
 
 
         //Captures font from previous session
@@ -116,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 handler1.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                    settings_feedback.setAlpha(0f);
+                        settings_feedback.setAlpha(0f);
                     }
                 }, 1000);
             }
@@ -133,8 +131,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-        Typeface blockFonts = Typeface.createFromAsset(getAssets(),"fonts/Lato-Black.ttf");
+        Typeface blockFonts = Typeface.createFromAsset(getAssets(), "fonts/Lato-Black.ttf");
         DigitalClock clock = (DigitalClock) findViewById(R.id.textClock);
         clock.setTypeface(blockFonts);
 
@@ -142,29 +139,58 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Checks whether MAIN alarm is pending
-                Log.e("Test", "Test1");
-                //powerButton_on = !powerButton_on;
+                Log.e("Test", String.valueOf(powerButton_on));
+                powerButton_on = !powerButton_on;
 
+                SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
+                int hour = sharedPref.getInt("Hour", -1);
+                int minute = sharedPref.getInt("Minute", -1);
+                Log.e("Time", String.valueOf(hour) + "" + String.valueOf(minute));
+                if (powerButton_on) {
+                    powerButton.setText("Turn Off");
+                } else {
+                    powerButton.setText("Turn On");
+                }
+                //Checks if pending intent with int 1 is still around
                 boolean alarmUp = (PendingIntent.getBroadcast(MainActivity.this, 1,
                         new Intent(MainActivity.this, alarm_receiver.class),
                         PendingIntent.FLAG_NO_CREATE) != null);
 
-                if (!alarmUp && !powerButton_on && !alarm_service.isRunning){
-                    Toast.makeText(MainActivity.this, "The alarm is already off!",Toast.LENGTH_SHORT).show();
+                //Checks whether the user sets an alarm
+                if ((hour == -1) && (minute == -1)) {
+                    Log.e("Conditional", "1");
+                    Toast.makeText(MainActivity.this, "You need to set an alarm first!", Toast.LENGTH_SHORT).show();
                 }
-                else if (alarmUp && !powerButton_on){
-
+                //
+                else if (!alarmUp && !powerButton_on && !alarm_service.isRunning) {
+                    Log.e("Conditional", "2");
+                    Toast.makeText(MainActivity.this, "The alarm is already off!", Toast.LENGTH_SHORT).show();
+                }
+                //When alarm schedule has no pending alarm and user turns power on
+                else if (!alarmUp && powerButton_on) {
+                    Log.e("Conditional", "3");
+                    Log.e("getInput", getInput());
+                    pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
+                            PendingIntent.FLAG_UPDATE_CURRENT);
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.set(Calendar.HOUR_OF_DAY, hour);
+                    calendar.set(Calendar.MINUTE, minute);
+                    long time = calendar.getTimeInMillis();
+                    alarm_confirmation.setText(getInput());
+                    AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+                    alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, time, pendingIntent);
+                    lastTimerisNull = false;
+                }
+                //When alarm has a pending alarm and user turns it off
+                else if (alarmUp && !powerButton_on) {
+                    Log.e("Conditional", "4");
                     alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
                     pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
                             PendingIntent.FLAG_UPDATE_CURRENT);
-                    sendBroadcast(alarm_intent);
                     pendingIntent.cancel();
-                    SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putString("Message", "Your alarm is unset.");
-                    editor.apply();
+                    lastTimerisNull = true;
                     alarm_confirmation.setText("Your alarm is unset.");
-                    Toast.makeText(MainActivity.this, "Alarm unset.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Alarm unset.", Toast.LENGTH_SHORT).show();
                     Log.e("Cancelled for real", "Cancelled Intent");
                 }
 
@@ -175,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
         //make a listener on the snooze_alarm on user click
         snooze_alarm.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
 
                 //Checks whether REPEATING alarm is on
                 boolean repeating_alarm = (PendingIntent.getBroadcast(MainActivity.this, 2,
@@ -187,56 +213,49 @@ public class MainActivity extends AppCompatActivity {
 
                 alarm_service.already_Pressed = true;
 
-                if(repeating_alarm){
-                    Log.e("repeating_alarm", "True");
+                if (repeating_alarm && snooze_alarm.getText() == "I'm Woke!") {
+                    Log.e("Conditional", "1");
                     Intent repeating_alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
                     PendingIntent repeating_pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 2, repeating_alarm_intent,
                             PendingIntent.FLAG_UPDATE_CURRENT);
                     alarm_service.control_RepeatingAlarm = false;
-                    alarm_service.already_Pressed = false;
                     repeating_pendingIntent.cancel();
                     snooze_alarm.setText("Alarm Off");
+                } else {
+                    if (!alarm_service.isRunning) {
+                        Log.e("Conditional", "2");
+                        Toast.makeText(MainActivity.this, "The alarm is already off!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Log.e("Conditional", "3");
+                        //Silences Alarm
+                        alarm_service.isRunning = true;
+                        alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
+                        pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 2, alarm_intent,
+                                PendingIntent.FLAG_UPDATE_CURRENT);
+                        sendBroadcast(alarm_intent);
+                        snooze_alarm.setText("I'm Woke!");
+                        //Starts periodic Alarm
+                        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+                        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, 6000, pendingIntent);
+                        Log.e("Cancel service", "Silenced");
+                    }
                 }
-                else{
-                    alarm_service.already_Pressed = false;
-                    if (!alarm_service.isRunning ){
-                    Toast.makeText(MainActivity.this, "The alarm is already silenced!",Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    //Silences Alarm
-                    alarm_service.isRunning = true;
-
-                    //starts periodic
-                    alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
-                    pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
-                            PendingIntent.FLAG_UPDATE_CURRENT);
-                    sendBroadcast(alarm_intent);
-                    Log.e("Cancel service", "Silenced");
-                    snooze_alarm.setText("Alarm Off");
-                    //AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-                    //alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ 6000 ,pendingIntent);
-
-
-                }
-            }}
+            }
 
         });
-
-
 
 
         logo = (ImageView) findViewById(R.id.getWoke);
 
         //Animations!
-        Animate_Text(motivational_quote,R.anim.fade_in,1000);
-        Animate_Text(quoter,R.anim.fade_in,1250);
-        Animate_Image(logo,R.anim.logo_rise);
+        Animate_Text(motivational_quote, R.anim.fade_in, 1000);
+        Animate_Text(quoter, R.anim.fade_in, 1250);
+        Animate_Image(logo, R.anim.logo_rise);
     }
 
 
-
     //animation
-    public void Animate_Text(final TextView text,int animation, int delay) {
+    public void Animate_Text(final TextView text, int animation, int delay) {
         final Animation quoteRise = AnimationUtils.loadAnimation(this, animation);
         //zero alpha in the beginning
         text.setTextColor(Color.argb(0, 255, 255, 255));
@@ -253,13 +272,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-    public void Animate_Image(final ImageView image,int animation) {
+    public void Animate_Image(final ImageView image, int animation) {
         final Animation imageRise = AnimationUtils.loadAnimation(this, animation);
         //apply the animation to the View
         image.startAnimation(imageRise);
     }
-
 
 
     //launch the settings
@@ -267,6 +284,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, settings_spinners.class);
         startActivity(intent);
     }
+
     //launch the 'set alarm' page
     private void launchSet_Alarm() {
         Intent intent = new Intent(MainActivity.this, MainActivity_set_alarm.class);
@@ -274,20 +292,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Gets previous time
-    private String getInput(){
-        SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
-        String message = sharedPref.getString("Message", "Your alarm is unset");
-        Log.e("message", message);
-        return message;
+    private String getInput() {
+        if (lastTimerisNull) {
+            SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
+            String message = sharedPref.getString("Message", "Your alarm is unset");
+            Log.e("message", message);
+            return message;
+        } else {
+            return "Your alarm is unset.";
+        }
 
     }
 
 
-
-
     ////DEFINITELY CHANGE THIS FOR OPTIMIZATION
 
-    public void background_changer (String background) {
+    public void background_changer(String background) {
         switch (background) {
             case "Starry Clouds":
                 //set background as starry clouds
@@ -306,13 +326,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
     public void font_changer(String font) {
-        Typeface font_roboto = Typeface.createFromAsset(getAssets(),"fonts/roboto-medium.ttf");
-        Typeface font_cursive = Typeface.createFromAsset(getAssets(),"fonts/Otto.ttf");
-        Typeface font_weird = Typeface.createFromAsset(getAssets(),"fonts/weird.otf");
-        Log.e("yes","font changing to " + font);
+        Typeface font_roboto = Typeface.createFromAsset(getAssets(), "fonts/roboto-medium.ttf");
+        Typeface font_cursive = Typeface.createFromAsset(getAssets(), "fonts/Otto.ttf");
+        Typeface font_weird = Typeface.createFromAsset(getAssets(), "fonts/weird.otf");
+        Log.e("yes", "font changing to " + font);
         switch (font) {
             case "Formal":
                 motivational_quote.setTypeface(font_cursive);
@@ -328,7 +346,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private String getQuote(){
+    private String getQuote() {
         SharedPreferences sharedPref = getSharedPreferences("Quote", MODE_PRIVATE);
         String message = sharedPref.getString("Quote", "");
         Log.e("GetQuote()", message);
@@ -336,14 +354,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private String getQuoter(){
+    private String getQuoter() {
         SharedPreferences sharedPref = getSharedPreferences("Quoter", MODE_PRIVATE);
         String message = sharedPref.getString("Quoter", "");
         return message;
 
     }
 
-    private String getAlarmButtonText(){
+    private String getAlarmButtonText() {
         SharedPreferences sharedPref = getSharedPreferences("Alarm Unset", MODE_PRIVATE);
         String message = sharedPref.getString("Alarm Button Text", "Alarm Off");
         if (!alarm_service.isRunning) {
@@ -353,13 +371,11 @@ public class MainActivity extends AppCompatActivity {
         return message;
     }
 
-    private String getBackground(){
+    private String getBackground() {
         SharedPreferences sharedPref = getSharedPreferences("Backgrounds", MODE_PRIVATE);
         String message = sharedPref.getString("Message", "--Choose your Background--");
         return message;
     }
-
-
 
 
     public void setRandInt() {
@@ -376,5 +392,6 @@ public class MainActivity extends AppCompatActivity {
         randomQuote.maxlength = new_max;
         randomQuote.minlength = new_min;
     }
+
 
 }

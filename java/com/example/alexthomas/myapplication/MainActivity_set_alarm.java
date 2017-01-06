@@ -120,6 +120,9 @@ public class MainActivity_set_alarm extends AppCompatActivity{
 
                     Toast.makeText(getApplicationContext(), "Your alarm is set!", Toast.LENGTH_SHORT).show();
 
+                    MainActivity.powerButton_on = true;
+                    MainActivity.powerButton.setText("Turn Off");
+
                     alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, time ,pendingIntent);
 
 
@@ -153,21 +156,10 @@ public class MainActivity_set_alarm extends AppCompatActivity{
 
     }
 
-    private void launchActivity() {
-
-        Intent intent = new Intent(MainActivity_set_alarm.this, settings_spinners.class);
-        startActivity(intent);
-    }
-
-    public void turn_off_alarm()
-    {
-        alarmManager.cancel(pendingIntent);
-        sendBroadcast(alarm_intent);
-    }
 
     private String getInput(){
         SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
-        String message = sharedPref.getString("Message", "Your alarm is unset");
+        String message = sharedPref.getString("Message", "Your alarm is unset.");
         return message;
     }
 
