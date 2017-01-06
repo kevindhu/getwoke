@@ -170,7 +170,7 @@ public class randomQuote extends AppCompatActivity{
         String[][] sum = two_d_summer(original);
 
         switch (genre) {
-            case "All Genres":
+            case "--Choose your Genres--":
                 answer = solver(sum);
                 return answer;
             case "Entrepreneur":
