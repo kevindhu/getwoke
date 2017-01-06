@@ -52,32 +52,31 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         context = getApplicationContext();
+
+
+
         snooze_alarm = (Button) findViewById(R.id.alarm_off);
         content_main = (RelativeLayout) findViewById(R.id.content_main);
 
 
-
-        //Sets clock font
-        Typeface blockFonts = Typeface.createFromAsset(getAssets(),"fonts/Lato-Black.ttf");
-        DigitalClock clock = (DigitalClock) findViewById(R.id.textClock);
-        clock.setTypeface(blockFonts);
+        final ImageView settings_feedback = (ImageView) findViewById(R.id.settings_feedback);
+        settings_feedback.setAlpha(0f);
 
 
-        //Sets font from previous session
+
+        //Captures font from previous session
         SharedPreferences sharedPref_font = getSharedPreferences("Font", MODE_PRIVATE);
         String last_font = sharedPref_font.getString("Message", "--Choose your Font--");
-        font_changer(last_font); //invokes this class's font_changer
 
-        //Sets background from previous session
+
+        //Captures background from previous session
         SharedPreferences sharedPref_background = getSharedPreferences("Backgrounds", MODE_PRIVATE);
         String last_background = sharedPref_background.getString("Message", "--Choose your Background--");
-        background_changer(last_background);
 
         //Sets last configured time
         alarm_confirmation = (TextView) findViewById(R.id.alarm_confirmation);
         alarm_confirmation.setText(getInput());
         snooze_alarm.setText(getAlarmButtonText());
-
 
         //sets quote/quoter from previous session
         motivational_quote = (TextView) findViewById(R.id.motivationalQuote);
@@ -87,15 +86,14 @@ public class MainActivity extends AppCompatActivity {
         setRandInt();
         setMaxMin();
 
+        //Updates font
+        font_changer(last_font); //invokes this class's font_changer
+
+        //Updates background
+        background_changer(last_background);
 
 
-
-
-
-
-        //////////LISTENERS ON BUTTONS//////////////
-
-        //Make a listener on the set_alarm on user click
+        //Adds Button Functionality
         Button set_alarm = (Button) findViewById(R.id.set_alarm);
         set_alarm.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -104,15 +102,41 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        ImageButton true_settings = (ImageButton) findViewById(R.id.settings_button);
+        true_settings.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                settings_feedback.setAlpha(1f);
+                launchActivity();
+
+
+                Handler handler1 = new Handler();
+                handler1.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                    settings_feedback.setAlpha(0f);
+                    }
+                }, 1000);
+            }
+
+        });
+
+        ImageButton share_facebook = (ImageButton) findViewById(R.id.share_button);
+        share_facebook.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                //launch share to facebook page
+
+
+            }
+        });
 
 
 
+        Typeface blockFonts = Typeface.createFromAsset(getAssets(),"fonts/Lato-Black.ttf");
+        DigitalClock clock = (DigitalClock) findViewById(R.id.textClock);
+        clock.setTypeface(blockFonts);
 
 
-
-
-
-        //Make a listener on the snooze_alarm on user click
+        //make a listener on the snooze_alarm on user click
         snooze_alarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -174,10 +198,8 @@ public class MainActivity extends AppCompatActivity {
                     sendBroadcast(alarm_intent);
                     Log.e("Cancel service", "Silenced");
                     snooze_alarm.setText("Alarm Off");
-
-
-                    AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-                    alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ 6000 ,pendingIntent);
+                    //AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+                    //alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ 6000 ,pendingIntent);
 
 
                 }
@@ -188,61 +210,17 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-        //Make a listener on settings button
-        final ImageView settings_feedback = (ImageView) findViewById(R.id.settings_feedback);
-        settings_feedback.setAlpha(0f);
-        ImageButton true_settings = (ImageButton) findViewById(R.id.settings_button);
-        true_settings.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                settings_feedback.setAlpha(1f);
-                launchActivity();
-                Handler handler1 = new Handler();
-                handler1.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        settings_feedback.setAlpha(0f);
-                    }
-                }, 1000);
-            }
-
-        });
-
-        //Make a listener on the Share Button
-        ImageButton share_facebook = (ImageButton) findViewById(R.id.share_button);
-        share_facebook.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                //launch share to facebook page
-
-
-            }
-        });
-
-
-
-
-
-
-
-        //////ANIMATIONS/////////
         logo = (ImageView) findViewById(R.id.getWoke);
-        //Animate Logo, Quote, Quoter
+
+        //Animations!
         Animate_Text(motivational_quote,R.anim.fade_in,1000);
         Animate_Text(quoter,R.anim.fade_in,1250);
         Animate_Image(logo,R.anim.logo_rise);
-
     }
 
 
 
-
-
-
-
-    //animation methods
+    //animation
     public void Animate_Text(final TextView text,int animation, int delay) {
         final Animation quoteRise = AnimationUtils.loadAnimation(this, animation);
         //zero alpha in the beginning
@@ -259,6 +237,8 @@ public class MainActivity extends AppCompatActivity {
         }, delay);
     }
 
+
+
     public void Animate_Image(final ImageView image,int animation) {
         final Animation imageRise = AnimationUtils.loadAnimation(this, animation);
         //apply the animation to the View
@@ -272,27 +252,31 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    /////LAUNCHERS/////
 
     //launch the settings
     private void launchActivity() {
         Intent intent = new Intent(MainActivity.this, settings_spinners.class);
         startActivity(intent);
     }
-
     //launch the 'set alarm' page
     private void launchSet_Alarm() {
         Intent intent = new Intent(MainActivity.this, MainActivity_set_alarm.class);
         startActivity(intent);
     }
 
+    //Gets previous time
+    private String getInput(){
+        SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
+        String message = sharedPref.getString("Message", "Your alarm is unset");
+        Log.e("message", message);
+        return message;
+
+    }
 
 
 
 
-
-
-    /////Changer Methods/////
+    ////DEFINITELY CHANGE THIS FOR OPTIMIZATION
 
     public void background_changer (String background) {
         switch (background) {
@@ -311,6 +295,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+
+
+
+
 
     public void font_changer(String font) {
         Typeface font_roboto = Typeface.createFromAsset(getAssets(),"fonts/roboto-medium.ttf");
@@ -331,8 +319,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-
-
 
     private String getQuote(){
         SharedPreferences sharedPref = getSharedPreferences("Quote", MODE_PRIVATE);
@@ -359,13 +345,14 @@ public class MainActivity extends AppCompatActivity {
         return message;
     }
 
-    private String getInput(){
-        SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
-        String message = sharedPref.getString("Message", "Your alarm is unset");
-        Log.e("message", message);
+    private String getBackground(){
+        SharedPreferences sharedPref = getSharedPreferences("Backgrounds", MODE_PRIVATE);
+        String message = sharedPref.getString("Message", "--Choose your Background--");
         return message;
-
     }
+
+
+
 
     public void setRandInt() {
         SharedPreferences sharedPref_alarm_unset = getSharedPreferences("Random Int", MODE_PRIVATE);
@@ -381,13 +368,5 @@ public class MainActivity extends AppCompatActivity {
         randomQuote.maxlength = new_max;
         randomQuote.minlength = new_min;
     }
-
-    private String getBackground(){
-        SharedPreferences sharedPref = getSharedPreferences("Backgrounds", MODE_PRIVATE);
-        String message = sharedPref.getString("Message", "--Choose your Background--");
-        return message;
-    }
-
-
 
 }
