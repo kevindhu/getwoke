@@ -173,7 +173,7 @@ public class alarm_service extends Service {
                     //Log.e("Setting", "Text Automatically to Alarm Off");
                     //MainActivity.snooze_alarm.setText("Alarm Off");
                     alarm_service.isRunning = false;
-                    alarm_restart(6000);
+                    alarm_restart(600);
                     }
                     else {
                         MainActivity.snooze_alarm.setText("Alarm Off");
@@ -221,6 +221,8 @@ public class alarm_service extends Service {
     }
 
 
+
+
     public void alarm_restart(int timer) {
         //starts alarm again periodically
         Log.e("alarm","Start new repeating alarm");
@@ -233,6 +235,9 @@ public class alarm_service extends Service {
 
         alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ this.interval ,pendingIntent);
     }
+
+
+
 
     public void start_Alarm() {
         //starts alarm again periodically
