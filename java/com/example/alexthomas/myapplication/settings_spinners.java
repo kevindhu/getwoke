@@ -30,6 +30,8 @@ import android.widget.CheckBox;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.content.SharedPreferences;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 import org.w3c.dom.Text;
 
@@ -55,10 +57,14 @@ public class settings_spinners extends AppCompatActivity {
     private String[] repeating_intervals = {"30 Seconds", "1 Minute", "2 Minutes", "3 Minutes", "4 Minutes", "5 Minutes"};
     private String[] alarm_schedule = {"None", "12 Hours", "24 Hours"};
 
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
+
+
 
         getSpinnerEntries("Font", spinner_fonts, fonts, R.id.fonts_spinner);
         getSpinnerEntries("Genres", spinner_genre, genres, R.id.genre_spinner);
@@ -76,6 +82,7 @@ public class settings_spinners extends AppCompatActivity {
         spinner_genre = (Spinner) findViewById(R.id.genre_spinner);
         spinner_backgrounds = (Spinner) findViewById(R.id.spinner_backgrounds);
         spinner_alarm_schedule = (Spinner) findViewById(R.id.spinner_alarm_schedule);
+
         snooze_interval_title = (TextView) findViewById(R.id.types_of_intervals);
 
 
@@ -84,6 +91,16 @@ public class settings_spinners extends AppCompatActivity {
 
         addListenerOnCheckbox();
         addListenerOnButton();
+
+
+        ListenerClick(spinner_alarm_schedule,alarm_schedule);
+        ListenerClick(spinner_fonts,fonts);
+        ListenerClick(spinner_quote_length,quote_length);
+        ListenerClick(spinner_repeating_intervals,repeating_intervals);
+        ListenerClick(spinner_backgrounds,backgrounds);
+        ListenerClick(spinner_genre,genres);
+        ListenerClick(spinner_font_color,font_colors);
+        
     }
 
 
@@ -118,6 +135,28 @@ public class settings_spinners extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_aboutus, menu);
         return true;
     }
+
+
+
+
+    public void updateSpinnerEntries(Spinner spinner, String[] args) {
+        String message = String.valueOf(spinner.getSelectedItem());
+        List<String> new_item = new ArrayList<String>();
+
+        new_item.add(message);
+        for (int i = 0; i<args.length;i++){
+            new_item.add(args[i]);
+        }
+        for (int i = 0; i < new_item.size(); i++) {
+            if (i != 0 && new_item.get(i).equals(message)) {
+                new_item.remove(i);
+            }
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, new_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+    }
+
 
 
 
@@ -421,5 +460,20 @@ public class settings_spinners extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+
+    public void ListenerClick(final Spinner spinner,final String[] args) {
+        spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                updateSpinnerEntries(spinner,args);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
     }
 }
