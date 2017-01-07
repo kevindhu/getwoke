@@ -222,9 +222,9 @@ public class settings_spinners extends AppCompatActivity {
                 storeValue("Backgrounds",spinner_backgrounds);
                 storeValue("Font Color", spinner_font_color);
                 storeValue("Repeating Intervals",spinner_repeating_intervals);
+                storeValue("Alarm Schedule",spinner_alarm_schedule);
 
-
-
+                
                 Toast.makeText(getApplicationContext(), "Settings Updated!",
                         Toast.LENGTH_LONG).show();
 
