@@ -122,6 +122,7 @@ public class MainActivity_set_alarm extends AppCompatActivity{
 
                     MainActivity.powerButton_on = true;
                     MainActivity.powerButton.setText("Turn Off");
+                    store_PowerButtonText(true);
 
                     alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, time ,pendingIntent);
 
@@ -192,6 +193,14 @@ public class MainActivity_set_alarm extends AppCompatActivity{
         }
 
         editor.putString("Message","Alarm set to " + str_hour + ":" + str_minute + " " + am_pm);
+        editor.apply();
+    }
+
+    public void store_PowerButtonText(Boolean message){
+
+        SharedPreferences sharedPref = getSharedPreferences("Power Button", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean("Message", message);
         editor.apply();
     }
 

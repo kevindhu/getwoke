@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         context = getApplicationContext();
 
-
+        powerButton = (Button) findViewById(R.id.alarm_off);
         snooze_alarm = (Button) findViewById(R.id.alarm_off);
         powerButton = (Button) findViewById(R.id.powerbutton);
         content_main = (RelativeLayout) findViewById(R.id.content_main);
@@ -71,12 +71,6 @@ public class MainActivity extends AppCompatActivity {
         Typeface blockFonts = Typeface.createFromAsset(getAssets(), "fonts/Lato-Black.ttf");
         DigitalClock clock = (DigitalClock) findViewById(R.id.textClock);
         clock.setTypeface(blockFonts);
-
-
-
-
-
-
 
 
         /////SHAREDPREF GETTERS/////
@@ -94,6 +88,11 @@ public class MainActivity extends AppCompatActivity {
         alarm_confirmation = (TextView) findViewById(R.id.alarm_confirmation);
         alarm_confirmation.setText(getInput());
         snooze_alarm.setText(getAlarmButtonText());
+        if (get_PowerButtonBoolean()) {
+            powerButton.setText("Turn Off");
+        } else {
+            powerButton.setText("Turn On");
+        }
 
         //sets quote/quoter from previous session
         motivational_quote = (TextView) findViewById(R.id.motivationalQuote);
@@ -110,10 +109,6 @@ public class MainActivity extends AppCompatActivity {
         background_changer(last_background);
 
 
-
-
-
-
         /////LISTENERS/////
 
         //Sets Listener on Set Alarm Button
@@ -123,8 +118,6 @@ public class MainActivity extends AppCompatActivity {
                 launchSet_Alarm();
             }
         });
-
-
 
 
         //Sets Listener on Settings Button
@@ -154,14 +147,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
-
-
-
-
         //make a listener on the Power Button
         powerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -176,8 +161,10 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("Time", String.valueOf(hour) + "" + String.valueOf(minute));
                 if (powerButton_on) {
                     powerButton.setText("Turn Off");
+                    store_PowerButtonBoolean(true);
                 } else {
                     powerButton.setText("Turn On");
+                    store_PowerButtonBoolean(false);
                 }
                 //Checks if pending intent with int 1 is still around
                 boolean alarmUp = (PendingIntent.getBroadcast(MainActivity.this, 1,
@@ -196,20 +183,19 @@ public class MainActivity extends AppCompatActivity {
                 }
                 //When alarm schedule has no pending alarm and user turns power on
                 else if (!alarmUp && powerButton_on) {
-                        Log.e("Conditional", "3");
-                        Log.e("getInput", getInput());
+                    Log.e("Conditional", "3");
+                    Log.e("getInput", getInput());
                     alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
                     pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
                             PendingIntent.FLAG_UPDATE_CURRENT);
-                        Log.e("Hi", "Hi");
-                        Calendar calendar = Calendar.getInstance();
-                        calendar.set(Calendar.HOUR_OF_DAY, hour);
-                        calendar.set(Calendar.MINUTE, minute);
-                        long time = calendar.getTimeInMillis();
-                        alarm_confirmation.setText(getInput());
-                        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-                        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, adjustTime(time), pendingIntent);
-                        lastTimerisNull = false;
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.set(Calendar.HOUR_OF_DAY, hour);
+                    calendar.set(Calendar.MINUTE, minute);
+                    long time = calendar.getTimeInMillis();
+                    alarm_confirmation.setText(getInput());
+                    AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+                    alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, adjustTime(time), pendingIntent);
+                    lastTimerisNull = false;
                 }
                 //When alarm has a pending alarm and user turns it off
                 else if (alarmUp && !powerButton_on) {
@@ -226,13 +212,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
-
-
 
 
         //make a listener on the Snooze Button
@@ -282,9 +261,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
-
         /////START ANIMATION/////
         logo = (ImageView) findViewById(R.id.getWoke);
 
@@ -293,9 +269,6 @@ public class MainActivity extends AppCompatActivity {
         Animate_Text(quoter, R.anim.fade_in, 1250);
         Animate_Image(logo, R.anim.logo_rise);
     }
-
-
-
 
 
     /////ANIMATION METHODS/////
@@ -335,11 +308,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, MainActivity_set_alarm.class);
         startActivity(intent);
     }
-
-
-
-
-
 
 
     /////Feature Changers/////
@@ -382,11 +350,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-
-
-
-
-
 
 
     /////GETTERS/////
@@ -435,6 +398,12 @@ public class MainActivity extends AppCompatActivity {
         return message;
     }
 
+    private Boolean get_PowerButtonBoolean() {
+        SharedPreferences sharedPref = getSharedPreferences("Power Button", MODE_PRIVATE);
+        Boolean message = sharedPref.getBoolean("Message", false);
+        return message;
+    }
+
 
     public void setRandInt() {
         SharedPreferences sharedPref_alarm_unset = getSharedPreferences("Random Int", MODE_PRIVATE);
@@ -451,7 +420,7 @@ public class MainActivity extends AppCompatActivity {
         randomQuote.minlength = new_min;
     }
 
-    private long adjustTime(long time){
+    private long adjustTime(long time) {
         if ((abs(System.currentTimeMillis() - time) < 60000)
                 && (System.currentTimeMillis() > time)) {
             return time;
@@ -462,6 +431,14 @@ public class MainActivity extends AppCompatActivity {
 
             return time;
         }
+    }
+
+    public void store_PowerButtonBoolean(Boolean message) {
+
+        SharedPreferences sharedPref = getSharedPreferences("Power Button", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean("Message", message);
+        editor.apply();
     }
 
 
