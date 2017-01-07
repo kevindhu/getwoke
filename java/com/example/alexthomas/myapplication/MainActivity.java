@@ -44,7 +44,12 @@ public class MainActivity extends AppCompatActivity {
     public static Context context;
     public static Button powerButton;
     public static Boolean powerButton_on = false;
-    private static Boolean lastTimerisNull = false;
+    private static Boolean lastTimerisNull = true;
+
+
+
+
+
 
 
     @Override
@@ -65,6 +70,9 @@ public class MainActivity extends AppCompatActivity {
 
         final ImageView settings_feedback = (ImageView) findViewById(R.id.settings_feedback);
         settings_feedback.setAlpha(0f);
+
+
+        load_timer_null();
 
 
         //Sets font on Clock
@@ -89,12 +97,15 @@ public class MainActivity extends AppCompatActivity {
         //Sets last configured time
         alarm_confirmation = (TextView) findViewById(R.id.alarm_confirmation);
         alarm_confirmation.setText(getInput());
+
+
         snooze_alarm.setText(getAlarmButtonText());
         if (get_PowerButtonBoolean()) {
             powerButton.setText("Turn Off");
         } else {
             powerButton.setText("Turn On");
         }
+
 
         //sets quote/quoter from previous session
         motivational_quote = (TextView) findViewById(R.id.motivationalQuote);
@@ -157,13 +168,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Checks whether MAIN alarm is pending
-                Log.e("Test", String.valueOf(powerButton_on));
                 powerButton_on = !powerButton_on;
+                Log.e("Power button is on?", String.valueOf(powerButton_on));
 
                 SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
                 int hour = sharedPref.getInt("Hour", -1);
                 int minute = sharedPref.getInt("Minute", -1);
-                Log.e("Time", String.valueOf(hour) + "" + String.valueOf(minute));
+                Log.e("Time", String.valueOf(hour) + ":" + String.valueOf(minute));
                 if (powerButton_on) {
                     powerButton.setText("Turn Off");
                     store_PowerButtonBoolean(true);
@@ -171,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
                     powerButton.setText("Turn On");
                     store_PowerButtonBoolean(false);
                 }
+
                 //Checks if pending intent with int 1 is still around
                 boolean alarmUp = (PendingIntent.getBroadcast(MainActivity.this, 1,
                         new Intent(MainActivity.this, alarm_receiver.class),
@@ -197,10 +209,11 @@ public class MainActivity extends AppCompatActivity {
                     calendar.set(Calendar.HOUR_OF_DAY, hour);
                     calendar.set(Calendar.MINUTE, minute);
                     long time = calendar.getTimeInMillis();
-                    alarm_confirmation.setText(getInput());
+                    //alarm_confirmation.setText(getInput());
                     AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
                     alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, adjustTime(time), pendingIntent);
                     lastTimerisNull = false;
+                    store_timer_null(false);
                 }
                 //When alarm has a pending alarm and user turns it off
                 else if (alarmUp && !powerButton_on) {
@@ -210,10 +223,12 @@ public class MainActivity extends AppCompatActivity {
                             PendingIntent.FLAG_UPDATE_CURRENT);
                     pendingIntent.cancel();
                     lastTimerisNull = true;
+                    store_timer_null(true);
                     alarm_confirmation.setText("Your alarm is unset.");
                     Toast.makeText(MainActivity.this, "Alarm unset.", Toast.LENGTH_SHORT).show();
                     Log.e("Cancelled for real", "Cancelled Intent");
                 }
+                alarm_confirmation.setText(getInput());
 
             }
         });
@@ -340,6 +355,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
     public void font_changer(String font) {
         Typeface font_roboto = Typeface.createFromAsset(getAssets(), "fonts/roboto-medium.ttf");
         Typeface font_cursive = Typeface.createFromAsset(getAssets(), "fonts/Otto.ttf");
@@ -403,12 +419,13 @@ public class MainActivity extends AppCompatActivity {
 
     //Gets previous time
     private String getInput() {
-        if (lastTimerisNull) {
+        if (!lastTimerisNull) {
             SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
             String message = sharedPref.getString("Message", "Your alarm is unset");
-            Log.e("message", message);
+            Log.e("Setting previous alarm", message);
             return message;
         } else {
+            Log.e("Yo","Your alarm is unset yo");
             return "Your alarm is unset.";
         }
     }
@@ -487,6 +504,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+
+
     public void store_PowerButtonBoolean(Boolean message) {
 
         SharedPreferences sharedPref = getSharedPreferences("Power Button", MODE_PRIVATE);
@@ -495,5 +515,16 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
     }
 
+    public void store_timer_null(Boolean message) {
+        SharedPreferences sharedPref = getSharedPreferences("Last Timer", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean("Message", message);
+        editor.apply();
+    }
 
+    public void load_timer_null() {
+        SharedPreferences sharedPref = getSharedPreferences("Last Timer", MODE_PRIVATE);
+        lastTimerisNull = sharedPref.getBoolean("Message",true);
+        Log.e("boolean set to",String.valueOf(lastTimerisNull));
+    }
 }
