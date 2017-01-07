@@ -41,6 +41,9 @@ public class alarm_service extends Service {
         String message = sharedRingtone.getString("Message","Default Ringtones");
         ringtone_changer(message);
 
+        
+        Log.e("isRunning", String.valueOf(isRunning));
+
         if (isRunning){
             try {
                 mediasong.stop();
