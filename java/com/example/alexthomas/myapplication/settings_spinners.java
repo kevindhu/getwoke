@@ -100,8 +100,13 @@ public class settings_spinners extends AppCompatActivity {
 
         addListenerOnCheckbox();
         addListenerOnButton();
+    }
 
 
+
+    @Override
+    public void onStart() {
+        super.onStart();
         ListenerClick(spinner_alarm_schedule,alarm_schedule);
         ListenerClick(spinner_ringtones,ringtones);
         ListenerClick(spinner_fonts,fonts);
