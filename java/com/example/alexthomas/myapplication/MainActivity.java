@@ -269,14 +269,15 @@ public class MainActivity extends AppCompatActivity {
                         if(Boolean.valueOf(ifRepeatingOn) && (interval != -1)){
                             snooze_alarm.setText("I'm Woke!");
                             AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-                            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, interval, pendingIntent);
+                            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + interval, pendingIntent);
                             Log.e("Repeats", "This repeats");
                         }
                         else{
+                            pendingIntent.cancel();
                             snooze_alarm.setText("Alarm Off");
+                            Log.e("Cancel service", "Doesn't repeat");
                         }
 
-                        Log.e("Cancel service", "Doesn't repeat");
                     }
                 }
             }
