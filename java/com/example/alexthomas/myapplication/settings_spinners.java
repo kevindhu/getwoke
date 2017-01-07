@@ -346,7 +346,8 @@ public class settings_spinners extends AppCompatActivity {
                         break;
                 }
 
-
+                editor_intervals.apply();
+                editor_schedule.apply();
 
                 //Chooses genre
                 Log.e("Whoa!", "Genre right now is " +MainActivity.genre);
