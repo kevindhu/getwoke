@@ -32,10 +32,14 @@ public class alarm_service extends Service {
     public static long interval = 30000;
     public static long alarm_schedule = 0;
     public static boolean if_AlarmSchedule = false;
+    public static int ringtone = R.raw.motivationalmusic;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.e("onStartCommand", "Initiated alarm service (for starting and stopping music and generating new quotes");
+        SharedPreferences sharedRingtone = getSharedPreferences("Ringtones", MODE_PRIVATE);
+        String message = sharedRingtone.getString("Message","Default Ringtones");
+        ringtone_changer(message);
 
         if (isRunning){
             try {
@@ -66,8 +70,8 @@ public class alarm_service extends Service {
 
             //gets sharedPref for last_rand and max/min
             SharedPreferences sharedPref_alarm_unset50 = getSharedPreferences("Random Int", MODE_PRIVATE);
-            int message = sharedPref_alarm_unset50.getInt("Message", -1);
-            newQuote.last_rand = message;
+            int message1 = sharedPref_alarm_unset50.getInt("Message", -1);
+            newQuote.last_rand = message1;
             SharedPreferences sharedPref_max = getSharedPreferences("Max", MODE_PRIVATE);
             SharedPreferences sharedPref_min = getSharedPreferences("Min", MODE_PRIVATE);
             int new_min = sharedPref_min.getInt("Max", 0);
@@ -112,7 +116,7 @@ public class alarm_service extends Service {
 
 
             //Starts Playing Music
-            mediasong = MediaPlayer.create(alarm_service.this, R.raw.motivationalmusic);
+            mediasong = MediaPlayer.create(alarm_service.this, ringtone);
             mediasong.start();
 
             //Starts Main Alarm
@@ -252,6 +256,22 @@ public class alarm_service extends Service {
         editor_max.apply();
         editor_min.apply();
     }
+
+
+    public void ringtone_changer(String input) {
+        switch (input){
+            case "Haikyuu":
+                ringtone = R.raw.motivationalmusic;
+                break;
+            case "Believe it":
+                ringtone = R.raw.believeit;
+                break;
+            case "Get Up":
+                ringtone = R.raw.getup;
+                break;
+        }
+    }
+
 
 
     public void snooze_restart() {
