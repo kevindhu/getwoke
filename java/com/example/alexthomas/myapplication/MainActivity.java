@@ -280,14 +280,14 @@ public class MainActivity extends AppCompatActivity {
     public void Animate_Text(final TextView text, int animation, int delay) {
         final Animation quoteRise = AnimationUtils.loadAnimation(this, animation);
         //zero alpha in the beginning
-        text.setTextColor(Color.argb(0, 255, 255, 255));
+        text.setVisibility(View.GONE);
 
         //apply the animation to the View
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                text.setTextColor(Color.argb(1000, 255, 255, 255));
+                text.setVisibility(View.VISIBLE);
                 text.startAnimation(quoteRise);
             }
         }, delay);
@@ -361,12 +361,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
     public void color_changer (String color) {
         switch (color) {
             case "White":
                 motivational_quote.setTextColor(Color.WHITE);
                 quoter.setTextColor(Color.WHITE);
-
                 break;
             case "Black":
                 motivational_quote.setTextColor(Color.BLACK);
@@ -383,7 +383,7 @@ public class MainActivity extends AppCompatActivity {
             case "Yellow":
                 motivational_quote.setTextColor(Color.YELLOW);
                 quoter.setTextColor(Color.YELLOW);
-                Log.e("color", "Yellow");
+                Log.e("color", "Yellow for sure");
                 break;
             case "Green":
                 motivational_quote.setTextColor(Color.GREEN);
