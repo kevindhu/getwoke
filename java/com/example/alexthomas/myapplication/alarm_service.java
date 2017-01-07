@@ -172,19 +172,6 @@ public class alarm_service extends Service {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {

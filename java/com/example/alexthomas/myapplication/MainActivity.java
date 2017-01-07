@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         String last_font = sharedPref_font.getString("Message", "--Choose your Font--");
 
 
+
         //Captures background from previous session
         SharedPreferences sharedPref_background = getSharedPreferences("Backgrounds", MODE_PRIVATE);
         String last_background = sharedPref_background.getString("Message", "--Choose your Background--");
@@ -108,6 +109,9 @@ public class MainActivity extends AppCompatActivity {
 
         //Updates background
         background_changer(last_background);
+
+        //Updates color
+        adjustColor();
 
 
         /////LISTENERS/////
@@ -357,6 +361,44 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void color_changer (String color) {
+        switch (color) {
+            case "White":
+                motivational_quote.setTextColor(Color.WHITE);
+                quoter.setTextColor(Color.WHITE);
+
+                break;
+            case "Black":
+                motivational_quote.setTextColor(Color.BLACK);
+                quoter.setTextColor(Color.BLACK);
+                break;
+            case "Red":
+                motivational_quote.setTextColor(Color.RED);
+                quoter.setTextColor(Color.RED);
+                break;
+            case "Blue":
+                motivational_quote.setTextColor(Color.BLUE);
+                quoter.setTextColor(Color.BLUE);
+                break;
+            case "Yellow":
+                motivational_quote.setTextColor(Color.YELLOW);
+                quoter.setTextColor(Color.YELLOW);
+                Log.e("color", "Yellow");
+                break;
+            case "Green":
+                motivational_quote.setTextColor(Color.GREEN);
+                quoter.setTextColor(Color.GREEN);
+                break;
+            case "Gray":
+                motivational_quote.setTextColor(Color.GRAY);
+                quoter.setTextColor(Color.GRAY);
+                break;
+            default:
+                break;
+        }
+    }
+
+
     /////GETTERS/////
 
     //Gets previous time
@@ -401,6 +443,13 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref = getSharedPreferences("Backgrounds", MODE_PRIVATE);
         String message = sharedPref.getString("Message", "--Choose your Background--");
         return message;
+    }
+
+    private void adjustColor() {
+        SharedPreferences sharedPref = getSharedPreferences("Font Color", MODE_PRIVATE);
+        String message = sharedPref.getString("Message", "--Choose your Color--");
+        Log.e("Color", message);
+        color_changer(message);
     }
 
     private Boolean get_PowerButtonBoolean() {

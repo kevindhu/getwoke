@@ -8,6 +8,7 @@ import java.util.List;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -42,6 +43,7 @@ public class settings_spinners extends AppCompatActivity {
     private Spinner spinner_backgrounds;
     private Spinner spinner_repeating_intervals;
     private Spinner spinner_alarm_schedule;
+    private Spinner spinner_font_color;
     private CheckBox snooze_check;
 
     private Button btnSubmit;
@@ -50,6 +52,7 @@ public class settings_spinners extends AppCompatActivity {
     private String[] genres ={"All Genres","Entrepreneur", "Celebrity", "Author", "Athlete", "Anime", "Great Minds", "Book Quotes","Meme Quotes"};
     private String[] quote_length = {"All Lengths","Medium", "Short", "Long"};
     private String[] backgrounds = {"Vanilla","Starry Clouds", "Galaxy", "Forest", "Crystal"};
+    private String[] font_colors = {"White","Black", "Blue", "Red", "Yellow", "Green", "Gray"};
     private String[] repeating_intervals = {"30 Seconds", "1 Minute", "2 Minutes", "3 Minutes", "4 Minutes", "5 Minutes"};
     private String[] alarm_schedule = {"None", "15 Minutes", "30 Minutes", "1 Hour", "12 Hours", "24 Hours"};
 
@@ -65,7 +68,14 @@ public class settings_spinners extends AppCompatActivity {
         getSpinnerEntries("Backgrounds", spinner_backgrounds, backgrounds, R.id.spinner_backgrounds);
         getSpinnerEntries("Repeating Intervals", spinner_repeating_intervals, repeating_intervals, R.id.spinner_intervals);
         getSpinnerEntries("Alarm Schedule", spinner_alarm_schedule, alarm_schedule, R.id.spinner_alarm_schedule);
-
+        getSpinnerEntries("Font",spinner_fonts, fonts,R.id.fonts_spinner);
+        getSpinnerEntries("Genres",spinner_genre, genres,R.id.genre_spinner);
+        getSpinnerEntries("Quote Length",spinner_quote_length, quote_length,R.id.quote_length_spinner);
+        getSpinnerEntries("Backgrounds",spinner_backgrounds, backgrounds,R.id.spinner_backgrounds);
+        getSpinnerEntries("Repeating Intervals",spinner_repeating_intervals, repeating_intervals,R.id.spinner_intervals);
+        getSpinnerEntries("Alarm Schedule",spinner_alarm_schedule, alarm_schedule,R.id.spinner_alarm_schedule);
+        getSpinnerEntries("Font Color",spinner_font_color, font_colors,R.id.spinner_font_colors);
+        
 
         snooze_check = (CheckBox) findViewById(R.id.snooze_check);
         spinner_repeating_intervals = (Spinner) findViewById(R.id.spinner_intervals);
@@ -173,6 +183,14 @@ public class settings_spinners extends AppCompatActivity {
     // get the selected dropdown list value when button is clicked
     public void addListenerOnButton() {
         Log.e("Hi", "Listener on Duty!");
+        spinner_fonts = (Spinner) findViewById(R.id.fonts_spinner);
+        spinner_quote_length = (Spinner) findViewById(R.id.quote_length_spinner);
+        spinner_genre = (Spinner) findViewById(R.id.genre_spinner);
+        spinner_backgrounds = (Spinner) findViewById(R.id.spinner_backgrounds);
+        spinner_repeating_intervals = (Spinner) findViewById(R.id.spinner_intervals);
+        spinner_alarm_schedule = (Spinner) findViewById(R.id.spinner_alarm_schedule);
+        spinner_font_color = (Spinner) findViewById(R.id.spinner_font_colors);
+
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
         btnSubmit.setOnClickListener(new OnClickListener() {
             @Override
@@ -205,6 +223,7 @@ public class settings_spinners extends AppCompatActivity {
                 storeValue("Quote Length",spinner_quote_length);
                 storeValue("Genres",spinner_genre);
                 storeValue("Backgrounds",spinner_backgrounds);
+                storeValue("Font Color", spinner_font_color);
 
 
 
@@ -213,6 +232,9 @@ public class settings_spinners extends AppCompatActivity {
 
                 //Changes Fonts
                 font_changer(String.valueOf(spinner_fonts.getSelectedItem()));
+
+                //Font Color changer
+                color_changer(String.valueOf(spinner_font_color.getSelectedItem()));
 
 
                 randomQuote Quote = new randomQuote();
@@ -322,6 +344,44 @@ public class settings_spinners extends AppCompatActivity {
                 break;
         }
     }
+
+    //Changes font color
+    public void color_changer (String color) {
+        switch (color) {
+            case "White":
+                //set background as starry clouds
+                MainActivity.motivational_quote.setTextColor(Color.WHITE);
+                break;
+            case "Black":
+                //set background as starry sky
+                MainActivity.motivational_quote.setTextColor(Color.BLACK);
+                MainActivity.quoter.setTextColor(Color.BLACK);
+                break;
+            case "Red":
+                MainActivity.motivational_quote.setTextColor(Color.RED);
+                MainActivity.quoter.setTextColor(Color.RED);
+                break;
+            case "Blue":
+                MainActivity.motivational_quote.setTextColor(Color.BLUE);
+                MainActivity.quoter.setTextColor(Color.BLUE);
+                break;
+            case "Yellow":
+                MainActivity.motivational_quote.setTextColor(Color.YELLOW);
+                MainActivity.quoter.setTextColor(Color.YELLOW);
+                break;
+            case "Green":
+                MainActivity.motivational_quote.setTextColor(Color.GREEN);
+                MainActivity.quoter.setTextColor(Color.GREEN);
+                break;
+            case "Gray":
+                MainActivity.motivational_quote.setTextColor(Color.GRAY);
+                MainActivity.quoter.setTextColor(Color.GRAY);
+                break;
+            default:
+                break;
+        }
+    }
+
 
 
 
