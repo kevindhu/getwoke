@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Sets last configured time
         alarm_confirmation = (TextView) findViewById(R.id.alarm_confirmation);
-        alarm_confirmation.setText(getInput());
+        alarm_confirmation.setText(getInput_bottomText());
 
 
         snooze_alarm.setText(getAlarmButtonText());
@@ -188,17 +188,18 @@ public class MainActivity extends AppCompatActivity {
                     alarm_service.isRunning = true;
                     alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
                     pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 2, alarm_intent,
-                            PendingIntent.FLAG_UPDATE_CURRENT);
+                            PendingIntent.FLAG_CANCEL_CURRENT);
                     sendBroadcast(alarm_intent);
                     pendingIntent.cancel();
 
                     alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
                     pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
-                            PendingIntent.FLAG_UPDATE_CURRENT);
+                            PendingIntent.FLAG_CANCEL_CURRENT);
                     pendingIntent.cancel();
                     lastTimerisNull = true;
                     store_timer_null(true);
                     snooze_alarm.setText("Alarm Off");
+                    store_snoozeText("I'm Woke");
                     alarm_confirmation.setText("Your alarm is unset.");
 
 
@@ -218,15 +219,14 @@ public class MainActivity extends AppCompatActivity {
                 //When alarm schedule has no pending alarm and user turns power on
                 else if (!alarmUp && powerButton_on) {
                     Log.e("Conditional", "3");
-                    Log.e("getInput", getInput());
+                    Log.e("getInput_bottomText", getInput_bottomText());
                     alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
                     pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
-                            PendingIntent.FLAG_UPDATE_CURRENT);
+                            PendingIntent.FLAG_CANCEL_CURRENT);
                     Calendar calendar = Calendar.getInstance();
                     calendar.set(Calendar.HOUR_OF_DAY, hour);
                     calendar.set(Calendar.MINUTE, minute);
                     long time = calendar.getTimeInMillis();
-                    //alarm_confirmation.setText(getInput());
                     AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
                     alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, adjustTime(time), pendingIntent);
                     lastTimerisNull = false;
@@ -237,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("Conditional", "4");
                     alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
                     pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
-                            PendingIntent.FLAG_UPDATE_CURRENT);
+                            PendingIntent.FLAG_CANCEL_CURRENT);
                     pendingIntent.cancel();
                     lastTimerisNull = true;
                     store_timer_null(true);
@@ -245,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Alarm unset.", Toast.LENGTH_SHORT).show();
                     Log.e("Cancelled for real", "Cancelled Intent");
                 }
-                alarm_confirmation.setText(getInput());
+                alarm_confirmation.setText(getInput_bottomText());
 
             }}
         });
@@ -273,6 +273,7 @@ public class MainActivity extends AppCompatActivity {
                     alarm_service.control_RepeatingAlarm = false;
                     repeating_pendingIntent.cancel();
                     snooze_alarm.setText("Alarm Off");
+                    store_snoozeText("Alarm Off");
                 } else {
                     if (!alarm_service.isRunning) {
                         Log.e("Conditional", "2");
@@ -283,7 +284,7 @@ public class MainActivity extends AppCompatActivity {
                         alarm_service.isRunning = true;
                         alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
                         pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 2, alarm_intent,
-                                PendingIntent.FLAG_UPDATE_CURRENT);
+                                PendingIntent.FLAG_CANCEL_CURRENT);
                         sendBroadcast(alarm_intent);
                         //Starts periodic Alarm
                         SharedPreferences sharedPref = getSharedPreferences("Repeating Intervals", MODE_PRIVATE);
@@ -294,6 +295,7 @@ public class MainActivity extends AppCompatActivity {
 
                         if(Boolean.valueOf(ifRepeatingOn) && (interval != -1)){
                             snooze_alarm.setText("I'm Woke!");
+                            store_snoozeText("I'm Woke");
                             AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
                             alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + interval, pendingIntent);
                             Log.e("Repeats", "This repeats");
@@ -301,6 +303,7 @@ public class MainActivity extends AppCompatActivity {
                         else{
                             pendingIntent.cancel();
                             snooze_alarm.setText("Alarm Off");
+                            store_snoozeText("Alarm Off");
                             Log.e("Cancel service", "Doesn't repeat");
                         }
 
@@ -476,32 +479,6 @@ public class MainActivity extends AppCompatActivity {
     /////GETTERS/////
 
     //Gets previous time
-    private String getInput() {
-        if (!lastTimerisNull) {
-            SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
-            String message = sharedPref.getString("Message", "Your alarm is unset");
-            Log.e("Setting previous alarm", message);
-            return message;
-        } else {
-            return "Your alarm is unset.";
-        }
-    }
-
-
-    private String getQuote() {
-        SharedPreferences sharedPref = getSharedPreferences("Quote", MODE_PRIVATE);
-        String message = sharedPref.getString("Quote", "");
-        Log.e("GetQuote()", message);
-        return message;
-
-    }
-
-    private String getQuoter() {
-        SharedPreferences sharedPref = getSharedPreferences("Quoter", MODE_PRIVATE);
-        String message = sharedPref.getString("Quoter", "");
-        return message;
-
-    }
 
     private String getAlarmButtonText() {
         SharedPreferences sharedPref = getSharedPreferences("Alarm Unset", MODE_PRIVATE);
@@ -529,16 +506,6 @@ public class MainActivity extends AppCompatActivity {
         Log.e("Color", message);
         color_changer(message);
         clock_color_changer(message_clock);
-    }
-
-
-    private Boolean get_PowerButtonBoolean() {
-        SharedPreferences sharedPref = getSharedPreferences("Power Button", MODE_PRIVATE);
-        Boolean message = sharedPref.getBoolean("Message", false);
-        powerButton_on = message;
-        alarmUp = message;
-        Log.e("the power button start",String.valueOf(powerButton_on));
-        return message;
     }
 
 
@@ -571,14 +538,60 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    //Get values
+
+    public void load_timer_null() {
+        SharedPreferences sharedPref = getSharedPreferences("Last Timer", MODE_PRIVATE);
+        lastTimerisNull = sharedPref.getBoolean("Message",true);
+        Log.e("boolean set to",String.valueOf(lastTimerisNull));
+    }
 
 
-    public void store_PowerButtonBoolean(Boolean message) {
-
+    private Boolean get_PowerButtonBoolean() {
         SharedPreferences sharedPref = getSharedPreferences("Power Button", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putBoolean("Message", message);
-        editor.apply();
+        Boolean message = sharedPref.getBoolean("Message", false);
+        powerButton_on = message;
+        alarmUp = message;
+        Log.e("the power button start",String.valueOf(powerButton_on));
+        return message;
+    }
+
+    private String getInput_bottomText() {
+        if (!lastTimerisNull) {
+            SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
+            String message = sharedPref.getString("Message", "Your alarm is unset");
+            Log.e("Setting previous alarm", message);
+            return message;
+        } else {
+            return "Your alarm is unset.";
+        }
+    }
+
+
+    private String getQuote() {
+        SharedPreferences sharedPref = getSharedPreferences("Quote", MODE_PRIVATE);
+        String message = sharedPref.getString("Quote", "");
+        Log.e("GetQuote()", message);
+        return message;
+
+    }
+
+    private String getQuoter() {
+        SharedPreferences sharedPref = getSharedPreferences("Quoter", MODE_PRIVATE);
+        String message = sharedPref.getString("Quoter", "");
+        return message;
+
+    }
+
+
+
+    //Stores values
+    private void store_snoozeText(String message){
+
+        SharedPreferences sharedPref_alarm_unset = getSharedPreferences("Alarm Unset", MODE_PRIVATE);
+        SharedPreferences.Editor editor_alarm_unset = sharedPref_alarm_unset.edit();
+        editor_alarm_unset.putString("Alarm Button Text", message);
+        editor_alarm_unset.apply();
     }
 
     public void store_timer_null(Boolean message) {
@@ -588,9 +601,12 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    public void load_timer_null() {
-        SharedPreferences sharedPref = getSharedPreferences("Last Timer", MODE_PRIVATE);
-        lastTimerisNull = sharedPref.getBoolean("Message",true);
-        Log.e("boolean set to",String.valueOf(lastTimerisNull));
+
+    public void store_PowerButtonBoolean(Boolean message) {
+
+        SharedPreferences sharedPref = getSharedPreferences("Power Button", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean("Message", message);
+        editor.apply();
     }
 }

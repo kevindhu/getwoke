@@ -29,8 +29,6 @@ public class alarm_service extends Service {
     public static boolean if_RepeatingAlarm = true; //wants to repeat
     public static boolean already_Pressed = false;
     public static boolean fromMainAlarm = false;
-    public static long interval = 30000;
-    public static long alarm_schedule = 0;
     public static boolean if_AlarmSchedule = false;
     public static int ringtone = R.raw.motivationalmusic;
 
@@ -40,7 +38,7 @@ public class alarm_service extends Service {
         SharedPreferences sharedRingtone = getSharedPreferences("Ringtones", MODE_PRIVATE);
         String message = sharedRingtone.getString("Message","Default Ringtones");
         ringtone_changer(message);
-
+        Log.e("StartID", String.valueOf(startId));
         
         Log.e("isRunning", String.valueOf(isRunning));
 
@@ -122,9 +120,10 @@ public class alarm_service extends Service {
             mediasong = MediaPlayer.create(alarm_service.this, ringtone);
             mediasong.start();
 
-            //Starts Main Alarm
-            start_Alarm();
-
+            //Starts Main Alarm for alarm schedule
+            if (startId == 1) {
+                start_Alarm();
+            }
 
 
 
@@ -266,7 +265,7 @@ public class alarm_service extends Service {
             case "Haikyuu":
                 ringtone = R.raw.motivationalmusic;
                 break;
-            case "Believe it":
+            case "Believe It":
                 ringtone = R.raw.believeit;
                 break;
             case "Get Up":
@@ -298,8 +297,12 @@ public class alarm_service extends Service {
 
     public void start_Alarm() {
         //starts alarm again periodically
-        if(this.if_AlarmSchedule){
-        Log.e("alarm","Start new alarm");
+        SharedPreferences sharedPreferences = getSharedPreferences("Alarm Schedule", MODE_PRIVATE);
+        Boolean schedule_Enabled = sharedPreferences.getBoolean("Schedule Enabled", false);
+        long alarm_schedule = sharedPreferences.getLong("Interval", 0);
+
+        if(schedule_Enabled){
+        Log.e("Alarm Schedule","Alarm Schedule ON");
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         Intent alarm_intent = new Intent(alarm_service.this, alarm_receiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(alarm_service.this, 1, alarm_intent,

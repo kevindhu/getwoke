@@ -288,7 +288,7 @@ public class settings_spinners extends AppCompatActivity {
                 repeating_intervals_changer(String.valueOf(spinner_repeating_intervals.getSelectedItem()));
 
                 //Alarm schedule changer
-                alarm_schedule_changer(String.valueOf(spinner_repeating_intervals.getSelectedItem()));
+                alarm_schedule_changer(String.valueOf(spinner_alarm_schedule.getSelectedItem()));
 
                 //Chooses background
                 Log.e("wow","the selected background is " + String.valueOf(spinner_backgrounds.getSelectedItem()));
@@ -334,33 +334,26 @@ public class settings_spinners extends AppCompatActivity {
 
 
     public void alarm_schedule_changer (String input) {
-        SharedPreferences sharedPreferences_interval = getSharedPreferences("Repeating Intervals", MODE_PRIVATE);
-        SharedPreferences.Editor editor_intervals = sharedPreferences_interval.edit();
+        SharedPreferences sharedPreferences_schedule = getSharedPreferences("Alarm Schedule", MODE_PRIVATE);
+        SharedPreferences.Editor editor_schedule = sharedPreferences_schedule.edit();
 
         switch (input){
-            case "30 Seconds":
-                editor_intervals.putLong("Interval", 30000);
+            case "None":
+                editor_schedule.putLong("Interval", 0);
+                editor_schedule.putBoolean("Schedule Enabled", false);
                 break;
-            case "1 Minute":
-                editor_intervals.putLong("Interval", 60000);
+            case "12 Hours":
+                editor_schedule.putLong("Interval", AlarmManager.INTERVAL_HALF_DAY);
+                editor_schedule.putBoolean("Schedule Enabled", true);
                 break;
-            case "2 Minutes":
-                editor_intervals.putLong("Interval", 120000);
-                break;
-            case "3 Minutes":
-                editor_intervals.putLong("Interval", 180000);
-                break;
-            case "4 Minutes":
-                editor_intervals.putLong("Interval", 240000);
-                break;
-            case "5 Minutes":
-                editor_intervals.putLong("Interval", 300000);
-                break;
+            case "24 Hours":
+                editor_schedule.putLong("Interval", AlarmManager.INTERVAL_DAY);
+                editor_schedule.putBoolean("Schedule Enabled", true);
             default:
                 break;
 
         }
-        editor_intervals.apply();
+        editor_schedule.apply();
 
     }
     public void repeating_intervals_changer (String input) {
@@ -454,6 +447,7 @@ public class settings_spinners extends AppCompatActivity {
             case "White":
                 //set background as starry clouds
                 MainActivity.motivational_quote.setTextColor(Color.WHITE);
+                MainActivity.quoter.setTextColor(Color.BLACK);
                 break;
             case "Black":
                 //set background as starry sky

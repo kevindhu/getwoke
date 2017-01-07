@@ -73,7 +73,7 @@ public class MainActivity_set_alarm extends AppCompatActivity{
                 if (alarm_service.isRunning) {
                     alarm_intent = new Intent(MainActivity_set_alarm.this, alarm_receiver.class);
                     pendingIntent = PendingIntent.getBroadcast(MainActivity_set_alarm.this, 1, alarm_intent,
-                            PendingIntent.FLAG_UPDATE_CURRENT);
+                            PendingIntent.FLAG_CANCEL_CURRENT);
                     sendBroadcast(alarm_intent);
                     Log.e("Cancel service", "Cancelled");
                     pendingIntent.cancel();
@@ -92,7 +92,7 @@ public class MainActivity_set_alarm extends AppCompatActivity{
                     //Triggers Alarm
                     alarm_intent = new Intent(MainActivity_set_alarm.this, alarm_receiver.class);
                     pendingIntent = PendingIntent.getBroadcast(MainActivity_set_alarm.this, 1, alarm_intent,
-                            PendingIntent.FLAG_UPDATE_CURRENT);
+                            PendingIntent.FLAG_CANCEL_CURRENT);
 
                     Log.e("System time", String.valueOf(System.currentTimeMillis()));
                     Log.e("Calendar time", String.valueOf(calendar.getTimeInMillis()));
