@@ -70,7 +70,6 @@ public class settings_spinners extends AppCompatActivity {
         setContentView(R.layout.settings);
 
 
-
         getSpinnerEntries("Font", spinner_fonts, fonts, R.id.fonts_spinner);
         getSpinnerEntries("Ringtones", spinner_ringtones, ringtones, R.id.ringtones_spinner);
         getSpinnerEntries("Genres", spinner_genre, genres, R.id.genre_spinner);
@@ -97,7 +96,6 @@ public class settings_spinners extends AppCompatActivity {
 
         getCheckBoxEntry();
         setVisibilitySpinner();
-
         addListenerOnCheckbox();
         addListenerOnButton();
     }
@@ -117,119 +115,6 @@ public class settings_spinners extends AppCompatActivity {
         ListenerClick(spinner_font_color,font_colors);
         ListenerClick(spinner_clock_color, clock_colors);
     }
-
-
-
-    public void addListenerOnCheckbox() {
-        snooze_check.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setVisibilitySpinner();
-            }
-        });
-    }
-
-
-    public void setVisibilitySpinner() {
-        if (!snooze_check.isChecked()) {
-            spinner_repeating_intervals.setVisibility(View.GONE);
-            snooze_interval_title.setVisibility(View.GONE);
-        }
-        else {
-            spinner_repeating_intervals.setVisibility(View.VISIBLE);
-            getSpinnerEntries("Repeating Intervals", spinner_repeating_intervals, repeating_intervals, R.id.spinner_intervals);
-            snooze_interval_title.setVisibility(View.VISIBLE);
-        }
-    }
-
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_aboutus, menu);
-        return true;
-    }
-
-
-
-
-    public void updateSpinnerEntries(Spinner spinner, String[] args) {
-        String message = String.valueOf(spinner.getSelectedItem());
-        List<String> new_item = new ArrayList<String>();
-
-        new_item.add(message);
-        for (int i = 0; i<args.length;i++){
-            new_item.add(args[i]);
-        }
-        for (int i = 0; i < new_item.size(); i++) {
-            if (i != 0 && new_item.get(i).equals(message)) {
-                new_item.remove(i);
-            }
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, new_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-    }
-
-
-
-
-
-
-
-    public void getSpinnerEntries(String item, Spinner spinner, String[] args, int XMLSpinner) {
-        //shared preferences
-        SharedPreferences sharedPref = getSharedPreferences(item, MODE_PRIVATE);
-        String message = sharedPref.getString("Message", "--Choose your " + item+"--");
-        spinner = (Spinner) findViewById(XMLSpinner);
-
-        List<String> new_item = new ArrayList<String>();
-
-        new_item.add(message);
-        for (int i = 0; i<args.length;i++){
-            new_item.add(args[i]);
-        }
-        for (int i = 0; i < new_item.size(); i++) {
-            if (i != 0 && new_item.get(i).equals(message)) {
-                new_item.remove(i);
-            }
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, new_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-    }
-
-
-
-
-
-    public void storeValue(String value,Spinner spinner) {
-        SharedPreferences sharedPref = getSharedPreferences(value, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("Message",String.valueOf(spinner.getSelectedItem()));
-        editor.apply();
-    }
-
-
-
-
-    public void getCheckBoxEntry() {
-        SharedPreferences checkbox_boolean = getSharedPreferences("Snooze Boolean",MODE_PRIVATE);
-        String message = checkbox_boolean.getString("Message", "false");
-        alarm_service.if_AlarmSchedule = Boolean.getBoolean(message);
-        snooze_check.setChecked(Boolean.valueOf(message));
-    }
-
-
-
-
-
-
-
-
-
-
 
     // get the selected dropdown list value when button is clicked
     public void addListenerOnButton() {
@@ -252,13 +137,6 @@ public class settings_spinners extends AppCompatActivity {
                 Log.e("Changed","boolean to " + String.valueOf(alarm_service.if_RepeatingAlarm));
                 editor.apply();
                 snooze_check.setChecked(Boolean.valueOf(String.valueOf(alarm_service.if_RepeatingAlarm)));
-
-
-
-
-
-
-
 
 
                 //Stores Values//
@@ -309,6 +187,108 @@ public class settings_spinners extends AppCompatActivity {
             }
         });
     }
+
+
+
+    public void addListenerOnCheckbox() {
+        snooze_check.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setVisibilitySpinner();
+            }
+        });
+    }
+
+
+
+
+
+
+
+    public void setVisibilitySpinner() {
+        if (!snooze_check.isChecked()) {
+            spinner_repeating_intervals.setVisibility(View.GONE);
+            snooze_interval_title.setVisibility(View.GONE);
+        }
+        else {
+            spinner_repeating_intervals.setVisibility(View.VISIBLE);
+            getSpinnerEntries("Repeating Intervals", spinner_repeating_intervals, repeating_intervals, R.id.spinner_intervals);
+            snooze_interval_title.setVisibility(View.VISIBLE);
+        }
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_aboutus, menu);
+        return true;
+    }
+
+
+    public void updateSpinnerEntries(Spinner spinner, String[] args) {
+        String message = String.valueOf(spinner.getSelectedItem());
+        List<String> new_item = new ArrayList<String>();
+
+        new_item.add(message);
+        for (int i = 0; i<args.length;i++){
+            new_item.add(args[i]);
+        }
+        for (int i = 0; i < new_item.size(); i++) {
+            if (i != 0 && new_item.get(i).equals(message)) {
+                new_item.remove(i);
+            }
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, new_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+    }
+
+
+
+    public void getSpinnerEntries(String item, Spinner spinner, String[] args, int XMLSpinner) {
+        //shared preferences
+        SharedPreferences sharedPref = getSharedPreferences(item, MODE_PRIVATE);
+        String message = sharedPref.getString("Message", "--Choose your " + item+"--");
+        spinner = (Spinner) findViewById(XMLSpinner);
+
+        List<String> new_item = new ArrayList<String>();
+
+        new_item.add(message);
+        for (int i = 0; i<args.length;i++){
+            new_item.add(args[i]);
+        }
+        for (int i = 0; i < new_item.size(); i++) {
+            if (i != 0 && new_item.get(i).equals(message)) {
+                new_item.remove(i);
+            }
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, new_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+    }
+
+
+
+
+    public void storeValue(String value,Spinner spinner) {
+        SharedPreferences sharedPref = getSharedPreferences(value, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("Message",String.valueOf(spinner.getSelectedItem()));
+        editor.apply();
+    }
+
+
+
+    public void getCheckBoxEntry() {
+        SharedPreferences checkbox_boolean = getSharedPreferences("Snooze Boolean",MODE_PRIVATE);
+        String message = checkbox_boolean.getString("Message", "false");
+        alarm_service.if_AlarmSchedule = Boolean.getBoolean(message);
+        snooze_check.setChecked(Boolean.valueOf(message));
+    }
+
+
+
 
 
 
@@ -536,9 +516,8 @@ public class settings_spinners extends AppCompatActivity {
             }
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                // your code here
+                // do nothing
             }
-
         });
     }
 }

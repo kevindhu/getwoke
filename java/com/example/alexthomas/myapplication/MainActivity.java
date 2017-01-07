@@ -68,34 +68,31 @@ public class MainActivity extends AppCompatActivity {
         //Sets font on Clock
         Typeface blockFonts = Typeface.createFromAsset(getAssets(), "fonts/Lato-Black.ttf");
         digitalClock.setTypeface(blockFonts);
-
-
         //Sets last configured time
         load_timer_null();
-        setInput_bottomText(); //Sets "alarm set" text in bottom
+        //Sets "alarm set" text in bottom
+        setInput_bottomText();
         //Sets quotes/quoter
         setQuote();
         setQuoter();
-        //Updates font
+        //Sets font
         font_changer(); //invokes this class's font_changer
-        //Updates background
+        //Sets background
         background_changer();
-        //Updates color
+        //Sets color
         adjustColor();
-
-
+        //Sets Power Button Text
         snooze_alarm.setText(getAlarmButtonText());
         if (get_PowerButtonBoolean()) {
             powerButton.setText("Turn Off");
         } else {
             powerButton.setText("Turn On");
         }
-
-
-        //sets quote/quoter from previous session
-
+        //Sets Quote Numbers
         setRandInt();
         setMaxMin();
+
+
 
 
 
@@ -124,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }, 1000);
             }
-
         });
 
 
