@@ -59,8 +59,6 @@ public class MainActivity extends AppCompatActivity {
         snooze_alarm = (Button) findViewById(R.id.alarm_off);
         powerButton = (Button) findViewById(R.id.powerbutton);
         content_main = (RelativeLayout) findViewById(R.id.content_main);
-        digitalClock.setTextColor(Color.GREEN);
-
 
         final ImageView settings_feedback = (ImageView) findViewById(R.id.settings_feedback);
         settings_feedback.setAlpha(0f);
@@ -179,7 +177,34 @@ public class MainActivity extends AppCompatActivity {
                         alarmUp = (PendingIntent.getBroadcast(MainActivity.this, 1,
                         new Intent(MainActivity.this, alarm_receiver.class),
                         PendingIntent.FLAG_NO_CREATE) != null);
+                //Checks if repeating intent is still around
+                boolean repeating_alarm = (PendingIntent.getBroadcast(MainActivity.this, 2,
+                        new Intent(MainActivity.this, alarm_receiver.class),
+                        PendingIntent.FLAG_NO_CREATE) != null);
+                Log.e("Conditionals", String.valueOf(repeating_alarm) + " " + String.valueOf(alarmUp));
 
+                if ((repeating_alarm && alarm_service.isRunning && !powerButton_on) || (alarmUp && alarm_service.isRunning && !powerButton_on)){
+                    Log.e("Conditional", "0");
+                    alarm_service.isRunning = true;
+                    alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
+                    pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 2, alarm_intent,
+                            PendingIntent.FLAG_UPDATE_CURRENT);
+                    sendBroadcast(alarm_intent);
+                    pendingIntent.cancel();
+
+                    alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
+                    pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
+                            PendingIntent.FLAG_UPDATE_CURRENT);
+                    pendingIntent.cancel();
+                    lastTimerisNull = true;
+                    store_timer_null(true);
+                    snooze_alarm.setText("Alarm Off");
+                    alarm_confirmation.setText("Your alarm is unset.");
+
+
+
+                }
+                else{
                 //Checks whether the user sets an alarm
                 if ((hour == -1) && (minute == -1)) {
                     Log.e("Conditional", "1");
@@ -222,7 +247,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 alarm_confirmation.setText(getInput());
 
-            }
+            }}
         });
 
 

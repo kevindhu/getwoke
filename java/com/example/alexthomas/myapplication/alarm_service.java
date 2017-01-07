@@ -36,6 +36,7 @@ public class alarm_service extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.e("onStartCommand", "Initiated alarm service (for starting and stopping music and generating new quotes");
+        Log.e("isRunning", String.valueOf(isRunning));
 
         if (isRunning){
             try {
