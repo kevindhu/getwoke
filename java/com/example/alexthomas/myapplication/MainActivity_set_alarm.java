@@ -112,6 +112,7 @@ public class MainActivity_set_alarm extends AppCompatActivity{
 
                     //Stores time in sharedpref
                     storeTime(theHour, theMinute);
+                    store_timer_null(false);
 
                     set_alarm_text(getInput());
                     MainActivity.alarm_confirmation.setText(getInput());
@@ -199,6 +200,13 @@ public class MainActivity_set_alarm extends AppCompatActivity{
     public void store_PowerButtonText(Boolean message){
 
         SharedPreferences sharedPref = getSharedPreferences("Power Button", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean("Message", message);
+        editor.apply();
+    }
+
+    public void store_timer_null(Boolean message) {
+        SharedPreferences sharedPref = getSharedPreferences("Last Timer", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putBoolean("Message", message);
         editor.apply();

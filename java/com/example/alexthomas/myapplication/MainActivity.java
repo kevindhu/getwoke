@@ -223,7 +223,6 @@ public class MainActivity extends AppCompatActivity {
                     pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
                             PendingIntent.FLAG_CANCEL_CURRENT);
                     pendingIntent.cancel();
-
                     alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
                     pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 2, alarm_intent,
                             PendingIntent.FLAG_CANCEL_CURRENT);
