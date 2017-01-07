@@ -298,7 +298,7 @@ public class settings_spinners extends AppCompatActivity {
                         break;
                 }
 
-                SharedPreferences sharedPreferences_interval = getSharedPreferences("Repeating Interval", MODE_PRIVATE);
+                SharedPreferences sharedPreferences_interval = getSharedPreferences("Repeating Intervals", MODE_PRIVATE);
                 SharedPreferences.Editor editor_intervals = sharedPreferences_interval.edit();
 
                 SharedPreferences sharedPreferences_schedule = getSharedPreferences("Alarm Schedule", MODE_PRIVATE);

@@ -60,6 +60,25 @@ public class alarm_service extends Service {
 
             //displays new quote
             randomQuote newQuote = new randomQuote();
+
+
+
+
+            //gets sharedPref for last_rand and max/min
+            SharedPreferences sharedPref_alarm_unset50 = getSharedPreferences("Random Int", MODE_PRIVATE);
+            int message = sharedPref_alarm_unset50.getInt("Message", -1);
+            newQuote.last_rand = message;
+            SharedPreferences sharedPref_max = getSharedPreferences("Max", MODE_PRIVATE);
+            SharedPreferences sharedPref_min = getSharedPreferences("Min", MODE_PRIVATE);
+            int new_min = sharedPref_min.getInt("Max", 0);
+            int new_max = sharedPref_max.getInt("Min", 10000);
+            newQuote.maxlength = new_max;
+            newQuote.minlength = new_min;
+
+
+
+
+
             Log.e("alright","Generating new quote with genre set to "+genre);
             quote = newQuote.quote_generator(genre);
             saverandInt();
@@ -135,12 +154,16 @@ public class alarm_service extends Service {
 
                         try {
                             MainActivity.snooze_alarm.setText("I'm Woke!");
+                            SharedPreferences sharedPref_alarm_unset1 = getSharedPreferences("Alarm Unset", MODE_PRIVATE);
+                            SharedPreferences.Editor editor_alarm_unset = sharedPref_alarm_unset1.edit();
+                            editor_alarm_unset.putString("Alarm Button Text", "I'm Woke!");
+                            editor_alarm_unset.apply();
                             alarm_service.isRunning = false;
                             snooze_restart();
                         }
                         catch(NullPointerException e) {
-                            SharedPreferences sharedPref_alarm_unset = getSharedPreferences("Alarm Unset", MODE_PRIVATE);
-                            SharedPreferences.Editor editor_alarm_unset = sharedPref_alarm_unset.edit();
+                            SharedPreferences sharedPref_alarm_unset2 = getSharedPreferences("Alarm Unset", MODE_PRIVATE);
+                            SharedPreferences.Editor editor_alarm_unset = sharedPref_alarm_unset2.edit();
                             editor_alarm_unset.putString("Alarm Button Text", "I'm Woke!");
                             editor_alarm_unset.apply();
                             alarm_service.isRunning = false;
@@ -158,10 +181,14 @@ public class alarm_service extends Service {
                             Log.e("Not repeating", "This alarm does not repeat");
                             control_RepeatingAlarm = if_RepeatingAlarm;
                             already_Pressed = false;
+                            SharedPreferences sharedPref_alarm_unset3 = getSharedPreferences("Alarm Unset", MODE_PRIVATE);
+                            SharedPreferences.Editor editor_alarm_unset = sharedPref_alarm_unset3.edit();
+                            editor_alarm_unset.putString("Alarm Button Text", "Alarm Off");
+                            editor_alarm_unset.apply();
                         }
                         catch(NullPointerException e) {
-                            SharedPreferences sharedPref_alarm_unset = getSharedPreferences("Alarm Unset", MODE_PRIVATE);
-                            SharedPreferences.Editor editor_alarm_unset = sharedPref_alarm_unset.edit();
+                            SharedPreferences sharedPref_alarm_unset3 = getSharedPreferences("Alarm Unset", MODE_PRIVATE);
+                            SharedPreferences.Editor editor_alarm_unset = sharedPref_alarm_unset3.edit();
                             editor_alarm_unset.putString("Alarm Button Text", "Alarm Off");
                             editor_alarm_unset.apply();
                             control_RepeatingAlarm = if_RepeatingAlarm;
@@ -169,7 +196,6 @@ public class alarm_service extends Service {
                         }
                     }
                 }
-
             });
 
 

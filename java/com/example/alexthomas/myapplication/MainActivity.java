@@ -260,7 +260,7 @@ public class MainActivity extends AppCompatActivity {
                                 PendingIntent.FLAG_UPDATE_CURRENT);
                         sendBroadcast(alarm_intent);
                         //Starts periodic Alarm
-                        SharedPreferences sharedPref = getSharedPreferences("Repeating Interval", MODE_PRIVATE);
+                        SharedPreferences sharedPref = getSharedPreferences("Repeating Intervals", MODE_PRIVATE);
                         long interval = sharedPref.getLong("Interval", -1);
                         Log.e("Interval", String.valueOf(interval));
                         SharedPreferences checkbox_boolean = getSharedPreferences("Snooze Boolean",MODE_PRIVATE);
