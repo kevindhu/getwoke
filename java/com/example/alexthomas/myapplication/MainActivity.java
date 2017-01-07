@@ -169,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
                         PendingIntent.FLAG_NO_CREATE) != null);
                 Log.e("Conditionals", String.valueOf(repeating_alarm) + " " + String.valueOf(alarmUp));
 
+                    /////when there is no alarm set ever before
                 if ((repeating_alarm && alarm_service.isRunning && !powerButton_on) || (alarmUp && alarm_service.isRunning && !powerButton_on)){
                     Log.e("Conditional", "0");
                     alarm_service.isRunning = true;
@@ -196,7 +197,6 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("Conditional", "1");
                     Toast.makeText(MainActivity.this, "You need to set an alarm first!", Toast.LENGTH_SHORT).show();
                 }
-                //
                 else if (!alarmUp && !powerButton_on && !alarm_service.isRunning && !repeating_alarm) {
                     Log.e("Conditional", "2");
                     Toast.makeText(MainActivity.this, "The alarm is already off!", Toast.LENGTH_SHORT).show();
@@ -229,7 +229,6 @@ public class MainActivity extends AppCompatActivity {
                     pendingIntent.cancel();
                     lastTimerisNull = true;
                     store_timer_null(true);
-                    alarm_confirmation.setText("Your alarm is unset.");
                     store_Alarm_bottomText("Your alarm is unset.");
                     snooze_alarm.setText("Alarm Off");
                     store_snoozeText("Alarm Off");
@@ -237,7 +236,6 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("Cancelled for real", "Cancelled Intent");
                 }
                 setInput_bottomText();
-
             }}}
         });
 
