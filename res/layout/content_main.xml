@@ -19,7 +19,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Power Button"
+        android:text="Turn On"
         android:layout_marginLeft="110dp"
         android:id="@+id/powerbutton"
         />

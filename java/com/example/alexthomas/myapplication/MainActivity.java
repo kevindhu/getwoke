@@ -196,21 +196,21 @@ public class MainActivity extends AppCompatActivity {
                 }
                 //When alarm schedule has no pending alarm and user turns power on
                 else if (!alarmUp && powerButton_on) {
-                    Log.e("Conditional", "3");
-                    Log.e("getInput", getInput());
+                        Log.e("Conditional", "3");
+                        Log.e("getInput", getInput());
+                    alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
                     pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
                             PendingIntent.FLAG_UPDATE_CURRENT);
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.set(Calendar.HOUR_OF_DAY, hour);
-                    calendar.set(Calendar.MINUTE, minute);
-                    long time = calendar.getTimeInMillis();
-                    alarm_confirmation.setText(getInput());
-                    AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-                    alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, adjustTime(time), pendingIntent);
-                    lastTimerisNull = false;
+                        Log.e("Hi", "Hi");
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(Calendar.HOUR_OF_DAY, hour);
+                        calendar.set(Calendar.MINUTE, minute);
+                        long time = calendar.getTimeInMillis();
+                        alarm_confirmation.setText(getInput());
+                        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+                        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, adjustTime(time), pendingIntent);
+                        lastTimerisNull = false;
                 }
-
-
                 //When alarm has a pending alarm and user turns it off
                 else if (alarmUp && !powerButton_on) {
                     Log.e("Conditional", "4");
