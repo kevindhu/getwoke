@@ -1,10 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="1">
+
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="140dp"
+        android:layout_marginRight="140dp"
+        android:layout_marginTop="420dp"
+        android:layout_centerHorizontal="true"
+        android:text="Submit"
+        android:elevation="1dp"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:elevation="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/btnSubmit"
+        android:textAlignment="center"
+        app:srcCompat="@drawable/getwoke_header" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -242,24 +264,6 @@
     </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/btnSubmit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="140dp"
-        android:layout_marginRight="140dp"
-        android:layout_marginTop="20dp"
-        android:text="Submit"
-        android:elevation="1dp"/>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:elevation="1dp"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_above="@+id/set_alarm"
-        android:textAlignment="center"
-        app:srcCompat="@drawable/getwoke_header" />
-
-</LinearLayout>
+</RelativeLayout>
 

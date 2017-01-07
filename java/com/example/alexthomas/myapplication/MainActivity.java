@@ -84,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
         adjustColor();
 
 
-
         snooze_alarm.setText(getAlarmButtonText());
         if (get_PowerButtonBoolean()) {
             powerButton.setText("Turn Off");
@@ -184,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
                     lastTimerisNull = true;
                     store_timer_null(true);
                     snooze_alarm.setText("Alarm Off");
-                    store_snoozeText("I'm Woke");
+                    store_snoozeText("Alarm Off");
                     alarm_confirmation.setText("Your alarm is unset.");
 
 
@@ -246,10 +245,10 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.e("isRunning", String.valueOf(alarm_service.isRunning));
                 Log.e("repeating_alarm", String.valueOf(repeating_alarm));
+                boolean x = snooze_alarm.getText().toString() == "I'm Woke!";
+                Log.e("Snooze Alarm Text", String.valueOf(x));
 
-                alarm_service.already_Pressed = true;
-
-                if (repeating_alarm && snooze_alarm.getText() == "I'm Woke!") {
+                if (repeating_alarm && (snooze_alarm.getText().toString().equals("I'm Woke!"))) {
                     Log.e("Conditional", "1");
                     Intent repeating_alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
                     PendingIntent repeating_pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 2, repeating_alarm_intent,
@@ -259,7 +258,7 @@ public class MainActivity extends AppCompatActivity {
                     snooze_alarm.setText("Alarm Off");
                     store_snoozeText("Alarm Off");
                 } else {
-                    if (!alarm_service.isRunning) {
+                    if (!alarm_service.isRunning && !repeating_alarm) {
                         Log.e("Conditional", "2");
                         Toast.makeText(MainActivity.this, "The alarm is already off!", Toast.LENGTH_SHORT).show();
                     } else {
@@ -276,10 +275,12 @@ public class MainActivity extends AppCompatActivity {
                         Log.e("Interval", String.valueOf(interval));
                         SharedPreferences checkbox_boolean = getSharedPreferences("Snooze Boolean",MODE_PRIVATE);
                         String ifRepeatingOn = checkbox_boolean.getString("Message", "false");
+                        lastTimerisNull = false;
+                        store_timer_null(false);
 
                         if(Boolean.valueOf(ifRepeatingOn) && (interval != -1)){
                             snooze_alarm.setText("I'm Woke!");
-                            store_snoozeText("I'm Woke");
+                            store_snoozeText("I'm Woke!");
                             AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
                             alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + interval, pendingIntent);
                             Log.e("Repeats", "This repeats");
@@ -469,12 +470,14 @@ public class MainActivity extends AppCompatActivity {
     //Gets previous time
 
     private String getAlarmButtonText() {
+        boolean repeating_alarm = (PendingIntent.getBroadcast(MainActivity.this, 2,
+                new Intent(MainActivity.this, alarm_receiver.class),
+                PendingIntent.FLAG_NO_CREATE) != null);
         SharedPreferences sharedPref = getSharedPreferences("Alarm Unset", MODE_PRIVATE);
         String message = sharedPref.getString("Alarm Button Text", "Alarm Off");
-        if (!alarm_service.isRunning) {
+        if (!alarm_service.isRunning && !repeating_alarm) {
             message = "Alarm Off";
         }
-
         return message;
     }
 
