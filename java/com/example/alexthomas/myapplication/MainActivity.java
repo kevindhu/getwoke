@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     public static Button powerButton;
     public static Boolean powerButton_on = false;
     private static Boolean lastTimerisNull = true;
-
+    public static boolean alarmUp;
 
 
 
@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 //Checks if pending intent with int 1 is still around
-                boolean alarmUp = (PendingIntent.getBroadcast(MainActivity.this, 1,
+                        alarmUp = (PendingIntent.getBroadcast(MainActivity.this, 1,
                         new Intent(MainActivity.this, alarm_receiver.class),
                         PendingIntent.FLAG_NO_CREATE) != null);
 
@@ -462,6 +462,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref = getSharedPreferences("Power Button", MODE_PRIVATE);
         Boolean message = sharedPref.getBoolean("Message", false);
         powerButton_on = message;
+        alarmUp = message;
+        Log.e("the power button start",String.valueOf(powerButton_on));
         return message;
     }
 
