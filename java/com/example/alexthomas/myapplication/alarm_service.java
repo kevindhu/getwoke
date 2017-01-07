@@ -117,8 +117,8 @@ public class alarm_service extends Service {
                 SharedPreferences.Editor editor_alarm_unset = sharedPref_alarm_unset.edit();
                 editor_alarm_unset.putString("Alarm Button Text", "Silence Alarm");
                 editor_alarm_unset.apply();
-
             }
+
 
 
 
@@ -133,12 +133,17 @@ public class alarm_service extends Service {
                     MainActivity.snooze_alarm.setText("I'm Woke!");
                     alarm_service.isRunning = false;
                     snooze_restart();
+
+
+
                     }
                     else {
                         MainActivity.snooze_alarm.setText("Alarm Off");
                         Log.e("Not repeating", "This alarm does not repeat");
                         control_RepeatingAlarm = if_RepeatingAlarm;
                         already_Pressed = false;
+
+
                     }
                 }
 
