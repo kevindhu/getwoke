@@ -230,6 +230,7 @@ public class MainActivity extends AppCompatActivity {
                     lastTimerisNull = true;
                     store_timer_null(true);
                     alarm_confirmation.setText("Your alarm is unset.");
+                    store_Alarm_bottomText("Your alarm is unset.");
                     snooze_alarm.setText("Alarm Off");
                     store_snoozeText("Alarm Off");
                     Toast.makeText(MainActivity.this, "Alarm unset.", Toast.LENGTH_SHORT).show();
@@ -592,6 +593,14 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref_alarm_unset = getSharedPreferences("Alarm Unset", MODE_PRIVATE);
         SharedPreferences.Editor editor_alarm_unset = sharedPref_alarm_unset.edit();
         editor_alarm_unset.putString("Alarm Button Text", message);
+        editor_alarm_unset.apply();
+    }
+
+    private void store_Alarm_bottomText(String message){
+
+        SharedPreferences sharedPref_alarm_unset = getSharedPreferences("Alarm Time", MODE_PRIVATE);
+        SharedPreferences.Editor editor_alarm_unset = sharedPref_alarm_unset.edit();
+        editor_alarm_unset.putString("Message", message);
         editor_alarm_unset.apply();
     }
 
