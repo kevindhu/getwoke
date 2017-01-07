@@ -91,7 +91,7 @@ public class settings_spinners extends AppCompatActivity {
         spinner_backgrounds = (Spinner) findViewById(R.id.spinner_backgrounds);
         spinner_alarm_schedule = (Spinner) findViewById(R.id.spinner_alarm_schedule);
         spinner_clock_color = (Spinner) findViewById(R.id.spinner_clock_color);
-
+        spinner_font_color = (Spinner) findViewById(R.id.spinner_font_colors);
         snooze_interval_title = (TextView) findViewById(R.id.types_of_intervals);
 
 
