@@ -130,20 +130,43 @@ public class alarm_service extends Service {
                 public void onCompletion(MediaPlayer mp) {
                     if(control_RepeatingAlarm){
                     //Log.e("Setting", "Text Automatically to Alarm Off");
-                    MainActivity.snooze_alarm.setText("I'm Woke!");
-                    alarm_service.isRunning = false;
-                    snooze_restart();
+
+
+
+                        try {
+                            MainActivity.snooze_alarm.setText("I'm Woke!");
+                            alarm_service.isRunning = false;
+                            snooze_restart();
+                        }
+                        catch(NullPointerException e) {
+                            SharedPreferences sharedPref_alarm_unset = getSharedPreferences("Alarm Unset", MODE_PRIVATE);
+                            SharedPreferences.Editor editor_alarm_unset = sharedPref_alarm_unset.edit();
+                            editor_alarm_unset.putString("Alarm Button Text", "I'm Woke!");
+                            editor_alarm_unset.apply();
+                            alarm_service.isRunning = false;
+                            snooze_restart();
+                        }
+
+
 
 
 
                     }
                     else {
-                        MainActivity.snooze_alarm.setText("Alarm Off");
-                        Log.e("Not repeating", "This alarm does not repeat");
-                        control_RepeatingAlarm = if_RepeatingAlarm;
-                        already_Pressed = false;
-
-
+                        try {
+                            MainActivity.snooze_alarm.setText("Alarm Off");
+                            Log.e("Not repeating", "This alarm does not repeat");
+                            control_RepeatingAlarm = if_RepeatingAlarm;
+                            already_Pressed = false;
+                        }
+                        catch(NullPointerException e) {
+                            SharedPreferences sharedPref_alarm_unset = getSharedPreferences("Alarm Unset", MODE_PRIVATE);
+                            SharedPreferences.Editor editor_alarm_unset = sharedPref_alarm_unset.edit();
+                            editor_alarm_unset.putString("Alarm Button Text", "Alarm Off");
+                            editor_alarm_unset.apply();
+                            control_RepeatingAlarm = if_RepeatingAlarm;
+                            already_Pressed = false;
+                        }
                     }
                 }
 
