@@ -261,7 +261,6 @@ public class settings_spinners extends AppCompatActivity {
                 storeValue("Backgrounds",spinner_backgrounds);
                 storeValue("Font Color", spinner_font_color);
                 storeValue("Repeating Intervals",spinner_repeating_intervals);
-                storeValue("Alarm Schedule",spinner_alarm_schedule);
 
 
                 Toast.makeText(getApplicationContext(), "Settings Updated!",
@@ -299,24 +298,30 @@ public class settings_spinners extends AppCompatActivity {
                         break;
                 }
 
+                SharedPreferences sharedPreferences_interval = getSharedPreferences("Repeating Interval", MODE_PRIVATE);
+                SharedPreferences.Editor editor_intervals = sharedPreferences_interval.edit();
+
+                SharedPreferences sharedPreferences_schedule = getSharedPreferences("Alarm Schedule", MODE_PRIVATE);
+                SharedPreferences.Editor editor_schedule = sharedPreferences_schedule.edit();
+
                 switch (String.valueOf(spinner_repeating_intervals.getSelectedItem())){
                     case "30 Seconds":
-                        alarm_service.interval = 30000;
+                        editor_intervals.putLong("Interval", 30000);
                         break;
                     case "1 Minute":
-                        alarm_service.interval = 60000;
+                        editor_intervals.putLong("Interval", 60000);
                         break;
                     case "2 Minutes":
-                        alarm_service.interval = 120000;
+                        editor_intervals.putLong("Interval", 120000);
                         break;
                     case "3 Minutes":
-                        alarm_service.interval = 180000;
+                        editor_intervals.putLong("Interval", 180000);
                         break;
                     case "4 Minutes":
-                        alarm_service.interval = 240000;
+                        editor_intervals.putLong("Interval", 240000);
                         break;
                     case "5 Minutes":
-                        alarm_service.interval = 300000;
+                        editor_intervals.putLong("Interval", 300000);
                         break;
                     default:
                         break;
@@ -325,16 +330,17 @@ public class settings_spinners extends AppCompatActivity {
 
                 switch (String.valueOf(spinner_alarm_schedule.getSelectedItem())){
                     case "None":
-                        alarm_service.alarm_schedule = 0;
+                        editor_schedule.putLong("Interval", 0);
+                        editor_schedule.putBoolean("if_AlarmSchedule", false);
                         alarm_service.if_AlarmSchedule = false;
                         break;
                     case "12 Hours":
-                        alarm_service.alarm_schedule = AlarmManager.INTERVAL_HALF_DAY;
-                        alarm_service.if_AlarmSchedule = true;
+                        editor_schedule.putLong("Interval", AlarmManager.INTERVAL_HALF_DAY);
+                        editor_schedule.putBoolean("if_AlarmSchedule", true);
                         break;
                     case "24 Hours":
-                        alarm_service.alarm_schedule = AlarmManager.INTERVAL_DAY;
-                        alarm_service.if_AlarmSchedule = true;
+                        editor_schedule.putLong("Interval", AlarmManager.INTERVAL_DAY);
+                        editor_schedule.putBoolean("if_AlarmSchedule", true);
                         break;
                     default:
                         break;

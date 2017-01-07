@@ -203,7 +203,8 @@ public class alarm_service extends Service {
 
     public void snooze_restart() {
         //snooze restart
-        Log.e("alarm","Start new repeating alarm");
+        Log.e("Snooze","Start new repeating alarm");
+        Log.e("Interval",String.valueOf(interval));
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 

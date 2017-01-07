@@ -259,11 +259,24 @@ public class MainActivity extends AppCompatActivity {
                         pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 2, alarm_intent,
                                 PendingIntent.FLAG_UPDATE_CURRENT);
                         sendBroadcast(alarm_intent);
-                        snooze_alarm.setText("I'm Woke!");
                         //Starts periodic Alarm
-                        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-                        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, 6000, pendingIntent);
-                        Log.e("Cancel service", "Silenced");
+                        SharedPreferences sharedPref = getSharedPreferences("Repeating Interval", MODE_PRIVATE);
+                        long interval = sharedPref.getLong("Interval", -1);
+                        Log.e("Interval", String.valueOf(interval));
+                        SharedPreferences checkbox_boolean = getSharedPreferences("Snooze Boolean",MODE_PRIVATE);
+                        String ifRepeatingOn = checkbox_boolean.getString("Message", "false");
+
+                        if(Boolean.valueOf(ifRepeatingOn) && (interval != -1)){
+                            snooze_alarm.setText("I'm Woke!");
+                            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+                            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, interval, pendingIntent);
+                            Log.e("Repeats", "This repeats");
+                        }
+                        else{
+                            snooze_alarm.setText("Alarm Off");
+                        }
+
+                        Log.e("Cancel service", "Doesn't repeat");
                     }
                 }
             }
