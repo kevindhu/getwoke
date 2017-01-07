@@ -73,7 +73,9 @@ public class randomQuote extends AppCompatActivity{
             {"Cinema reflects culture and there is no harm in adapting technology, but not at the cost of losing your originality.","Jackie Chan"},
             {"The best revenge is massive success","Frank Sinatra"},
             {"Nothing to me feels as good as laughing incredibly hard.", "Steven Carrell"},
-            {"Whether you think you can or you think you can’t, you’re right.", "Harrison Ford"}
+            {"Whether you think you can or you think you can’t, you’re right.", "Harrison Ford"},
+            {"You don't learn from successes; you don't learn from awards; you don't learn from celebrity; you only learn from wounds and scars and mistakes and failures. And that's the truth.", "Jane Fonda"}
+
     };
 
 
@@ -83,6 +85,8 @@ public class randomQuote extends AppCompatActivity{
             {"Anime is a mistake, it's nothing but trash.", "Hayao Miyazaki"},
             {"This is an insult to life itself...", "Hayao Miyazaki"},
             {"Twenty years from now you will be more disappointed by the things that you didn’t do than by the ones you did do, so throw off the bowlines, sail away from safe harbor, catch the trade winds in your sails.  Explore, Dream, Discover.", "Mark Twain"},
+            {"If you can tell stories, create characters, devise incidents, and have sincerity and passion, it doesn’t matter a damn how you write.", "Somerset Maugham"},
+            {"Any man who keeps working is not a failure. He may not be a great writer, but if he applies the old-fashioned virtues of hard, constant labor, he’ll eventually make some kind of career for himself as writer.", "Ray Bradbury"}
 
     };
 
@@ -124,7 +128,10 @@ public class randomQuote extends AppCompatActivity{
             {"To find yourself, think for yourself.", "Socrates"},
             {"Live as if you were to die tomorrow","Learn as if you were to live forever","Mahatma Gandhi"},
             {"And those who were seen dancing were thought to be insane by those who could not hear the music", "Friedrich Nietzche"},
-            {"I love those who can smile in trouble, who can gather strength from distress, and grow brave by reflection. 'Tis the business of little minds to shrink, but they whose heart is firm, and whose conscience approves their conduct, will pursue their principles unto death.","Leonardo DaVinci"}
+            {"I love those who can smile in trouble, who can gather strength from distress, and grow brave by reflection. 'Tis the business of little minds to shrink, but they whose heart is firm, and whose conscience approves their conduct, will pursue their principles unto death.","Leonardo DaVinci"},
+            {"A person, who no matter how desperate the situation, gives others hope, is a true leader.", "Daisaku Ikeda"},
+            {"You must not for one instant give up the effort to build new lives for yourselves. Creativity means to push open the heavy, groaning doorway to life.", "Daisaku Ikeda"},
+            {"The determination to win is the better part of winning.", "Daisaku Ikeda"}
 
 
 

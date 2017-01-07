@@ -432,7 +432,7 @@ public class settings_spinners extends AppCompatActivity {
             case "White":
                 //set background as starry clouds
                 MainActivity.motivational_quote.setTextColor(Color.WHITE);
-                MainActivity.quoter.setTextColor(Color.BLACK);
+                MainActivity.quoter.setTextColor(Color.WHITE);
                 break;
             case "Black":
                 //set background as starry sky

@@ -138,6 +138,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Checks whether MAIN alarm is pending
+
+                if (powerButton.getText().toString().equals("Turn On") && getInput_bottomText() == "Your alarm is unset."){
+                    Log.e("Conditional", "-1");
+                    Toast.makeText(MainActivity.this, "You need to set an alarm first!", Toast.LENGTH_SHORT).show();
+                }
+                else{
                 powerButton_on = !powerButton_on;
                 Log.e("Power button is on?????", String.valueOf(powerButton_on));
 
@@ -181,8 +187,7 @@ public class MainActivity extends AppCompatActivity {
                     snooze_alarm.setText("Alarm Off");
                     store_snoozeText("Alarm Off");
                     alarm_confirmation.setText("Your alarm is unset.");
-
-
+                    store_Alarm_bottomText("Your alarm is unset.");
 
                 }
                 else{
@@ -234,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 setInput_bottomText();
 
-            }}
+            }}}
         });
 
 
@@ -555,11 +560,23 @@ public class MainActivity extends AppCompatActivity {
         alarm_confirmation = (TextView) findViewById(R.id.alarm_confirmation);
         if (!lastTimerisNull) {
             SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
-            String message = sharedPref.getString("Message", "Your alarm is unset");
+            String message = sharedPref.getString("Message", "Your alarm is unset.");
             Log.e("Setting previous alarm", message);
             alarm_confirmation.setText(message);
         } else {
-             alarm_confirmation.setText("Your alarm is unset.");
+            alarm_confirmation.setText("Your alarm is unset.");
+        }
+    }
+
+    private String getInput_bottomText() {
+        alarm_confirmation = (TextView) findViewById(R.id.alarm_confirmation);
+        if (!lastTimerisNull) {
+            SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
+            String message = sharedPref.getString("Message", "Fuck you");
+            Log.e("Setting previous alarm", message);
+            return message;
+        } else {
+            return "Your alarm is unset.";
         }
     }
 
