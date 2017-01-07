@@ -64,29 +64,25 @@ public class MainActivity extends AppCompatActivity {
         settings_feedback.setAlpha(0f);
 
 
-        load_timer_null();
-
 
         //Sets font on Clock
         Typeface blockFonts = Typeface.createFromAsset(getAssets(), "fonts/Lato-Black.ttf");
         digitalClock.setTypeface(blockFonts);
 
-        /////SHAREDPREF GETTERS/////
-
-
-        //Captures font from previous session
-        SharedPreferences sharedPref_font = getSharedPreferences("Font", MODE_PRIVATE);
-        String last_font = sharedPref_font.getString("Message", "--Choose your Font--");
-
-
-
-        //Captures background from previous session
-        SharedPreferences sharedPref_background = getSharedPreferences("Backgrounds", MODE_PRIVATE);
-        String last_background = sharedPref_background.getString("Message", "--Choose your Background--");
 
         //Sets last configured time
-        alarm_confirmation = (TextView) findViewById(R.id.alarm_confirmation);
-        alarm_confirmation.setText(getInput_bottomText());
+        load_timer_null();
+        setInput_bottomText(); //Sets "alarm set" text in bottom
+        //Sets quotes/quoter
+        setQuote();
+        setQuoter();
+        //Updates font
+        font_changer(); //invokes this class's font_changer
+        //Updates background
+        background_changer();
+        //Updates color
+        adjustColor();
+
 
 
         snooze_alarm.setText(getAlarmButtonText());
@@ -98,21 +94,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         //sets quote/quoter from previous session
-        motivational_quote = (TextView) findViewById(R.id.motivationalQuote);
-        motivational_quote.setText(getQuote());
-        quoter = (TextView) findViewById(R.id.quoter);
-        quoter.setText(getQuoter());
+
         setRandInt();
         setMaxMin();
 
-        //Updates font
-        font_changer(last_font); //invokes this class's font_changer
-
-        //Updates background
-        background_changer(last_background);
-
-        //Updates color
-        adjustColor();
 
 
         /////LISTENERS/////
@@ -219,7 +204,6 @@ public class MainActivity extends AppCompatActivity {
                 //When alarm schedule has no pending alarm and user turns power on
                 else if (!alarmUp && powerButton_on) {
                     Log.e("Conditional", "3");
-                    Log.e("getInput_bottomText", getInput_bottomText());
                     alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
                     pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
                             PendingIntent.FLAG_CANCEL_CURRENT);
@@ -245,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Alarm unset.", Toast.LENGTH_SHORT).show();
                     Log.e("Cancelled for real", "Cancelled Intent");
                 }
-                alarm_confirmation.setText(getInput_bottomText());
+                setInput_bottomText();
 
             }}
         });
@@ -365,8 +349,10 @@ public class MainActivity extends AppCompatActivity {
 
     /////Feature Changers/////
 
-    public void background_changer (String background) {
-        switch (background) {
+    public void background_changer () {
+        SharedPreferences sharedPref_background = getSharedPreferences("Backgrounds", MODE_PRIVATE);
+        String last_background = sharedPref_background.getString("Message", "--Choose your Background--");
+        switch (last_background) {
             case "Starry Clouds":
                 MainActivity.content_main.setBackgroundResource(R.drawable.stars_clouds);
                 break;
@@ -389,12 +375,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public void font_changer(String font) {
+    public void font_changer() {
+        SharedPreferences sharedPref_font = getSharedPreferences("Font", MODE_PRIVATE);
+        String last_font = sharedPref_font.getString("Message", "--Choose your Font--");
         Typeface font_roboto = Typeface.createFromAsset(getAssets(), "fonts/roboto-medium.ttf");
         Typeface font_cursive = Typeface.createFromAsset(getAssets(), "fonts/Otto.ttf");
         Typeface font_weird = Typeface.createFromAsset(getAssets(), "fonts/weird.otf");
-        Log.e("yes", "font changing to " + font);
-        switch (font) {
+        Log.e("yes", "font changing to " + last_font);
+        switch (last_font) {
             case "Formal":
                 motivational_quote.setTypeface(font_cursive);
                 break;
@@ -556,30 +544,33 @@ public class MainActivity extends AppCompatActivity {
         return message;
     }
 
-    private String getInput_bottomText() {
+    private void setInput_bottomText() {
+        alarm_confirmation = (TextView) findViewById(R.id.alarm_confirmation);
         if (!lastTimerisNull) {
             SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
             String message = sharedPref.getString("Message", "Your alarm is unset");
             Log.e("Setting previous alarm", message);
-            return message;
+            alarm_confirmation.setText(message);
         } else {
-            return "Your alarm is unset.";
+             alarm_confirmation.setText("Your alarm is unset.");
         }
     }
 
 
-    private String getQuote() {
+    private void setQuote() {
+        motivational_quote = (TextView) findViewById(R.id.motivationalQuote);
         SharedPreferences sharedPref = getSharedPreferences("Quote", MODE_PRIVATE);
         String message = sharedPref.getString("Quote", "");
         Log.e("GetQuote()", message);
-        return message;
+        motivational_quote.setText(message);
 
     }
 
-    private String getQuoter() {
+    private void setQuoter() {
+        quoter = (TextView) findViewById(R.id.quoter);
         SharedPreferences sharedPref = getSharedPreferences("Quoter", MODE_PRIVATE);
         String message = sharedPref.getString("Quoter", "");
-        return message;
+        quoter.setText(message);
 
     }
 
