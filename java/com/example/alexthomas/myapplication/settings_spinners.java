@@ -49,7 +49,7 @@ public class settings_spinners extends AppCompatActivity {
     private String[] fonts = {"Formal", "Roboto", "Weird"};
     private String[] genres ={"All Genres","Entrepreneur", "Celebrity", "Author", "Athlete", "Anime", "Great Minds", "Book Quotes","Meme Quotes"};
     private String[] quote_length = {"All Lengths","Medium", "Short", "Long"};
-    private String[] backgrounds = {"Vanilla","Starry Clouds", "Starry Sky"};
+    private String[] backgrounds = {"Vanilla","Starry Clouds", "Galaxy", "Forest", "Crystal"};
     private String[] repeating_intervals = {"30 Seconds", "1 Minute", "2 Minutes", "3 Minutes", "4 Minutes", "5 Minutes"};
     private String[] alarm_schedule = {"None", "15 Minutes", "30 Minutes", "1 Hour", "12 Hours", "24 Hours"};
 
@@ -289,12 +289,18 @@ public class settings_spinners extends AppCompatActivity {
                 //set background as starry clouds
                 MainActivity.content_main.setBackgroundResource(R.drawable.stars_clouds);
                 break;
-            case "Starry Sky":
+            case "Galaxy":
                 //set background as starry sky
-                MainActivity.content_main.setBackgroundResource(R.drawable.stars_wallpaper);
+                MainActivity.content_main.setBackgroundResource(R.drawable.galaxy);
                 break;
             case "Vanilla":
                 MainActivity.content_main.setBackgroundResource(R.drawable.vanilla);
+                break;
+            case "Forest":
+                MainActivity.content_main.setBackgroundResource(R.drawable.forest);
+                break;
+            case "Crystal":
+                MainActivity.content_main.setBackgroundResource(R.drawable.crystal);
                 break;
             default:
                 break;

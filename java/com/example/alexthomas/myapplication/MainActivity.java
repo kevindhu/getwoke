@@ -313,18 +313,22 @@ public class MainActivity extends AppCompatActivity {
 
     /////Feature Changers/////
 
-    public void background_changer(String background) {
+    public void background_changer (String background) {
         switch (background) {
             case "Starry Clouds":
-                //set background as starry clouds
-                content_main.setBackgroundResource(R.drawable.stars_clouds);
+                MainActivity.content_main.setBackgroundResource(R.drawable.stars_clouds);
                 break;
-            case "Starry Sky":
-                //set background as starry sky
-                content_main.setBackgroundResource(R.drawable.stars_wallpaper);
+            case "Galaxy":
+                MainActivity.content_main.setBackgroundResource(R.drawable.galaxy);
                 break;
             case "Vanilla":
-                content_main.setBackgroundResource(R.drawable.vanilla);
+                MainActivity.content_main.setBackgroundResource(R.drawable.vanilla);
+                break;
+            case "Forest":
+                MainActivity.content_main.setBackgroundResource(R.drawable.forest);
+                break;
+            case "Crystal":
+                MainActivity.content_main.setBackgroundResource(R.drawable.crystal);
                 break;
             default:
                 break;

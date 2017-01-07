@@ -29,7 +29,8 @@ public class alarm_service extends Service {
     public static boolean if_RepeatingAlarm = true; //wants to repeat
     public static boolean already_Pressed = false;
     public static boolean fromMainAlarm = false;
-    public static long interval = 0;
+    public static long interval =
+            0;
     public static long alarm_schedule = 0;
     public static boolean if_AlarmSchedule = false;
 
