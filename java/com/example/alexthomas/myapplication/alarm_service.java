@@ -112,7 +112,7 @@ public class alarm_service extends Service {
 
 
             //Starts Playing Music
-            mediasong = MediaPlayer.create(alarm_service.this, R.raw.believeit);
+            mediasong = MediaPlayer.create(alarm_service.this, R.raw.motivationalmusic);
             mediasong.start();
 
             //Starts Main Alarm
