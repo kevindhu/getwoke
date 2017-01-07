@@ -29,8 +29,7 @@ public class alarm_service extends Service {
     public static boolean if_RepeatingAlarm = true; //wants to repeat
     public static boolean already_Pressed = false;
     public static boolean fromMainAlarm = false;
-    public static long interval =
-            0;
+    public static long interval = 300000;
     public static long alarm_schedule = 0;
     public static boolean if_AlarmSchedule = false;
 
@@ -212,7 +211,7 @@ public class alarm_service extends Service {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(alarm_service.this, 2, alarm_intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
-        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ this.interval ,pendingIntent);
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ interval ,pendingIntent);
     }
 
 

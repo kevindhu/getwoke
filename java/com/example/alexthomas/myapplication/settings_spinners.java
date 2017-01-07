@@ -66,12 +66,6 @@ public class settings_spinners extends AppCompatActivity {
         getSpinnerEntries("Backgrounds", spinner_backgrounds, backgrounds, R.id.spinner_backgrounds);
         getSpinnerEntries("Repeating Intervals", spinner_repeating_intervals, repeating_intervals, R.id.spinner_intervals);
         getSpinnerEntries("Alarm Schedule", spinner_alarm_schedule, alarm_schedule, R.id.spinner_alarm_schedule);
-        getSpinnerEntries("Font",spinner_fonts, fonts,R.id.fonts_spinner);
-        getSpinnerEntries("Genres",spinner_genre, genres,R.id.genre_spinner);
-        getSpinnerEntries("Quote Length",spinner_quote_length, quote_length,R.id.quote_length_spinner);
-        getSpinnerEntries("Backgrounds",spinner_backgrounds, backgrounds,R.id.spinner_backgrounds);
-        getSpinnerEntries("Repeating Intervals",spinner_repeating_intervals, repeating_intervals,R.id.spinner_intervals);
-        getSpinnerEntries("Alarm Schedule",spinner_alarm_schedule, alarm_schedule,R.id.spinner_alarm_schedule);
         getSpinnerEntries("Font Color",spinner_font_color, font_colors,R.id.spinner_font_colors);
         
 
@@ -227,6 +221,7 @@ public class settings_spinners extends AppCompatActivity {
                 storeValue("Genres",spinner_genre);
                 storeValue("Backgrounds",spinner_backgrounds);
                 storeValue("Font Color", spinner_font_color);
+                storeValue("Repeating Intervals",spinner_repeating_intervals);
 
 
 
