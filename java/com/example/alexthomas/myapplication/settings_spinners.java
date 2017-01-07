@@ -38,6 +38,7 @@ import org.w3c.dom.Text;
 
 public class settings_spinners extends AppCompatActivity {
     private Spinner spinner_fonts;
+    private Spinner spinner_ringtones;
     private Spinner spinner_quote_length;
     private Spinner spinner_genre;
     private Spinner spinner_backgrounds;
@@ -52,6 +53,7 @@ public class settings_spinners extends AppCompatActivity {
     private Button btnSubmit;
 
     private String[] fonts = {"Formal", "Roboto", "Weird"};
+    private String[] ringtones = {"Haikyuu","Believe It","Get Up"};
     private String[] genres ={"All Genres","Entrepreneur", "Celebrity", "Author", "Athlete", "Anime", "Great Minds", "Book Quotes","Meme Quotes"};
     private String[] quote_length = {"All Lengths","Medium", "Short", "Long"};
     private String[] backgrounds = {"Vanilla","Starry Clouds", "Galaxy", "Forest", "Crystal"};
@@ -70,6 +72,7 @@ public class settings_spinners extends AppCompatActivity {
 
 
         getSpinnerEntries("Font", spinner_fonts, fonts, R.id.fonts_spinner);
+        getSpinnerEntries("Ringtones", spinner_ringtones, ringtones, R.id.ringtones_spinner);
         getSpinnerEntries("Genres", spinner_genre, genres, R.id.genre_spinner);
         getSpinnerEntries("Quote Length", spinner_quote_length, quote_length, R.id.quote_length_spinner);
         getSpinnerEntries("Backgrounds", spinner_backgrounds, backgrounds, R.id.spinner_backgrounds);
@@ -82,6 +85,7 @@ public class settings_spinners extends AppCompatActivity {
         snooze_check = (CheckBox) findViewById(R.id.snooze_check);
         spinner_repeating_intervals = (Spinner) findViewById(R.id.spinner_intervals);
         spinner_fonts = (Spinner) findViewById(R.id.fonts_spinner);
+        spinner_ringtones = (Spinner) findViewById(R.id.ringtones_spinner);
         spinner_quote_length = (Spinner) findViewById(R.id.quote_length_spinner);
         spinner_genre = (Spinner) findViewById(R.id.genre_spinner);
         spinner_backgrounds = (Spinner) findViewById(R.id.spinner_backgrounds);
@@ -99,6 +103,7 @@ public class settings_spinners extends AppCompatActivity {
 
 
         ListenerClick(spinner_alarm_schedule,alarm_schedule);
+        ListenerClick(spinner_ringtones,ringtones);
         ListenerClick(spinner_fonts,fonts);
         ListenerClick(spinner_quote_length,quote_length);
         ListenerClick(spinner_repeating_intervals,repeating_intervals);
@@ -106,7 +111,6 @@ public class settings_spinners extends AppCompatActivity {
         ListenerClick(spinner_genre,genres);
         ListenerClick(spinner_font_color,font_colors);
         ListenerClick(spinner_clock_color, clock_colors);
-        
     }
 
 
@@ -225,14 +229,6 @@ public class settings_spinners extends AppCompatActivity {
     // get the selected dropdown list value when button is clicked
     public void addListenerOnButton() {
         Log.e("Hi", "Listener on Duty!");
-        spinner_fonts = (Spinner) findViewById(R.id.fonts_spinner);
-        spinner_quote_length = (Spinner) findViewById(R.id.quote_length_spinner);
-        spinner_genre = (Spinner) findViewById(R.id.genre_spinner);
-        spinner_backgrounds = (Spinner) findViewById(R.id.spinner_backgrounds);
-        spinner_repeating_intervals = (Spinner) findViewById(R.id.spinner_intervals);
-        spinner_alarm_schedule = (Spinner) findViewById(R.id.spinner_alarm_schedule);
-        spinner_font_color = (Spinner) findViewById(R.id.spinner_font_colors);
-
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
         btnSubmit.setOnClickListener(new OnClickListener() {
             @Override
@@ -268,6 +264,7 @@ public class settings_spinners extends AppCompatActivity {
                 storeValue("Font Color", spinner_font_color);
                 storeValue("Repeating Intervals",spinner_repeating_intervals);
                 storeValue("Clock Color", spinner_clock_color);
+                storeValue("Ringtones",spinner_ringtones);
 
 
                 Toast.makeText(getApplicationContext(), "Settings Updated!",
@@ -283,81 +280,19 @@ public class settings_spinners extends AppCompatActivity {
                 clock_color_changer(String.valueOf(spinner_clock_color.getSelectedItem()));
 
 
-                randomQuote Quote = new randomQuote();
-                //Chooses size of quotes from quotes_length_spinner
+                //Quote length changer
                 Log.e("new","min and max length set");
+                quote_length_changer(String.valueOf(spinner_quote_length.getSelectedItem()));
 
-                switch (String.valueOf(spinner_quote_length.getSelectedItem())) {
-                    case "Medium":
-                        randomQuote.minlength = 101;
-                        randomQuote.maxlength = 200;
-                        break;
-                    case "Long":
-                        randomQuote.minlength = 201;
-                        randomQuote.maxlength = 1000;
-                        break;
-                    case "Short":
-                        randomQuote.minlength = 0;
-                        randomQuote.maxlength = 100;
-                        break;
-                    case "All Lengths":
-                        randomQuote.minlength = 0;
-                        randomQuote.maxlength = 10000;
-                        break;
-                    default:
-                        break;
-                }
+                //Repeating interval changer
+                repeating_intervals_changer(String.valueOf(spinner_repeating_intervals.getSelectedItem()));
 
-                SharedPreferences sharedPreferences_interval = getSharedPreferences("Repeating Intervals", MODE_PRIVATE);
-                SharedPreferences.Editor editor_intervals = sharedPreferences_interval.edit();
+                //Alarm schedule changer
+                alarm_schedule_changer(String.valueOf(spinner_repeating_intervals.getSelectedItem()));
 
-                SharedPreferences sharedPreferences_schedule = getSharedPreferences("Alarm Schedule", MODE_PRIVATE);
-                SharedPreferences.Editor editor_schedule = sharedPreferences_schedule.edit();
-
-                switch (String.valueOf(spinner_repeating_intervals.getSelectedItem())){
-                    case "30 Seconds":
-                        editor_intervals.putLong("Interval", 30000);
-                        break;
-                    case "1 Minute":
-                        editor_intervals.putLong("Interval", 60000);
-                        break;
-                    case "2 Minutes":
-                        editor_intervals.putLong("Interval", 120000);
-                        break;
-                    case "3 Minutes":
-                        editor_intervals.putLong("Interval", 180000);
-                        break;
-                    case "4 Minutes":
-                        editor_intervals.putLong("Interval", 240000);
-                        break;
-                    case "5 Minutes":
-                        editor_intervals.putLong("Interval", 300000);
-                        break;
-                    default:
-                        break;
-
-                }
-
-                switch (String.valueOf(spinner_alarm_schedule.getSelectedItem())){
-                    case "None":
-                        editor_schedule.putLong("Interval", 0);
-                        editor_schedule.putBoolean("if_AlarmSchedule", false);
-                        alarm_service.if_AlarmSchedule = false;
-                        break;
-                    case "12 Hours":
-                        editor_schedule.putLong("Interval", AlarmManager.INTERVAL_HALF_DAY);
-                        editor_schedule.putBoolean("if_AlarmSchedule", true);
-                        break;
-                    case "24 Hours":
-                        editor_schedule.putLong("Interval", AlarmManager.INTERVAL_DAY);
-                        editor_schedule.putBoolean("if_AlarmSchedule", true);
-                        break;
-                    default:
-                        break;
-                }
-
-                editor_intervals.apply();
-                editor_schedule.apply();
+                //Chooses background
+                Log.e("wow","the selected background is " + String.valueOf(spinner_backgrounds.getSelectedItem()));
+                background_changer(String.valueOf(spinner_backgrounds.getSelectedItem()));
 
                 //Chooses genre
                 Log.e("Whoa!", "Genre right now is " +MainActivity.genre);
@@ -366,12 +301,95 @@ public class settings_spinners extends AppCompatActivity {
                     Log.e("Whoa!", "New Genre Detected Called " +String.valueOf(spinner_genre.getSelectedItem()));
                     MainActivity.genre = String.valueOf(spinner_genre.getSelectedItem());
                 }
-
-                //Chooses background
-                Log.e("wow","the selected background is " + String.valueOf(spinner_backgrounds.getSelectedItem()));
-                background_changer(String.valueOf(spinner_backgrounds.getSelectedItem()));
             }
         });
+    }
+
+
+
+    public void quote_length_changer (String input) {
+        switch (input) {
+            case "Medium":
+                randomQuote.minlength = 101;
+                randomQuote.maxlength = 200;
+                break;
+            case "Long":
+                randomQuote.minlength = 201;
+                randomQuote.maxlength = 1000;
+                break;
+            case "Short":
+                randomQuote.minlength = 0;
+                randomQuote.maxlength = 100;
+                break;
+            case "All Lengths":
+                randomQuote.minlength = 0;
+                randomQuote.maxlength = 10000;
+                break;
+            default:
+                break;
+        }
+    }
+
+
+
+
+    public void alarm_schedule_changer (String input) {
+        SharedPreferences sharedPreferences_interval = getSharedPreferences("Repeating Intervals", MODE_PRIVATE);
+        SharedPreferences.Editor editor_intervals = sharedPreferences_interval.edit();
+
+        switch (input){
+            case "30 Seconds":
+                editor_intervals.putLong("Interval", 30000);
+                break;
+            case "1 Minute":
+                editor_intervals.putLong("Interval", 60000);
+                break;
+            case "2 Minutes":
+                editor_intervals.putLong("Interval", 120000);
+                break;
+            case "3 Minutes":
+                editor_intervals.putLong("Interval", 180000);
+                break;
+            case "4 Minutes":
+                editor_intervals.putLong("Interval", 240000);
+                break;
+            case "5 Minutes":
+                editor_intervals.putLong("Interval", 300000);
+                break;
+            default:
+                break;
+
+        }
+        editor_intervals.apply();
+
+    }
+    public void repeating_intervals_changer (String input) {
+        SharedPreferences sharedPreferences_interval = getSharedPreferences("Repeating Intervals", MODE_PRIVATE);
+        SharedPreferences.Editor editor_intervals = sharedPreferences_interval.edit();
+
+        switch (input){
+            case "30 Seconds":
+                editor_intervals.putLong("Interval", 30000);
+                break;
+            case "1 Minute":
+                editor_intervals.putLong("Interval", 60000);
+                break;
+            case "2 Minutes":
+                editor_intervals.putLong("Interval", 120000);
+                break;
+            case "3 Minutes":
+                editor_intervals.putLong("Interval", 180000);
+                break;
+            case "4 Minutes":
+                editor_intervals.putLong("Interval", 240000);
+                break;
+            case "5 Minutes":
+                editor_intervals.putLong("Interval", 300000);
+                break;
+            default:
+                break;
+        }
+        editor_intervals.apply();
     }
 
 
