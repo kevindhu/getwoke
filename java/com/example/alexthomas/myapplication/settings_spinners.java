@@ -44,8 +44,10 @@ public class settings_spinners extends AppCompatActivity {
     private Spinner spinner_repeating_intervals;
     private Spinner spinner_alarm_schedule;
     private Spinner spinner_font_color;
+    private Spinner spinner_clock_color;
     private CheckBox snooze_check;
     private TextView snooze_interval_title;
+
 
     private Button btnSubmit;
 
@@ -54,6 +56,7 @@ public class settings_spinners extends AppCompatActivity {
     private String[] quote_length = {"All Lengths","Medium", "Short", "Long"};
     private String[] backgrounds = {"Vanilla","Starry Clouds", "Galaxy", "Forest", "Crystal"};
     private String[] font_colors = {"White","Black", "Blue", "Red", "Yellow", "Green", "Gray"};
+    private String[] clock_colors = {"White","Black", "Blue", "Red", "Yellow", "Green", "Gray"};
     private String[] repeating_intervals = {"30 Seconds", "1 Minute", "2 Minutes", "3 Minutes", "4 Minutes", "5 Minutes"};
     private String[] alarm_schedule = {"None", "12 Hours", "24 Hours"};
 
@@ -73,6 +76,7 @@ public class settings_spinners extends AppCompatActivity {
         getSpinnerEntries("Repeating Intervals", spinner_repeating_intervals, repeating_intervals, R.id.spinner_intervals);
         getSpinnerEntries("Alarm Schedule", spinner_alarm_schedule, alarm_schedule, R.id.spinner_alarm_schedule);
         getSpinnerEntries("Font Color",spinner_font_color, font_colors,R.id.spinner_font_colors);
+        getSpinnerEntries("Clock Color", spinner_clock_color, clock_colors, R.id.spinner_clock_color);
         
 
         snooze_check = (CheckBox) findViewById(R.id.snooze_check);
@@ -82,6 +86,7 @@ public class settings_spinners extends AppCompatActivity {
         spinner_genre = (Spinner) findViewById(R.id.genre_spinner);
         spinner_backgrounds = (Spinner) findViewById(R.id.spinner_backgrounds);
         spinner_alarm_schedule = (Spinner) findViewById(R.id.spinner_alarm_schedule);
+        spinner_clock_color = (Spinner) findViewById(R.id.spinner_clock_color);
 
         snooze_interval_title = (TextView) findViewById(R.id.types_of_intervals);
 
@@ -100,6 +105,7 @@ public class settings_spinners extends AppCompatActivity {
         ListenerClick(spinner_backgrounds,backgrounds);
         ListenerClick(spinner_genre,genres);
         ListenerClick(spinner_font_color,font_colors);
+        ListenerClick(spinner_clock_color, clock_colors);
         
     }
 
@@ -261,6 +267,7 @@ public class settings_spinners extends AppCompatActivity {
                 storeValue("Backgrounds",spinner_backgrounds);
                 storeValue("Font Color", spinner_font_color);
                 storeValue("Repeating Intervals",spinner_repeating_intervals);
+                storeValue("Clock Color", spinner_clock_color);
 
 
                 Toast.makeText(getApplicationContext(), "Settings Updated!",
@@ -271,6 +278,9 @@ public class settings_spinners extends AppCompatActivity {
 
                 //Font Color changer
                 color_changer(String.valueOf(spinner_font_color.getSelectedItem()));
+
+                //Clock color changer
+                clock_color_changer(String.valueOf(spinner_clock_color.getSelectedItem()));
 
 
                 randomQuote Quote = new randomQuote();
@@ -388,6 +398,37 @@ public class settings_spinners extends AppCompatActivity {
                 break;
         }
     }
+
+    public void clock_color_changer (String color) {
+        switch (color) {
+            case "White":
+                //set background as starry clouds
+                MainActivity.digitalClock.setTextColor(Color.WHITE);
+                break;
+            case "Black":
+                //set background as starry sky
+                MainActivity.digitalClock.setTextColor(Color.BLACK);
+                break;
+            case "Red":
+                MainActivity.digitalClock.setTextColor(Color.RED);
+                break;
+            case "Blue":
+                MainActivity.digitalClock.setTextColor(Color.BLUE);
+                break;
+            case "Yellow":
+                MainActivity.digitalClock.setTextColor(Color.YELLOW);
+                break;
+            case "Green":
+                MainActivity.digitalClock.setTextColor(Color.GREEN);
+                break;
+            case "Gray":
+                MainActivity.digitalClock.setTextColor(Color.GRAY);
+                break;
+            default:
+                break;
+        }
+    }
+
 
     //Changes font color
     public void color_changer (String color) {

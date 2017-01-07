@@ -29,7 +29,7 @@ public class alarm_service extends Service {
     public static boolean if_RepeatingAlarm = true; //wants to repeat
     public static boolean already_Pressed = false;
     public static boolean fromMainAlarm = false;
-    public static long interval = 300000;
+    public static long interval = 30000;
     public static long alarm_schedule = 0;
     public static boolean if_AlarmSchedule = false;
 
@@ -151,7 +151,6 @@ public class alarm_service extends Service {
                     //Log.e("Setting", "Text Automatically to Alarm Off");
 
 
-
                         try {
                             MainActivity.snooze_alarm.setText("I'm Woke!");
                             SharedPreferences sharedPref_alarm_unset1 = getSharedPreferences("Alarm Unset", MODE_PRIVATE);
@@ -257,6 +256,9 @@ public class alarm_service extends Service {
 
     public void snooze_restart() {
         //snooze restart
+        SharedPreferences sharedPreferences = getSharedPreferences("Repeating Intervals", MODE_PRIVATE);
+        long interval = sharedPreferences.getLong("Interval", -1);
+
         Log.e("Snooze","Start new repeating alarm");
         Log.e("Interval",String.valueOf(interval));
 

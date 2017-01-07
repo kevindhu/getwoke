@@ -56,6 +56,28 @@
             android:layout_weight="0.05"></Spinner>
 
         <TextView
+            android:id="@+id/clock_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5sp"
+            android:layout_marginLeft="10dp"
+            android:paddingBottom="10dp"
+            android:text="Clock Color"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+
+
+        <Spinner
+            android:id="@+id/spinner_clock_color"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="50dp"
+            android:layout_weight="0.04"></Spinner>
+
+        <TextView
             android:id="@+id/types_of_colors"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -204,10 +226,12 @@
         android:layout_marginLeft="140dp"
         android:layout_marginRight="140dp"
         android:layout_marginTop="20dp"
-        android:text="Submit" />
+        android:text="Submit"
+        android:elevation="1dp"/>
 
     <ImageView
         android:id="@+id/imageView"
+        android:elevation="1dp"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_above="@+id/set_alarm"

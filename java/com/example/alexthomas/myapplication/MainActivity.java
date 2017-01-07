@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     public static RelativeLayout content_main;
     public static Context context;
     public static Button powerButton;
+    public static DigitalClock digitalClock;
     public static Boolean powerButton_on = false;
     private static Boolean lastTimerisNull = true;
     public static boolean alarmUp;
@@ -53,10 +54,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         context = getApplicationContext();
 
+        digitalClock = (DigitalClock) findViewById(R.id.textClock);
         powerButton = (Button) findViewById(R.id.alarm_off);
         snooze_alarm = (Button) findViewById(R.id.alarm_off);
         powerButton = (Button) findViewById(R.id.powerbutton);
         content_main = (RelativeLayout) findViewById(R.id.content_main);
+        digitalClock.setTextColor(Color.GREEN);
 
 
         final ImageView settings_feedback = (ImageView) findViewById(R.id.settings_feedback);
@@ -68,9 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Sets font on Clock
         Typeface blockFonts = Typeface.createFromAsset(getAssets(), "fonts/Lato-Black.ttf");
-        DigitalClock clock = (DigitalClock) findViewById(R.id.textClock);
-        clock.setTypeface(blockFonts);
-
+        digitalClock.setTypeface(blockFonts);
 
         /////SHAREDPREF GETTERS/////
 
@@ -380,7 +381,35 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+    public void clock_color_changer (String color) {
+        switch (color) {
+            case "White":
+                //set background as starry clouds
+                MainActivity.digitalClock.setTextColor(Color.WHITE);
+                break;
+            case "Black":
+                //set background as starry sky
+                MainActivity.digitalClock.setTextColor(Color.BLACK);
+                break;
+            case "Red":
+                MainActivity.digitalClock.setTextColor(Color.RED);
+                break;
+            case "Blue":
+                MainActivity.digitalClock.setTextColor(Color.BLUE);
+                break;
+            case "Yellow":
+                MainActivity.digitalClock.setTextColor(Color.YELLOW);
+                break;
+            case "Green":
+                MainActivity.digitalClock.setTextColor(Color.GREEN);
+                break;
+            case "Gray":
+                MainActivity.digitalClock.setTextColor(Color.GRAY);
+                break;
+            default:
+                break;
+        }
+    }
 
     public void color_changer (String color) {
         switch (color) {
@@ -468,9 +497,15 @@ public class MainActivity extends AppCompatActivity {
     private void adjustColor() {
         SharedPreferences sharedPref = getSharedPreferences("Font Color", MODE_PRIVATE);
         String message = sharedPref.getString("Message", "--Choose your Color--");
+
+
+        SharedPreferences clock_sharedPref = getSharedPreferences("Clock Color", MODE_PRIVATE);
+        String message_clock = clock_sharedPref.getString("Message", "--Choose your Color--");
         Log.e("Color", message);
         color_changer(message);
+        clock_color_changer(message_clock);
     }
+
 
     private Boolean get_PowerButtonBoolean() {
         SharedPreferences sharedPref = getSharedPreferences("Power Button", MODE_PRIVATE);
