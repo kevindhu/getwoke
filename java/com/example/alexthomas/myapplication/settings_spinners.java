@@ -31,9 +31,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.content.SharedPreferences;
 
-
-
-
+import org.w3c.dom.Text;
 
 
 public class settings_spinners extends AppCompatActivity {
@@ -45,6 +43,7 @@ public class settings_spinners extends AppCompatActivity {
     private Spinner spinner_alarm_schedule;
     private Spinner spinner_font_color;
     private CheckBox snooze_check;
+    private TextView snooze_interval_title;
 
     private Button btnSubmit;
 
@@ -55,7 +54,6 @@ public class settings_spinners extends AppCompatActivity {
     private String[] font_colors = {"White","Black", "Blue", "Red", "Yellow", "Green", "Gray"};
     private String[] repeating_intervals = {"30 Seconds", "1 Minute", "2 Minutes", "3 Minutes", "4 Minutes", "5 Minutes"};
     private String[] alarm_schedule = {"None", "15 Minutes", "30 Minutes", "1 Hour", "12 Hours", "24 Hours"};
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -84,6 +82,9 @@ public class settings_spinners extends AppCompatActivity {
         spinner_genre = (Spinner) findViewById(R.id.genre_spinner);
         spinner_backgrounds = (Spinner) findViewById(R.id.spinner_backgrounds);
         spinner_alarm_schedule = (Spinner) findViewById(R.id.spinner_alarm_schedule);
+        snooze_interval_title = (TextView) findViewById(R.id.types_of_intervals);
+
+
         getCheckBoxEntry();
         setVisibilitySpinner();
 
@@ -106,10 +107,12 @@ public class settings_spinners extends AppCompatActivity {
     public void setVisibilitySpinner() {
         if (!snooze_check.isChecked()) {
             spinner_repeating_intervals.setVisibility(View.GONE);
+            snooze_interval_title.setVisibility(View.GONE);
         }
         else {
             spinner_repeating_intervals.setVisibility(View.VISIBLE);
             getSpinnerEntries("Repeating Intervals", spinner_repeating_intervals, repeating_intervals, R.id.spinner_intervals);
+            snooze_interval_title.setVisibility(View.VISIBLE);
         }
     }
 
