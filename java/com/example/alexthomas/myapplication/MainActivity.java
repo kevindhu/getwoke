@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "You need to set an alarm first!", Toast.LENGTH_SHORT).show();
                 }
                 //
-                else if (!alarmUp && !powerButton_on && !alarm_service.isRunning) {
+                else if (!alarmUp && !powerButton_on && !alarm_service.isRunning && !repeating_alarm) {
                     Log.e("Conditional", "2");
                     Toast.makeText(MainActivity.this, "The alarm is already off!", Toast.LENGTH_SHORT).show();
                 }
@@ -222,9 +222,16 @@ public class MainActivity extends AppCompatActivity {
                     pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
                             PendingIntent.FLAG_CANCEL_CURRENT);
                     pendingIntent.cancel();
+
+                    alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
+                    pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 2, alarm_intent,
+                            PendingIntent.FLAG_CANCEL_CURRENT);
+                    pendingIntent.cancel();
                     lastTimerisNull = true;
                     store_timer_null(true);
                     alarm_confirmation.setText("Your alarm is unset.");
+                    snooze_alarm.setText("Alarm Off");
+                    store_snoozeText("Alarm Off");
                     Toast.makeText(MainActivity.this, "Alarm unset.", Toast.LENGTH_SHORT).show();
                     Log.e("Cancelled for real", "Cancelled Intent");
                 }
