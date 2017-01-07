@@ -59,23 +59,49 @@ public class settings_spinners extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
 
-        getSpinnerEntries("Font",spinner_fonts, fonts,R.id.fonts_spinner);
-        getSpinnerEntries("Genres",spinner_genre, genres,R.id.genre_spinner);
-        getSpinnerEntries("Quote Length",spinner_quote_length, quote_length,R.id.quote_length_spinner);
-        getSpinnerEntries("Backgrounds",spinner_backgrounds, backgrounds,R.id.spinner_backgrounds);
-        getSpinnerEntries("Repeating Intervals",spinner_repeating_intervals, repeating_intervals,R.id.spinner_intervals);
-        getSpinnerEntries("Alarm Schedule",spinner_alarm_schedule, alarm_schedule,R.id.spinner_alarm_schedule);
-
+        getSpinnerEntries("Font", spinner_fonts, fonts, R.id.fonts_spinner);
+        getSpinnerEntries("Genres", spinner_genre, genres, R.id.genre_spinner);
+        getSpinnerEntries("Quote Length", spinner_quote_length, quote_length, R.id.quote_length_spinner);
+        getSpinnerEntries("Backgrounds", spinner_backgrounds, backgrounds, R.id.spinner_backgrounds);
+        getSpinnerEntries("Repeating Intervals", spinner_repeating_intervals, repeating_intervals, R.id.spinner_intervals);
+        getSpinnerEntries("Alarm Schedule", spinner_alarm_schedule, alarm_schedule, R.id.spinner_alarm_schedule);
 
 
         snooze_check = (CheckBox) findViewById(R.id.snooze_check);
+        spinner_repeating_intervals = (Spinner) findViewById(R.id.spinner_intervals);
+        spinner_fonts = (Spinner) findViewById(R.id.fonts_spinner);
+        spinner_quote_length = (Spinner) findViewById(R.id.quote_length_spinner);
+        spinner_genre = (Spinner) findViewById(R.id.genre_spinner);
+        spinner_backgrounds = (Spinner) findViewById(R.id.spinner_backgrounds);
+        spinner_alarm_schedule = (Spinner) findViewById(R.id.spinner_alarm_schedule);
         getCheckBoxEntry();
+        setVisibilitySpinner();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        Log.e("Hi", "Opened Settings Page!");
+        addListenerOnCheckbox();
         addListenerOnButton();
     }
 
+
+
+    public void addListenerOnCheckbox() {
+        snooze_check.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setVisibilitySpinner();
+            }
+        });
+    }
+
+
+    public void setVisibilitySpinner() {
+        if (!snooze_check.isChecked()) {
+            spinner_repeating_intervals.setVisibility(View.GONE);
+        }
+        else {
+            spinner_repeating_intervals.setVisibility(View.VISIBLE);
+            getSpinnerEntries("Repeating Intervals", spinner_repeating_intervals, repeating_intervals, R.id.spinner_intervals);
+        }
+    }
 
 
 
@@ -147,21 +173,10 @@ public class settings_spinners extends AppCompatActivity {
     // get the selected dropdown list value when button is clicked
     public void addListenerOnButton() {
         Log.e("Hi", "Listener on Duty!");
-        spinner_fonts = (Spinner) findViewById(R.id.fonts_spinner);
-        spinner_quote_length = (Spinner) findViewById(R.id.quote_length_spinner);
-        spinner_genre = (Spinner) findViewById(R.id.genre_spinner);
-        spinner_backgrounds = (Spinner) findViewById(R.id.spinner_backgrounds);
-        spinner_repeating_intervals = (Spinner) findViewById(R.id.spinner_intervals);
-        spinner_alarm_schedule = (Spinner) findViewById(R.id.spinner_alarm_schedule);
-
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
         btnSubmit.setOnClickListener(new OnClickListener() {
-
             @Override
             public void onClick(View v) {
-                //Initialized different font-family
-
-
                 //checks if snooze_checkbox is checked
                 if (snooze_check.isChecked()) {
                     alarm_service.if_RepeatingAlarm = Boolean.valueOf("true");
@@ -264,8 +279,9 @@ public class settings_spinners extends AppCompatActivity {
                         break;
                     default:
                         break;
-
                 }
+
+
 
                 //Chooses genre
                 Log.e("Whoa!", "Genre right now is " +MainActivity.genre);
