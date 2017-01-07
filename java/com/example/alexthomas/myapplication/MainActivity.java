@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
         /////SHAREDPREF GETTERS/////
 
+
         //Captures font from previous session
         SharedPreferences sharedPref_font = getSharedPreferences("Font", MODE_PRIVATE);
         String last_font = sharedPref_font.getString("Message", "--Choose your Font--");

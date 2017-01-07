@@ -25,6 +25,7 @@ import android.widget.Toast;
 import android.graphics.Typeface;
 import android.widget.TextView;
 import android.widget.Spinner;
+import android.widget.CheckBox;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.content.SharedPreferences;
@@ -41,6 +42,7 @@ public class settings_spinners extends AppCompatActivity {
     private Spinner spinner_backgrounds;
     private Spinner spinner_repeating_intervals;
     private Spinner spinner_alarm_schedule;
+    private CheckBox snooze_check;
 
     private Button btnSubmit;
 
@@ -64,10 +66,18 @@ public class settings_spinners extends AppCompatActivity {
         getSpinnerEntries("Repeating Intervals",spinner_repeating_intervals, repeating_intervals,R.id.spinner_intervals);
         getSpinnerEntries("Alarm Schedule",spinner_alarm_schedule, alarm_schedule,R.id.spinner_alarm_schedule);
 
+
+
+        snooze_check = (CheckBox) findViewById(R.id.snooze_check);
+        getCheckBoxEntry();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         Log.e("Hi", "Opened Settings Page!");
         addListenerOnButton();
     }
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -106,14 +116,28 @@ public class settings_spinners extends AppCompatActivity {
 
 
 
+
     public void storeValue(String value,Spinner spinner) {
         SharedPreferences sharedPref = getSharedPreferences(value, MODE_PRIVATE);
-
-
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("Message",String.valueOf(spinner.getSelectedItem()));
         editor.apply();
     }
+
+
+
+
+    public void getCheckBoxEntry() {
+        SharedPreferences checkbox_boolean = getSharedPreferences("Snooze Boolean",MODE_PRIVATE);
+        String message = checkbox_boolean.getString("Message", "false");
+        alarm_service.if_AlarmSchedule = Boolean.getBoolean(message);
+        snooze_check.setChecked(Boolean.valueOf(message));
+    }
+
+
+
+
+
 
 
 
@@ -137,8 +161,38 @@ public class settings_spinners extends AppCompatActivity {
             public void onClick(View v) {
                 //Initialized different font-family
 
-                //Stores Values
+
+                //checks if snooze_checkbox is checked
+                if (snooze_check.isChecked()) {
+                    alarm_service.if_RepeatingAlarm = Boolean.valueOf("true");
+                }
+                else {
+                    alarm_service.if_RepeatingAlarm = Boolean.valueOf("false");
+                }
+
+                SharedPreferences shared_snooze  = getSharedPreferences("Snooze Boolean", MODE_PRIVATE);
+                SharedPreferences.Editor editor = shared_snooze.edit();
+                editor.putString("Message",String.valueOf(alarm_service.if_RepeatingAlarm));
+                Log.e("Changed","boolean to " + String.valueOf(alarm_service.if_RepeatingAlarm));
+                editor.apply();
+                snooze_check.setChecked(Boolean.valueOf(String.valueOf(alarm_service.if_RepeatingAlarm)));
+
+
+
+
+
+
+
+
+
+                //Stores Values//
                 storeValue("Font",spinner_fonts);
+                storeValue("Quote Length",spinner_quote_length);
+                storeValue("Genres",spinner_genre);
+                storeValue("Backgrounds",spinner_backgrounds);
+
+
+
                 Toast.makeText(getApplicationContext(), "Settings Updated!",
                         Toast.LENGTH_LONG).show();
 
@@ -148,7 +202,6 @@ public class settings_spinners extends AppCompatActivity {
 
                 randomQuote Quote = new randomQuote();
                 //Chooses size of quotes from quotes_length_spinner
-                storeValue("Quote Length",spinner_quote_length);
                 Log.e("new","min and max length set");
 
                 switch (String.valueOf(spinner_quote_length.getSelectedItem())) {
@@ -215,7 +268,6 @@ public class settings_spinners extends AppCompatActivity {
                 }
 
                 //Chooses genre
-                storeValue("Genres",spinner_genre);
                 Log.e("Whoa!", "Genre right now is " +MainActivity.genre);
                 //MainActivity.motivational_quote.setText(""); //makes quote blank
                 if (MainActivity.genre != String.valueOf(spinner_genre.getSelectedItem())) {
@@ -225,7 +277,6 @@ public class settings_spinners extends AppCompatActivity {
 
                 //Chooses background
                 Log.e("wow","the selected background is " + String.valueOf(spinner_backgrounds.getSelectedItem()));
-                storeValue("Backgrounds",spinner_backgrounds);
                 background_changer(String.valueOf(spinner_backgrounds.getSelectedItem()));
             }
         });

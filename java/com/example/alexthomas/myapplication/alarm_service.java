@@ -25,8 +25,8 @@ public class alarm_service extends Service {
     private MediaPlayer mediasong;
     String[] quote;
     public static String genre;
-    public static boolean control_RepeatingAlarm = true;
-    private static boolean if_RepeatingAlarm = true;
+    public static boolean control_RepeatingAlarm = true; //change constantly
+    public static boolean if_RepeatingAlarm = true; //wants to repeat
     public static boolean already_Pressed = false;
     public static boolean fromMainAlarm = false;
     public static long interval = 0;
