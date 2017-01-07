@@ -53,7 +53,7 @@ public class settings_spinners extends AppCompatActivity {
     private String[] backgrounds = {"Vanilla","Starry Clouds", "Galaxy", "Forest", "Crystal"};
     private String[] font_colors = {"White","Black", "Blue", "Red", "Yellow", "Green", "Gray"};
     private String[] repeating_intervals = {"30 Seconds", "1 Minute", "2 Minutes", "3 Minutes", "4 Minutes", "5 Minutes"};
-    private String[] alarm_schedule = {"None", "15 Minutes", "30 Minutes", "1 Hour", "12 Hours", "24 Hours"};
+    private String[] alarm_schedule = {"None", "12 Hours", "24 Hours"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -224,7 +224,7 @@ public class settings_spinners extends AppCompatActivity {
                 storeValue("Repeating Intervals",spinner_repeating_intervals);
                 storeValue("Alarm Schedule",spinner_alarm_schedule);
 
-                
+
                 Toast.makeText(getApplicationContext(), "Settings Updated!",
                         Toast.LENGTH_LONG).show();
 
