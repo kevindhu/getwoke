@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
                         PendingIntent.FLAG_NO_CREATE) != null);
                 Log.e("Conditionals", String.valueOf(repeating_alarm) + " " + String.valueOf(alarmUp));
 
-                    /////when there is no alarm set ever before
+                    /////when there is no alarm set ever before and power button off
                 if ((repeating_alarm && alarm_service.isRunning && !powerButton_on) || (alarmUp && alarm_service.isRunning && !powerButton_on)){
                     Log.e("Conditional", "0");
                     alarm_service.isRunning = true;
@@ -183,10 +183,11 @@ public class MainActivity extends AppCompatActivity {
                     pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
                             PendingIntent.FLAG_CANCEL_CURRENT);
                     pendingIntent.cancel();
+
                     lastTimerisNull = true;
                     store_timer_null(true);
-                    snooze_alarm.setText("Alarm Off");
-                    store_snoozeText("Alarm Off");
+                    snooze_alarm.setText("Get Quotes");
+                    store_snoozeText("Get Quotes");
                     alarm_confirmation.setText("Your alarm is unset.");
                     store_Alarm_bottomText("Your alarm is unset.");
 
@@ -227,11 +228,13 @@ public class MainActivity extends AppCompatActivity {
                     pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 2, alarm_intent,
                             PendingIntent.FLAG_CANCEL_CURRENT);
                     pendingIntent.cancel();
+
+
                     lastTimerisNull = true;
                     store_timer_null(true);
-                    store_Alarm_bottomText("Your alarm is unset.");
-                    snooze_alarm.setText("Alarm Off");
-                    store_snoozeText("Alarm Off");
+                    store_Alarm_bottomText("Your alarm is off.");
+                    snooze_alarm.setText("Get Quotes");
+                    store_snoozeText("Get Quotes");
                     Toast.makeText(MainActivity.this, "Alarm unset.", Toast.LENGTH_SHORT).show();
                     Log.e("Cancelled for real", "Cancelled Intent");
                 }
@@ -261,8 +264,8 @@ public class MainActivity extends AppCompatActivity {
                             PendingIntent.FLAG_UPDATE_CURRENT);
                     alarm_service.control_RepeatingAlarm = false;
                     repeating_pendingIntent.cancel();
-                    snooze_alarm.setText("Alarm Off");
-                    store_snoozeText("Alarm Off");
+                    snooze_alarm.setText("Get Quotes");
+                    store_snoozeText("Get Quotes");
                 } else {
                     if (!alarm_service.isRunning && !repeating_alarm) {
                         Log.e("Conditional", "2");
@@ -293,8 +296,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                         else{
                             pendingIntent.cancel();
-                            snooze_alarm.setText("Alarm Off");
-                            store_snoozeText("Alarm Off");
+                            snooze_alarm.setText("Get Quotes");
+                            store_snoozeText("Get Quotes");
                             Log.e("Cancel service", "Doesn't repeat");
                         }
 
@@ -473,23 +476,16 @@ public class MainActivity extends AppCompatActivity {
 
     /////GETTERS/////
 
-    //Gets previous time
 
     private String getAlarmButtonText() {
         boolean repeating_alarm = (PendingIntent.getBroadcast(MainActivity.this, 2,
                 new Intent(MainActivity.this, alarm_receiver.class),
                 PendingIntent.FLAG_NO_CREATE) != null);
         SharedPreferences sharedPref = getSharedPreferences("Alarm Unset", MODE_PRIVATE);
-        String message = sharedPref.getString("Alarm Button Text", "Alarm Off");
+        String message = sharedPref.getString("Alarm Button Text", "Get Quotes");
         if (!alarm_service.isRunning && !repeating_alarm) {
-            message = "Alarm Off";
+            message = "Get Quotes";
         }
-        return message;
-    }
-
-    private String getBackground() {
-        SharedPreferences sharedPref = getSharedPreferences("Backgrounds", MODE_PRIVATE);
-        String message = sharedPref.getString("Message", "--Choose your Background--");
         return message;
     }
 
@@ -535,7 +531,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //Get values
+
+
+    /////Get values/////
 
     public void load_timer_null() {
         SharedPreferences sharedPref = getSharedPreferences("Last Timer", MODE_PRIVATE);
@@ -569,13 +567,14 @@ public class MainActivity extends AppCompatActivity {
         alarm_confirmation = (TextView) findViewById(R.id.alarm_confirmation);
         if (!lastTimerisNull) {
             SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
-            String message = sharedPref.getString("Message", "Fuck you");
+            String message = sharedPref.getString("Message", "You broke my code you fuck");
             Log.e("Setting previous alarm", message);
             return message;
         } else {
             return "Your alarm is unset.";
         }
     }
+
 
 
     private void setQuote() {
@@ -592,7 +591,6 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref = getSharedPreferences("Quoter", MODE_PRIVATE);
         String message = sharedPref.getString("Quoter", "");
         quoter.setText(message);
-
     }
 
 
