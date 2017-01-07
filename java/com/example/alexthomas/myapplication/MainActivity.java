@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Checks whether MAIN alarm is pending
                 powerButton_on = !powerButton_on;
-                Log.e("Power button is on?", String.valueOf(powerButton_on));
+                Log.e("Power button is on?????", String.valueOf(powerButton_on));
 
                 SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
                 int hour = sharedPref.getInt("Hour", -1);
@@ -238,7 +238,6 @@ public class MainActivity extends AppCompatActivity {
         snooze_alarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 //Checks whether REPEATING alarm is on
                 boolean repeating_alarm = (PendingIntent.getBroadcast(MainActivity.this, 2,
                         new Intent(MainActivity.this, alarm_receiver.class),
@@ -425,7 +424,6 @@ public class MainActivity extends AppCompatActivity {
             Log.e("Setting previous alarm", message);
             return message;
         } else {
-            Log.e("Yo","Your alarm is unset yo");
             return "Your alarm is unset.";
         }
     }
@@ -472,6 +470,7 @@ public class MainActivity extends AppCompatActivity {
     private Boolean get_PowerButtonBoolean() {
         SharedPreferences sharedPref = getSharedPreferences("Power Button", MODE_PRIVATE);
         Boolean message = sharedPref.getBoolean("Message", false);
+        powerButton_on = message;
         return message;
     }
 
