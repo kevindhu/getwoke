@@ -102,18 +102,21 @@ public class settings_spinners extends AppCompatActivity {
     }
 
 
+
+
     @Override
     public void onStart() {
         super.onStart();
-        ListenerClick(spinner_alarm_schedule, alarm_schedule);
-        ListenerClick(spinner_ringtones, ringtones);
-        ListenerClick(spinner_fonts, fonts);
-        ListenerClick(spinner_quote_length, quote_length);
-        ListenerClick(spinner_repeating_intervals, repeating_intervals);
-        ListenerClick(spinner_backgrounds, backgrounds);
-        ListenerClick(spinner_genre, genres);
-        ListenerClick(spinner_font_color, font_colors);
-        ListenerClick(spinner_clock_color, clock_colors);
+        //ListenerClick(spinner_alarm_schedule, alarm_schedule);
+        //ListenerClick(spinner_ringtones, ringtones);
+        //ListenerClick(spinner_fonts, fonts);
+        //ListenerClick(spinner_quote_length, quote_length);
+        //ListenerClick(spinner_repeating_intervals, repeating_intervals);
+        //ListenerClick(spinner_backgrounds, backgrounds);
+        //ListenerClick(spinner_genre, genres);
+        //ListenerClick(spinner_font_color, font_colors);
+        //ListenerClick(spinner_clock_color, clock_colors);
+
     }
 
     // get the selected dropdown list value when button is clicked
