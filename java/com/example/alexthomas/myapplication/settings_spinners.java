@@ -3,8 +3,10 @@ package com.example.alexthomas.myapplication;
 /* Created by Kevin on 1/1/2017.*/
 
 import android.app.Activity;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.content.Intent;
@@ -53,15 +55,14 @@ public class settings_spinners extends AppCompatActivity {
     private Button btnSubmit;
 
     private String[] fonts = {"Formal", "Roboto", "Weird"};
-    private String[] ringtones = {"Haikyuu","Believe It","Get Up"};
-    private String[] genres ={"All Genres","Entrepreneur", "Celebrity", "Author", "Athlete", "Anime", "Great Minds", "Book Quotes","Meme Quotes"};
-    private String[] quote_length = {"All Lengths","Medium", "Short", "Long"};
-    private String[] backgrounds = {"Vanilla","Starry Clouds", "Galaxy", "Forest", "Crystal"};
-    private String[] font_colors = {"White","Black", "Blue", "Red", "Yellow", "Green", "Gray"};
-    private String[] clock_colors = {"White","Black", "Blue", "Red", "Yellow", "Green", "Gray"};
+    private String[] ringtones = {"Haikyuu", "Believe It", "Get Up"};
+    private String[] genres = {"All Genres", "Entrepreneur", "Celebrity", "Author", "Athlete", "Anime", "Great Minds", "Book Quotes", "Meme Quotes"};
+    private String[] quote_length = {"All Lengths", "Medium", "Short", "Long"};
+    private String[] backgrounds = {"Vanilla", "Starry Clouds", "Galaxy", "Forest", "Crystal"};
+    private String[] font_colors = {"White", "Black", "Blue", "Red", "Yellow", "Green", "Gray"};
+    private String[] clock_colors = {"White", "Black", "Blue", "Red", "Yellow", "Green", "Gray"};
     private String[] repeating_intervals = {"30 Seconds", "1 Minute", "2 Minutes", "3 Minutes", "4 Minutes", "5 Minutes"};
     private String[] alarm_schedule = {"None", "12 Hours", "24 Hours"};
-
 
 
     @Override
@@ -77,9 +78,9 @@ public class settings_spinners extends AppCompatActivity {
         getSpinnerEntries("Backgrounds", spinner_backgrounds, backgrounds, R.id.spinner_backgrounds);
         getSpinnerEntries("Repeating Intervals", spinner_repeating_intervals, repeating_intervals, R.id.spinner_intervals);
         getSpinnerEntries("Alarm Schedule", spinner_alarm_schedule, alarm_schedule, R.id.spinner_alarm_schedule);
-        getSpinnerEntries("Font Color",spinner_font_color, font_colors,R.id.spinner_font_colors);
+        getSpinnerEntries("Font Color", spinner_font_color, font_colors, R.id.spinner_font_colors);
         getSpinnerEntries("Clock Color", spinner_clock_color, clock_colors, R.id.spinner_clock_color);
-        
+
 
         snooze_check = (CheckBox) findViewById(R.id.snooze_check);
         spinner_repeating_intervals = (Spinner) findViewById(R.id.spinner_intervals);
@@ -101,18 +102,17 @@ public class settings_spinners extends AppCompatActivity {
     }
 
 
-
     @Override
     public void onStart() {
         super.onStart();
-        ListenerClick(spinner_alarm_schedule,alarm_schedule);
-        ListenerClick(spinner_ringtones,ringtones);
-        ListenerClick(spinner_fonts,fonts);
-        ListenerClick(spinner_quote_length,quote_length);
-        ListenerClick(spinner_repeating_intervals,repeating_intervals);
-        ListenerClick(spinner_backgrounds,backgrounds);
-        ListenerClick(spinner_genre,genres);
-        ListenerClick(spinner_font_color,font_colors);
+        ListenerClick(spinner_alarm_schedule, alarm_schedule);
+        ListenerClick(spinner_ringtones, ringtones);
+        ListenerClick(spinner_fonts, fonts);
+        ListenerClick(spinner_quote_length, quote_length);
+        ListenerClick(spinner_repeating_intervals, repeating_intervals);
+        ListenerClick(spinner_backgrounds, backgrounds);
+        ListenerClick(spinner_genre, genres);
+        ListenerClick(spinner_font_color, font_colors);
         ListenerClick(spinner_clock_color, clock_colors);
     }
 
@@ -126,28 +126,27 @@ public class settings_spinners extends AppCompatActivity {
                 //checks if snooze_checkbox is checked
                 if (snooze_check.isChecked()) {
                     alarm_service.if_RepeatingAlarm = Boolean.valueOf("true");
-                }
-                else {
+                } else {
                     alarm_service.if_RepeatingAlarm = Boolean.valueOf("false");
                 }
 
-                SharedPreferences shared_snooze  = getSharedPreferences("Snooze Boolean", MODE_PRIVATE);
+                SharedPreferences shared_snooze = getSharedPreferences("Snooze Boolean", MODE_PRIVATE);
                 SharedPreferences.Editor editor = shared_snooze.edit();
-                editor.putString("Message",String.valueOf(alarm_service.if_RepeatingAlarm));
-                Log.e("Changed","boolean to " + String.valueOf(alarm_service.if_RepeatingAlarm));
+                editor.putString("Message", String.valueOf(alarm_service.if_RepeatingAlarm));
+                Log.e("Changed", "boolean to " + String.valueOf(alarm_service.if_RepeatingAlarm));
                 editor.apply();
                 snooze_check.setChecked(Boolean.valueOf(String.valueOf(alarm_service.if_RepeatingAlarm)));
 
 
                 //Stores Values//
-                storeValue("Font",spinner_fonts);
-                storeValue("Quote Length",spinner_quote_length);
-                storeValue("Genres",spinner_genre);
-                storeValue("Backgrounds",spinner_backgrounds);
+                storeValue("Font", spinner_fonts);
+                storeValue("Quote Length", spinner_quote_length);
+                storeValue("Genres", spinner_genre);
+                storeValue("Backgrounds", spinner_backgrounds);
                 storeValue("Font Color", spinner_font_color);
-                storeValue("Repeating Intervals",spinner_repeating_intervals);
+                storeValue("Repeating Intervals", spinner_repeating_intervals);
                 storeValue("Clock Color", spinner_clock_color);
-                storeValue("Ringtones",spinner_ringtones);
+                storeValue("Ringtones", spinner_ringtones);
 
 
                 Toast.makeText(getApplicationContext(), "Settings Updated!",
@@ -164,7 +163,7 @@ public class settings_spinners extends AppCompatActivity {
 
 
                 //Quote length changer
-                Log.e("new","min and max length set");
+                Log.e("new", "min and max length set");
                 quote_length_changer(String.valueOf(spinner_quote_length.getSelectedItem()));
 
                 //Repeating interval changer
@@ -174,20 +173,19 @@ public class settings_spinners extends AppCompatActivity {
                 alarm_schedule_changer(String.valueOf(spinner_alarm_schedule.getSelectedItem()));
 
                 //Chooses background
-                Log.e("wow","the selected background is " + String.valueOf(spinner_backgrounds.getSelectedItem()));
+                Log.e("wow", "the selected background is " + String.valueOf(spinner_backgrounds.getSelectedItem()));
                 background_changer(String.valueOf(spinner_backgrounds.getSelectedItem()));
 
                 //Chooses genre
-                Log.e("Whoa!", "Genre right now is " +MainActivity.genre);
+                Log.e("Whoa!", "Genre right now is " + MainActivity.genre);
                 //MainActivity.motivational_quote.setText(""); //makes quote blank
                 if (MainActivity.genre != String.valueOf(spinner_genre.getSelectedItem())) {
-                    Log.e("Whoa!", "New Genre Detected Called " +String.valueOf(spinner_genre.getSelectedItem()));
+                    Log.e("Whoa!", "New Genre Detected Called " + String.valueOf(spinner_genre.getSelectedItem()));
                     MainActivity.genre = String.valueOf(spinner_genre.getSelectedItem());
                 }
             }
         });
     }
-
 
 
     public void addListenerOnCheckbox() {
@@ -200,17 +198,11 @@ public class settings_spinners extends AppCompatActivity {
     }
 
 
-
-
-
-
-
     public void setVisibilitySpinner() {
         if (!snooze_check.isChecked()) {
             spinner_repeating_intervals.setVisibility(View.GONE);
             snooze_interval_title.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             spinner_repeating_intervals.setVisibility(View.VISIBLE);
             getSpinnerEntries("Repeating Intervals", spinner_repeating_intervals, repeating_intervals, R.id.spinner_intervals);
             snooze_interval_title.setVisibility(View.VISIBLE);
@@ -231,7 +223,7 @@ public class settings_spinners extends AppCompatActivity {
         List<String> new_item = new ArrayList<String>();
 
         new_item.add(message);
-        for (int i = 0; i<args.length;i++){
+        for (int i = 0; i < args.length; i++) {
             new_item.add(args[i]);
         }
         for (int i = 0; i < new_item.size(); i++) {
@@ -243,19 +235,18 @@ public class settings_spinners extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
-
 
 
     public void getSpinnerEntries(String item, Spinner spinner, String[] args, int XMLSpinner) {
         //shared preferences
         SharedPreferences sharedPref = getSharedPreferences(item, MODE_PRIVATE);
-        String message = sharedPref.getString("Message", "--Choose your " + item+"--");
+        String message = sharedPref.getString("Message", "--Choose your " + item + "--");
         spinner = (Spinner) findViewById(XMLSpinner);
 
         List<String> new_item = new ArrayList<String>();
 
         new_item.add(message);
-        for (int i = 0; i<args.length;i++){
+        for (int i = 0; i < args.length; i++) {
             new_item.add(args[i]);
         }
         for (int i = 0; i < new_item.size(); i++) {
@@ -269,30 +260,23 @@ public class settings_spinners extends AppCompatActivity {
     }
 
 
-
-
-    public void storeValue(String value,Spinner spinner) {
+    public void storeValue(String value, Spinner spinner) {
         SharedPreferences sharedPref = getSharedPreferences(value, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("Message",String.valueOf(spinner.getSelectedItem()));
+        editor.putString("Message", String.valueOf(spinner.getSelectedItem()));
         editor.apply();
     }
 
 
-
     public void getCheckBoxEntry() {
-        SharedPreferences checkbox_boolean = getSharedPreferences("Snooze Boolean",MODE_PRIVATE);
+        SharedPreferences checkbox_boolean = getSharedPreferences("Snooze Boolean", MODE_PRIVATE);
         String message = checkbox_boolean.getString("Message", "false");
         alarm_service.if_AlarmSchedule = Boolean.getBoolean(message);
         snooze_check.setChecked(Boolean.valueOf(message));
     }
 
 
-
-
-
-
-    public void quote_length_changer (String input) {
+    public void quote_length_changer(String input) {
         switch (input) {
             case "Medium":
                 randomQuote.minlength = 101;
@@ -316,13 +300,11 @@ public class settings_spinners extends AppCompatActivity {
     }
 
 
-
-
-    public void alarm_schedule_changer (String input) {
+    public void alarm_schedule_changer(String input) {
         SharedPreferences sharedPreferences_schedule = getSharedPreferences("Alarm Schedule", MODE_PRIVATE);
         SharedPreferences.Editor editor_schedule = sharedPreferences_schedule.edit();
 
-        switch (input){
+        switch (input) {
             case "None":
                 editor_schedule.putLong("Interval", 0);
                 editor_schedule.putBoolean("Schedule Enabled", false);
@@ -341,11 +323,12 @@ public class settings_spinners extends AppCompatActivity {
         editor_schedule.apply();
 
     }
-    public void repeating_intervals_changer (String input) {
+
+    public void repeating_intervals_changer(String input) {
         SharedPreferences sharedPreferences_interval = getSharedPreferences("Repeating Intervals", MODE_PRIVATE);
         SharedPreferences.Editor editor_intervals = sharedPreferences_interval.edit();
 
-        switch (input){
+        switch (input) {
             case "30 Seconds":
                 editor_intervals.putLong("Interval", 30000);
                 break;
@@ -371,7 +354,7 @@ public class settings_spinners extends AppCompatActivity {
     }
 
 
-    public void background_changer (String background) {
+    public void background_changer(String background) {
         switch (background) {
             case "Starry Clouds":
                 //set background as starry clouds
@@ -395,7 +378,7 @@ public class settings_spinners extends AppCompatActivity {
         }
     }
 
-    public void clock_color_changer (String color) {
+    public void clock_color_changer(String color) {
         switch (color) {
             case "White":
                 //set background as starry clouds
@@ -427,7 +410,7 @@ public class settings_spinners extends AppCompatActivity {
 
 
     //Changes font color
-    public void color_changer (String color) {
+    public void color_changer(String color) {
         switch (color) {
             case "White":
                 //set background as starry clouds
@@ -465,14 +448,11 @@ public class settings_spinners extends AppCompatActivity {
     }
 
 
-
-
-
     public void font_changer(String font) {
-        Typeface font_roboto = Typeface.createFromAsset(getAssets(),"fonts/roboto-medium.ttf");
-        Typeface font_cursive = Typeface.createFromAsset(getAssets(),"fonts/Otto.ttf");
-        Typeface font_weird = Typeface.createFromAsset(getAssets(),"fonts/weird.otf");
-        Log.e("yes","font changing to " + font);
+        Typeface font_roboto = Typeface.createFromAsset(getAssets(), "fonts/roboto-medium.ttf");
+        Typeface font_cursive = Typeface.createFromAsset(getAssets(), "fonts/Otto.ttf");
+        Typeface font_weird = Typeface.createFromAsset(getAssets(), "fonts/weird.otf");
+        Log.e("yes", "font changing to " + font);
         switch (font) {
             case "Formal":
                 MainActivity.motivational_quote.setTypeface(font_cursive);
@@ -489,12 +469,11 @@ public class settings_spinners extends AppCompatActivity {
     }
 
 
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
+    public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_home:
                 finish();
                 return true;
@@ -508,12 +487,13 @@ public class settings_spinners extends AppCompatActivity {
     }
 
 
-    public void ListenerClick(final Spinner spinner,final String[] args) {
+    public void ListenerClick(final Spinner spinner, final String[] args) {
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                updateSpinnerEntries(spinner,args);
+                updateSpinnerEntries(spinner, args);
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 // do nothing

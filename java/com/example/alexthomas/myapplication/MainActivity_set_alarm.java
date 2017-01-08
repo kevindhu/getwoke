@@ -29,19 +29,19 @@ import static java.lang.StrictMath.abs;
 
 /* Created by alexthomas on 12/31/16. */
 
-public class MainActivity_set_alarm extends AppCompatActivity{
+public class MainActivity_set_alarm extends AppCompatActivity {
 
-    public  AlarmManager alarmManager;
+    public AlarmManager alarmManager;
     public TimePicker timePicker;
     private TextView text_update;
-    public  PendingIntent pendingIntent;
+    public PendingIntent pendingIntent;
     public static Intent alarm_intent;
     public long time;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.e("started","set_alarm page");
+        Log.e("started", "set_alarm page");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.set_alarm);
         //Intialize layout material
@@ -58,7 +58,7 @@ public class MainActivity_set_alarm extends AppCompatActivity{
         TextView zero_hour = (TextView) findViewById(R.id.zero_hour);
         zero_hour.setAlpha(0f);
         int theHour1 = timePicker.getHour();
-        if (theHour1<10 || theHour1>12 && theHour1<22) {
+        if (theHour1 < 10 || theHour1 > 12 && theHour1 < 22) {
             Log.e("The hour is currently", String.valueOf(theHour1));
             zero_hour.setAlpha(1f);
         }
@@ -79,47 +79,46 @@ public class MainActivity_set_alarm extends AppCompatActivity{
                     pendingIntent.cancel();
                 }
 
-                    String hour;
-                    int theHour = timePicker.getHour();
-                    int theMinute = timePicker.getMinute();
-                    String minute = String.valueOf(timePicker.getMinute());
+                String hour;
+                int theHour = timePicker.getHour();
+                int theMinute = timePicker.getMinute();
+                String minute = String.valueOf(timePicker.getMinute());
 
 
+                calendar.set(Calendar.HOUR_OF_DAY, theHour);
+                calendar.set(Calendar.MINUTE, theMinute);
 
-                    calendar.set(Calendar.HOUR_OF_DAY, theHour);
-                    calendar.set(Calendar.MINUTE, theMinute);
+                //Triggers Alarm
+                alarm_intent = new Intent(MainActivity_set_alarm.this, alarm_receiver.class);
+                pendingIntent = PendingIntent.getBroadcast(MainActivity_set_alarm.this, 1, alarm_intent,
+                        PendingIntent.FLAG_CANCEL_CURRENT);
 
-                    //Triggers Alarm
-                    alarm_intent = new Intent(MainActivity_set_alarm.this, alarm_receiver.class);
-                    pendingIntent = PendingIntent.getBroadcast(MainActivity_set_alarm.this, 1, alarm_intent,
-                            PendingIntent.FLAG_CANCEL_CURRENT);
+                Log.e("System time", String.valueOf(System.currentTimeMillis()));
+                Log.e("Calendar time", String.valueOf(calendar.getTimeInMillis()));
 
-                    Log.e("System time", String.valueOf(System.currentTimeMillis()));
-                    Log.e("Calendar time", String.valueOf(calendar.getTimeInMillis()));
+                //Checks whether time is before system's time
 
-                    //Checks whether time is before system's time
+                if ((abs(System.currentTimeMillis() - calendar.getTimeInMillis()) < 60000)
+                        && (System.currentTimeMillis() > calendar.getTimeInMillis())) {
+                    time = calendar.getTimeInMillis();
+                } else if (System.currentTimeMillis() > calendar.getTimeInMillis()) {
 
-                    if ((abs(System.currentTimeMillis() - calendar.getTimeInMillis()) < 60000)
-                            && (System.currentTimeMillis() > calendar.getTimeInMillis())) {
-                        time = calendar.getTimeInMillis();
-                    } else if (System.currentTimeMillis() > calendar.getTimeInMillis()) {
+                    time = 86400000 + System.currentTimeMillis();
+                } else {
 
-                        time = 86400000 + System.currentTimeMillis();
-                    } else {
+                    time = calendar.getTimeInMillis();
+                }
 
-                        time = calendar.getTimeInMillis();
-                    }
-
-                    //Stores time in sharedpref
-                    storeTime(theHour, theMinute);
-                    store_timer_null(false);
-                    set_alarm_text(getInput());
-                    MainActivity.alarm_confirmation.setText(getInput());
-                    Log.e("Time", String.valueOf(calendar.getTimeInMillis()));
-                    Toast.makeText(getApplicationContext(), "Your alarm is set!", Toast.LENGTH_SHORT).show();
-                    MainActivity.powerButton_on = true;
-                    store_PowerButtonText(true);
-                    alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, time ,pendingIntent);
+                //Stores time in sharedpref
+                storeTime(theHour, theMinute);
+                store_timer_null(false);
+                set_alarm_text(getInput());
+                MainActivity.alarm_confirmation.setText(getInput());
+                Log.e("Time", String.valueOf(calendar.getTimeInMillis()));
+                Toast.makeText(getApplicationContext(), "Your alarm is set!", Toast.LENGTH_SHORT).show();
+                MainActivity.powerButton_on = true;
+                store_PowerButtonText(true);
+                alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, time, pendingIntent);
 
 
             }
@@ -142,7 +141,7 @@ public class MainActivity_set_alarm extends AppCompatActivity{
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_home:
                 finish();
                 return true;
@@ -153,7 +152,7 @@ public class MainActivity_set_alarm extends AppCompatActivity{
     }
 
 
-    private String getInput(){
+    private String getInput() {
         SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
         SharedPreferences sharedPref_null = getSharedPreferences("Last Timer", MODE_PRIVATE);
         Boolean lastTimerisNull = sharedPref_null.getBoolean("Message", false);
@@ -169,8 +168,7 @@ public class MainActivity_set_alarm extends AppCompatActivity{
     }
 
 
-    private void storeTime(int hour, int minute)
-    {
+    private void storeTime(int hour, int minute) {
 
         String str_minute = String.valueOf(minute);
         String str_hour;
@@ -182,13 +180,11 @@ public class MainActivity_set_alarm extends AppCompatActivity{
 
 
         //Converts military time to standard time
-        if(hour > 12){
+        if (hour > 12) {
             str_hour = String.valueOf(hour - 12);
-        }
-        else if (hour == 0){
+        } else if (hour == 0) {
             str_hour = "12";
-        }
-        else {
+        } else {
             str_hour = String.valueOf(hour);
         }
 
@@ -196,11 +192,11 @@ public class MainActivity_set_alarm extends AppCompatActivity{
             str_minute = "0" + minute;
         }
 
-        editor.putString("Message","Alarm set to " + str_hour + ":" + str_minute + " " + am_pm);
+        editor.putString("Message", "Alarm set to " + str_hour + ":" + str_minute + " " + am_pm);
         editor.apply();
     }
 
-    public void store_PowerButtonText(Boolean message){
+    public void store_PowerButtonText(Boolean message) {
 
         SharedPreferences sharedPref = getSharedPreferences("Power Button", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();

@@ -2,8 +2,10 @@ package com.example.alexthomas.myapplication;
 /* Created by Kevin on 1/2/2017.*/
 
 import android.app.Activity;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -25,11 +27,15 @@ import android.widget.Spinner;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.content.SharedPreferences;
+
 import java.util.*;
 import java.util.Random;
+
 import android.app.Activity;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -53,7 +59,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 
-public class randomQuote extends AppCompatActivity{
+public class randomQuote extends AppCompatActivity {
     public static int minlength = 0;
     public static int maxlength = 10000;
     public static int last_rand = -1;
@@ -64,14 +70,14 @@ public class randomQuote extends AppCompatActivity{
             {"The biggest risk is not taking any risk... In a world that changing really quickly, the only strategy that is guaranteed to fail is not taking risks.", "Mark Zuckerberg"},
             {"Patience is a virtue, and I'm learning patience. It's a tough lesson.", "Elon Musk"},
             {"Your time is limited, so don’t waste it living someone else’s life.", "Steve Jobs"},
-            {"Failure is the opportunity to begin more intelligently","Henry Ford"}
+            {"Failure is the opportunity to begin more intelligently", "Henry Ford"}
 
     };
 
     String[][] Celebrity_quotes = {
-            {"George Bush doesn't care about black people","Kanye West"},
-            {"Cinema reflects culture and there is no harm in adapting technology, but not at the cost of losing your originality.","Jackie Chan"},
-            {"The best revenge is massive success","Frank Sinatra"},
+            {"George Bush doesn't care about black people", "Kanye West"},
+            {"Cinema reflects culture and there is no harm in adapting technology, but not at the cost of losing your originality.", "Jackie Chan"},
+            {"The best revenge is massive success", "Frank Sinatra"},
             {"Nothing to me feels as good as laughing incredibly hard.", "Steven Carrell"},
             {"Whether you think you can or you think you can’t, you’re right.", "Harrison Ford"},
             {"You don't learn from successes; you don't learn from awards; you don't learn from celebrity; you only learn from wounds and scars and mistakes and failures. And that's the truth.", "Jane Fonda"}
@@ -80,8 +86,8 @@ public class randomQuote extends AppCompatActivity{
 
 
     String[][] Author_quotes = {
-            {"We do not need magic to transform our world. We carry all of the power we need inside ourselves already.","J.K. Rowling"},
-            {"Not all those who wander are lost.","J.R.R Tolkien"},
+            {"We do not need magic to transform our world. We carry all of the power we need inside ourselves already.", "J.K. Rowling"},
+            {"Not all those who wander are lost.", "J.R.R Tolkien"},
             {"Anime is a mistake, it's nothing but trash.", "Hayao Miyazaki"},
             {"This is an insult to life itself...", "Hayao Miyazaki"},
             {"Twenty years from now you will be more disappointed by the things that you didn’t do than by the ones you did do, so throw off the bowlines, sail away from safe harbor, catch the trade winds in your sails.  Explore, Dream, Discover.", "Mark Twain"},
@@ -101,16 +107,15 @@ public class randomQuote extends AppCompatActivity{
             {"Just keep going. Everybody gets better if they keep at it.", "Ted Williams"},
             {"Push yourself again and again. Don’t give an inch until the final buzzer sounds.", "Larry Bird"},
             {"You can’t put a limit on anything. The more you dream, the farther you get.", "Michael Phelps"},
-            {"I hated every minute of training, but I said, ‘Don’t quit. Suffer now and live the rest of your life as a champion."," Muhammad Ali"},
+            {"I hated every minute of training, but I said, ‘Don’t quit. Suffer now and live the rest of your life as a champion.", " Muhammad Ali"},
             {"There are only two options regarding commitment. You’re either IN or you’re OUT. There is no such thing as life in-between.", "Pat Riley"},
             {"Gold medals aren’t really made of gold. They’re made of sweat, determination, and a hard-to-find alloy called guts.", "Dan Gable"}
-
 
 
     };
 
     String[][] Anime_quotes = {
-            {"The difference between the novice and the master is that the master has failed more times than the novice has tried." , "Korosensei (Assassination Classroom)"},
+            {"The difference between the novice and the master is that the master has failed more times than the novice has tried.", "Korosensei (Assassination Classroom)"},
             {"The world's not perfect, but it's there for us trying the best it can. That's what it makes it so damn beautiful.", "Roy Mustang (Full Metal Alchemist)"},
             {"A lesson without pain is meaningless. That's because no one can gain without sacrificing something. But by enduring that pain and overcoming it, he shall obtain a powerful, unmatched heart. A heart full-metal.", "Edward Elric (Full Metal Alchemist)"},
             {"Those who forgive themselves, and are able to accept their true nature...They are the strong ones!", "Itachi Uchiha (Naruto)"},
@@ -126,13 +131,12 @@ public class randomQuote extends AppCompatActivity{
             {"The most beautiful thing we can experience is the mysterious. It is the source of all true art and science.", "Albert Einsten"},
             {"An unexamined life is not worth living.", "Socrates"},
             {"To find yourself, think for yourself.", "Socrates"},
-            {"Live as if you were to die tomorrow","Learn as if you were to live forever","Mahatma Gandhi"},
+            {"Live as if you were to die tomorrow", "Learn as if you were to live forever", "Mahatma Gandhi"},
             {"And those who were seen dancing were thought to be insane by those who could not hear the music", "Friedrich Nietzche"},
-            {"I love those who can smile in trouble, who can gather strength from distress, and grow brave by reflection. 'Tis the business of little minds to shrink, but they whose heart is firm, and whose conscience approves their conduct, will pursue their principles unto death.","Leonardo DaVinci"},
+            {"I love those who can smile in trouble, who can gather strength from distress, and grow brave by reflection. 'Tis the business of little minds to shrink, but they whose heart is firm, and whose conscience approves their conduct, will pursue their principles unto death.", "Leonardo DaVinci"},
             {"A person, who no matter how desperate the situation, gives others hope, is a true leader.", "Daisaku Ikeda"},
             {"You must not for one instant give up the effort to build new lives for yourselves. Creativity means to push open the heavy, groaning doorway to life.", "Daisaku Ikeda"},
             {"The determination to win is the better part of winning.", "Daisaku Ikeda"}
-
 
 
     };
@@ -152,8 +156,8 @@ public class randomQuote extends AppCompatActivity{
             {"The saddest people I’ve ever met in life are the ones who don’t care deeply about anything at all. Passion and satisfaction go hand in hand, and without them, any happiness is only temporary, because there’s nothing to make it last.", "Nicholas Sparks, Dear"},
             {"You can’t stay in your corner of the Forest waiting for others to come to you. You have to go to them sometimes.", "A.A. Milne, Winnie-the-Pooh"},
             {"The point is not to pay back kindness but to pass it on.", "Julia Alvarez"},
-            {"We can never give up longing and wishing while we are thoroughly alive. There are certain things we feel to be beautiful and good, and we must hunger after them.","George Eliot, The Mill on the Floss"},
-            {"We must have ideals and try to live up to them, even if we never quite succeed. Life would be a sorry business without them. With them it's grand and great.","Lucy Maude Montgomery, Ann of Avonlea"},
+            {"We can never give up longing and wishing while we are thoroughly alive. There are certain things we feel to be beautiful and good, and we must hunger after them.", "George Eliot, The Mill on the Floss"},
+            {"We must have ideals and try to live up to them, even if we never quite succeed. Life would be a sorry business without them. With them it's grand and great.", "Lucy Maude Montgomery, Ann of Avonlea"},
             {"If you are interested in something, no matter what it is, go at it at full speed ahead. Embrace it with both arms, hug it, love it and above all become passionate about it. Lukewarm is no good. Hot is no good either. White hot and passionate is the only thing to be.", "Roald Dahl, My Uncle Oswald"},
             {"It does not do to dwell on dreams and forget to live, remember that.", "J.K. Rowling, Harry Potter and the Sorcerer's Stone"},
             {"Cherish your friends, stay true to your principles, live passionately and fully and well. Experience new things. Love and be loved, if you ever get the chance.", "David Nicholls, One Day"}
@@ -161,21 +165,17 @@ public class randomQuote extends AppCompatActivity{
     };
 
     String[][] meme_quotes = {
-            {"I have never seen a thin person drinking  Diet Coke.","Donald Trump"},
-            {"You know, it really doesn’t matter what the media write as long as you’ve got a young, and beautiful, piece of ass.","Donald Trump"},
-            {"The beauty of me is that I’m very rich.","Donald Trump"},
-            {"I can't belive my grand mothers making me take Out the garbage I'm rich fuck this I'm going home I don't need this shit","50 Cent"},
-            {"I always lick my lips when I see a child look at me because they need to realize there are bad people in this world","Jordan the Twitter guy"},
-            {"I STRAIGHT UP HAVE NO IDEA HOW PORCUPINES FUCK EACH OTHER","Bill Nye Tho"},
-            {"Don't let what other people think of you stop you from doing what you love","Adolf Hitler"}
+            {"I have never seen a thin person drinking  Diet Coke.", "Donald Trump"},
+            {"You know, it really doesn’t matter what the media write as long as you’ve got a young, and beautiful, piece of ass.", "Donald Trump"},
+            {"The beauty of me is that I’m very rich.", "Donald Trump"},
+            {"I can't belive my grand mothers making me take Out the garbage I'm rich fuck this I'm going home I don't need this shit", "50 Cent"},
+            {"I always lick my lips when I see a child look at me because they need to realize there are bad people in this world", "Jordan the Twitter guy"},
+            {"I STRAIGHT UP HAVE NO IDEA HOW PORCUPINES FUCK EACH OTHER", "Bill Nye Tho"},
+            {"Don't let what other people think of you stop you from doing what you love", "Adolf Hitler"}
     };
 
 
-
-
-    String[] error = {"No genre found!","No author found!"};
-
-
+    String[] error = {"No genre found!", "No author found!"};
 
 
     public void onCreate(Bundle savedInstanceState) {
@@ -183,25 +183,21 @@ public class randomQuote extends AppCompatActivity{
 
     }
 
-    public String[] quote_generator (String genre) {
+    public String[] quote_generator(String genre) {
 
 
         String[] answer = {};
         String[][][] original = {
                 Entrepreneur_quotes, Celebrity_quotes, Author_quotes, Athlete_quotes,
-                Anime_quotes,GreatMinds_quotes,Book_quotes};
+                Anime_quotes, GreatMinds_quotes, Book_quotes};
 
         String[][] sum = two_d_summer(original);
 
 
-
-
         if (genre.equals("--Choose your Genres--")) {
             genre = "All Genres";
-            Log.e("Default","changed to All genres");
+            Log.e("Default", "changed to All genres");
         }
-
-
 
 
         switch (genre) {
@@ -233,17 +229,10 @@ public class randomQuote extends AppCompatActivity{
                 answer = solver(meme_quotes);
             default:
                 break;
-            } return answer;
-
         }
+        return answer;
 
-
-
-
-
-
-
-
+    }
 
 
     public static String[][] append(String[][] a, String[][] b) {
@@ -254,41 +243,37 @@ public class randomQuote extends AppCompatActivity{
     }
 
 
-
     public String[][] two_d_summer(String[][][] args) {
 
         String[][] sum = {};
-        for(int i=0; i<args.length; i++) {
-            sum = append(sum,args[i]);
+        for (int i = 0; i < args.length; i++) {
+            sum = append(sum, args[i]);
         }
         return sum;
     }
 
 
-
-    public String[] solver(String[][] quote_array){
+    public String[] solver(String[][] quote_array) {
 
 
         int rnd = new Random().nextInt(quote_array.length);
 
         Log.e("Last_rand right now is ", String.valueOf(last_rand));
-        Log.e("quote","max length is "+maxlength);
-        Log.e("quote","min length is "+minlength);
-        Log.e("quote","length of rnd is " + quote_array[rnd][0].length());
+        Log.e("quote", "max length is " + maxlength);
+        Log.e("quote", "min length is " + minlength);
+        Log.e("quote", "length of rnd is " + quote_array[rnd][0].length());
 
 
-
-        if (rnd != last_rand && quote_array[rnd][0].length()<maxlength && quote_array[rnd][0].length()>minlength) {
+        if (rnd != last_rand && quote_array[rnd][0].length() < maxlength && quote_array[rnd][0].length() > minlength) {
 
             String[] quote_AuthorPair = new String[2];
             quote_AuthorPair[0] = quote_array[rnd][0];
-            Log.e("first","value is set to "+String.valueOf(quote_array[rnd][0]));
+            Log.e("first", "value is set to " + String.valueOf(quote_array[rnd][0]));
             quote_AuthorPair[1] = quote_array[rnd][1];
             randomQuote.last_rand = rnd;
             Log.e("Last_rand now is ", String.valueOf(last_rand));
             return quote_AuthorPair;
-        }
-        else {
+        } else {
             return solver(quote_array);
         }
 

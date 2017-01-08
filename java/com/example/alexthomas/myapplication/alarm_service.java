@@ -36,26 +36,22 @@ public class alarm_service extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.e("onStartCommand", "Initiated alarm service (for starting and stopping music and generating new quotes");
         SharedPreferences sharedRingtone = getSharedPreferences("Ringtones", MODE_PRIVATE);
-        String message = sharedRingtone.getString("Message","Default Ringtones");
+        String message = sharedRingtone.getString("Message", "Default Ringtones");
         ringtone_changer(message);
         Log.e("StartID", String.valueOf(startId));
-        
+
         Log.e("isRunning", String.valueOf(isRunning));
 
-        if (isRunning){
+        if (isRunning) {
             try {
                 mediasong.stop();
                 mediasong.reset();
-            }
-            catch (NullPointerException e){
+            } catch (NullPointerException e) {
                 Log.e("NullpointException", "e");
             }
             Log.e("cancel", "cancelled");
             isRunning = false;
-        }
-
-
-        else {
+        } else {
             alarm_service.isRunning = true;
             //Sets whether alarm is repeating
             control_RepeatingAlarm = if_RepeatingAlarm;
@@ -65,8 +61,6 @@ public class alarm_service extends Service {
 
             //displays new quote
             randomQuote newQuote = new randomQuote();
-
-
 
 
             //gets sharedPref for last_rand and max/min
@@ -81,10 +75,7 @@ public class alarm_service extends Service {
             newQuote.minlength = new_min;
 
 
-
-
-
-            Log.e("alright","Generating new quote with genre set to "+genre);
+            Log.e("alright", "Generating new quote with genre set to " + genre);
             quote = newQuote.quote_generator(genre);
             saverandInt();
             saveMaxMin();
@@ -109,11 +100,9 @@ public class alarm_service extends Service {
                 final Animation quoteRise2 = AnimationUtils.loadAnimation(this, R.anim.fade_in);
                 MainActivity.motivational_quote.startAnimation(quoteRise1);
                 MainActivity.quoter.startAnimation(quoteRise2);
+            } catch (NullPointerException e) {
+                Log.e("MainActivity is closed", "Stored in sharedPref");
             }
-            catch(NullPointerException e) {
-                    Log.e("MainActivity is closed", "Stored in sharedPref");
-            }
-
 
 
             //Starts Playing Music
@@ -121,11 +110,10 @@ public class alarm_service extends Service {
             mediasong.start();
 
             //Starts Main Alarm for alarm schedule
-                //start_Alarm();
-
-
-
-
+            load_fromMainAlarm();
+            if (fromMainAlarm) {
+                start_Alarm();
+            }
 
 
             //Catches whether MainActivity is closed when changing text to 'silence alarm', if so, stores in sharedpref
@@ -135,8 +123,7 @@ public class alarm_service extends Service {
                 SharedPreferences.Editor editor_alarm_unset = sharedPref_alarm_unset.edit();
                 editor_alarm_unset.putString("Alarm Button Text", "Silence Alarm");
                 editor_alarm_unset.apply();
-            }
-            catch(NullPointerException e) {
+            } catch (NullPointerException e) {
                 SharedPreferences sharedPref_alarm_unset = getSharedPreferences("Alarm Unset", MODE_PRIVATE);
                 SharedPreferences.Editor editor_alarm_unset = sharedPref_alarm_unset.edit();
                 editor_alarm_unset.putString("Alarm Button Text", "Silence Alarm");
@@ -144,16 +131,12 @@ public class alarm_service extends Service {
             }
 
 
-
-
-
-
             //Alarm snoozes automatically after song stops if snooze feature is on
             mediasong.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
-                    if(control_RepeatingAlarm){
-                    //Log.e("Setting", "Text Automatically to Alarm Off");
+                    if (control_RepeatingAlarm) {
+                        //Log.e("Setting", "Text Automatically to Alarm Off");
 
 
                         try {
@@ -164,8 +147,7 @@ public class alarm_service extends Service {
                             editor_alarm_unset.apply();
                             alarm_service.isRunning = false;
                             snooze_restart();
-                        }
-                        catch(NullPointerException e) {
+                        } catch (NullPointerException e) {
                             SharedPreferences sharedPref_alarm_unset2 = getSharedPreferences("Alarm Unset", MODE_PRIVATE);
                             SharedPreferences.Editor editor_alarm_unset = sharedPref_alarm_unset2.edit();
                             editor_alarm_unset.putString("Alarm Button Text", "I'm Woke!");
@@ -175,11 +157,7 @@ public class alarm_service extends Service {
                         }
 
 
-
-
-
-                    }
-                    else {
+                    } else {
                         try {
                             MainActivity.snooze_alarm.setText("Alarm Off");
                             Log.e("Not repeating", "This alarm does not repeat");
@@ -189,8 +167,7 @@ public class alarm_service extends Service {
                             SharedPreferences.Editor editor_alarm_unset = sharedPref_alarm_unset3.edit();
                             editor_alarm_unset.putString("Alarm Button Text", "Alarm Off");
                             editor_alarm_unset.apply();
-                        }
-                        catch(NullPointerException e) {
+                        } catch (NullPointerException e) {
                             SharedPreferences sharedPref_alarm_unset3 = getSharedPreferences("Alarm Unset", MODE_PRIVATE);
                             SharedPreferences.Editor editor_alarm_unset = sharedPref_alarm_unset3.edit();
                             editor_alarm_unset.putString("Alarm Button Text", "Alarm Off");
@@ -201,8 +178,6 @@ public class alarm_service extends Service {
                     }
                 }
             });
-
-
 
 
             //Notification manager
@@ -224,8 +199,8 @@ public class alarm_service extends Service {
                             .setContentText(quote[0] + " - " + quote[1]);
 
             notificationManager.notify(0, mBuilder.build());
-            }
-            return START_NOT_STICKY;
+        }
+        return START_NOT_STICKY;
     }
 
 
@@ -237,7 +212,7 @@ public class alarm_service extends Service {
 
     @Override
     public void onDestroy() {
-        Toast.makeText(this, "On destroy called",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "On destroy called", Toast.LENGTH_SHORT).show();
     }
 
     public void saverandInt() {
@@ -260,7 +235,7 @@ public class alarm_service extends Service {
 
 
     public void ringtone_changer(String input) {
-        switch (input){
+        switch (input) {
             case "Haikyuu":
                 ringtone = R.raw.motivationalmusic;
                 break;
@@ -274,14 +249,13 @@ public class alarm_service extends Service {
     }
 
 
-
     public void snooze_restart() {
         //snooze restart
         SharedPreferences sharedPreferences = getSharedPreferences("Repeating Intervals", MODE_PRIVATE);
         long interval = sharedPreferences.getLong("Interval", -1);
 
-        Log.e("Snooze","Start new repeating alarm");
-        Log.e("Interval",String.valueOf(interval));
+        Log.e("Snooze", "Start new repeating alarm");
+        Log.e("Interval", String.valueOf(interval));
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
@@ -289,9 +263,21 @@ public class alarm_service extends Service {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(alarm_service.this, 2, alarm_intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
-        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ interval ,pendingIntent);
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + interval, pendingIntent);
     }
 
+    private void load_fromMainAlarm() {
+        SharedPreferences sharedPref = getSharedPreferences("Last Timer", MODE_PRIVATE);
+        fromMainAlarm = sharedPref.getBoolean("Message", false);
+    }
+
+
+    public void store_fromMainAlarm(Boolean message) {
+        SharedPreferences sharedPref = getSharedPreferences("Main Alarm", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean("Message", message);
+        editor.apply();
+    }
 
 
     public void start_Alarm() {
@@ -300,13 +286,14 @@ public class alarm_service extends Service {
         Boolean schedule_Enabled = sharedPreferences.getBoolean("Schedule Enabled", false);
         long alarm_schedule = sharedPreferences.getLong("Interval", 0);
 
-        if(schedule_Enabled){
-        Log.e("Alarm Schedule","Alarm Schedule ON");
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        Intent alarm_intent = new Intent(alarm_service.this, alarm_receiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(alarm_service.this, 1, alarm_intent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
-        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ alarm_schedule,pendingIntent);
+        if (schedule_Enabled) {
+            Log.e("Alarm Schedule", "Alarm Schedule ON");
+            store_fromMainAlarm(true);
+            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+            Intent alarm_intent = new Intent(alarm_service.this, alarm_receiver.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(alarm_service.this, 1, alarm_intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT);
+            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + alarm_schedule, pendingIntent);
         }
         Log.e("Alarm Schedule", "Off");
 

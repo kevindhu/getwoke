@@ -527,8 +527,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void load_timer_null() {
         SharedPreferences sharedPref = getSharedPreferences("Last Timer", MODE_PRIVATE);
-        lastTimerisNull = sharedPref.getBoolean("Message",true);
-        Log.e("boolean set to",String.valueOf(lastTimerisNull));
+        lastTimerisNull = sharedPref.getBoolean("Message", true);
+        Log.e("boolean set to", String.valueOf(lastTimerisNull));
     }
 
 
