@@ -474,8 +474,8 @@ public class settings_spinners extends AppCompatActivity {
         Typeface font_weird = Typeface.createFromAsset(getAssets(), "fonts/weird.otf");
         Typeface font_scifi = Typeface.createFromAsset(getAssets(), "fonts/scifi.ttf");
         Typeface font_personal = Typeface.createFromAsset(getAssets(), "fonts/personal.ttf");
-        Typeface font_thick = Typeface.createFromAsset(getAssets(), "fonts/samurai.otf");
-        Typeface font_samurai = Typeface.createFromAsset(getAssets(), "fonts/Lato-Black.ttf");
+        Typeface font_thick = Typeface.createFromAsset(getAssets(), "fonts/Lato-Black");
+        Typeface font_samurai = Typeface.createFromAsset(getAssets(), "fonts/samurai.ttf");
         Log.e("yes", "font changing to " + font);
         switch (font) {
             case "Formal":
