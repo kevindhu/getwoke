@@ -86,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
         load_PowerButtonBoolean();
         //Load Power Button Image
         on_off_boolean(powerButton_on);
-
         //Sets Quote Numbers
         setRandInt();
         setMaxMin();
@@ -257,7 +256,48 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.e("isRunning", String.valueOf(alarm_service.isRunning));
                 Log.e("repeating_alarm", String.valueOf(repeating_alarm));
-                if (snooze_alarm.getText().toString().equals("I'm Woke!")) {
+                if (snooze_alarm.getText().toString().equals("Get Quotes")) {
+                    //execute new quote
+                    SharedPreferences sharedPref_genres = getSharedPreferences("Genres", MODE_PRIVATE);
+                    String genre = sharedPref_genres.getString("Message", "All Genres");
+                    randomQuote newQuote = new randomQuote();
+                    Log.e("Alarm Service","Old last_rand is "+String.valueOf(newQuote.last_rand));
+                    Log.e("alright", "Generating new quote with genre set to " + genre);
+
+
+                    String[] quote = newQuote.quote_generator(genre);
+                    saverandInt();
+
+
+                    //Instantiates sharedPrefs and saves quote/quoter
+                    SharedPreferences sharedPref_quote = getSharedPreferences("Quote", MODE_PRIVATE);
+                    SharedPreferences sharedPref_quoter = getSharedPreferences("Quoter", MODE_PRIVATE);
+                    SharedPreferences.Editor editor_quote = sharedPref_quote.edit();
+                    SharedPreferences.Editor editor_quoter = sharedPref_quoter.edit();
+                    editor_quote.putString("Quote", quote[0]);
+                    editor_quoter.putString("Quoter", quote[1]);
+                    editor_quote.apply();
+                    editor_quoter.apply();
+
+
+                    //Sets the text to the new quote generated and Catches whether MainActivity is closed when changing quote/quoter text
+
+                    //sets text
+                    motivational_quote.setText(quote[0]);
+                    quoter.setText(quote[1]);
+                    //Animation ghetto version
+                    final Animation quoteRise1 = AnimationUtils.loadAnimation(MainActivity.this, R.anim.fade_in);
+                    final Animation quoteRise2 = AnimationUtils.loadAnimation(MainActivity.this, R.anim.fade_in);
+                    MainActivity.motivational_quote.startAnimation(quoteRise1);
+                    MainActivity.quoter.startAnimation(quoteRise2);
+
+
+
+
+
+
+
+
 
                 }
 
@@ -273,7 +313,6 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     if (!alarm_service.isRunning && !repeating_alarm) {
                         Log.e("Conditional", "2");
-                        Toast.makeText(MainActivity.this, "The alarm is already off!", Toast.LENGTH_SHORT).show();
                     } else {
                         Log.e("Conditional", "3");
                         //Silences Alarm
@@ -301,7 +340,7 @@ public class MainActivity extends AppCompatActivity {
                         else{
 
                             if(snooze_alarm.getText().equals("Get Quotes")){
-                                Toast.makeText(MainActivity.this, "The alarm is already off!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "The alarm is already fucked!", Toast.LENGTH_SHORT).show();
                             }
                             pendingIntent.cancel();
                             snooze_alarm.setText("Get Quotes");
@@ -483,6 +522,14 @@ public class MainActivity extends AppCompatActivity {
 
 
     /////GETTERS/////
+
+    public void saverandInt() {
+        SharedPreferences sharedPref_alarm_unset = getSharedPreferences("Random Int", MODE_PRIVATE);
+        SharedPreferences.Editor editor_alarm_unset = sharedPref_alarm_unset.edit();
+        editor_alarm_unset.putInt("Int", randomQuote.last_rand);
+        Log.e("Last rand","saved as "+String.valueOf(randomQuote.last_rand));
+        editor_alarm_unset.apply();
+    }
 
 
     private String getAlarmButtonText() {

@@ -298,7 +298,22 @@ public class settings_spinners extends AppCompatActivity {
             default:
                 break;
         }
+        saveMaxMin();
     }
+
+
+    public void saveMaxMin() {
+        SharedPreferences sharedPref_max = getSharedPreferences("Max", MODE_PRIVATE);
+        SharedPreferences sharedPref_min = getSharedPreferences("Min", MODE_PRIVATE);
+        SharedPreferences.Editor editor_max = sharedPref_max.edit();
+        SharedPreferences.Editor editor_min = sharedPref_min.edit();
+        editor_max.putInt("Maximum", randomQuote.maxlength);
+        editor_min.putInt("Minimum", randomQuote.minlength);
+        Log.e("Maximum minimum",String.valueOf(randomQuote.maxlength)+"|"+String.valueOf(randomQuote.minlength));
+        editor_max.apply();
+        editor_min.apply();
+    }
+
 
 
     public void alarm_schedule_changer(String input) {

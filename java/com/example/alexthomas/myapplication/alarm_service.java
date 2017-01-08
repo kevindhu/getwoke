@@ -63,25 +63,18 @@ public class alarm_service extends Service {
             SharedPreferences sharedPref_genres = getSharedPreferences("Genres", MODE_PRIVATE);
             String genre = sharedPref_genres.getString("Message", "All Genres");
 
+
+
             //displays new quote
             randomQuote newQuote = new randomQuote();
-
-
-            //gets sharedPref for last_rand
-            SharedPreferences sharedPref_alarm_unset50 = getSharedPreferences("Random Int", MODE_PRIVATE);
-            int message1 = sharedPref_alarm_unset50.getInt("Int", -1);
-            newQuote.last_rand = message1;
             Log.e("Alarm Service","Old last_rand is "+String.valueOf(newQuote.last_rand));
 
 
-            saveMaxMin();
-
-
             Log.e("alright", "Generating new quote with genre set to " + genre);
+
+
             quote = newQuote.quote_generator(genre);
             saverandInt();
-
-
 
 
 
@@ -94,6 +87,7 @@ public class alarm_service extends Service {
             editor_quoter.putString("Quoter", quote[1]);
             editor_quote.apply();
             editor_quoter.apply();
+
 
             //Sets the text to the new quote generated and Catches whether MainActivity is closed when changing quote/quoter text
             try {
@@ -226,19 +220,6 @@ public class alarm_service extends Service {
         Log.e("Last rand","saved as "+String.valueOf(randomQuote.last_rand));
         editor_alarm_unset.apply();
     }
-
-    public void saveMaxMin() {
-        SharedPreferences sharedPref_max = getSharedPreferences("Max", MODE_PRIVATE);
-        SharedPreferences sharedPref_min = getSharedPreferences("Min", MODE_PRIVATE);
-        SharedPreferences.Editor editor_max = sharedPref_max.edit();
-        SharedPreferences.Editor editor_min = sharedPref_min.edit();
-        editor_max.putInt("Maximum", randomQuote.maxlength);
-        editor_min.putInt("Minimum", randomQuote.minlength);
-        Log.e("Maximum minimum",String.valueOf(randomQuote.maxlength)+"|"+String.valueOf(randomQuote.minlength));
-        editor_max.apply();
-        editor_min.apply();
-    }
-
 
     public void ringtone_changer(String input) {
         switch (input) {
