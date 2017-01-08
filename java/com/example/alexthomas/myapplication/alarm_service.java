@@ -227,11 +227,10 @@ public class alarm_service extends Service {
             case "Haikyuu":
                 ringtone = R.raw.motivationalmusic;
                 break;
-            case "Believe It":
-                ringtone = R.raw.believeit;
+            case "Scary":
+                ringtone = R.raw.scary;
                 break;
-            case "Get Up":
-                ringtone = R.raw.getup;
+            default:
                 break;
         }
     }

@@ -55,7 +55,7 @@ public class settings_spinners extends AppCompatActivity {
     private Button btnSubmit;
 
     private String[] fonts = {"Formal", "Roboto", "Weird", "Thick", "Sci-Fi", "Personal", "Samurai"};
-    private String[] ringtones = {"Haikyuu", "Believe It", "Get Up"};
+    private String[] ringtones = {"Haikyuu", "Scary"};
     private String[] genres = {"All Genres", "Entrepreneur", "Celebrity", "Author", "Athlete", "Anime", "Great Minds", "Book Quotes", "Meme Quotes"};
     private String[] quote_length = {"All Lengths", "Medium", "Short", "Long"};
     private String[] backgrounds = {"Vanilla", "Berkeley","Starry Clouds","Mountain","Water","Sunset","Golden Gate"};
