@@ -257,6 +257,9 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.e("isRunning", String.valueOf(alarm_service.isRunning));
                 Log.e("repeating_alarm", String.valueOf(repeating_alarm));
+                if (snooze_alarm.getText().toString().equals("I'm Woke!")) {
+
+                }
 
                 if (repeating_alarm && (snooze_alarm.getText().toString().equals("I'm Woke!"))) {
                     Log.e("Conditional", "1");
@@ -498,7 +501,6 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref = getSharedPreferences("Font Color", MODE_PRIVATE);
         String message = sharedPref.getString("Message", "--Choose your Color--");
 
-
         SharedPreferences clock_sharedPref = getSharedPreferences("Clock Color", MODE_PRIVATE);
         String message_clock = clock_sharedPref.getString("Message", "--Choose your Color--");
         Log.e("Color", message);
@@ -516,12 +518,13 @@ public class MainActivity extends AppCompatActivity {
     public void setMaxMin() {
         SharedPreferences sharedPref_max = getSharedPreferences("Max", MODE_PRIVATE);
         SharedPreferences sharedPref_min = getSharedPreferences("Min", MODE_PRIVATE);
-        int new_min = sharedPref_min.getInt("Max", 0);
-        int new_max = sharedPref_max.getInt("Min", 10000);
+        int new_max = sharedPref_max.getInt("Maximum", 10000);
+        int new_min = sharedPref_min.getInt("Minimum", 0);
         randomQuote.maxlength = new_max;
         randomQuote.minlength = new_min;
     }
 
+    
     private long adjustTime(long time) {
         if ((abs(System.currentTimeMillis() - time) < 60000)
                 && (System.currentTimeMillis() > time)) {

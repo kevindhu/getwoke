@@ -67,22 +67,23 @@ public class alarm_service extends Service {
             randomQuote newQuote = new randomQuote();
 
 
-            //gets sharedPref for last_rand and max/min
+            //gets sharedPref for last_rand
             SharedPreferences sharedPref_alarm_unset50 = getSharedPreferences("Random Int", MODE_PRIVATE);
-            int message1 = sharedPref_alarm_unset50.getInt("Message", -1);
+            int message1 = sharedPref_alarm_unset50.getInt("Int", -1);
             newQuote.last_rand = message1;
-            SharedPreferences sharedPref_max = getSharedPreferences("Max", MODE_PRIVATE);
-            SharedPreferences sharedPref_min = getSharedPreferences("Min", MODE_PRIVATE);
-            int new_min = sharedPref_min.getInt("Max", 0);
-            int new_max = sharedPref_max.getInt("Min", 10000);
-            newQuote.maxlength = new_max;
-            newQuote.minlength = new_min;
+            Log.e("Alarm Service","Old last_rand is "+String.valueOf(newQuote.last_rand));
+
+
+            saveMaxMin();
 
 
             Log.e("alright", "Generating new quote with genre set to " + genre);
             quote = newQuote.quote_generator(genre);
             saverandInt();
-            saveMaxMin();
+
+
+
+
 
             //Instantiates sharedPrefs and saves quote/quoter
             SharedPreferences sharedPref_quote = getSharedPreferences("Quote", MODE_PRIVATE);
@@ -222,6 +223,7 @@ public class alarm_service extends Service {
         SharedPreferences sharedPref_alarm_unset = getSharedPreferences("Random Int", MODE_PRIVATE);
         SharedPreferences.Editor editor_alarm_unset = sharedPref_alarm_unset.edit();
         editor_alarm_unset.putInt("Int", randomQuote.last_rand);
+        Log.e("Last rand","saved as "+String.valueOf(randomQuote.last_rand));
         editor_alarm_unset.apply();
     }
 
@@ -230,8 +232,9 @@ public class alarm_service extends Service {
         SharedPreferences sharedPref_min = getSharedPreferences("Min", MODE_PRIVATE);
         SharedPreferences.Editor editor_max = sharedPref_max.edit();
         SharedPreferences.Editor editor_min = sharedPref_min.edit();
-        editor_max.putInt("Max", randomQuote.maxlength);
-        editor_min.putInt("Min", randomQuote.minlength);
+        editor_max.putInt("Maximum", randomQuote.maxlength);
+        editor_min.putInt("Minimum", randomQuote.minlength);
+        Log.e("Maximum minimum",String.valueOf(randomQuote.maxlength)+"|"+String.valueOf(randomQuote.minlength));
         editor_max.apply();
         editor_min.apply();
     }

@@ -270,8 +270,8 @@ public class randomQuote extends AppCompatActivity {
             quote_AuthorPair[0] = quote_array[rnd][0];
             Log.e("first", "value is set to " + String.valueOf(quote_array[rnd][0]));
             quote_AuthorPair[1] = quote_array[rnd][1];
+            Log.e("last_rand is ",String.valueOf(rnd));
             randomQuote.last_rand = rnd;
-            Log.e("Last_rand now is ", String.valueOf(last_rand));
             return quote_AuthorPair;
         } else {
             return solver(quote_array);
