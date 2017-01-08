@@ -79,7 +79,8 @@ public class randomQuote extends AppCompatActivity {
             {"The best revenge is massive success", "Frank Sinatra"},
             {"Nothing to me feels as good as laughing incredibly hard.", "Steven Carrell"},
             {"Whether you think you can or you think you can’t, you’re right.", "Harrison Ford"},
-            {"You don't learn from successes; you don't learn from awards; you don't learn from celebrity; you only learn from wounds and scars and mistakes and failures. And that's the truth.", "Jane Fonda"}
+            {"You don't learn from successes; you don't learn from awards; you don't learn from celebrity; you only learn from wounds and scars and mistakes and failures. And that's the truth.", "Jane Fonda"},
+            {"As a member of the Greek community and a part of one of these organizations this is highly offensive. Sororities at UC Berkeley make it their goal to give women a place to feel comfortable as well as better the community. Comparing specific houses to characters from a movie about bullying is absurd and beyond inaccurate. Making the claim that sororities are cliques is demeaning the sisterhood and values they are founded on. This clearly is a stab at a community on campus that does nothing but support the rest of the student body.", "Sorority Chick"}
 
     };
 

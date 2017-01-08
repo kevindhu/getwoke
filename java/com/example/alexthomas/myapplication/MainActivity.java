@@ -143,9 +143,15 @@ public class MainActivity extends AppCompatActivity {
                 int hour = sharedPref.getInt("Hour", -1);
                 int minute = sharedPref.getInt("Minute", -1);
 
+
                 if ((hour == -1) && (minute == -1)) {
                     Log.e("Conditional", "1");
                     Toast.makeText(MainActivity.this, "You need to set an alarm first!", Toast.LENGTH_SHORT).show();
+                }
+                else if (!powerButton_on && (snooze_alarm.getText().toString().equals("Silence Alarm"))){
+                        Log.e("Conditional", "7");
+                        Toast.makeText(MainActivity.this, "You need to silence the alarm first!", Toast.LENGTH_SHORT).show();
+                    
                 }
                 else{
 
@@ -201,6 +207,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 //When alarm schedule has no pending alarm and user turns power on
                 else if (!alarmUp && powerButton_on) {
+
                     Log.e("Conditional", "3");
                     alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
                     pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
