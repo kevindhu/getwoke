@@ -131,7 +131,7 @@ public class randomQuote extends AppCompatActivity {
             {"The most beautiful thing we can experience is the mysterious. It is the source of all true art and science.", "Albert Einsten"},
             {"An unexamined life is not worth living.", "Socrates"},
             {"To find yourself, think for yourself.", "Socrates"},
-            {"Live as if you were to die tomorrow", "Learn as if you were to live forever", "Mahatma Gandhi"},
+            {"Live as if you were to die tomorrow, Learn as if you were to live forever", "Mahatma Gandhi"},
             {"And those who were seen dancing were thought to be insane by those who could not hear the music", "Friedrich Nietzche"},
             {"I love those who can smile in trouble, who can gather strength from distress, and grow brave by reflection. 'Tis the business of little minds to shrink, but they whose heart is firm, and whose conscience approves their conduct, will pursue their principles unto death.", "Leonardo DaVinci"},
             {"A person, who no matter how desperate the situation, gives others hope, is a true leader.", "Daisaku Ikeda"},
