@@ -158,7 +158,7 @@ public class MainActivity_set_alarm extends AppCompatActivity {
         Boolean lastTimerisNull = sharedPref_null.getBoolean("Message", false);
 
         if (!lastTimerisNull) {
-            String message = sharedPref.getString("Message", "You broke my code you fuck");
+            String message = sharedPref.getString("Message", "Your alarm is unset.");
             Log.e("Setting previous alarm", message);
             return message;
         } else {
