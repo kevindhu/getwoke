@@ -488,16 +488,16 @@ public class settings_spinners extends AppCompatActivity {
                 MainActivity.motivational_quote.setTypeface(font_weird);
                 break;
             case "Sci-Fi":
-                MainActivity.motivational_quote.setTypeface(font_weird);
+                MainActivity.motivational_quote.setTypeface(font_scifi);
                 break;
             case "Samurai":
-                MainActivity.motivational_quote.setTypeface(font_weird);
+                MainActivity.motivational_quote.setTypeface(font_samurai);
                 break;
             case "Personal":
-                MainActivity.motivational_quote.setTypeface(font_weird);
+                MainActivity.motivational_quote.setTypeface(font_personal);
                 break;
             case "Thick":
-                MainActivity.motivational_quote.setTypeface(font_weird);
+                MainActivity.motivational_quote.setTypeface(font_thick);
                 break;
             default:
                 break;
