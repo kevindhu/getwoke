@@ -58,7 +58,7 @@ public class settings_spinners extends AppCompatActivity {
     private String[] ringtones = {"Haikyuu", "Believe It", "Get Up"};
     private String[] genres = {"All Genres", "Entrepreneur", "Celebrity", "Author", "Athlete", "Anime", "Great Minds", "Book Quotes", "Meme Quotes"};
     private String[] quote_length = {"All Lengths", "Medium", "Short", "Long"};
-    private String[] backgrounds = {"Vanilla", "Starry Clouds", "Galaxy", "Forest", "Crystal"};
+    private String[] backgrounds = {"Vanilla", "Starry Clouds", "Forest", "Crystal"};
     private String[] font_colors = {"White", "Black", "Blue", "Red", "Yellow", "Green", "Gray"};
     private String[] clock_colors = {"White", "Black", "Blue", "Red", "Yellow", "Green", "Gray"};
     private String[] repeating_intervals = {"5 Seconds","30 Seconds", "1 Minute", "2 Minutes", "3 Minutes", "4 Minutes", "5 Minutes"};

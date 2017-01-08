@@ -171,7 +171,7 @@ public class randomQuote extends AppCompatActivity {
             {"I can't belive my grand mothers making me take Out the garbage I'm rich fuck this I'm going home I don't need this shit", "50 Cent"},
             {"I always lick my lips when I see a child look at me because they need to realize there are bad people in this world", "Jordan the Twitter guy"},
             {"I STRAIGHT UP HAVE NO IDEA HOW PORCUPINES FUCK EACH OTHER", "Bill Nye Tho"},
-            {"Don't let what other people think of you stop you from doing what you love", "Adolf Hitler"}
+            {"Don't let what other people think of you stop you from doing what you love", "Adolf Hitler"},
     };
 
 
