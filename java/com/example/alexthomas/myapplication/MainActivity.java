@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Debug;
 import android.support.v7.app.AppCompatActivity;
@@ -151,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
                 else if (!powerButton_on && (snooze_alarm.getText().toString().equals("Silence Alarm"))){
                         Log.e("Conditional", "7");
                         Toast.makeText(MainActivity.this, "You need to silence the alarm first!", Toast.LENGTH_SHORT).show();
-                    
+
                 }
                 else{
 
@@ -218,8 +219,14 @@ public class MainActivity extends AppCompatActivity {
                     long time = calendar.getTimeInMillis();
                      alarm_service.fromAlarmStart = true;
                      AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-                    alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, adjustTime(time), pendingIntent);
-                    lastTimerisNull = false;
+                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                         alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, adjustTime(time), pendingIntent);
+                     }
+                     else{
+                         alarmManager.setExact(AlarmManager.RTC_WAKEUP, adjustTime(time), pendingIntent);
+
+                     }
+                     lastTimerisNull = false;
                     store_timer_null(false);
                     getInput_bottomText();
 
@@ -301,7 +308,12 @@ public class MainActivity extends AppCompatActivity {
                             snooze_alarm.setText("I'm Woke!");
                             store_snoozeText("I'm Woke!");
                             AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-                            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + interval, pendingIntent);
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + interval, pendingIntent);
+                            }
+                            else{
+                                alarmManager.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + interval, pendingIntent);
+                            }
                             Log.e("Repeats", "This repeats");
                         }
                         else{

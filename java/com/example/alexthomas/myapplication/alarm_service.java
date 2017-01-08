@@ -8,6 +8,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
@@ -253,7 +254,12 @@ public class alarm_service extends Service {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(alarm_service.this, 2, alarm_intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
-        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + interval, pendingIntent);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + interval, pendingIntent);
+        }
+        else{
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + interval, pendingIntent);
+        }
     }
 
 
@@ -280,7 +286,12 @@ public class alarm_service extends Service {
             Intent alarm_intent = new Intent(alarm_service.this, alarm_receiver.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(alarm_service.this, 1, alarm_intent,
                     PendingIntent.FLAG_UPDATE_CURRENT);
-            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + alarm_schedule, pendingIntent);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + alarm_schedule, pendingIntent);
+            }
+            else{
+                alarmManager.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + alarm_schedule, pendingIntent);
+            }
         }
         else {
             Log.e("Alarm Schedule", "Off");
