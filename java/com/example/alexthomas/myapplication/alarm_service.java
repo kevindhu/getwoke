@@ -121,7 +121,7 @@ public class alarm_service extends Service {
             mediasong.start();
 
             //Starts Main Alarm for alarm schedule
-                start_Alarm();
+                //start_Alarm();
 
 
 

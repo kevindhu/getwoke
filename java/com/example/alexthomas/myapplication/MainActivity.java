@@ -556,7 +556,7 @@ public class MainActivity extends AppCompatActivity {
         alarm_confirmation = (TextView) findViewById(R.id.alarm_confirmation);
         if (!lastTimerisNull) {
             SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
-            String message = sharedPref.getString("Message", "You broke my code you fuck");
+            String message = sharedPref.getString("Message", "Your alarm is unset.");
             Log.e("Setting previous alarm", message);
             return message;
         } else {

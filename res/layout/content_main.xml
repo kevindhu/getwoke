@@ -123,7 +123,7 @@
     <ImageView
         android:id="@+id/getWoke"
         android:layout_width="match_parent"
-        android:layout_height="140sp"
+        android:layout_height="140dp"
         app:srcCompat="@drawable/getwoke_header_new"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"

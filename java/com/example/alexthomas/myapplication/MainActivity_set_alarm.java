@@ -155,8 +155,17 @@ public class MainActivity_set_alarm extends AppCompatActivity{
 
     private String getInput(){
         SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
-        String message = sharedPref.getString("Message", "Your alarm is unset.");
-        return message;
+        SharedPreferences sharedPref_null = getSharedPreferences("Last Timer", MODE_PRIVATE);
+        Boolean lastTimerisNull = sharedPref_null.getBoolean("Message", false);
+
+        if (!lastTimerisNull) {
+            String message = sharedPref.getString("Message", "You broke my code you fuck");
+            Log.e("Setting previous alarm", message);
+            return message;
+        } else {
+            return "Your alarm is unset.";
+        }
+
     }
 
 
