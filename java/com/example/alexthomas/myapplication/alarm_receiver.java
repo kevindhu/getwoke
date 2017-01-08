@@ -13,8 +13,10 @@ public class alarm_receiver extends BroadcastReceiver
     public void onReceive(Context context, Intent intent)
     {
         Log.e("Hi", "hi");
+
         Intent service_intent = new Intent(context, alarm_service.class);
         context.startService(service_intent);
+
         Log.e("Hi", "bye");
     }
 

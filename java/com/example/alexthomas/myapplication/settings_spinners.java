@@ -145,6 +145,7 @@ public class settings_spinners extends AppCompatActivity {
                 storeValue("Backgrounds", spinner_backgrounds);
                 storeValue("Font Color", spinner_font_color);
                 storeValue("Repeating Intervals", spinner_repeating_intervals);
+                storeValue("Alarm Schedule", spinner_alarm_schedule);
                 storeValue("Clock Color", spinner_clock_color);
                 storeValue("Ringtones", spinner_ringtones);
 
@@ -316,6 +317,7 @@ public class settings_spinners extends AppCompatActivity {
             case "24 Hours":
                 editor_schedule.putLong("Interval", AlarmManager.INTERVAL_DAY);
                 editor_schedule.putBoolean("Schedule Enabled", true);
+                break;
             default:
                 break;
 
@@ -331,6 +333,7 @@ public class settings_spinners extends AppCompatActivity {
         switch (input) {
             case "5 Seconds":
                 editor_intervals.putLong("Interval", 0);
+                break;
             case "30 Seconds":
                 editor_intervals.putLong("Interval", 30000);
                 break;

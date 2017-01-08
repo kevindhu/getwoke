@@ -118,6 +118,7 @@ public class MainActivity_set_alarm extends AppCompatActivity {
                 MainActivity.powerButton_on = true;
                 MainActivity.on_off_boolean(true);
                 store_PowerButtonText(true);
+                alarm_service.fromMainAlarm = true;
                 alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, time, pendingIntent);
 
 

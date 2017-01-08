@@ -31,6 +31,8 @@ public class alarm_service extends Service {
     public static boolean fromMainAlarm = false;
     public static boolean if_AlarmSchedule = false;
     public static int ringtone = R.raw.motivationalmusic;
+    public static boolean fromAlarmStart = false;
+
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -38,9 +40,9 @@ public class alarm_service extends Service {
         SharedPreferences sharedRingtone = getSharedPreferences("Ringtones", MODE_PRIVATE);
         String message = sharedRingtone.getString("Message", "Default Ringtones");
         ringtone_changer(message);
-        Log.e("StartID", String.valueOf(startId));
         //String.valueOf(intent.getExtras().getBoolean("From Main Alarm"));
         Log.e("isRunning", String.valueOf(isRunning));
+        Log.e("Alarm Schedule", "FromMainAlarm: " + String.valueOf(fromMainAlarm));
 
         if (isRunning) {
             try {
@@ -49,7 +51,7 @@ public class alarm_service extends Service {
             } catch (NullPointerException e) {
                 Log.e("NullpointException", "e");
             }
-            Log.e("cancel", "cancelled");
+            Log.e("cancel", "Cancelled in alarm_service");
             isRunning = false;
         } else {
             alarm_service.isRunning = true;
@@ -110,8 +112,7 @@ public class alarm_service extends Service {
             mediasong.start();
 
             //Starts Main Alarm for alarm schedule
-            load_fromMainAlarm();
-            if (fromMainAlarm) {
+            if (fromMainAlarm || fromAlarmStart) {
                 start_Alarm();
             }
 
@@ -251,6 +252,9 @@ public class alarm_service extends Service {
 
     public void snooze_restart() {
         //snooze restart
+        fromMainAlarm = false;
+        fromAlarmStart = false;
+
         SharedPreferences sharedPreferences = getSharedPreferences("Repeating Intervals", MODE_PRIVATE);
         long interval = sharedPreferences.getLong("Interval", 0);
 
@@ -266,11 +270,6 @@ public class alarm_service extends Service {
         alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + interval, pendingIntent);
     }
 
-    private void load_fromMainAlarm() {
-        SharedPreferences sharedPref = getSharedPreferences("Last Timer", MODE_PRIVATE);
-        fromMainAlarm = sharedPref.getBoolean("Message", false);
-    }
-
 
     public void store_fromMainAlarm(Boolean message) {
         SharedPreferences sharedPref = getSharedPreferences("Main Alarm", MODE_PRIVATE);
@@ -282,20 +281,24 @@ public class alarm_service extends Service {
 
     public void start_Alarm() {
         //starts alarm again periodically
+        fromMainAlarm = false;
+        fromAlarmStart = true;
         SharedPreferences sharedPreferences = getSharedPreferences("Alarm Schedule", MODE_PRIVATE);
         Boolean schedule_Enabled = sharedPreferences.getBoolean("Schedule Enabled", false);
         long alarm_schedule = sharedPreferences.getLong("Interval", AlarmManager.INTERVAL_DAY);
 
         if (schedule_Enabled) {
             Log.e("Alarm Schedule", "Alarm Schedule ON");
-            store_fromMainAlarm(true);
+            Log.e("Alarm Schedule", String.valueOf(alarm_schedule));
             AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
             Intent alarm_intent = new Intent(alarm_service.this, alarm_receiver.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(alarm_service.this, 1, alarm_intent,
                     PendingIntent.FLAG_UPDATE_CURRENT);
             alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + alarm_schedule, pendingIntent);
         }
-        Log.e("Alarm Schedule", "Off");
+        else {
+            Log.e("Alarm Schedule", "Off");
+        }
 
     }
 

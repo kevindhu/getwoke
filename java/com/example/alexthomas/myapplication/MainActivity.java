@@ -210,7 +210,8 @@ public class MainActivity extends AppCompatActivity {
                     calendar.set(Calendar.HOUR_OF_DAY, hour);
                     calendar.set(Calendar.MINUTE, minute);
                     long time = calendar.getTimeInMillis();
-                    AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+                     alarm_service.fromAlarmStart = true;
+                     AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
                     alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, adjustTime(time), pendingIntent);
                     lastTimerisNull = false;
                     store_timer_null(false);
