@@ -83,11 +83,7 @@ public class MainActivity extends AppCompatActivity {
         adjustColor();
         //Sets Power Button Text
         snooze_alarm.setText(getAlarmButtonText());
-        if (get_PowerButtonBoolean()) {
-            powerButton.setText("Turn Off");
-        } else {
-            powerButton.setText("Turn On");
-        }
+
         //Sets Quote Numbers
         setRandInt();
         setMaxMin();
@@ -138,24 +134,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Checks whether MAIN alarm is pending
-
-                if (powerButton.getText().toString().equals("Turn On") && getInput_bottomText() == "Your alarm is unset."){
-                    Log.e("Conditional", "-1");
-                    Toast.makeText(MainActivity.this, "You need to set an alarm first!", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                powerButton_on = !powerButton_on;
-                Log.e("Power button is on?????", String.valueOf(powerButton_on));
-
                 SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
                 int hour = sharedPref.getInt("Hour", -1);
                 int minute = sharedPref.getInt("Minute", -1);
+
+                if ((hour == -1) && (minute == -1)) {
+                    Log.e("Conditional", "1");
+                    Toast.makeText(MainActivity.this, "You need to set an alarm first!", Toast.LENGTH_SHORT).show();
+                }
+                else{
+
+                powerButton_on = !powerButton_on;
                 Log.e("Time", String.valueOf(hour) + ":" + String.valueOf(minute));
                 if (powerButton_on) {
-                    powerButton.setText("Turn Off");
                     store_PowerButtonBoolean(true);
                 } else {
-                    powerButton.setText("Turn On");
                     store_PowerButtonBoolean(false);
                 }
 
@@ -189,16 +182,11 @@ public class MainActivity extends AppCompatActivity {
                     snooze_alarm.setText("Get Quotes");
                     store_snoozeText("Get Quotes");
                     alarm_confirmation.setText("Your alarm is unset.");
-                    store_Alarm_bottomText("Your alarm is unset.");
 
                 }
                 else{
                 //Checks whether the user sets an alarm
-                if ((hour == -1) && (minute == -1)) {
-                    Log.e("Conditional", "1");
-                    Toast.makeText(MainActivity.this, "You need to set an alarm first!", Toast.LENGTH_SHORT).show();
-                }
-                else if (!alarmUp && !powerButton_on && !alarm_service.isRunning && !repeating_alarm) {
+                 if (!alarmUp && !powerButton_on && !alarm_service.isRunning && !repeating_alarm) {
                     Log.e("Conditional", "2");
                     Toast.makeText(MainActivity.this, "The alarm is already off!", Toast.LENGTH_SHORT).show();
                 }
@@ -216,6 +204,8 @@ public class MainActivity extends AppCompatActivity {
                     alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, adjustTime(time), pendingIntent);
                     lastTimerisNull = false;
                     store_timer_null(false);
+                    getInput_bottomText();
+
                 }
                 //When alarm has a pending alarm and user turns it off
                 else if (alarmUp && !powerButton_on) {
@@ -232,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
 
                     lastTimerisNull = true;
                     store_timer_null(true);
-                    store_Alarm_bottomText("Your alarm is off.");
+                    alarm_confirmation.setText("Your alarm is unset");
                     snooze_alarm.setText("Get Quotes");
                     store_snoozeText("Get Quotes");
                     Toast.makeText(MainActivity.this, "Alarm unset.", Toast.LENGTH_SHORT).show();
@@ -254,8 +244,6 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.e("isRunning", String.valueOf(alarm_service.isRunning));
                 Log.e("repeating_alarm", String.valueOf(repeating_alarm));
-                boolean x = snooze_alarm.getText().toString() == "I'm Woke!";
-                Log.e("Snooze Alarm Text", String.valueOf(x));
 
                 if (repeating_alarm && (snooze_alarm.getText().toString().equals("I'm Woke!"))) {
                     Log.e("Conditional", "1");

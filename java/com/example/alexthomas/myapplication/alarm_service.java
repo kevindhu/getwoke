@@ -121,9 +121,8 @@ public class alarm_service extends Service {
             mediasong.start();
 
             //Starts Main Alarm for alarm schedule
-            if (startId == 1) {
                 start_Alarm();
-            }
+
 
 
 

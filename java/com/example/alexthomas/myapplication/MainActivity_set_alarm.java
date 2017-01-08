@@ -122,7 +122,6 @@ public class MainActivity_set_alarm extends AppCompatActivity{
                     Toast.makeText(getApplicationContext(), "Your alarm is set!", Toast.LENGTH_SHORT).show();
 
                     MainActivity.powerButton_on = true;
-                    MainActivity.powerButton.setText("Turn Off");
                     store_PowerButtonText(true);
 
                     alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, time ,pendingIntent);
