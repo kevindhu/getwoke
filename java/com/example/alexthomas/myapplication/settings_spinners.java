@@ -471,6 +471,8 @@ public class settings_spinners extends AppCompatActivity {
 
 
     public void font_changer(String font) {
+        SharedPreferences sharedPreferences = getSharedPreferences("Font", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         Typeface font_roboto = Typeface.createFromAsset(getAssets(), "fonts/roboto-medium.ttf");
         Typeface font_cursive = Typeface.createFromAsset(getAssets(), "fonts/Otto.ttf");
         Typeface font_weird = Typeface.createFromAsset(getAssets(), "fonts/weird.otf");
@@ -482,28 +484,43 @@ public class settings_spinners extends AppCompatActivity {
         switch (font) {
             case "Formal":
                 MainActivity.motivational_quote.setTypeface(font_cursive);
+                MainActivity.motivational_quote.setTextSize(33);
+                editor.putInt("Size", 33);
                 break;
             case "Roboto":
                 MainActivity.motivational_quote.setTypeface(font_roboto);
+                MainActivity.motivational_quote.setTextSize(20);
+                editor.putInt("Size", 20);
                 break;
             case "Weird":
                 MainActivity.motivational_quote.setTypeface(font_weird);
+                MainActivity.motivational_quote.setTextSize(22);
+                editor.putInt("Size", 22);
                 break;
             case "Sci-Fi":
                 MainActivity.motivational_quote.setTypeface(font_scifi);
+                MainActivity.motivational_quote.setTextSize(18);
+                editor.putInt("Size", 18);
                 break;
             case "Samurai":
                 MainActivity.motivational_quote.setTypeface(font_samurai);
+                MainActivity.motivational_quote.setTextSize(20);
+                editor.putInt("Size", 20);
                 break;
             case "Personal":
                 MainActivity.motivational_quote.setTypeface(font_personal);
+                MainActivity.motivational_quote.setTextSize(30);
+                editor.putInt("Size", 30);
                 break;
             case "Thick":
                 MainActivity.motivational_quote.setTypeface(font_thick);
+                MainActivity.motivational_quote.setTextSize(20);
+                editor.putInt("Size", 20);
                 break;
             default:
                 break;
         }
+        editor.apply();
     }
 
 

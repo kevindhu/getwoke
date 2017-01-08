@@ -623,11 +623,14 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void setQuote() {
+        SharedPreferences sharedPreferences = getSharedPreferences("Font", MODE_PRIVATE);
+        int size = sharedPreferences.getInt("Size", 20);
         motivational_quote = (TextView) findViewById(R.id.motivationalQuote);
         SharedPreferences sharedPref = getSharedPreferences("Quote", MODE_PRIVATE);
         String message = sharedPref.getString("Quote", "");
         Log.e("GetQuote()", message);
         motivational_quote.setText(message);
+        motivational_quote.setTextSize(size);
 
     }
 
