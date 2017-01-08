@@ -54,10 +54,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = getApplicationContext();
+        content_main = (RelativeLayout) findViewById(R.id.content_main);
+
 
         digitalClock = (DigitalClock) findViewById(R.id.textClock);
         snooze_alarm = (Button) findViewById(R.id.alarm_off);
-        content_main = (RelativeLayout) findViewById(R.id.content_main);
         imagepowerButton = (Button) findViewById(R.id.powerbutton);
 
 
