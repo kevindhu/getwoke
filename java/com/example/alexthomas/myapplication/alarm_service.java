@@ -284,8 +284,37 @@ public class alarm_service extends Service {
         }
         else {
             Log.e("Alarm Schedule", "Off");
+            MainActivity.alarm_confirmation.setText("Your alarm is unset.");
+            MainActivity.powerButton_on = false;
+            MainActivity.on_off_boolean(false);
+            store_PowerButtonBoolean(false);
+            store_timer_null(true);
         }
 
     }
+
+    private void store_Alarm_bottomText(String message){
+
+        SharedPreferences sharedPref_alarm_unset = getSharedPreferences("Alarm Time", MODE_PRIVATE);
+        SharedPreferences.Editor editor_alarm_unset = sharedPref_alarm_unset.edit();
+        editor_alarm_unset.putString("Message", message);
+        editor_alarm_unset.apply();
+    }
+
+    public void store_PowerButtonBoolean(Boolean message) {
+
+        SharedPreferences sharedPref = getSharedPreferences("Power Button", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean("Message", message);
+        editor.apply();
+    }
+
+    public void store_timer_null(Boolean message) {
+        SharedPreferences sharedPref = getSharedPreferences("Last Timer", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean("Message", message);
+        editor.apply();
+    }
+
 
 }
