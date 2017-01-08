@@ -43,6 +43,8 @@ public class alarm_service extends Service {
         //String.valueOf(intent.getExtras().getBoolean("From Main Alarm"));
         Log.e("isRunning", String.valueOf(isRunning));
         Log.e("Alarm Schedule", "FromMainAlarm: " + String.valueOf(fromMainAlarm));
+        Log.e("Alarm Schedule", "fromAlarmStart: " + String.valueOf(fromAlarmStart));
+
 
         if (isRunning) {
             try {
@@ -282,7 +284,7 @@ public class alarm_service extends Service {
     public void start_Alarm() {
         //starts alarm again periodically
         fromMainAlarm = false;
-        fromAlarmStart = true;
+        fromAlarmStart = false;
         SharedPreferences sharedPreferences = getSharedPreferences("Alarm Schedule", MODE_PRIVATE);
         Boolean schedule_Enabled = sharedPreferences.getBoolean("Schedule Enabled", false);
         long alarm_schedule = sharedPreferences.getLong("Interval", AlarmManager.INTERVAL_DAY);
