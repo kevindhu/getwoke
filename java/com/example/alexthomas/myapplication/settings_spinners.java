@@ -54,7 +54,7 @@ public class settings_spinners extends AppCompatActivity {
 
     private Button btnSubmit;
 
-    private String[] fonts = {"Formal", "Roboto", "Weird"};
+    private String[] fonts = {"Formal", "Roboto", "Weird", "Thick", "Sci-Fi", "Personal", "Samurai"};
     private String[] ringtones = {"Haikyuu", "Believe It", "Get Up"};
     private String[] genres = {"All Genres", "Entrepreneur", "Celebrity", "Author", "Athlete", "Anime", "Great Minds", "Book Quotes", "Meme Quotes"};
     private String[] quote_length = {"All Lengths", "Medium", "Short", "Long"};
@@ -472,6 +472,10 @@ public class settings_spinners extends AppCompatActivity {
         Typeface font_roboto = Typeface.createFromAsset(getAssets(), "fonts/roboto-medium.ttf");
         Typeface font_cursive = Typeface.createFromAsset(getAssets(), "fonts/Otto.ttf");
         Typeface font_weird = Typeface.createFromAsset(getAssets(), "fonts/weird.otf");
+        Typeface font_scifi = Typeface.createFromAsset(getAssets(), "fonts/scifi.ttf");
+        Typeface font_personal = Typeface.createFromAsset(getAssets(), "fonts/personal.ttf");
+        Typeface font_thick = Typeface.createFromAsset(getAssets(), "fonts/samurai.otf");
+        Typeface font_samurai = Typeface.createFromAsset(getAssets(), "fonts/Lato-Black.ttf");
         Log.e("yes", "font changing to " + font);
         switch (font) {
             case "Formal":
@@ -481,6 +485,18 @@ public class settings_spinners extends AppCompatActivity {
                 MainActivity.motivational_quote.setTypeface(font_roboto);
                 break;
             case "Weird":
+                MainActivity.motivational_quote.setTypeface(font_weird);
+                break;
+            case "Sci-Fi":
+                MainActivity.motivational_quote.setTypeface(font_weird);
+                break;
+            case "Samurai":
+                MainActivity.motivational_quote.setTypeface(font_weird);
+                break;
+            case "Personal":
+                MainActivity.motivational_quote.setTypeface(font_weird);
+                break;
+            case "Thick":
                 MainActivity.motivational_quote.setTypeface(font_weird);
                 break;
             default:
