@@ -123,6 +123,7 @@
                 android:alpha="1"
                 android:text="Quoter"
                 android:textAlignment="center"
+                android:layout_marginTop="20dp"
                 android:textColor="#FFFFFF"
                 android:layout_below="@id/motivationalQuote"
                 android:layout_alignParentLeft="true"

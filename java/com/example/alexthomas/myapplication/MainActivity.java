@@ -398,6 +398,10 @@ public class MainActivity extends AppCompatActivity {
         Typeface font_roboto = Typeface.createFromAsset(getAssets(), "fonts/roboto-medium.ttf");
         Typeface font_cursive = Typeface.createFromAsset(getAssets(), "fonts/Otto.ttf");
         Typeface font_weird = Typeface.createFromAsset(getAssets(), "fonts/weird.otf");
+        Typeface font_scifi = Typeface.createFromAsset(getAssets(), "fonts/scifi.ttf");
+        Typeface font_personal = Typeface.createFromAsset(getAssets(), "fonts/personal.ttf");
+        Typeface font_thick = Typeface.createFromAsset(getAssets(), "fonts/samurai.otf");
+        Typeface font_samurai = Typeface.createFromAsset(getAssets(), "fonts/Lato-Black.ttf");
         Log.e("yes", "font changing to " + last_font);
         switch (last_font) {
             case "Formal":
@@ -408,6 +412,18 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case "Weird":
                 motivational_quote.setTypeface(font_weird);
+                break;
+            case "Sci-Fi":
+                MainActivity.motivational_quote.setTypeface(font_scifi);
+                break;
+            case "Samurai":
+                MainActivity.motivational_quote.setTypeface(font_samurai);
+                break;
+            case "Personal":
+                MainActivity.motivational_quote.setTypeface(font_personal);
+                break;
+            case "Thick":
+                MainActivity.motivational_quote.setTypeface(font_thick);
                 break;
             default:
                 break;
