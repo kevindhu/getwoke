@@ -59,8 +59,8 @@ public class settings_spinners extends AppCompatActivity {
     private String[] genres = {"All Genres", "Entrepreneur", "Celebrity", "Author", "Athlete", "Anime", "Great Minds", "Book Quotes", "Meme Quotes"};
     private String[] quote_length = {"All Lengths", "Medium", "Short", "Long"};
     private String[] backgrounds = {"Vanilla", "Starry Clouds","Mountain","Water","Sunset","Golden Gate"};
-    private String[] font_colors = {"White", "Black", "Blue", "Red", "Yellow", "Green", "Gray"};
-    private String[] clock_colors = {"White", "Black", "Blue", "Red", "Yellow", "Green", "Gray"};
+    private String[] font_colors = {"White", "Blue", "Red", "Yellow", "Green"};
+    private String[] clock_colors = {"White", "Blue", "Red", "Yellow", "Green"};
     private String[] repeating_intervals = {"5 Seconds","30 Seconds", "1 Minute", "2 Minutes", "3 Minutes", "4 Minutes", "5 Minutes"};
     private String[] alarm_schedule = {"None", "12 Hours", "24 Hours"};
 
@@ -406,24 +406,17 @@ public class settings_spinners extends AppCompatActivity {
                 //set background as starry clouds
                 MainActivity.digitalClock.setTextColor(Color.WHITE);
                 break;
-            case "Black":
-                //set background as starry sky
-                MainActivity.digitalClock.setTextColor(Color.BLACK);
-                break;
             case "Red":
-                MainActivity.digitalClock.setTextColor(Color.RED);
+                MainActivity.digitalClock.setTextColor(Color.parseColor("#f4c9c1"));
                 break;
             case "Blue":
-                MainActivity.digitalClock.setTextColor(Color.BLUE);
+                MainActivity.digitalClock.setTextColor(Color.parseColor("#a8c9ff"));
                 break;
             case "Yellow":
-                MainActivity.digitalClock.setTextColor(Color.YELLOW);
+                MainActivity.digitalClock.setTextColor(Color.parseColor("#fffad8"));
                 break;
             case "Green":
-                MainActivity.digitalClock.setTextColor(Color.GREEN);
-                break;
-            case "Gray":
-                MainActivity.digitalClock.setTextColor(Color.GRAY);
+                MainActivity.digitalClock.setTextColor(Color.parseColor("#defcd6"));
                 break;
             default:
                 break;
@@ -435,34 +428,24 @@ public class settings_spinners extends AppCompatActivity {
     public void color_changer(String color) {
         switch (color) {
             case "White":
-                //set background as starry clouds
                 MainActivity.motivational_quote.setTextColor(Color.WHITE);
                 MainActivity.quoter.setTextColor(Color.WHITE);
                 break;
-            case "Black":
-                //set background as starry sky
-                MainActivity.motivational_quote.setTextColor(Color.BLACK);
-                MainActivity.quoter.setTextColor(Color.BLACK);
-                break;
             case "Red":
-                MainActivity.motivational_quote.setTextColor(Color.RED);
-                MainActivity.quoter.setTextColor(Color.RED);
+                MainActivity.motivational_quote.setTextColor(Color.parseColor("#f4c9c1"));
+                MainActivity.quoter.setTextColor(Color.parseColor("#f4c9c1"));
                 break;
             case "Blue":
-                MainActivity.motivational_quote.setTextColor(Color.BLUE);
-                MainActivity.quoter.setTextColor(Color.BLUE);
+                MainActivity.motivational_quote.setTextColor(Color.parseColor("#a8c9ff"));
+                MainActivity.quoter.setTextColor(Color.parseColor("#a8c9ff"));
                 break;
             case "Yellow":
-                MainActivity.motivational_quote.setTextColor(Color.YELLOW);
-                MainActivity.quoter.setTextColor(Color.YELLOW);
+                MainActivity.motivational_quote.setTextColor(Color.parseColor("#fffad8"));
+                MainActivity.quoter.setTextColor(Color.parseColor("#fffad8"));
                 break;
             case "Green":
-                MainActivity.motivational_quote.setTextColor(Color.GREEN);
-                MainActivity.quoter.setTextColor(Color.GREEN);
-                break;
-            case "Gray":
-                MainActivity.motivational_quote.setTextColor(Color.GRAY);
-                MainActivity.quoter.setTextColor(Color.GRAY);
+                MainActivity.motivational_quote.setTextColor(Color.parseColor("#defcd6"));
+                MainActivity.quoter.setTextColor(Color.parseColor("#defcd6"));
                 break;
             default:
                 break;
