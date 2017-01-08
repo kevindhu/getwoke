@@ -148,7 +148,6 @@ public class MainActivity_set_alarm extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
 
 
@@ -164,7 +163,6 @@ public class MainActivity_set_alarm extends AppCompatActivity {
         } else {
             return "Your alarm is unset.";
         }
-
     }
 
 
