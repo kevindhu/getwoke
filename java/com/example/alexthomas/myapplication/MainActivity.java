@@ -223,7 +223,13 @@ public class MainActivity extends AppCompatActivity {
                          alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, adjustTime(time), pendingIntent);
                      }
                      else{
-                         alarmManager.setExact(AlarmManager.RTC_WAKEUP, adjustTime(time), pendingIntent);
+                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                             alarmManager.setExact(AlarmManager.RTC_WAKEUP, adjustTime(time), pendingIntent);
+                         }
+                         else{
+                             alarmManager.set(AlarmManager.RTC_WAKEUP, adjustTime(time), pendingIntent);
+
+                         }
 
                      }
                      lastTimerisNull = false;
@@ -312,7 +318,13 @@ public class MainActivity extends AppCompatActivity {
                                 alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + interval, pendingIntent);
                             }
                             else{
-                                alarmManager.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + interval, pendingIntent);
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                                    alarmManager.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + interval, pendingIntent);
+                                }
+                                else{
+                                    alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + interval, pendingIntent);
+
+                                }
                             }
                             Log.e("Repeats", "This repeats");
                         }
