@@ -62,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
         imagepowerButton = (Button) findViewById(R.id.powerbutton);
 
 
-        final ImageView settings_feedback = (ImageView) findViewById(R.id.settings_feedback);
-        settings_feedback.setAlpha(0f);
 
         //Sets font on Clock
         Typeface blockFonts = Typeface.createFromAsset(getAssets(), "fonts/Lato-Black.ttf");
@@ -109,18 +107,18 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Sets Listener on Settings Button
-        ImageButton true_settings = (ImageButton) findViewById(R.id.settings_button);
+        final Button true_settings = (Button) findViewById(R.id.settings_button);
         true_settings.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                settings_feedback.setAlpha(1f);
+                true_settings.setBackgroundResource(R.drawable.settings_iconcopy);
                 launchActivity();
                 Handler handler1 = new Handler();
                 handler1.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        settings_feedback.setAlpha(0f);
+                        true_settings.setBackgroundResource(R.drawable.settings_icon);
                     }
-                }, 1000);
+                }, 100);
             }
         });
 

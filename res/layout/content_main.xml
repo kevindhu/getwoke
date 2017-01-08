@@ -42,18 +42,17 @@
         android:background="@null"
         app:srcCompat="@drawable/share_button" />
 
-    <ImageButton
-        android:id="@+id/settings_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/settings_icon"
-        android:layout_above="@+id/textClock"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="0dp"
-        android:background="@null"
-        android:alpha="0.7"
-         />
+
+    <Button
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@drawable/on_button"
+        android:layout_toLeftOf="@id/settings_button"
+        android:layout_marginRight="20dp"
+        android:id="@+id/powerbutton"
+        />
+
+
 
     <DigitalClock
         android:id="@+id/textClock"
@@ -69,24 +68,7 @@
         android:layout_alignParentStart="true"
         />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/settings_icon"
-        android:background="@drawable/settings_icon"
-        android:id="@+id/settings_feedback"
-        android:layout_alignTop="@+id/settings_button"
-        android:layout_alignParentEnd="true"
-        />
 
-    <Button
-        android:layout_width="27dp"
-        android:layout_height="27dp"
-        android:background="@drawable/on_button"
-        android:layout_toLeftOf="@id/settings_button"
-        android:layout_marginRight="20dp"
-        android:id="@+id/powerbutton"
-        />
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -133,15 +115,6 @@
         </RelativeLayout>
     </ScrollView>
 
-    <ImageView
-        android:id="@+id/getWoke"
-        android:layout_width="match_parent"
-        android:layout_height="140dp"
-        app:srcCompat="@drawable/getwoke_header_new"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <Button
         android:id="@+id/set_alarm"
         android:alpha="0.8"
@@ -166,6 +139,25 @@
         android:layout_below="@+id/scrollView2"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@drawable/settings_icon"
+        android:id="@+id/settings_button"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:id="@+id/getWoke"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        app:srcCompat="@drawable/getwoke_header_new"
+        android:layout_marginTop="11dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
