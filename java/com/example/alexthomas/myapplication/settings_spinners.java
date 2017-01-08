@@ -61,7 +61,7 @@ public class settings_spinners extends AppCompatActivity {
     private String[] backgrounds = {"Vanilla", "Starry Clouds", "Galaxy", "Forest", "Crystal"};
     private String[] font_colors = {"White", "Black", "Blue", "Red", "Yellow", "Green", "Gray"};
     private String[] clock_colors = {"White", "Black", "Blue", "Red", "Yellow", "Green", "Gray"};
-    private String[] repeating_intervals = {"30 Seconds", "1 Minute", "2 Minutes", "3 Minutes", "4 Minutes", "5 Minutes"};
+    private String[] repeating_intervals = {"5 Seconds","30 Seconds", "1 Minute", "2 Minutes", "3 Minutes", "4 Minutes", "5 Minutes"};
     private String[] alarm_schedule = {"None", "12 Hours", "24 Hours"};
 
 
@@ -329,6 +329,8 @@ public class settings_spinners extends AppCompatActivity {
         SharedPreferences.Editor editor_intervals = sharedPreferences_interval.edit();
 
         switch (input) {
+            case "5 Seconds":
+                editor_intervals.putLong("Interval", 0);
             case "30 Seconds":
                 editor_intervals.putLong("Interval", 30000);
                 break;

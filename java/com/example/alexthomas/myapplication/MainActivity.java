@@ -535,7 +535,7 @@ public class MainActivity extends AppCompatActivity {
 
     /////Get values/////
 
-    public void on_off_boolean(Boolean bool) {
+    public static void on_off_boolean(Boolean bool) {
         if (bool == true) {
             imagepowerButton.setBackgroundResource(R.drawable.on_button_on);
         }

@@ -92,7 +92,8 @@ public class MainActivity_set_alarm extends AppCompatActivity {
                 alarm_intent = new Intent(MainActivity_set_alarm.this, alarm_receiver.class);
                 pendingIntent = PendingIntent.getBroadcast(MainActivity_set_alarm.this, 1, alarm_intent,
                         PendingIntent.FLAG_CANCEL_CURRENT);
-
+                alarm_intent.putExtra("From Main Alarm", true);
+                Log.e("hi",String.valueOf(alarm_intent.getExtras().getBoolean("From Main Alarm")));
                 Log.e("System time", String.valueOf(System.currentTimeMillis()));
                 Log.e("Calendar time", String.valueOf(calendar.getTimeInMillis()));
 
@@ -117,6 +118,7 @@ public class MainActivity_set_alarm extends AppCompatActivity {
                 Log.e("Time", String.valueOf(calendar.getTimeInMillis()));
                 Toast.makeText(getApplicationContext(), "Your alarm is set!", Toast.LENGTH_SHORT).show();
                 MainActivity.powerButton_on = true;
+                MainActivity.on_off_boolean(true);
                 store_PowerButtonText(true);
                 alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, time, pendingIntent);
 

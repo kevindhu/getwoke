@@ -135,10 +135,10 @@ public class alarm_service extends Service {
             mediasong.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
-                    if (control_RepeatingAlarm) {
+                    SharedPreferences checkbox_boolean = getSharedPreferences("Snooze Boolean",MODE_PRIVATE);
+                    String ifRepeatingOn = checkbox_boolean.getString("Message", "false");
+                    if (Boolean.valueOf(ifRepeatingOn)) {
                         //Log.e("Setting", "Text Automatically to Alarm Off");
-
-
                         try {
                             MainActivity.snooze_alarm.setText("I'm Woke!");
                             SharedPreferences sharedPref_alarm_unset1 = getSharedPreferences("Alarm Unset", MODE_PRIVATE);
@@ -252,7 +252,7 @@ public class alarm_service extends Service {
     public void snooze_restart() {
         //snooze restart
         SharedPreferences sharedPreferences = getSharedPreferences("Repeating Intervals", MODE_PRIVATE);
-        long interval = sharedPreferences.getLong("Interval", -1);
+        long interval = sharedPreferences.getLong("Interval", 0);
 
         Log.e("Snooze", "Start new repeating alarm");
         Log.e("Interval", String.valueOf(interval));
@@ -284,7 +284,7 @@ public class alarm_service extends Service {
         //starts alarm again periodically
         SharedPreferences sharedPreferences = getSharedPreferences("Alarm Schedule", MODE_PRIVATE);
         Boolean schedule_Enabled = sharedPreferences.getBoolean("Schedule Enabled", false);
-        long alarm_schedule = sharedPreferences.getLong("Interval", 0);
+        long alarm_schedule = sharedPreferences.getLong("Interval", AlarmManager.INTERVAL_DAY);
 
         if (schedule_Enabled) {
             Log.e("Alarm Schedule", "Alarm Schedule ON");
