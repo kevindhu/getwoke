@@ -75,7 +75,6 @@ public class randomQuote extends AppCompatActivity {
     };
 
     String[][] Celebrity_quotes = {
-            {"George Bush doesn't care about black people", "Kanye West"},
             {"Cinema reflects culture and there is no harm in adapting technology, but not at the cost of losing your originality.", "Jackie Chan"},
             {"The best revenge is massive success", "Frank Sinatra"},
             {"Nothing to me feels as good as laughing incredibly hard.", "Steven Carrell"},
@@ -172,6 +171,8 @@ public class randomQuote extends AppCompatActivity {
             {"I always lick my lips when I see a child look at me because they need to realize there are bad people in this world", "Jordan the Twitter guy"},
             {"I STRAIGHT UP HAVE NO IDEA HOW PORCUPINES FUCK EACH OTHER", "Bill Nye Tho"},
             {"Don't let what other people think of you stop you from doing what you love", "Adolf Hitler"},
+            {"George Bush doesn't care about black people", "Kanye West"}
+
     };
 
 
