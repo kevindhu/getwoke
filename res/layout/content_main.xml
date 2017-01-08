@@ -102,7 +102,6 @@
 
     <ImageButton
         android:layout_width="wrap_content"
-        android:visibility="gone"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/on_button"
         android:id="@+id/imageOnButton"

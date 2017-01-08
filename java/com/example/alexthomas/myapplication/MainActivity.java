@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     public static Context context;
     public static Button powerButton;
     public static DigitalClock digitalClock;
+    public static ImageButton imagepowerButton;
     public static Boolean powerButton_on = false;
     private static Boolean lastTimerisNull = true;
     public static boolean alarmUp;
@@ -55,15 +56,14 @@ public class MainActivity extends AppCompatActivity {
         context = getApplicationContext();
 
         digitalClock = (DigitalClock) findViewById(R.id.textClock);
-        powerButton = (Button) findViewById(R.id.alarm_off);
         snooze_alarm = (Button) findViewById(R.id.alarm_off);
         powerButton = (Button) findViewById(R.id.powerbutton);
         content_main = (RelativeLayout) findViewById(R.id.content_main);
+        imagepowerButton = (ImageButton) findViewById(R.id.imageOnButton);
+
 
         final ImageView settings_feedback = (ImageView) findViewById(R.id.settings_feedback);
         settings_feedback.setAlpha(0f);
-
-
 
         //Sets font on Clock
         Typeface blockFonts = Typeface.createFromAsset(getAssets(), "fonts/Lato-Black.ttf");
@@ -83,12 +83,16 @@ public class MainActivity extends AppCompatActivity {
         adjustColor();
         //Sets Power Button Text
         snooze_alarm.setText(getAlarmButtonText());
+
         //Load Power Button Boolean
         load_PowerButtonBoolean();
+        //Load Power Button Image
+        on_off_boolean(powerButton_on);
 
         //Sets Quote Numbers
         setRandInt();
         setMaxMin();
+
 
 
 
@@ -131,8 +135,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //make a listener on the Power Button
-        powerButton.setOnClickListener(new View.OnClickListener() {
+
+
+        //make a listener on the image Power Button
+        imagepowerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Checks whether MAIN alarm is pending
@@ -149,8 +155,12 @@ public class MainActivity extends AppCompatActivity {
                 powerButton_on = !powerButton_on;
                 Log.e("Time", String.valueOf(hour) + ":" + String.valueOf(minute));
                 if (powerButton_on) {
+                    on_off_boolean(true);
+                    Log.e("power is on", "now");
                     store_PowerButtonBoolean(true);
                 } else {
+                    on_off_boolean(false);
+                    Log.e("power is off", "now");
                     store_PowerButtonBoolean(false);
                 }
 
@@ -221,7 +231,6 @@ public class MainActivity extends AppCompatActivity {
                             PendingIntent.FLAG_CANCEL_CURRENT);
                     pendingIntent.cancel();
 
-
                     lastTimerisNull = true;
                     store_timer_null(true);
                     alarm_confirmation.setText("Your alarm is unset");
@@ -233,6 +242,9 @@ public class MainActivity extends AppCompatActivity {
                 setInput_bottomText();
             }}}
         });
+
+
+
 
 
         //make a listener on the Snooze Button
@@ -524,6 +536,17 @@ public class MainActivity extends AppCompatActivity {
 
 
     /////Get values/////
+
+    public void on_off_boolean(Boolean bool) {
+        if (bool = true) {
+            imagepowerButton.setImageResource(R.drawable.on_button_on);
+        }
+        else {
+            imagepowerButton.setImageResource(R.drawable.on_button);
+        }
+    }
+
+
 
     public void load_timer_null() {
         SharedPreferences sharedPref = getSharedPreferences("Last Timer", MODE_PRIVATE);
