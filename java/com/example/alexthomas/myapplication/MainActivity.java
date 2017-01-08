@@ -37,9 +37,8 @@ public class MainActivity extends AppCompatActivity {
     public static Button snooze_alarm;
     public static RelativeLayout content_main;
     public static Context context;
-    public static Button powerButton;
     public static DigitalClock digitalClock;
-    public static ImageButton imagepowerButton;
+    public static Button imagepowerButton;
     public static Boolean powerButton_on = false;
     private static Boolean lastTimerisNull = true;
     public static boolean alarmUp;
@@ -57,9 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
         digitalClock = (DigitalClock) findViewById(R.id.textClock);
         snooze_alarm = (Button) findViewById(R.id.alarm_off);
-        powerButton = (Button) findViewById(R.id.powerbutton);
         content_main = (RelativeLayout) findViewById(R.id.content_main);
-        imagepowerButton = (ImageButton) findViewById(R.id.imageOnButton);
+        imagepowerButton = (Button) findViewById(R.id.powerbutton);
 
 
         final ImageView settings_feedback = (ImageView) findViewById(R.id.settings_feedback);
@@ -538,11 +536,11 @@ public class MainActivity extends AppCompatActivity {
     /////Get values/////
 
     public void on_off_boolean(Boolean bool) {
-        if (bool = true) {
-            imagepowerButton.setImageResource(R.drawable.on_button_on);
+        if (bool == true) {
+            imagepowerButton.setBackgroundResource(R.drawable.on_button_on);
         }
         else {
-            imagepowerButton.setImageResource(R.drawable.on_button);
+            imagepowerButton.setBackgroundResource(R.drawable.on_button);
         }
     }
 
