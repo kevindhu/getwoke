@@ -371,19 +371,23 @@ public class MainActivity extends AppCompatActivity {
         String last_background = sharedPref_background.getString("Message", "--Choose your Background--");
         switch (last_background) {
             case "Starry Clouds":
+                //set background as starry clouds
                 MainActivity.content_main.setBackgroundResource(R.drawable.stars_clouds);
-                break;
-            case "Galaxy":
-                MainActivity.content_main.setBackgroundResource(R.drawable.galaxy);
                 break;
             case "Vanilla":
                 MainActivity.content_main.setBackgroundResource(R.drawable.vanilla);
                 break;
-            case "Forest":
-                MainActivity.content_main.setBackgroundResource(R.drawable.forest);
+            case "Mountain":
+                MainActivity.content_main.setBackgroundResource(R.drawable.mountain);
                 break;
-            case "Crystal":
-                MainActivity.content_main.setBackgroundResource(R.drawable.crystal);
+            case "Water":
+                MainActivity.content_main.setBackgroundResource(R.drawable.water);
+                break;
+            case "Sunset":
+                MainActivity.content_main.setBackgroundResource(R.drawable.sunset);
+                break;
+            case "Golden Gate":
+                MainActivity.content_main.setBackgroundResource(R.drawable.golden_gate);
                 break;
             default:
                 break;
@@ -681,7 +685,6 @@ public class MainActivity extends AppCompatActivity {
 
         String[] quote = newQuote.quote_generator(genre);
         saverandInt();
-
 
         //Instantiates sharedPrefs and saves quote/quoter
         SharedPreferences sharedPref_quote = getSharedPreferences("Quote", MODE_PRIVATE);

@@ -58,7 +58,7 @@ public class settings_spinners extends AppCompatActivity {
     private String[] ringtones = {"Haikyuu", "Believe It", "Get Up"};
     private String[] genres = {"All Genres", "Entrepreneur", "Celebrity", "Author", "Athlete", "Anime", "Great Minds", "Book Quotes", "Meme Quotes"};
     private String[] quote_length = {"All Lengths", "Medium", "Short", "Long"};
-    private String[] backgrounds = {"Vanilla", "Starry Clouds", "Forest", "Crystal"};
+    private String[] backgrounds = {"Vanilla", "Starry Clouds","Mountain","Water","Sunset","Golden Gate"};
     private String[] font_colors = {"White", "Black", "Blue", "Red", "Yellow", "Green", "Gray"};
     private String[] clock_colors = {"White", "Black", "Blue", "Red", "Yellow", "Green", "Gray"};
     private String[] repeating_intervals = {"5 Seconds","30 Seconds", "1 Minute", "2 Minutes", "3 Minutes", "4 Minutes", "5 Minutes"};
@@ -380,18 +380,20 @@ public class settings_spinners extends AppCompatActivity {
                 //set background as starry clouds
                 MainActivity.content_main.setBackgroundResource(R.drawable.stars_clouds);
                 break;
-            case "Galaxy":
-                //set background as starry sky
-                MainActivity.content_main.setBackgroundResource(R.drawable.galaxy);
-                break;
             case "Vanilla":
                 MainActivity.content_main.setBackgroundResource(R.drawable.vanilla);
                 break;
-            case "Forest":
-                MainActivity.content_main.setBackgroundResource(R.drawable.forest);
+            case "Mountain":
+                MainActivity.content_main.setBackgroundResource(R.drawable.mountain);
                 break;
-            case "Crystal":
-                MainActivity.content_main.setBackgroundResource(R.drawable.crystal);
+            case "Water":
+                MainActivity.content_main.setBackgroundResource(R.drawable.water);
+                break;
+            case "Sunset":
+                MainActivity.content_main.setBackgroundResource(R.drawable.sunset);
+                break;
+            case "Golden Gate":
+                MainActivity.content_main.setBackgroundResource(R.drawable.golden_gate);
                 break;
             default:
                 break;
