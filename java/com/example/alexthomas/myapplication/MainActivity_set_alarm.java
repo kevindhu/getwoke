@@ -79,10 +79,8 @@ public class MainActivity_set_alarm extends AppCompatActivity {
                     pendingIntent.cancel();
                 }
 
-                String hour;
                 int theHour = timePicker.getHour();
                 int theMinute = timePicker.getMinute();
-                String minute = String.valueOf(timePicker.getMinute());
 
 
                 calendar.set(Calendar.HOUR_OF_DAY, theHour);

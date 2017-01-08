@@ -287,7 +287,7 @@ public class MainActivity extends AppCompatActivity {
                         lastTimerisNull = false;
                         store_timer_null(false);
 
-                        if(Boolean.valueOf(ifRepeatingOn) && (interval != -1)){
+                        if(Boolean.valueOf(ifRepeatingOn)){
                             snooze_alarm.setText("I'm Woke!");
                             store_snoozeText("I'm Woke!");
                             AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -295,6 +295,10 @@ public class MainActivity extends AppCompatActivity {
                             Log.e("Repeats", "This repeats");
                         }
                         else{
+
+                            if(snooze_alarm.getText().equals("Get Quotes")){
+                                Toast.makeText(MainActivity.this, "The alarm is already off!", Toast.LENGTH_SHORT).show();
+                            }
                             pendingIntent.cancel();
                             snooze_alarm.setText("Get Quotes");
                             store_snoozeText("Get Quotes");

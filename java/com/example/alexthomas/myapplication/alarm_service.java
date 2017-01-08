@@ -39,7 +39,7 @@ public class alarm_service extends Service {
         String message = sharedRingtone.getString("Message", "Default Ringtones");
         ringtone_changer(message);
         Log.e("StartID", String.valueOf(startId));
-
+        //String.valueOf(intent.getExtras().getBoolean("From Main Alarm"));
         Log.e("isRunning", String.valueOf(isRunning));
 
         if (isRunning) {
@@ -159,7 +159,7 @@ public class alarm_service extends Service {
 
                     } else {
                         try {
-                            MainActivity.snooze_alarm.setText("Alarm Off");
+                            MainActivity.snooze_alarm.setText("Get Quotes");
                             Log.e("Not repeating", "This alarm does not repeat");
                             control_RepeatingAlarm = if_RepeatingAlarm;
                             already_Pressed = false;
@@ -170,7 +170,7 @@ public class alarm_service extends Service {
                         } catch (NullPointerException e) {
                             SharedPreferences sharedPref_alarm_unset3 = getSharedPreferences("Alarm Unset", MODE_PRIVATE);
                             SharedPreferences.Editor editor_alarm_unset = sharedPref_alarm_unset3.edit();
-                            editor_alarm_unset.putString("Alarm Button Text", "Alarm Off");
+                            editor_alarm_unset.putString("Alarm Button Text", "Get Quotes");
                             editor_alarm_unset.apply();
                             control_RepeatingAlarm = if_RepeatingAlarm;
                             already_Pressed = false;
