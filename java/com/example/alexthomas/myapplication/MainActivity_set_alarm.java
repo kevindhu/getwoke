@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.SharedPreferences;
 import android.icu.text.DateFormat;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Debug;
 import android.support.design.widget.FloatingActionButton;
@@ -57,7 +58,13 @@ public class MainActivity_set_alarm extends AppCompatActivity {
 
         TextView zero_hour = (TextView) findViewById(R.id.zero_hour);
         zero_hour.setAlpha(0f);
-        int theHour1 = timePicker.getHour();
+        int theHour1 = 0;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            theHour1 = timePicker.getHour();
+        }
+        else{
+            theHour1 = timePicker.getCurrentHour();
+        }
         if (theHour1 < 10 || theHour1 > 12 && theHour1 < 22) {
             Log.e("The hour is currently", String.valueOf(theHour1));
             zero_hour.setAlpha(1f);
@@ -79,8 +86,20 @@ public class MainActivity_set_alarm extends AppCompatActivity {
                     pendingIntent.cancel();
                 }
 
-                int theHour = timePicker.getHour();
-                int theMinute = timePicker.getMinute();
+                int theHour = 0;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    theHour = timePicker.getHour();
+                }
+                else{
+                    theHour = timePicker.getCurrentHour();
+                }
+                int theMinute = 0;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    theMinute = timePicker.getMinute();
+                }
+                else{
+                    theMinute = timePicker.getCurrentMinute();
+                }
 
 
                 calendar.set(Calendar.HOUR_OF_DAY, theHour);
@@ -119,7 +138,13 @@ public class MainActivity_set_alarm extends AppCompatActivity {
                 MainActivity.on_off_boolean(true);
                 store_PowerButtonText(true);
                 alarm_service.fromMainAlarm = true;
-                alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, time, pendingIntent);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, time, pendingIntent);
+                }
+                else{
+                    alarmManager.setExact(AlarmManager.RTC_WAKEUP, time, pendingIntent);
+
+                }
 
 
             }
