@@ -258,47 +258,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("repeating_alarm", String.valueOf(repeating_alarm));
                 if (snooze_alarm.getText().toString().equals("Get Quotes")) {
                     //execute new quote
-                    SharedPreferences sharedPref_genres = getSharedPreferences("Genres", MODE_PRIVATE);
-                    String genre = sharedPref_genres.getString("Message", "All Genres");
-                    randomQuote newQuote = new randomQuote();
-                    Log.e("Alarm Service","Old last_rand is "+String.valueOf(newQuote.last_rand));
-                    Log.e("alright", "Generating new quote with genre set to " + genre);
-
-
-                    String[] quote = newQuote.quote_generator(genre);
-                    saverandInt();
-
-
-                    //Instantiates sharedPrefs and saves quote/quoter
-                    SharedPreferences sharedPref_quote = getSharedPreferences("Quote", MODE_PRIVATE);
-                    SharedPreferences sharedPref_quoter = getSharedPreferences("Quoter", MODE_PRIVATE);
-                    SharedPreferences.Editor editor_quote = sharedPref_quote.edit();
-                    SharedPreferences.Editor editor_quoter = sharedPref_quoter.edit();
-                    editor_quote.putString("Quote", quote[0]);
-                    editor_quoter.putString("Quoter", quote[1]);
-                    editor_quote.apply();
-                    editor_quoter.apply();
-
-
-                    //Sets the text to the new quote generated and Catches whether MainActivity is closed when changing quote/quoter text
-
-                    //sets text
-                    motivational_quote.setText(quote[0]);
-                    quoter.setText(quote[1]);
-                    //Animation ghetto version
-                    final Animation quoteRise1 = AnimationUtils.loadAnimation(MainActivity.this, R.anim.fade_in);
-                    final Animation quoteRise2 = AnimationUtils.loadAnimation(MainActivity.this, R.anim.fade_in);
-                    MainActivity.motivational_quote.startAnimation(quoteRise1);
-                    MainActivity.quoter.startAnimation(quoteRise2);
-
-
-
-
-
-
-
-
-
+                    get_quotes();
                 }
 
                 if (repeating_alarm && (snooze_alarm.getText().toString().equals("I'm Woke!"))) {
@@ -692,5 +652,41 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putBoolean("Message", message);
         editor.apply();
+    }
+
+    public void get_quotes() {
+        //execute new quote
+        SharedPreferences sharedPref_genres = getSharedPreferences("Genres", MODE_PRIVATE);
+        String genre = sharedPref_genres.getString("Message", "All Genres");
+        randomQuote newQuote = new randomQuote();
+        Log.e("Alarm Service","Old last_rand is "+String.valueOf(newQuote.last_rand));
+        Log.e("alright", "Generating new quote with genre set to " + genre);
+
+
+        String[] quote = newQuote.quote_generator(genre);
+        saverandInt();
+
+
+        //Instantiates sharedPrefs and saves quote/quoter
+        SharedPreferences sharedPref_quote = getSharedPreferences("Quote", MODE_PRIVATE);
+        SharedPreferences sharedPref_quoter = getSharedPreferences("Quoter", MODE_PRIVATE);
+        SharedPreferences.Editor editor_quote = sharedPref_quote.edit();
+        SharedPreferences.Editor editor_quoter = sharedPref_quoter.edit();
+        editor_quote.putString("Quote", quote[0]);
+        editor_quoter.putString("Quoter", quote[1]);
+        editor_quote.apply();
+        editor_quoter.apply();
+
+
+        //Sets the text to the new quote generated and Catches whether MainActivity is closed when changing quote/quoter text
+
+        //sets text
+        motivational_quote.setText(quote[0]);
+        quoter.setText(quote[1]);
+        //Animation ghetto version
+        final Animation quoteRise1 = AnimationUtils.loadAnimation(MainActivity.this, R.anim.fade_in);
+        final Animation quoteRise2 = AnimationUtils.loadAnimation(MainActivity.this, R.anim.fade_in);
+        MainActivity.motivational_quote.startAnimation(quoteRise1);
+        MainActivity.quoter.startAnimation(quoteRise2);
     }
 }
