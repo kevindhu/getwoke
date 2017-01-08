@@ -258,7 +258,13 @@ public class alarm_service extends Service {
             alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + interval, pendingIntent);
         }
         else{
-            alarmManager.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + interval, pendingIntent);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                alarmManager.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + interval, pendingIntent);
+            }
+            else{
+                alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + interval, pendingIntent);
+
+            }
         }
     }
 
@@ -290,7 +296,12 @@ public class alarm_service extends Service {
                 alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + alarm_schedule, pendingIntent);
             }
             else{
-                alarmManager.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + alarm_schedule, pendingIntent);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    alarmManager.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + alarm_schedule, pendingIntent);
+                }
+                else{
+                    alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + alarm_schedule, pendingIntent);
+                }
             }
         }
         else {

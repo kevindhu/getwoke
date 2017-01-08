@@ -142,7 +142,13 @@ public class MainActivity_set_alarm extends AppCompatActivity {
                     alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, time, pendingIntent);
                 }
                 else{
-                    alarmManager.setExact(AlarmManager.RTC_WAKEUP, time, pendingIntent);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                        alarmManager.setExact(AlarmManager.RTC_WAKEUP, time, pendingIntent);
+                    }
+                    else{
+                        alarmManager.set(AlarmManager.RTC_WAKEUP, time, pendingIntent);
+
+                    }
 
                 }
 
