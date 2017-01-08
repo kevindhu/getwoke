@@ -113,17 +113,12 @@ public class MainActivity_set_alarm extends AppCompatActivity{
                     //Stores time in sharedpref
                     storeTime(theHour, theMinute);
                     store_timer_null(false);
-
                     set_alarm_text(getInput());
                     MainActivity.alarm_confirmation.setText(getInput());
-
                     Log.e("Time", String.valueOf(calendar.getTimeInMillis()));
-
                     Toast.makeText(getApplicationContext(), "Your alarm is set!", Toast.LENGTH_SHORT).show();
-
                     MainActivity.powerButton_on = true;
                     store_PowerButtonText(true);
-
                     alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, time ,pendingIntent);
 
 

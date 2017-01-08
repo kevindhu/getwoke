@@ -83,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
         adjustColor();
         //Sets Power Button Text
         snooze_alarm.setText(getAlarmButtonText());
+        //Load Power Button Boolean
+        load_PowerButtonBoolean();
 
         //Sets Quote Numbers
         setRandInt();
@@ -530,13 +532,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private Boolean get_PowerButtonBoolean() {
+    private void load_PowerButtonBoolean() {
         SharedPreferences sharedPref = getSharedPreferences("Power Button", MODE_PRIVATE);
         Boolean message = sharedPref.getBoolean("Message", false);
         powerButton_on = message;
         alarmUp = message;
         Log.e("the power button start",String.valueOf(powerButton_on));
-        return message;
     }
 
     private void setInput_bottomText() {
@@ -591,6 +592,7 @@ public class MainActivity extends AppCompatActivity {
         editor_alarm_unset.putString("Alarm Button Text", message);
         editor_alarm_unset.apply();
     }
+
 
     private void store_Alarm_bottomText(String message){
 
