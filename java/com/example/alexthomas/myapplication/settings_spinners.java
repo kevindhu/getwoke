@@ -58,7 +58,7 @@ public class settings_spinners extends AppCompatActivity {
     private String[] ringtones = {"Haikyuu", "Believe It", "Get Up"};
     private String[] genres = {"All Genres", "Entrepreneur", "Celebrity", "Author", "Athlete", "Anime", "Great Minds", "Book Quotes", "Meme Quotes"};
     private String[] quote_length = {"All Lengths", "Medium", "Short", "Long"};
-    private String[] backgrounds = {"Vanilla", "Starry Clouds","Mountain","Water","Sunset","Golden Gate"};
+    private String[] backgrounds = {"Vanilla", "Berkeley","Starry Clouds","Mountain","Water","Sunset","Golden Gate"};
     private String[] font_colors = {"White", "Blue", "Red", "Yellow", "Green"};
     private String[] clock_colors = {"White", "Blue", "Red", "Yellow", "Green"};
     private String[] repeating_intervals = {"5 Seconds","30 Seconds", "1 Minute", "2 Minutes", "3 Minutes", "4 Minutes", "5 Minutes"};
@@ -380,6 +380,10 @@ public class settings_spinners extends AppCompatActivity {
                 //set background as starry clouds
                 MainActivity.content_main.setBackgroundResource(R.drawable.stars_clouds);
                 break;
+            case "Berkeley":
+                //set background as starry clouds
+                MainActivity.content_main.setBackgroundResource(R.drawable.berkeley);
+                break;
             case "Vanilla":
                 MainActivity.content_main.setBackgroundResource(R.drawable.vanilla);
                 break;
@@ -407,7 +411,7 @@ public class settings_spinners extends AppCompatActivity {
                 MainActivity.digitalClock.setTextColor(Color.WHITE);
                 break;
             case "Red":
-                MainActivity.digitalClock.setTextColor(Color.parseColor("#f4c9c1"));
+                MainActivity.digitalClock.setTextColor(Color.parseColor("#ffafaf"));
                 break;
             case "Blue":
                 MainActivity.digitalClock.setTextColor(Color.parseColor("#a8c9ff"));
@@ -432,8 +436,8 @@ public class settings_spinners extends AppCompatActivity {
                 MainActivity.quoter.setTextColor(Color.WHITE);
                 break;
             case "Red":
-                MainActivity.motivational_quote.setTextColor(Color.parseColor("#f4c9c1"));
-                MainActivity.quoter.setTextColor(Color.parseColor("#f4c9c1"));
+                MainActivity.motivational_quote.setTextColor(Color.parseColor("#ffafaf"));
+                MainActivity.quoter.setTextColor(Color.parseColor("#ffafaf"));
                 break;
             case "Blue":
                 MainActivity.motivational_quote.setTextColor(Color.parseColor("#a8c9ff"));
