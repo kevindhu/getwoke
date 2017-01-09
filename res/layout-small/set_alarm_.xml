@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/vanilla"
+    android:background="@drawable/spikey"
     android:id="@+id/set_alarm_"
     android:orientation="vertical">
 
