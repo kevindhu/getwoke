@@ -73,7 +73,14 @@ public class randomQuote extends AppCompatActivity {
             {"Failure is the opportunity to begin more intelligently", "Henry Ford"},
             {"Someone is sitting in the shade today because someone planted a tree a long time ago.", "Warren Buffett"},
             {"Failure is an option here. If things are not failing, you are not innovating enough.", "Elon Musk"},
-            {"If something is important enough, even if the odds are against you, you should still do it.", "Elon Musk"}
+            {"If something is important enough, even if the odds are against you, you should still do it.", "Elon Musk"},
+            {"If you just work on stuff that you like and you’re passionate about, you don’t have to have a master plan with how things will play out.", "Mark Zuckerberg"},
+            {"If you’re not a risk taker, you should get the hell out of business.", "Ray Kroc"},
+            {"Always deliver more than expected.","Larry Page"},
+            {"You shouldn’t focus on why you can’t do something, which is what most people do. You should focus on why perhaps you can, and be one of the exceptions.", "Steve Case"},
+            {"I’m convinced that about half of what separates the successful entrepreneurs from the non-successful ones is pure perseverance.", "Steve Jobs"},
+            {"The way to get started is to quit talking and begin doing.", "Walt Disney"}
+
 
     };
 
