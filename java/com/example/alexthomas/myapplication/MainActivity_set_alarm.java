@@ -57,19 +57,6 @@ public class MainActivity_set_alarm extends AppCompatActivity {
         set_alarm_text(getInput());
 
 
-        TextView zero_hour = (TextView) findViewById(R.id.zero_hour);
-        zero_hour.setAlpha(0f);
-        int theHour1 = 0;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            theHour1 = timePicker.getHour();
-        }
-        else{
-            theHour1 = timePicker.getCurrentHour();
-        }
-        if (theHour1 < 10 || theHour1 > 12 && theHour1 < 22) {
-            Log.e("The hour is currently", String.valueOf(theHour1));
-            zero_hour.setAlpha(1f);
-        }
 
 
         //Triggers onClick for 'Alarm Set' button

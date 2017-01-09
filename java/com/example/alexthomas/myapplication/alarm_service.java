@@ -230,6 +230,15 @@ public class alarm_service extends Service {
             case "Scary":
                 ringtone = R.raw.scary;
                 break;
+            case "Shadows":
+                ringtone = R.raw.shadows_;
+                break;
+            case "Superhero":
+                ringtone = R.raw.superhero_;
+                break;
+            case "Different Heaven":
+                ringtone = R.raw.different_heaven;
+                break;
             default:
                 break;
         }
