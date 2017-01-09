@@ -4,3 +4,6 @@ Getwoke is an alarm android app that also hosts a random quote generator - suppo
 Getwoke allows you to wake up refreshed and enpowered with a vast variety of motivational and resounding quotes that play when your alarm sounds.
 This app saves its data as a background application as well - which means you don't need to worry about closing the application in order for it to ring the set alarm.
 
+
+
+![alt tag](https://i.sli.mg/oqO9rG.png)
