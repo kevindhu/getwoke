@@ -65,10 +65,9 @@ public class alarm_service extends Service {
             String genre = sharedPref_genres.getString("Message", "All Genres");
 
 
-
             //displays new quote
             randomQuote newQuote = new randomQuote();
-            Log.e("Alarm Service","Old last_rand is "+String.valueOf(newQuote.last_rand));
+            Log.e("Alarm Service", "Old last_rand is " + String.valueOf(newQuote.last_rand));
 
 
             Log.e("alright", "Generating new quote with genre set to " + genre);
@@ -76,7 +75,6 @@ public class alarm_service extends Service {
 
             quote = newQuote.quote_generator(genre);
             saverandInt();
-
 
 
             //Instantiates sharedPrefs and saves quote/quoter
@@ -134,7 +132,7 @@ public class alarm_service extends Service {
             mediasong.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
-                    SharedPreferences checkbox_boolean = getSharedPreferences("Snooze Boolean",MODE_PRIVATE);
+                    SharedPreferences checkbox_boolean = getSharedPreferences("Snooze Boolean", MODE_PRIVATE);
                     String ifRepeatingOn = checkbox_boolean.getString("Message", "false");
                     if (Boolean.valueOf(ifRepeatingOn)) {
                         //Log.e("Setting", "Text Automatically to Alarm Off");
@@ -218,7 +216,7 @@ public class alarm_service extends Service {
         SharedPreferences sharedPref_alarm_unset = getSharedPreferences("Random Int", MODE_PRIVATE);
         SharedPreferences.Editor editor_alarm_unset = sharedPref_alarm_unset.edit();
         editor_alarm_unset.putInt("Int", randomQuote.last_rand);
-        Log.e("Last rand","saved as "+String.valueOf(randomQuote.last_rand));
+        Log.e("Last rand", "saved as " + String.valueOf(randomQuote.last_rand));
         editor_alarm_unset.apply();
     }
 
@@ -261,12 +259,10 @@ public class alarm_service extends Service {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + interval, pendingIntent);
-        }
-        else{
+        } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 alarmManager.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + interval, pendingIntent);
-            }
-            else{
+            } else {
                 alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + interval, pendingIntent);
 
             }
@@ -299,17 +295,14 @@ public class alarm_service extends Service {
                     PendingIntent.FLAG_UPDATE_CURRENT);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + alarm_schedule, pendingIntent);
-            }
-            else{
+            } else {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                     alarmManager.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + alarm_schedule, pendingIntent);
-                }
-                else{
+                } else {
                     alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + alarm_schedule, pendingIntent);
                 }
             }
-        }
-        else {
+        } else {
             Log.e("Alarm Schedule", "Off");
             MainActivity.alarm_confirmation.setText("Your alarm is unset.");
             MainActivity.powerButton_on = false;
@@ -318,14 +311,6 @@ public class alarm_service extends Service {
             store_timer_null(true);
         }
 
-    }
-
-    private void store_Alarm_bottomText(String message){
-
-        SharedPreferences sharedPref_alarm_unset = getSharedPreferences("Alarm Time", MODE_PRIVATE);
-        SharedPreferences.Editor editor_alarm_unset = sharedPref_alarm_unset.edit();
-        editor_alarm_unset.putString("Message", message);
-        editor_alarm_unset.apply();
     }
 
     public void store_PowerButtonBoolean(Boolean message) {

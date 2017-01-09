@@ -1,62 +1,12 @@
 package com.example.alexthomas.myapplication;
 /* Created by Kevin on 1/2/2017.*/
 
-import android.app.Activity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.Spinner;
-import android.widget.Toast;
-import android.graphics.Typeface;
-import android.widget.TextView;
-import android.widget.Spinner;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.content.SharedPreferences;
 
-import java.util.*;
 import java.util.Random;
-
-import android.app.Activity;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.Spinner;
-import android.widget.Toast;
-import android.graphics.Typeface;
-import android.widget.TextView;
-import android.widget.Spinner;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 
 
 public class randomQuote extends AppCompatActivity {
@@ -71,22 +21,20 @@ public class randomQuote extends AppCompatActivity {
             {"Patience is a virtue, and I'm learning patience. It's a tough lesson.", "Elon Musk"},
             {"Your time is limited, so don’t waste it living someone else’s life.", "Steve Jobs"},
             {"Failure is the opportunity to begin more intelligently", "Henry Ford"},
-            {"Enthusiasm is the sparkle in your eyes, the swing in your gait, the grip of your hand and the irresistible surge of will and energy to execute your ideas.","Henry Ford"},
-            {"My best advice to entrepreneurs is this: Forget about making mistakes, just do it.","Ajaero Tony Martins"},
+            {"Enthusiasm is the sparkle in your eyes, the swing in your gait, the grip of your hand and the irresistible surge of will and energy to execute your ideas.", "Henry Ford"},
+            {"My best advice to entrepreneurs is this: Forget about making mistakes, just do it.", "Ajaero Tony Martins"},
             {"Someone is sitting in the shade today because someone planted a tree a long time ago.", "Warren Buffett"},
             {"Failure is an option here. If things are not failing, you are not innovating enough.", "Elon Musk"},
             {"If something is important enough, even if the odds are against you, you should still do it.", "Elon Musk"},
             {"If you just work on stuff that you like and you’re passionate about, you don’t have to have a master plan with how things will play out.", "Mark Zuckerberg"},
             {"If you’re not a risk taker, you should get the hell out of business.", "Ray Kroc"},
-            {"Always deliver more than expected.","Larry Page"},
-            {"Whatever the mind can conceive and believe, the mind can achieve.","Napoleon Hill"},
-            {"Don’t worry about funding if you don’t need it. Today it’s cheaper to start a business than ever.","Noah Everett"},
+            {"Always deliver more than expected.", "Larry Page"},
+            {"Whatever the mind can conceive and believe, the mind can achieve.", "Napoleon Hill"},
+            {"Don’t worry about funding if you don’t need it. Today it’s cheaper to start a business than ever.", "Noah Everett"},
             {"You shouldn’t focus on why you can’t do something, which is what most people do. You should focus on why perhaps you can, and be one of the exceptions.", "Steve Case"},
             {"I’m convinced that about half of what separates the successful entrepreneurs from the non-successful ones is pure perseverance.", "Steve Jobs"},
             {"The way to get started is to quit talking and begin doing.", "Walt Disney"},
-            {"Risk more than others think is safe. Dream more than others think is practical.","Howard Schultz, CEO of Starbucks"}
-
-
+            {"Risk more than others think is safe. Dream more than others think is practical.", "Howard Schultz, CEO of Starbucks"}
 
 
     };
@@ -94,7 +42,7 @@ public class randomQuote extends AppCompatActivity {
     String[][] Celebrity_quotes = {
             {"Cinema reflects culture and there is no harm in adapting technology, but not at the cost of losing your originality.", "Jackie Chan"},
             {"The best revenge is massive success", "Frank Sinatra"},
-            {"I’m not afraid of dying, I’m afraid of not trying.","Jay Z"},
+            {"I’m not afraid of dying, I’m afraid of not trying.", "Jay Z"},
             {"Nothing to me feels as good as laughing incredibly hard.", "Steven Carrell"},
             {"Whether you think you can or you think you can’t, you’re right.", "Harrison Ford"},
             {"You don't learn from successes; you don't learn from awards; you don't learn from celebrity; you only learn from wounds and scars and mistakes and failures. And that's the truth.", "Jane Fonda"},
@@ -132,7 +80,7 @@ public class randomQuote extends AppCompatActivity {
     String[][] Athlete_quotes = {
             {"I've missed more than 9000 shots in my career. I've lost almost 300 games. 26 times I've been trusted to take the game winning shot and missed. I've failed over and over and over again in my life. And that is why I succeed.", "Michael Jordan"},
             {"Every strike brings me closer to the next home run.", "Babe Ruth"},
-            {"It's hard to beat a person who never gives up.","Babe Ruth"},
+            {"It's hard to beat a person who never gives up.", "Babe Ruth"},
             {"You must expect great things of yourself before you can do them.", "Michael Jordan"},
             {"It's not whether you get knocked down; it's whether you get up.", "Vince Lombardi"},
             {"An athlete cannot run with money in his pockets. He must run with hope in his heart and dreams in his head.", "Emil Zatopek"},
@@ -161,7 +109,7 @@ public class randomQuote extends AppCompatActivity {
     };
 
     String[][] GreatMinds_quotes = {
-            {" Be patient with yourself. Self-growth is tender, it’s holy ground. There’s no greater investment","Stephen Covey"},
+            {" Be patient with yourself. Self-growth is tender, it’s holy ground. There’s no greater investment", "Stephen Covey"},
             {"My mother said to me, 'If you are a soldier, you will become a general. If you are a monk, you will become the Pope.' Instead, I was a painter, and became Picasso.", "Pablo Picasso"},
             {"The most beautiful thing we can experience is the mysterious. It is the source of all true art and science.", "Albert Einsten"},
             {"An unexamined life is not worth living.", "Socrates"},
@@ -176,9 +124,9 @@ public class randomQuote extends AppCompatActivity {
             {"The will to win, the desire to succeed, the urge to reach your full potential... these are the keys that will unlock the door to personal excellence.", "Confucius"},
             {"Look up at the stars and not down at your feet. Try to make sense of what you see, and wonder about what makes the universe exist. Be curious.", "Stephen Hawking"},
             {"Genius is one percent inspiration and ninety–nine percent perspiration.", "Thomas Edison"},
-            {"It does not matter how slowly you go as long as you do not stop.","Confucious"},
-            {"Success is how high you bounce after you hit bottom.","Reid Hoffman"},
-            {"Ambition is the steam that drives men forward on the road to success. Only the engine under full steam can make the grade.","Maxi Foreman"},
+            {"It does not matter how slowly you go as long as you do not stop.", "Confucious"},
+            {"Success is how high you bounce after you hit bottom.", "Reid Hoffman"},
+            {"Ambition is the steam that drives men forward on the road to success. Only the engine under full steam can make the grade.", "Maxi Foreman"},
             {"Never stop believing that fighting for what's right is worth it.", "Hillary Clinton"}
 
     };
@@ -208,23 +156,16 @@ public class randomQuote extends AppCompatActivity {
 
     String[][] meme_quotes = {
             {"I have never seen a thin person drinking  Diet Coke.", "Donald Trump"},
-            {"You know, it really doesn’t matter what the media write as long as you’ve got a young, and beautiful, piece of ass.", "Donald Trump"},
+            {"You know, it really doesn’t matter what the media write as long as you’ve got a young, and beautiful, piece of buttocks.", "Donald Trump"},
             {"The beauty of me is that I’m very rich.", "Donald Trump"},
             {"I always lick my lips when I see a child look at me because they need to realize there are bad people in this world", "Jordan the Twitter guy"},
-            {"Don't believe everything you read on the Internet just because its a quote","Abraham Lincoln"},
+            {"Don't believe everything you read on the Internet just because its a quote", "Abraham Lincoln"},
             {"Don't let what other people think of you stop you from doing what you love", "Adolf Hitler"},
             {"George Bush doesn't care about black people", "Kanye West"},
-            {"Make memes not war","Mark Twain"},
-            {"Use the force,Harry","The Doctor, you know that one with the hair"}
+            {"Make memes not war", "Mark Twain"},
+            {"Use the force,Harry", "The Doctor, you know that one with the hair"}
     };
 
-    String[] error = {"No genre found!", "No author found!"};
-
-
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
 
     public String[] quote_generator(String genre) {
 
@@ -313,7 +254,7 @@ public class randomQuote extends AppCompatActivity {
             quote_AuthorPair[0] = quote_array[rnd][0];
             Log.e("first", "value is set to " + String.valueOf(quote_array[rnd][0]));
             quote_AuthorPair[1] = quote_array[rnd][1];
-            Log.e("last_rand is ",String.valueOf(rnd));
+            Log.e("last_rand is ", String.valueOf(rnd));
             randomQuote.last_rand = rnd;
             return quote_AuthorPair;
         } else {

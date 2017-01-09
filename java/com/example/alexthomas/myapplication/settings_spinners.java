@@ -55,13 +55,13 @@ public class settings_spinners extends AppCompatActivity {
     private Button btnSubmit;
 
     private String[] fonts = {"Formal", "Roboto", "Weird", "Thick", "Sci-Fi", "Personal", "Samurai"};
-    private String[] ringtones = {"Scary","Shadows","Superhero","Different Heaven"};
+    private String[] ringtones = {"Scary", "Shadows", "Superhero", "Different Heaven"};
     private String[] genres = {"All Genres", "Entrepreneur", "Celebrity", "Author", "Athlete", "Anime", "Great Minds", "Book Quotes", "Meme Quotes"};
     private String[] quote_length = {"All Lengths", "Medium", "Short", "Long"};
-    private String[] backgrounds = {"Vanilla", "Berkeley","Sky","Starry Clouds","Mountain","Water","Sunset","Golden Gate"};
+    private String[] backgrounds = {"Vanilla", "Berkeley", "Sky", "Starry Clouds", "Mountain", "Water", "Sunset", "Golden Gate"};
     private String[] font_colors = {"White", "Blue", "Red", "Yellow", "Green"};
     private String[] clock_colors = {"White", "Blue", "Red", "Yellow", "Green"};
-    private String[] repeating_intervals = {"5 Seconds","30 Seconds", "1 Minute", "2 Minutes", "3 Minutes", "4 Minutes", "5 Minutes"};
+    private String[] repeating_intervals = {"5 Seconds", "30 Seconds", "1 Minute", "2 Minutes", "3 Minutes", "4 Minutes", "5 Minutes"};
     private String[] alarm_schedule = {"None", "12 Hours", "24 Hours"};
 
 
@@ -100,8 +100,6 @@ public class settings_spinners extends AppCompatActivity {
         addListenerOnCheckbox();
         addListenerOnButton();
     }
-
-
 
 
     @Override
@@ -311,11 +309,10 @@ public class settings_spinners extends AppCompatActivity {
         SharedPreferences.Editor editor_min = sharedPref_min.edit();
         editor_max.putInt("Maximum", randomQuote.maxlength);
         editor_min.putInt("Minimum", randomQuote.minlength);
-        Log.e("Maximum minimum",String.valueOf(randomQuote.maxlength)+"|"+String.valueOf(randomQuote.minlength));
+        Log.e("Maximum minimum", String.valueOf(randomQuote.maxlength) + "|" + String.valueOf(randomQuote.minlength));
         editor_max.apply();
         editor_min.apply();
     }
-
 
 
     public void alarm_schedule_changer(String input) {
@@ -535,17 +532,4 @@ public class settings_spinners extends AppCompatActivity {
     }
 
 
-    public void ListenerClick(final Spinner spinner, final String[] args) {
-        spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                updateSpinnerEntries(spinner, args);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // do nothing
-            }
-        });
-    }
 }
