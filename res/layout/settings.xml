@@ -9,11 +9,11 @@
 
     <Button
         android:id="@+id/btnSubmit"
-        android:layout_width="wrap_content"
+        android:layout_width="100sp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="140dp"
-        android:layout_marginRight="140dp"
-        android:layout_marginTop="420dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginTop="400sp"
         android:layout_centerHorizontal="true"
         android:text="Submit"
         android:elevation="1dp"/>
@@ -50,7 +50,7 @@
 
         <Spinner
             android:id="@+id/quote_length_spinner"
-            android:layout_width="360dp"
+            android:layout_width="305sp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="10dp"
@@ -72,12 +72,11 @@
 
         <Spinner
             android:id="@+id/ringtones_spinner"
-            android:layout_width="360dp"
+            android:layout_width="305sp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="50dp"
-            android:layout_weight="0.05"></Spinner>
+            android:layout_marginRight="50dp"></Spinner>
 
 
         <TextView
@@ -93,7 +92,7 @@
 
         <Spinner
             android:id="@+id/fonts_spinner"
-            android:layout_width="360dp"
+            android:layout_width="305sp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="10dp"
@@ -115,7 +114,7 @@
 
         <Spinner
             android:id="@+id/spinner_clock_color"
-            android:layout_width="360dp"
+            android:layout_width="305sp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="10dp"
@@ -134,10 +133,9 @@
             android:textStyle="bold" />
 
 
-
         <Spinner
             android:id="@+id/spinner_font_colors"
-            android:layout_width="360dp"
+            android:layout_width="305sp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="10dp"
@@ -160,7 +158,7 @@
 
         <Spinner
             android:id="@+id/genre_spinner"
-            android:layout_width="360dp"
+            android:layout_width="305sp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="10dp"
@@ -187,7 +185,7 @@
 
         <Spinner
             android:id="@+id/spinner_backgrounds"
-            android:layout_width="360dp"
+            android:layout_width="305sp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="10dp"
@@ -207,7 +205,7 @@
 
         <Spinner
             android:id="@+id/spinner_alarm_schedule"
-            android:layout_width="360dp"
+            android:layout_width="305sp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="10dp"
@@ -233,7 +231,7 @@
             android:layout_width="wrap_content"
             android:id="@+id/snooze_check"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="330dp" />
+            android:layout_marginLeft="10sp" />
 
 
 
@@ -252,7 +250,7 @@
 
         <Spinner
             android:id="@+id/spinner_intervals"
-            android:layout_width="360dp"
+            android:layout_width="305sp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="10dp"
