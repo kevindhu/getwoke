@@ -179,9 +179,7 @@ public class randomQuote extends AppCompatActivity {
             {"It does not matter how slowly you go as long as you do not stop.","Confucious"},
             {"Success is how high you bounce after you hit bottom.","Reid Hoffman"},
             {"Ambition is the steam that drives men forward on the road to success. Only the engine under full steam can make the grade.","Maxi Foreman"},
-            {"To the young people in particular, I hope you will hear this. I have...spent my entire adult life fighting for what I believe in. I have had successes and I have had setbacks. Sometimes really painful ones. Many of you are at the beginning of your professional public and political careers. You will have successes and setbacks, too. This loss hurts but please never stop believing that fighting for what's right is worth it.", "Hillary Clinton"}
-
-
+            {"Never stop believing that fighting for what's right is worth it.", "Hillary Clinton"}
 
     };
 
@@ -215,9 +213,11 @@ public class randomQuote extends AppCompatActivity {
             {"I can't belive my grand mothers making me take Out the garbage I'm rich fuck this I'm going home I don't need this shit", "50 Cent"},
             {"I always lick my lips when I see a child look at me because they need to realize there are bad people in this world", "Jordan the Twitter guy"},
             {"I STRAIGHT UP HAVE NO IDEA HOW PORCUPINES FUCK EACH OTHER", "Bill Nye Tho"},
+            {"Don't believe everything you read on the Internet just because its a quote","Abraham Lincoln"},
             {"Don't let what other people think of you stop you from doing what you love", "Adolf Hitler"},
-            {"George Bush doesn't care about black people", "Kanye West"}
-
+            {"George Bush doesn't care about black people", "Kanye West"},
+            {"Make memes not war","Mark Twain"},
+            {"Use the force,Harry","The Doctor, you know that one with the hair"}
     };
 
 
