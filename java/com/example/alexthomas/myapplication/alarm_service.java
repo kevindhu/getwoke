@@ -31,7 +31,7 @@ public class alarm_service extends Service {
     public static boolean already_Pressed = false;
     public static boolean fromMainAlarm = false;
     public static boolean if_AlarmSchedule = false;
-    public static int ringtone = R.raw.motivationalmusic;
+    public static int ringtone = R.raw.superhero_;
     public static boolean fromAlarmStart = false;
 
 
@@ -224,9 +224,6 @@ public class alarm_service extends Service {
 
     public void ringtone_changer(String input) {
         switch (input) {
-            case "Haikyuu":
-                ringtone = R.raw.motivationalmusic;
-                break;
             case "Scary":
                 ringtone = R.raw.scary;
                 break;
