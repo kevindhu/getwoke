@@ -39,22 +39,22 @@ public class MainActivity_set_alarm extends AppCompatActivity {
     public PendingIntent pendingIntent;
     public static Intent alarm_intent;
     public long time;
-    private RelativeLayout set_alarm;
+    public static RelativeLayout alarm_layout;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.e("started", "set_alarm page");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.set_alarm);
-        set_alarm = (RelativeLayout) findViewById(R.id.set_alarm);
-        background_changer();
+        setContentView(R.layout.set_alarm_);
+        alarm_layout = (RelativeLayout) findViewById(R.id.set_alarm_);
+        //background_changer();
         //Intialize layout material
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         timePicker = (TimePicker) findViewById(R.id.timePicker);
         text_update = (TextView) findViewById(R.id.text_update);
         //Buttons
-        Button set_alarm = (Button) findViewById(R.id.alarm_set);
+        Button set_alarms = (Button) findViewById(R.id.alarm_set);
         //Calendar
         final Calendar calendar = Calendar.getInstance();
         set_alarm_text(getInput());
@@ -63,7 +63,7 @@ public class MainActivity_set_alarm extends AppCompatActivity {
 
 
         //Triggers onClick for 'Alarm Set' button
-        set_alarm.setOnClickListener(new View.OnClickListener() {
+        set_alarms.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -232,32 +232,32 @@ public class MainActivity_set_alarm extends AppCompatActivity {
         editor.apply();
     }
 
-    public void background_changer () {
+    public void background_changer() {
         SharedPreferences sharedPref_background = getSharedPreferences("Backgrounds", MODE_PRIVATE);
         String last_background = sharedPref_background.getString("Message", "--Choose your Background--");
         switch (last_background) {
             case "Starry Clouds":
                 //set background as starry clouds
-                set_alarm.setBackgroundResource(R.drawable.stars_clouds);
+                alarm_layout.setBackgroundResource(R.drawable.stars_clouds);
                 break;
             case "Vanilla":
-                set_alarm.setBackgroundResource(R.drawable.vanilla);
+                alarm_layout.setBackgroundResource(R.drawable.vanilla);
                 break;
             case "Sky":
                 //set background as starry clouds
-                set_alarm.setBackgroundResource(R.drawable.sky);
+                alarm_layout.setBackgroundResource(R.drawable.sky);
                 break;
             case "Mountain":
-                set_alarm.setBackgroundResource(R.drawable.mountain);
+                alarm_layout.setBackgroundResource(R.drawable.mountain);
                 break;
             case "Water":
-                set_alarm.setBackgroundResource(R.drawable.water);
+                alarm_layout.setBackgroundResource(R.drawable.water);
                 break;
             case "Sunset":
-                set_alarm.setBackgroundResource(R.drawable.sunset);
+                alarm_layout.setBackgroundResource(R.drawable.sunset);
                 break;
             case "Golden Gate":
-                set_alarm.setBackgroundResource(R.drawable.golden_gate);
+                alarm_layout.setBackgroundResource(R.drawable.golden_gate);
                 break;
             default:
                 break;

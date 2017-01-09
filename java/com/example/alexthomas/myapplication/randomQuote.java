@@ -220,7 +220,6 @@ public class randomQuote extends AppCompatActivity {
             {"Use the force,Harry","The Doctor, you know that one with the hair"}
     };
 
-
     String[] error = {"No genre found!", "No author found!"};
 
 
