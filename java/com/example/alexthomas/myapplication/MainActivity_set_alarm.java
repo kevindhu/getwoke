@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.util.Log;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -38,6 +39,7 @@ public class MainActivity_set_alarm extends AppCompatActivity {
     public PendingIntent pendingIntent;
     public static Intent alarm_intent;
     public long time;
+    private RelativeLayout set_alarm;
 
 
     @Override
@@ -45,6 +47,7 @@ public class MainActivity_set_alarm extends AppCompatActivity {
         Log.e("started", "set_alarm page");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.set_alarm);
+        set_alarm = (RelativeLayout) findViewById(R.id.set_alarm);
         background_changer();
         //Intialize layout material
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -235,26 +238,26 @@ public class MainActivity_set_alarm extends AppCompatActivity {
         switch (last_background) {
             case "Starry Clouds":
                 //set background as starry clouds
-                MainActivity.content_main.setBackgroundResource(R.drawable.stars_clouds);
+                set_alarm.setBackgroundResource(R.drawable.stars_clouds);
                 break;
             case "Vanilla":
-                MainActivity.content_main.setBackgroundResource(R.drawable.vanilla);
+                set_alarm.setBackgroundResource(R.drawable.vanilla);
                 break;
             case "Sky":
                 //set background as starry clouds
-                MainActivity.content_main.setBackgroundResource(R.drawable.sky);
+                set_alarm.setBackgroundResource(R.drawable.sky);
                 break;
             case "Mountain":
-                MainActivity.content_main.setBackgroundResource(R.drawable.mountain);
+                set_alarm.setBackgroundResource(R.drawable.mountain);
                 break;
             case "Water":
-                MainActivity.content_main.setBackgroundResource(R.drawable.water);
+                set_alarm.setBackgroundResource(R.drawable.water);
                 break;
             case "Sunset":
-                MainActivity.content_main.setBackgroundResource(R.drawable.sunset);
+                set_alarm.setBackgroundResource(R.drawable.sunset);
                 break;
             case "Golden Gate":
-                MainActivity.content_main.setBackgroundResource(R.drawable.golden_gate);
+                set_alarm.setBackgroundResource(R.drawable.golden_gate);
                 break;
             default:
                 break;
