@@ -31,8 +31,8 @@
 
     <Button
         android:id="@+id/powerbutton"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginRight="15dp"
         android:layout_toLeftOf="@id/settings_button"
         android:background="@drawable/on_button" />
@@ -53,8 +53,8 @@
 
     <Button
         android:id="@+id/settings_button"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
