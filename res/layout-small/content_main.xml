@@ -150,7 +150,7 @@
         android:layout_below="@+id/scrollView2"
         android:layout_toRightOf="@id/set_alarm"
         android:alpha="0.8"
-        android:layout_marginLeft="60dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/custom_button"
         android:text="Snooze"
