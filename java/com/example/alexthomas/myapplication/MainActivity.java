@@ -407,6 +407,10 @@ public class MainActivity extends AppCompatActivity {
             case "Vanilla":
                 MainActivity.content_main.setBackgroundResource(R.drawable.vanilla);
                 break;
+            case "Berkeley":
+                //set background as starry clouds
+                MainActivity.content_main.setBackgroundResource(R.drawable.berkeley);
+                break;
             case "Sky":
                 //set background as starry clouds
                 MainActivity.content_main.setBackgroundResource(R.drawable.sky);

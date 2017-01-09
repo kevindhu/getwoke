@@ -45,6 +45,7 @@ public class MainActivity_set_alarm extends AppCompatActivity {
         Log.e("started", "set_alarm page");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.set_alarm);
+        background_changer();
         //Intialize layout material
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         timePicker = (TimePicker) findViewById(R.id.timePicker);
@@ -240,5 +241,38 @@ public class MainActivity_set_alarm extends AppCompatActivity {
         editor.putBoolean("Message", message);
         editor.apply();
     }
+
+    public void background_changer () {
+        SharedPreferences sharedPref_background = getSharedPreferences("Backgrounds", MODE_PRIVATE);
+        String last_background = sharedPref_background.getString("Message", "--Choose your Background--");
+        switch (last_background) {
+            case "Starry Clouds":
+                //set background as starry clouds
+                MainActivity.content_main.setBackgroundResource(R.drawable.stars_clouds);
+                break;
+            case "Vanilla":
+                MainActivity.content_main.setBackgroundResource(R.drawable.vanilla);
+                break;
+            case "Sky":
+                //set background as starry clouds
+                MainActivity.content_main.setBackgroundResource(R.drawable.sky);
+                break;
+            case "Mountain":
+                MainActivity.content_main.setBackgroundResource(R.drawable.mountain);
+                break;
+            case "Water":
+                MainActivity.content_main.setBackgroundResource(R.drawable.water);
+                break;
+            case "Sunset":
+                MainActivity.content_main.setBackgroundResource(R.drawable.sunset);
+                break;
+            case "Golden Gate":
+                MainActivity.content_main.setBackgroundResource(R.drawable.golden_gate);
+                break;
+            default:
+                break;
+        }
+    }
+
 
 }
