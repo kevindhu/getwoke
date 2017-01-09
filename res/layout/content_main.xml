@@ -31,8 +31,8 @@
 
     <Button
         android:id="@+id/powerbutton"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginRight="20dp"
         android:layout_toLeftOf="@id/settings_button"
         android:background="@drawable/on_button" />
@@ -45,16 +45,16 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/powerbutton"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="100dp"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="45dp" />
+        android:textSize="65dp" />
 
 
     <Button
         android:id="@+id/settings_button"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
@@ -63,7 +63,7 @@
     <ImageView
         android:id="@+id/getWoke"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
@@ -80,12 +80,12 @@
         android:text="Alarm Unset"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="15sp" />
+        android:textSize="15dp" />
 
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="160dp"
         android:layout_above="@+id/set_alarm"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -107,7 +107,7 @@
                 android:text="@string/quote"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
-                android:textSize="30dp"
+                android:textSize="35dp"
                 android:typeface="sans" />
 
 
@@ -130,29 +130,32 @@
 
     <Button
         android:id="@+id/set_alarm"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
         android:layout_above="@+id/alarm_confirmation"
         android:layout_marginBottom="16dp"
         android:layout_marginLeft="40dp"
+        android:layout_marginRight="20dp"
         android:alpha="0.8"
         android:background="@drawable/custom_button"
         android:minHeight="10dp"
         android:minWidth="90sp"
-        android:text="Set Alarm" />
+        android:text="Set Alarm"
+        android:textSize="19dp"/>
 
     <Button
         android:id="@+id/alarm_off"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_alignBottom="@+id/set_alarm"
-        android:layout_below="@+id/scrollView2"
-        android:layout_marginLeft="170dp"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
         android:alpha="0.8"
         android:background="@drawable/custom_button"
         android:minHeight="10dp"
         android:minWidth="90sp"
-        android:text="Snooze" />
+        android:text="Snooze"
+        android:layout_below="@id/scrollView2"
+        android:textSize="19dp"
+        android:layout_toRightOf="@id/set_alarm"
+      />
 
 
 </RelativeLayout>
