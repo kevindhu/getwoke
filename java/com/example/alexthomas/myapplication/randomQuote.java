@@ -70,7 +70,10 @@ public class randomQuote extends AppCompatActivity {
             {"The biggest risk is not taking any risk... In a world that changing really quickly, the only strategy that is guaranteed to fail is not taking risks.", "Mark Zuckerberg"},
             {"Patience is a virtue, and I'm learning patience. It's a tough lesson.", "Elon Musk"},
             {"Your time is limited, so don’t waste it living someone else’s life.", "Steve Jobs"},
-            {"Failure is the opportunity to begin more intelligently", "Henry Ford"}
+            {"Failure is the opportunity to begin more intelligently", "Henry Ford"},
+            {"Someone is sitting in the shade today because someone planted a tree a long time ago.", "Warren Buffett"},
+            {"Failure is an option here. If things are not failing, you are not innovating enough.", "Elon Musk"},
+            {"If something is important enough, even if the odds are against you, you should still do it.", "Elon Musk"}
 
     };
 
@@ -80,7 +83,13 @@ public class randomQuote extends AppCompatActivity {
             {"Nothing to me feels as good as laughing incredibly hard.", "Steven Carrell"},
             {"Whether you think you can or you think you can’t, you’re right.", "Harrison Ford"},
             {"You don't learn from successes; you don't learn from awards; you don't learn from celebrity; you only learn from wounds and scars and mistakes and failures. And that's the truth.", "Jane Fonda"},
-            {"As a member of the Greek community and a part of one of these organizations this is highly offensive. Sororities at UC Berkeley make it their goal to give women a place to feel comfortable as well as better the community. Comparing specific houses to characters from a movie about bullying is absurd and beyond inaccurate. Making the claim that sororities are cliques is demeaning the sisterhood and values they are founded on. This clearly is a stab at a community on campus that does nothing but support the rest of the student body.", "Sorority Chick"}
+            {"As a member of the Greek community and a part of one of these organizations this is highly offensive. Sororities at UC Berkeley make it their goal to give women a place to feel comfortable as well as better the community. Comparing specific houses to characters from a movie about bullying is absurd and beyond inaccurate. Making the claim that sororities are cliques is demeaning the sisterhood and values they are founded on. This clearly is a stab at a community on campus that does nothing but support the rest of the student body.", "Sorority Chick"},
+            {"As human beings we have unlimited potential and imagination. The worst thing you can do is be a conformist and buy into conformity. It’s the worst possible thing. It’s better to be outrageous. It’s better to hang out with the sages, the people open to possibilities, even the psychotics. You never know where you’ll find the geniuses of our society", "Deepak Chopra"},
+            {"It’s cool to be a nerd. There’s a general understanding that smartphones didn’t come from jocks. The digital age was foreseen by a group of short-sleeved, buttoned-down, white-shirted guys and their female equivalents designing the very stuff that’s now ubiquitous.", "J.J. Abrams"},
+            {"If someone’s not attacking you that means you’re not doing your job effectively.", "Sean Hannity"},
+            {"There’s no such thing as overnight success. That’s my concern with a show like American Idol. It encourages the false belief that there’s a kind of magic, that you can be 'discovered.' That may be the way television works, but it’s not the way the world works. Rising to the top of any field requires an enormous amount of dedication, focus, drive, talent, and 99 factors that they don’t show on television. It’s not simply about being picked. Which, by the way, is why very few of the anointed winners on American Idol have gone on to true success. Most have flamed out and gone away. That should tell us something.", "Malcom Gladwell"},
+            {"I think people sometimes don’t pay enough attention to what they do. I’ve done well, but the reason is pretty simple: I’ve worked my ass off. The toughest thing a performer can do is make it look as if it comes easy.", "Justin Timberlake"},
+            {"I've been very lucky. All I wanted was to pay the rent. Then these characters took off and suddenly there were Hulk coffee mugs and Iron Man lunchboxes and The Avengers sweatshirts everywhere. Money's okay, but what I really like is working.", "Stan Lee"}
 
     };
 
@@ -92,7 +101,16 @@ public class randomQuote extends AppCompatActivity {
             {"This is an insult to life itself...", "Hayao Miyazaki"},
             {"Twenty years from now you will be more disappointed by the things that you didn’t do than by the ones you did do, so throw off the bowlines, sail away from safe harbor, catch the trade winds in your sails.  Explore, Dream, Discover.", "Mark Twain"},
             {"If you can tell stories, create characters, devise incidents, and have sincerity and passion, it doesn’t matter a damn how you write.", "Somerset Maugham"},
-            {"Any man who keeps working is not a failure. He may not be a great writer, but if he applies the old-fashioned virtues of hard, constant labor, he’ll eventually make some kind of career for himself as writer.", "Ray Bradbury"}
+            {"Any man who keeps working is not a failure. He may not be a great writer, but if he applies the old-fashioned virtues of hard, constant labor, he’ll eventually make some kind of career for himself as writer.", "Ray Bradbury"},
+            {"The secret of getting ahead is getting started.", "Mark Twain"},
+            {"The best preparation for tomorrow is doing your best today.", "H. Jackson Brown Jr."},
+            {"can't change the direction of the wind, but I can adjust my sails to always reach my destination.", "Jimmy Dean"},
+            {"Put your heart, mind, and soul into even your smallest acts. This is the secret of success.", "Swami Sivananda"},
+            {"Today I choose life. Every morning when I wake up I can choose joy, happiness, negativity, pain... To feel the freedom that comes from being able to continue to make mistakes and choices - today I choose to feel life, not to deny my humanity but embrace it.", "Walt Whitman"},
+            {"You have brains in your head. You have feet in your shoes. You can steer yourself, any direction you choose.", "Dr. Seuss"},
+            {"Hold fast to dreams, for if dreams die, life is a broken-winged bird that cannot fly.", "Langston Hughes"},
+            {"I have discovered in life that there are ways of getting almost anywhere you want to go, if you really want to go.", "Langston Hughes"}
+
 
     };
 
@@ -136,7 +154,13 @@ public class randomQuote extends AppCompatActivity {
             {"I love those who can smile in trouble, who can gather strength from distress, and grow brave by reflection. 'Tis the business of little minds to shrink, but they whose heart is firm, and whose conscience approves their conduct, will pursue their principles unto death.", "Leonardo DaVinci"},
             {"A person, who no matter how desperate the situation, gives others hope, is a true leader.", "Daisaku Ikeda"},
             {"You must not for one instant give up the effort to build new lives for yourselves. Creativity means to push open the heavy, groaning doorway to life.", "Daisaku Ikeda"},
-            {"The determination to win is the better part of winning.", "Daisaku Ikeda"}
+            {"The determination to win is the better part of winning.", "Daisaku Ikeda"},
+            {"It always seems impossible until it's done.", "Nelson Mandela"},
+            {"The will to win, the desire to succeed, the urge to reach your full potential... these are the keys that will unlock the door to personal excellence.", "Confucius"},
+            {"Look up at the stars and not down at your feet. Try to make sense of what you see, and wonder about what makes the universe exist. Be curious.", "Stephen Hawking"},
+            {"Genius is one percent inspiration and ninety–nine percent perspiration.", "Thomas Edison"},
+            {"To the young people in particular, I hope you will hear this. I have...spent my entire adult life fighting for what I believe in. I have had successes and I have had setbacks. Sometimes really painful ones. Many of you are at the beginning of your professional public and political careers. You will have successes and setbacks, too. This loss hurts but please never stop believing that fighting for what's right is worth it.", "Hilary Clinton"},
+
 
 
     };
