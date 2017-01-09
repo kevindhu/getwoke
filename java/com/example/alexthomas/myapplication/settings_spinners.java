@@ -58,7 +58,7 @@ public class settings_spinners extends AppCompatActivity {
     private String[] ringtones = {"Haikyuu", "Scary"};
     private String[] genres = {"All Genres", "Entrepreneur", "Celebrity", "Author", "Athlete", "Anime", "Great Minds", "Book Quotes", "Meme Quotes"};
     private String[] quote_length = {"All Lengths", "Medium", "Short", "Long"};
-    private String[] backgrounds = {"Vanilla", "Berkeley","Starry Clouds","Mountain","Water","Sunset","Golden Gate"};
+    private String[] backgrounds = {"Vanilla", "Berkeley","Sky","Starry Clouds","Mountain","Water","Sunset","Golden Gate"};
     private String[] font_colors = {"White", "Blue", "Red", "Yellow", "Green"};
     private String[] clock_colors = {"White", "Blue", "Red", "Yellow", "Green"};
     private String[] repeating_intervals = {"5 Seconds","30 Seconds", "1 Minute", "2 Minutes", "3 Minutes", "4 Minutes", "5 Minutes"};
@@ -116,7 +116,6 @@ public class settings_spinners extends AppCompatActivity {
         //ListenerClick(spinner_genre, genres);
         //ListenerClick(spinner_font_color, font_colors);
         //ListenerClick(spinner_clock_color, clock_colors);
-
     }
 
     // get the selected dropdown list value when button is clicked
@@ -382,6 +381,10 @@ public class settings_spinners extends AppCompatActivity {
             case "Starry Clouds":
                 //set background as starry clouds
                 MainActivity.content_main.setBackgroundResource(R.drawable.stars_clouds);
+                break;
+            case "Sky":
+                //set background as starry clouds
+                MainActivity.content_main.setBackgroundResource(R.drawable.sky);
                 break;
             case "Berkeley":
                 //set background as starry clouds
