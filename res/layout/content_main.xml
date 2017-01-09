@@ -31,8 +31,8 @@
 
     <Button
         android:id="@+id/powerbutton"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginRight="20dp"
         android:layout_toLeftOf="@id/settings_button"
         android:background="@drawable/on_button" />
@@ -53,8 +53,8 @@
 
     <Button
         android:id="@+id/settings_button"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
@@ -67,7 +67,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="0dp"
         app:srcCompat="@drawable/getwoke_header_new" />
 
     <TextView
@@ -131,12 +131,12 @@
     <Button
         android:id="@+id/set_alarm"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_above="@+id/alarm_confirmation"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="19dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="40dp"
         android:alpha="0.8"
         android:background="@drawable/custom_button"
         android:minHeight="10dp"
@@ -146,9 +146,9 @@
     <Button
         android:id="@+id/alarm_off"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_alignBottom="@+id/set_alarm"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="40dp"
         android:layout_toRightOf="@id/set_alarm"
         android:layout_marginRight="30dp"
         android:alpha="0.8"
