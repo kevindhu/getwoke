@@ -219,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                             lastTimerisNull = false;
                             store_timer_null(false);
-                            getInput_bottomText();
+                            setInput_bottomText();
 
                         }
                         //When alarm has a pending alarm and user turns it off
@@ -294,6 +294,7 @@ public class MainActivity extends AppCompatActivity {
                         lastTimerisNull = false;
                         store_timer_null(false);
 
+
                         if (Boolean.valueOf(ifRepeatingOn)) {
                             snooze_alarm.setText("I'm Woke!");
                             store_snoozeText("I'm Woke!");
@@ -310,14 +311,14 @@ public class MainActivity extends AppCompatActivity {
                             }
                             Log.e("Repeats", "This repeats");
                         } else {
-
                             if (snooze_alarm.getText().equals("Get Quotes")) {
                                 get_quotes();
+                            }else {
+                                pendingIntent.cancel();
+                                snooze_alarm.setText("Get Quotes");
+                                store_snoozeText("Get Quotes");
+                                Log.e("Cancel service", "Doesn't repeat");
                             }
-                            pendingIntent.cancel();
-                            snooze_alarm.setText("Get Quotes");
-                            store_snoozeText("Get Quotes");
-                            Log.e("Cancel service", "Doesn't repeat");
                         }
 
                     }
