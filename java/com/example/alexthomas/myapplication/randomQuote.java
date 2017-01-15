@@ -153,7 +153,6 @@ public class randomQuote extends AppCompatActivity {
             {"If you are interested in something, no matter what it is, go at it at full speed ahead. Embrace it with both arms, hug it, love it and above all become passionate about it. Lukewarm is no good. Hot is no good either. White hot and passionate is the only thing to be.", "Roald Dahl, My Uncle Oswald"},
             {"It does not do to dwell on dreams and forget to live, remember that.", "J.K. Rowling, Harry Potter and the Sorcerer's Stone"},
             {"Cherish your friends, stay true to your principles, live passionately and fully and well. Experience new things. Love and be loved, if you ever get the chance.", "David Nicholls, One Day"},
-            {""}
 
     };
 

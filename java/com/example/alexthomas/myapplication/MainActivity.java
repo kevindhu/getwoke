@@ -318,8 +318,12 @@ public class MainActivity extends AppCompatActivity {
                             if (snooze_alarm.getText().equals("Get Quotes")) {
                                 get_quotes();
                             }else {
-                                lastTimerisNull = true;
-                                store_timer_null(true);
+                                SharedPreferences alarm_schedule = getSharedPreferences("Alarm Schedule", MODE_PRIVATE);
+                                Boolean schedule_Enabled = alarm_schedule.getBoolean("Schedule Enabled", false);
+                                if (!schedule_Enabled) {
+                                    lastTimerisNull = true;
+                                    store_timer_null(true);
+                                }
                                 pendingIntent.cancel();
                                 snooze_alarm.setText("Get Quotes");
                                 store_snoozeText("Get Quotes");
