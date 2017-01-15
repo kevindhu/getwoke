@@ -278,6 +278,7 @@ public class alarm_service extends Service {
     }
 
 
+
     public void start_Alarm() {
         //starts alarm again periodically
         fromMainAlarm = false;

@@ -53,7 +53,6 @@ public class randomQuote extends AppCompatActivity {
             {"There’s no such thing as overnight success. That’s my concern with a show like American Idol. It encourages the false belief that there’s a kind of magic, that you can be 'discovered.' That may be the way television works, but it’s not the way the world works. Rising to the top of any field requires an enormous amount of dedication, focus, drive, talent, and 99 factors that they don’t show on television. It’s not simply about being picked. Which, by the way, is why very few of the anointed winners on American Idol have gone on to true success. Most have flamed out and gone away. That should tell us something.", "Malcom Gladwell"},
             {"I think people sometimes don’t pay enough attention to what they do. I’ve done well, but the reason is pretty simple: I’ve worked my ass off. The toughest thing a performer can do is make it look as if it comes easy.", "Justin Timberlake"},
             {"I've been very lucky. All I wanted was to pay the rent. Then these characters took off and suddenly there were Hulk coffee mugs and Iron Man lunchboxes and The Avengers sweatshirts everywhere. Money's okay, but what I really like is working.", "Stan Lee"}
-
     };
 
 
@@ -91,7 +90,9 @@ public class randomQuote extends AppCompatActivity {
             {"You can’t put a limit on anything. The more you dream, the farther you get.", "Michael Phelps"},
             {"I hated every minute of training, but I said, ‘Don’t quit. Suffer now and live the rest of your life as a champion.", " Muhammad Ali"},
             {"There are only two options regarding commitment. You’re either IN or you’re OUT. There is no such thing as life in-between.", "Pat Riley"},
-            {"Gold medals aren’t really made of gold. They’re made of sweat, determination, and a hard-to-find alloy called guts.", "Dan Gable"}
+            {"Gold medals aren’t really made of gold. They’re made of sweat, determination, and a hard-to-find alloy called guts.", "Dan Gable"},
+            {"If you're afraid to fail, then you're probably going to fail.", "Kobe Bryant"},
+
 
 
     };
@@ -127,7 +128,8 @@ public class randomQuote extends AppCompatActivity {
             {"It does not matter how slowly you go as long as you do not stop.", "Confucious"},
             {"Success is how high you bounce after you hit bottom.", "Reid Hoffman"},
             {"Ambition is the steam that drives men forward on the road to success. Only the engine under full steam can make the grade.", "Maxi Foreman"},
-            {"Never stop believing that fighting for what's right is worth it.", "Hillary Clinton"}
+            {"Never stop believing that fighting for what's right is worth it.", "Hillary Clinton"},
+            {"One life is all we have and we live it as we believe in living it. But to sacrifice what you are and to live without belief, that is a fate more terrible than dying.", "Joan Arc"}
 
     };
 
@@ -150,7 +152,8 @@ public class randomQuote extends AppCompatActivity {
             {"We must have ideals and try to live up to them, even if we never quite succeed. Life would be a sorry business without them. With them it's grand and great.", "Lucy Maude Montgomery, Ann of Avonlea"},
             {"If you are interested in something, no matter what it is, go at it at full speed ahead. Embrace it with both arms, hug it, love it and above all become passionate about it. Lukewarm is no good. Hot is no good either. White hot and passionate is the only thing to be.", "Roald Dahl, My Uncle Oswald"},
             {"It does not do to dwell on dreams and forget to live, remember that.", "J.K. Rowling, Harry Potter and the Sorcerer's Stone"},
-            {"Cherish your friends, stay true to your principles, live passionately and fully and well. Experience new things. Love and be loved, if you ever get the chance.", "David Nicholls, One Day"}
+            {"Cherish your friends, stay true to your principles, live passionately and fully and well. Experience new things. Love and be loved, if you ever get the chance.", "David Nicholls, One Day"},
+            {""}
 
     };
 
@@ -163,7 +166,13 @@ public class randomQuote extends AppCompatActivity {
             {"Don't let what other people think of you stop you from doing what you love", "Adolf Hitler"},
             {"George Bush doesn't care about black people", "Kanye West"},
             {"Make memes not war", "Mark Twain"},
-            {"Use the force,Harry", "The Doctor, you know that one with the hair"}
+            {"Use the force, Harry", "The Doctor, you know that one with the hair"},
+            {"Go to hell!", "Passerby"},
+            {"When I die, I want to go peacefully like my grandfather did–in his sleep. Not yelling and screaming like the passengers in his car.", "Bob Monkhouse"},
+            {"Friendship is like peeing on yourself: everyone can see it, but only you get the warm feeling that it brings.", "Robert Bloch"},
+            {"First the doctor told me the good news: I was going to have a disease named after me.", "Steve Martin"},
+            {"Always go to other people's funerals, otherwise they won't come to yours.", "Yogi Berra"},
+
     };
 
 

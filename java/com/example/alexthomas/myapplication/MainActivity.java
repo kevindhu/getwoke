@@ -147,6 +147,10 @@ public class MainActivity extends AppCompatActivity {
                     powerButton_on = !powerButton_on;
                     Log.e("Time", String.valueOf(hour) + ":" + String.valueOf(minute));
                     if (powerButton_on) {
+                        alarm_intent = new Intent(MainActivity.this, alarm_receiver.class);
+                        pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1, alarm_intent,
+                                PendingIntent.FLAG_CANCEL_CURRENT);
+                        pendingIntent.cancel();
                         on_off_boolean(true);
                         Log.e("power is on", "now");
                         store_PowerButtonBoolean(true);
@@ -314,6 +318,8 @@ public class MainActivity extends AppCompatActivity {
                             if (snooze_alarm.getText().equals("Get Quotes")) {
                                 get_quotes();
                             }else {
+                                lastTimerisNull = true;
+                                store_timer_null(true);
                                 pendingIntent.cancel();
                                 snooze_alarm.setText("Get Quotes");
                                 store_snoozeText("Get Quotes");
@@ -605,18 +611,6 @@ public class MainActivity extends AppCompatActivity {
             alarm_confirmation.setText(message);
         } else {
             alarm_confirmation.setText("Your alarm is unset.");
-        }
-    }
-
-    private String getInput_bottomText() {
-        alarm_confirmation = (TextView) findViewById(R.id.alarm_confirmation);
-        if (!lastTimerisNull) {
-            SharedPreferences sharedPref = getSharedPreferences("Alarm Time", MODE_PRIVATE);
-            String message = sharedPref.getString("Message", "Your alarm is unset.");
-            Log.e("Setting previous alarm", message);
-            return message;
-        } else {
-            return "Your alarm is unset.";
         }
     }
 
